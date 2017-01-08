@@ -23,4 +23,6 @@ test:
 
 production:
   <<: *default
-  database: blog_zzz
+  database: ENV['DB_NAME']
+  username: ENV['DB_USERNAME']
+  password: ENV['DB_PASSWORD']
