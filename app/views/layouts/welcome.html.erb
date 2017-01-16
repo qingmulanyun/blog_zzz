@@ -8,8 +8,15 @@
 </head>
 <body>
 
-<%= yield %>
-
+<div class="container-narrow">
+  <div class="masthead">
+    <%= render 'layouts/welcome_header' %>
+    <h3 class="muted"><%= link_to "BlogZzz", root_path %></h3>
+    <h5 class="muted">A blog with Rails</h5>
+  </div>
+  <hr />
+  <%= yield %>
+</div>
 
   </body>
 </html>
