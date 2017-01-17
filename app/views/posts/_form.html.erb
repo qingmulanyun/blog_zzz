@@ -1,0 +1,16 @@
+<p>
+  <%= f.label :title %><br>
+  <%= f.text_field :title %>
+</p>
+
+<p>
+  <%= f.label :content %><br>
+  <%= f.cktext_area :content %>
+</p>
+
+<p>
+  <%= f.submit %>
+</p>
+
+<p class="navbar-text pull-left">
+<%= link_to "Cancel", user_posts_path(@user), :class => 'btn btn-primary'%>

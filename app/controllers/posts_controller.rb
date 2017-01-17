@@ -23,6 +23,15 @@ class PostsController < ApplicationController
     redirect_to user_posts_path
   end
 
+  def edit
+    @post = @user.posts.find(params[:id])
+  end
+
+  def update
+    @user.posts.find(params[:id]).update(post_params)
+    redirect_to user_post_path
+  end
+
   def get_current_user
     @user = User.find(current_user)
   end
