@@ -30,7 +30,9 @@ gem 'bootstrap-sass', '~> 3.3.6'
 gem 'ckeditor'
 gem 'paperclip'
 
-gem 'rails_12factor', group: :production
+# Please see  https://devcenter.heroku.com/articles/ruby-support#injected-plugins for more info
+gem 'rails_12factor'
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
