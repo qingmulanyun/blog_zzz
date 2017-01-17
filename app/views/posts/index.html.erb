@@ -1,4 +1,3 @@
-
 <% if @posts.present?%>
     <h1>Posts</h1>
     <div class="list-group">
@@ -6,7 +5,12 @@
           <%= link_to post.title, user_post_path(@user, post), :class => "list-group-item" %>
       <% end %>
     </div>
+
+    <p class="navbar-text pull-left">
+      <%= link_to "New post", new_user_post_path(@user), :class => "btn btn-primary" %>
 <% else %>
-    <h3>You haven't write any posts. <%= link_to "Start your first post?", new_user_post_path(@user) %></h3>
+    <h3>You haven't write any posts.<%= link_to "Start your first post?", new_user_post_path(@user) %></h3>
 <% end %>
+
+
 

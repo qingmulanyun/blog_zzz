@@ -1,0 +1,11 @@
+<p>
+<h1><strong> <%= @post.title %></strong></h1>
+
+</p>
+
+<p>
+  <strong><%= @post.content %></strong>
+
+</p>
+
+<%= link_to 'Back', user_posts_path , :class => 'btn btn-primary'%> <%= link_to 'Delete', user_post_path, :method => :delete, :class => 'btn btn-primary'%>
