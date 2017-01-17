@@ -31,8 +31,9 @@ gem 'ckeditor'
 gem 'paperclip'
 
 # Please see  https://devcenter.heroku.com/articles/ruby-support#injected-plugins for more info
-gem 'rails_12factor'
-
+group :production do
+  gem 'rails_12factor'
+end
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
