@@ -1,16 +1,3 @@
 <%= form_for @post, url: user_post_path(@user, @post), method: 'PUT'  do |f|%>
-    <p>
-      <%= f.label :title %><br>
-      <%= f.text_field :title %>
-    </p>
-
-    <p>
-      <%= f.label :content %><br>
-      <%= f.cktext_area :content %>
-    </p>
-
-    <p>
-      <%= f.submit %>
-    </p>
-
+    <%= render 'form', f: f %>
 <%end%>
