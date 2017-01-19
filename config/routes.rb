@@ -3,8 +3,6 @@ Rails.application.routes.draw do
   devise_for :users
   root 'welcome#index'
 
-  get 'users/posts' => 'users#index', as: :user_root
-
   resources :users do
     resources :posts
   end
