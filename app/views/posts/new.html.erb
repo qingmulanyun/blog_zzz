@@ -1,3 +1,5 @@
 <%= form_for :post, url: user_posts_path do |f| %>
     <%= render 'form', f: f %>
 <% end %>
+<p class="navbar-text pull-left">
+<%= link_to "Cancel", user_posts_path(@user), :class => 'btn btn-primary'%>

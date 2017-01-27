@@ -161,6 +161,7 @@
     <orderEntry type="library" scope="PROVIDED" name="minitest (v5.10.1, RVM: ruby-2.2.2 [blog_zzz]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="multi_json (v1.12.1, RVM: ruby-2.2.2 [blog_zzz]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="nokogiri (v1.7.0.1, RVM: ruby-2.2.2 [blog_zzz]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="non-stupid-digest-assets (v1.0.9, RVM: ruby-2.2.2 [blog_zzz]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="orm_adapter (v0.5.0, RVM: ruby-2.2.2 [blog_zzz]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="paperclip (v5.1.0, RVM: ruby-2.2.2 [blog_zzz]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="pg (v0.19.0, RVM: ruby-2.2.2 [blog_zzz]) [gem]" level="application" />
