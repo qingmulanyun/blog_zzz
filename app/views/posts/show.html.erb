@@ -1,9 +1,12 @@
-<p>
-<h1><strong> <%= @post.title %></strong></h1>
+<div class="page-header">
+  <h1 class="post-header"><strong> <%= @post.title %></strong></h1>
+  <div class="btn-post-operation">
+    <%= link_to 'Edit', edit_user_post_path, :class => 'btn btn-primary'%>
+    <%= link_to 'Back', user_posts_path , :class => 'btn btn-primary'%>
+    <%= link_to 'Delete', user_post_path, :method => :delete, :class => 'btn btn-primary'%>
+  </div>
+</div>
 
-</p>
-
- <%= @post.content.html_safe %>
+<%= @post.content.html_safe %>
 
 
-<%= link_to 'Back', user_posts_path , :class => 'btn btn-primary'%> <%= link_to 'Delete', user_post_path, :method => :delete, :class => 'btn btn-primary'%>  <%= link_to 'Edit', edit_user_post_path, :class => 'btn btn-primary'%>

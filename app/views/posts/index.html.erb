@@ -1,13 +1,18 @@
 <% if @posts.present?%>
-    <h1>Posts</h1>
+    <div class="page-header">
+      <h1 class="post-header">Posts</h1>
+      <div class="btn-post-operation">
+        <%= link_to "New post", new_user_post_path(@user), :class => "btn btn-primary" %>
+      </div>
+    </div>
+
+
     <div class="list-group">
       <% @posts.each do |post| %>
           <%= link_to post.title, user_post_path(@user, post), :class => "list-group-item" %>
       <% end %>
     </div>
 
-    <p class="navbar-text pull-left">
-      <%= link_to "New post", new_user_post_path(@user), :class => "btn btn-primary" %>
 <% else %>
     <h3>You haven't write any posts.<%= link_to "Start your first post?", new_user_post_path(@user) %></h3>
 <% end %>
