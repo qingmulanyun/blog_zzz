@@ -76,7 +76,4 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   # Precompile additional assets
-  config.assets.precompile += Ckeditor.assets
-  config.assets.precompile += %w( *.js )
-  config.assets.precompile += %w( .svg .eot .woff .ttf )
 end
