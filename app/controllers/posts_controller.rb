@@ -21,7 +21,7 @@ class PostsController < ApplicationController
   def destroy
     @post = @user.posts.find(params[:id])
     authorize @post, :destroy?
-    z@post.destroy!
+    @post.destroy!
     redirect_to user_posts_path
   end
 
@@ -30,8 +30,9 @@ class PostsController < ApplicationController
   end
 
   def update
-    @post = @user.posts.find(params[:id]).update(post_params)
+    @post = @user.posts.find(params[:id])
     authorize @post, :update?
+    @post.update(post_params)
     redirect_to user_post_path
   end
 
