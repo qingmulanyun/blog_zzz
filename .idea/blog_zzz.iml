@@ -165,6 +165,7 @@
     <orderEntry type="library" scope="PROVIDED" name="orm_adapter (v0.5.0, RVM: ruby-2.2.2 [blog_zzz]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="paperclip (v5.1.0, RVM: ruby-2.2.2 [blog_zzz]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="pg (v0.19.0, RVM: ruby-2.2.2 [blog_zzz]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="pundit (v1.1.0, RVM: ruby-2.2.2 [blog_zzz]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rack (v1.6.5, RVM: ruby-2.2.2 [blog_zzz]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rack-test (v0.6.3, RVM: ruby-2.2.2 [blog_zzz]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rails (v4.2.6, RVM: ruby-2.2.2 [blog_zzz]) [gem]" level="application" />
