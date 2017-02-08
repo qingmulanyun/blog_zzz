@@ -1,0 +1,14 @@
+I""(function() {
+  this.blogzzz = angular.module('blogzzz', []);
+
+  this.blogzzz.config([
+    '$routeProvider', function($routeProvider) {
+      return $routeProvider.otherwise({
+        templateUrl: '/templates/home.html',
+        controller: 'HomeCtrl'
+      });
+    }
+  ]);
+
+}).call(this);
+:ET

@@ -5,6 +5,10 @@ class PostsController < ApplicationController
     @posts = Post.where(user_id: current_user)
   end
 
+  def index_all
+    # todo get all posts order by updated time
+  end
+
   def new
 
   end

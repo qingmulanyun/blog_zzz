@@ -25,6 +25,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'devise'
 gem 'pundit'
 
+
 gem 'bootstrap-sass', '~> 3.3.6'
 
 # integrate editor
@@ -35,6 +36,10 @@ gem "non-stupid-digest-assets"
 # Please see  https://devcenter.heroku.com/articles/ruby-support#injected-plugins for more info
 group :production do
   gem 'rails_12factor'
+end
+
+group :assets do
+  gem 'angularjs-rails'
 end
 
 # Use ActiveModel has_secure_password
