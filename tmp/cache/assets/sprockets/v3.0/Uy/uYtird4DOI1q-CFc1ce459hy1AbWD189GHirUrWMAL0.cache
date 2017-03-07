@@ -1,5 +1,0 @@
-I"k(function() {
-  this.blogzzz.controller('HomeCtrl', ['$scope', function($scope) {}]);
-
-}).call(this);
-:ET
