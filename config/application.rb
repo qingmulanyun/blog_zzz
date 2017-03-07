@@ -21,10 +21,5 @@ module BlogZzz
     # config.i18n.default_locale = :de
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
-    config.autoload_paths << Rails.root.join('app/policies')
-    config.serve_static_assets = true
-    config.assets.precompile += Ckeditor.assets
-    config.assets.precompile += %w( ckeditor/* )
-    config.autoload_paths += %W(#{config.root}/app/models/ckeditor)
   end
 end

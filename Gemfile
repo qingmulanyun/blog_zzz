@@ -38,9 +38,7 @@ group :production do
   gem 'rails_12factor'
 end
 
-group :assets do
-  gem 'angularjs-rails'
-end
+gem "bower-rails"
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

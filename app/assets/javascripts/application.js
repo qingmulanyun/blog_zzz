@@ -12,8 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require angular
 //= require turbolinks
+//= require angular/angular
 //= require_tree .
 //= require bootstrap-sprockets
 //= require ckeditor/init
+
+
