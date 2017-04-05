@@ -8300,3 +8300,435 @@ Started GET "/assets/ckeditor/ckeditor.self.js?body=1" for ::1 at 2017-04-05 14:
 
 
 Started GET "/assets/application.self.js?body=1" for ::1 at 2017-04-05 14:46:53 +1000
+
+
+Started GET "/" for ::1 at 2017-04-05 15:51:11 +1000
+  [1m[36mActiveRecord::SchemaMigration Load (1.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by SessionController#root as HTML
+  [1m[35mUser Load (2.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1  ORDER BY "users"."id" ASC LIMIT 1  [["id", "6230fe7d-f5cb-44ff-80e5-49d336b922e9"]]
+Redirected to http://localhost:3000/users/6230fe7d-f5cb-44ff-80e5-49d336b922e9/posts
+Completed 302 Found in 51ms (ActiveRecord: 7.0ms)
+
+
+Started GET "/users/6230fe7d-f5cb-44ff-80e5-49d336b922e9/posts" for ::1 at 2017-04-05 15:51:11 +1000
+Processing by PostsController#index as HTML
+  Parameters: {"user_id"=>"6230fe7d-f5cb-44ff-80e5-49d336b922e9"}
+  [1m[36mUser Load (1.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", "6230fe7d-f5cb-44ff-80e5-49d336b922e9"]]
+DEPRECATION WARNING: You are passing an instance of ActiveRecord::Base to `find`. Please pass the id of the object by calling `.id`. (called from get_current_user at /Users/wenbo.zhao/zwb_repos/blog_zzz/app/controllers/posts_controller.rb:44)
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", "6230fe7d-f5cb-44ff-80e5-49d336b922e9"]]
+  [1m[36mPost Load (1.2ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."user_id" = '6230fe7d-f5cb-44ff-80e5-49d336b922e9'[0m
+  Rendered posts/index.html.erb within layouts/application (32.0ms)
+Completed 200 OK in 8325ms (Views: 8290.0ms | ActiveRecord: 6.2ms)
+
+
+Started GET "/" for ::1 at 2017-04-05 15:51:20 +1000
+Processing by SessionController#root as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1  ORDER BY "users"."id" ASC LIMIT 1  [["id", "6230fe7d-f5cb-44ff-80e5-49d336b922e9"]]
+Redirected to http://localhost:3000/users/6230fe7d-f5cb-44ff-80e5-49d336b922e9/posts
+Completed 302 Found in 3ms (ActiveRecord: 0.4ms)
+
+
+Started GET "/" for ::1 at 2017-04-05 15:51:20 +1000
+Processing by SessionController#root as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", "6230fe7d-f5cb-44ff-80e5-49d336b922e9"]]
+Redirected to http://localhost:3000/users/6230fe7d-f5cb-44ff-80e5-49d336b922e9/posts
+Completed 302 Found in 2ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/users/6230fe7d-f5cb-44ff-80e5-49d336b922e9/posts" for ::1 at 2017-04-05 15:51:20 +1000
+Processing by PostsController#index as HTML
+  Parameters: {"user_id"=>"6230fe7d-f5cb-44ff-80e5-49d336b922e9"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1  ORDER BY "users"."id" ASC LIMIT 1  [["id", "6230fe7d-f5cb-44ff-80e5-49d336b922e9"]]
+DEPRECATION WARNING: You are passing an instance of ActiveRecord::Base to `find`. Please pass the id of the object by calling `.id`. (called from get_current_user at /Users/wenbo.zhao/zwb_repos/blog_zzz/app/controllers/posts_controller.rb:44)
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", "6230fe7d-f5cb-44ff-80e5-49d336b922e9"]]
+  [1m[35mPost Load (0.7ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."user_id" = '6230fe7d-f5cb-44ff-80e5-49d336b922e9'
+  Rendered posts/index.html.erb within layouts/application (2.9ms)
+Completed 200 OK in 94ms (Views: 89.9ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/assets/posts.self.css?body=1" for ::1 at 2017-04-05 15:51:20 +1000
+
+
+Started GET "/assets/application.self.css?body=1" for ::1 at 2017-04-05 15:51:20 +1000
+
+
+Started GET "/assets/jquery_ujs.self.js?body=1" for ::1 at 2017-04-05 15:51:20 +1000
+
+
+Started GET "/assets/jquery.self.js?body=1" for ::1 at 2017-04-05 15:51:20 +1000
+
+
+Started GET "/assets/angular/angular.self.js?body=1" for ::1 at 2017-04-05 15:51:20 +1000
+
+
+Started GET "/assets/test_angular.self.js?body=1" for ::1 at 2017-04-05 15:51:20 +1000
+
+
+Started GET "/assets/bootstrap/transition.self.js?body=1" for ::1 at 2017-04-05 15:51:20 +1000
+
+
+Started GET "/assets/bootstrap/alert.self.js?body=1" for ::1 at 2017-04-05 15:51:20 +1000
+
+
+Started GET "/assets/bootstrap/button.self.js?body=1" for ::1 at 2017-04-05 15:51:20 +1000
+
+
+Started GET "/assets/bootstrap/carousel.self.js?body=1" for ::1 at 2017-04-05 15:51:20 +1000
+
+
+Started GET "/assets/bootstrap/collapse.self.js?body=1" for ::1 at 2017-04-05 15:51:20 +1000
+
+
+Started GET "/assets/bootstrap/dropdown.self.js?body=1" for ::1 at 2017-04-05 15:51:20 +1000
+
+
+Started GET "/assets/bootstrap/modal.self.js?body=1" for ::1 at 2017-04-05 15:51:20 +1000
+
+
+Started GET "/assets/bootstrap/tab.self.js?body=1" for ::1 at 2017-04-05 15:51:20 +1000
+
+
+Started GET "/assets/bootstrap/affix.self.js?body=1" for ::1 at 2017-04-05 15:51:20 +1000
+
+
+Started GET "/assets/bootstrap/scrollspy.self.js?body=1" for ::1 at 2017-04-05 15:51:20 +1000
+
+
+Started GET "/assets/bootstrap/tooltip.self.js?body=1" for ::1 at 2017-04-05 15:51:20 +1000
+
+
+Started GET "/assets/bootstrap/popover.self.js?body=1" for ::1 at 2017-04-05 15:51:20 +1000
+
+
+Started GET "/assets/bootstrap-sprockets.self.js?body=1" for ::1 at 2017-04-05 15:51:20 +1000
+
+
+Started GET "/assets/ckeditor/init.self.js?body=1" for ::1 at 2017-04-05 15:51:20 +1000
+
+
+Started GET "/assets/ckeditor/ckeditor.self.js?body=1" for ::1 at 2017-04-05 15:51:20 +1000
+
+
+Started GET "/assets/application.self.js?body=1" for ::1 at 2017-04-05 15:51:20 +1000
+
+
+Started GET "/users/6230fe7d-f5cb-44ff-80e5-49d336b922e9/posts/e6a24699-7b51-4e45-aa07-4c356759e871" for ::1 at 2017-04-05 15:51:29 +1000
+Processing by PostsController#show as HTML
+  Parameters: {"user_id"=>"6230fe7d-f5cb-44ff-80e5-49d336b922e9", "id"=>"e6a24699-7b51-4e45-aa07-4c356759e871"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", "6230fe7d-f5cb-44ff-80e5-49d336b922e9"]]
+DEPRECATION WARNING: You are passing an instance of ActiveRecord::Base to `find`. Please pass the id of the object by calling `.id`. (called from get_current_user at /Users/wenbo.zhao/zwb_repos/blog_zzz/app/controllers/posts_controller.rb:44)
+  [1m[35mUser Load (0.6ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", "6230fe7d-f5cb-44ff-80e5-49d336b922e9"]]
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT  "posts".* FROM "posts" WHERE "posts"."user_id" = $1 AND "posts"."id" = $2 LIMIT 1[0m  [["user_id", "6230fe7d-f5cb-44ff-80e5-49d336b922e9"], ["id", "e6a24699-7b51-4e45-aa07-4c356759e871"]]
+  Rendered posts/show.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 98ms (Views: 63.3ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/assets/posts.self.css?body=1" for ::1 at 2017-04-05 15:51:29 +1000
+
+
+Started GET "/assets/jquery_ujs.self.js?body=1" for ::1 at 2017-04-05 15:51:29 +1000
+
+
+Started GET "/assets/jquery.self.js?body=1" for ::1 at 2017-04-05 15:51:29 +1000
+
+
+Started GET "/assets/test_angular.self.js?body=1" for ::1 at 2017-04-05 15:51:29 +1000
+
+
+Started GET "/assets/application.self.css?body=1" for ::1 at 2017-04-05 15:51:29 +1000
+
+
+Started GET "/assets/angular/angular.self.js?body=1" for ::1 at 2017-04-05 15:51:29 +1000
+
+
+Started GET "/assets/bootstrap/transition.self.js?body=1" for ::1 at 2017-04-05 15:51:29 +1000
+
+
+Started GET "/assets/bootstrap/alert.self.js?body=1" for ::1 at 2017-04-05 15:51:29 +1000
+
+
+Started GET "/assets/bootstrap/button.self.js?body=1" for ::1 at 2017-04-05 15:51:29 +1000
+
+
+Started GET "/assets/bootstrap/carousel.self.js?body=1" for ::1 at 2017-04-05 15:51:29 +1000
+
+
+Started GET "/assets/bootstrap/collapse.self.js?body=1" for ::1 at 2017-04-05 15:51:29 +1000
+
+
+Started GET "/assets/bootstrap/dropdown.self.js?body=1" for ::1 at 2017-04-05 15:51:29 +1000
+
+
+Started GET "/assets/bootstrap/modal.self.js?body=1" for ::1 at 2017-04-05 15:51:29 +1000
+
+
+Started GET "/assets/bootstrap/tab.self.js?body=1" for ::1 at 2017-04-05 15:51:29 +1000
+
+
+Started GET "/assets/bootstrap/affix.self.js?body=1" for ::1 at 2017-04-05 15:51:29 +1000
+
+
+Started GET "/assets/bootstrap/scrollspy.self.js?body=1" for ::1 at 2017-04-05 15:51:29 +1000
+
+
+Started GET "/assets/bootstrap/tooltip.self.js?body=1" for ::1 at 2017-04-05 15:51:29 +1000
+
+
+Started GET "/assets/bootstrap/popover.self.js?body=1" for ::1 at 2017-04-05 15:51:29 +1000
+
+
+Started GET "/assets/bootstrap-sprockets.self.js?body=1" for ::1 at 2017-04-05 15:51:29 +1000
+
+
+Started GET "/assets/ckeditor/init.self.js?body=1" for ::1 at 2017-04-05 15:51:29 +1000
+
+
+Started GET "/assets/ckeditor/ckeditor.self.js?body=1" for ::1 at 2017-04-05 15:51:29 +1000
+
+
+Started GET "/assets/application.self.js?body=1" for ::1 at 2017-04-05 15:51:29 +1000
+
+
+Started GET "/" for ::1 at 2017-04-05 15:51:31 +1000
+Processing by SessionController#root as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1  ORDER BY "users"."id" ASC LIMIT 1  [["id", "6230fe7d-f5cb-44ff-80e5-49d336b922e9"]]
+Redirected to http://localhost:3000/users/6230fe7d-f5cb-44ff-80e5-49d336b922e9/posts
+Completed 302 Found in 2ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/users/6230fe7d-f5cb-44ff-80e5-49d336b922e9/posts" for ::1 at 2017-04-05 15:51:31 +1000
+Processing by PostsController#index as HTML
+  Parameters: {"user_id"=>"6230fe7d-f5cb-44ff-80e5-49d336b922e9"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", "6230fe7d-f5cb-44ff-80e5-49d336b922e9"]]
+DEPRECATION WARNING: You are passing an instance of ActiveRecord::Base to `find`. Please pass the id of the object by calling `.id`. (called from get_current_user at /Users/wenbo.zhao/zwb_repos/blog_zzz/app/controllers/posts_controller.rb:44)
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", "6230fe7d-f5cb-44ff-80e5-49d336b922e9"]]
+  [1m[36mPost Load (0.4ms)[0m  [1mSELECT "posts".* FROM "posts" WHERE "posts"."user_id" = '6230fe7d-f5cb-44ff-80e5-49d336b922e9'[0m
+  Rendered posts/index.html.erb within layouts/application (3.1ms)
+Completed 200 OK in 96ms (Views: 90.7ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/assets/posts.self.css?body=1" for ::1 at 2017-04-05 15:51:31 +1000
+
+
+Started GET "/assets/jquery_ujs.self.js?body=1" for ::1 at 2017-04-05 15:51:31 +1000
+
+
+Started GET "/assets/application.self.css?body=1" for ::1 at 2017-04-05 15:51:31 +1000
+
+
+Started GET "/assets/jquery.self.js?body=1" for ::1 at 2017-04-05 15:51:31 +1000
+
+
+Started GET "/assets/test_angular.self.js?body=1" for ::1 at 2017-04-05 15:51:31 +1000
+
+
+Started GET "/assets/angular/angular.self.js?body=1" for ::1 at 2017-04-05 15:51:31 +1000
+
+
+Started GET "/assets/bootstrap/transition.self.js?body=1" for ::1 at 2017-04-05 15:51:31 +1000
+
+
+Started GET "/assets/bootstrap/alert.self.js?body=1" for ::1 at 2017-04-05 15:51:31 +1000
+
+
+Started GET "/assets/bootstrap/button.self.js?body=1" for ::1 at 2017-04-05 15:51:31 +1000
+
+
+Started GET "/assets/bootstrap/carousel.self.js?body=1" for ::1 at 2017-04-05 15:51:31 +1000
+
+
+Started GET "/assets/bootstrap/collapse.self.js?body=1" for ::1 at 2017-04-05 15:51:31 +1000
+
+
+Started GET "/assets/bootstrap/dropdown.self.js?body=1" for ::1 at 2017-04-05 15:51:31 +1000
+
+
+Started GET "/assets/bootstrap/modal.self.js?body=1" for ::1 at 2017-04-05 15:51:31 +1000
+
+
+Started GET "/assets/bootstrap/tab.self.js?body=1" for ::1 at 2017-04-05 15:51:31 +1000
+
+
+Started GET "/assets/bootstrap/affix.self.js?body=1" for ::1 at 2017-04-05 15:51:31 +1000
+
+
+Started GET "/assets/bootstrap/scrollspy.self.js?body=1" for ::1 at 2017-04-05 15:51:32 +1000
+
+
+Started GET "/assets/bootstrap/tooltip.self.js?body=1" for ::1 at 2017-04-05 15:51:32 +1000
+
+
+Started GET "/assets/bootstrap/popover.self.js?body=1" for ::1 at 2017-04-05 15:51:32 +1000
+
+
+Started GET "/assets/bootstrap-sprockets.self.js?body=1" for ::1 at 2017-04-05 15:51:32 +1000
+
+
+Started GET "/assets/ckeditor/init.self.js?body=1" for ::1 at 2017-04-05 15:51:32 +1000
+
+
+Started GET "/assets/ckeditor/ckeditor.self.js?body=1" for ::1 at 2017-04-05 15:51:32 +1000
+
+
+Started GET "/assets/application.self.js?body=1" for ::1 at 2017-04-05 15:51:32 +1000
+
+
+Started GET "/users/6230fe7d-f5cb-44ff-80e5-49d336b922e9/posts/e6a24699-7b51-4e45-aa07-4c356759e871" for ::1 at 2017-04-05 15:51:33 +1000
+Processing by PostsController#show as HTML
+  Parameters: {"user_id"=>"6230fe7d-f5cb-44ff-80e5-49d336b922e9", "id"=>"e6a24699-7b51-4e45-aa07-4c356759e871"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1  ORDER BY "users"."id" ASC LIMIT 1  [["id", "6230fe7d-f5cb-44ff-80e5-49d336b922e9"]]
+DEPRECATION WARNING: You are passing an instance of ActiveRecord::Base to `find`. Please pass the id of the object by calling `.id`. (called from get_current_user at /Users/wenbo.zhao/zwb_repos/blog_zzz/app/controllers/posts_controller.rb:44)
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", "6230fe7d-f5cb-44ff-80e5-49d336b922e9"]]
+  [1m[35mPost Load (0.2ms)[0m  SELECT  "posts".* FROM "posts" WHERE "posts"."user_id" = $1 AND "posts"."id" = $2 LIMIT 1  [["user_id", "6230fe7d-f5cb-44ff-80e5-49d336b922e9"], ["id", "e6a24699-7b51-4e45-aa07-4c356759e871"]]
+  Rendered posts/show.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 84ms (Views: 80.7ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/assets/posts.self.css?body=1" for ::1 at 2017-04-05 15:51:34 +1000
+
+
+Started GET "/assets/application.self.css?body=1" for ::1 at 2017-04-05 15:51:34 +1000
+
+
+Started GET "/assets/angular/angular.self.js?body=1" for ::1 at 2017-04-05 15:51:34 +1000
+
+
+Started GET "/assets/test_angular.self.js?body=1" for ::1 at 2017-04-05 15:51:34 +1000
+
+
+Started GET "/assets/jquery_ujs.self.js?body=1" for ::1 at 2017-04-05 15:51:34 +1000
+
+
+Started GET "/assets/jquery.self.js?body=1" for ::1 at 2017-04-05 15:51:34 +1000
+
+
+Started GET "/assets/bootstrap/transition.self.js?body=1" for ::1 at 2017-04-05 15:51:34 +1000
+
+
+Started GET "/assets/bootstrap/alert.self.js?body=1" for ::1 at 2017-04-05 15:51:34 +1000
+
+
+Started GET "/assets/bootstrap/button.self.js?body=1" for ::1 at 2017-04-05 15:51:34 +1000
+
+
+Started GET "/assets/bootstrap/carousel.self.js?body=1" for ::1 at 2017-04-05 15:51:34 +1000
+
+
+Started GET "/assets/bootstrap/collapse.self.js?body=1" for ::1 at 2017-04-05 15:51:34 +1000
+
+
+Started GET "/assets/bootstrap/dropdown.self.js?body=1" for ::1 at 2017-04-05 15:51:34 +1000
+
+
+Started GET "/assets/bootstrap/modal.self.js?body=1" for ::1 at 2017-04-05 15:51:34 +1000
+
+
+Started GET "/assets/bootstrap/tab.self.js?body=1" for ::1 at 2017-04-05 15:51:34 +1000
+
+
+Started GET "/assets/bootstrap/affix.self.js?body=1" for ::1 at 2017-04-05 15:51:34 +1000
+
+
+Started GET "/assets/bootstrap/scrollspy.self.js?body=1" for ::1 at 2017-04-05 15:51:34 +1000
+
+
+Started GET "/assets/bootstrap/tooltip.self.js?body=1" for ::1 at 2017-04-05 15:51:34 +1000
+
+
+Started GET "/assets/bootstrap/popover.self.js?body=1" for ::1 at 2017-04-05 15:51:34 +1000
+
+
+Started GET "/assets/bootstrap-sprockets.self.js?body=1" for ::1 at 2017-04-05 15:51:34 +1000
+
+
+Started GET "/assets/ckeditor/init.self.js?body=1" for ::1 at 2017-04-05 15:51:34 +1000
+
+
+Started GET "/assets/ckeditor/ckeditor.self.js?body=1" for ::1 at 2017-04-05 15:51:34 +1000
+
+
+Started GET "/assets/application.self.js?body=1" for ::1 at 2017-04-05 15:51:34 +1000
+
+
+Started GET "/" for ::1 at 2017-04-05 15:51:36 +1000
+Processing by SessionController#root as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", "6230fe7d-f5cb-44ff-80e5-49d336b922e9"]]
+Redirected to http://localhost:3000/users/6230fe7d-f5cb-44ff-80e5-49d336b922e9/posts
+Completed 302 Found in 2ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/users/6230fe7d-f5cb-44ff-80e5-49d336b922e9/posts" for ::1 at 2017-04-05 15:51:36 +1000
+Processing by PostsController#index as HTML
+  Parameters: {"user_id"=>"6230fe7d-f5cb-44ff-80e5-49d336b922e9"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1  ORDER BY "users"."id" ASC LIMIT 1  [["id", "6230fe7d-f5cb-44ff-80e5-49d336b922e9"]]
+DEPRECATION WARNING: You are passing an instance of ActiveRecord::Base to `find`. Please pass the id of the object by calling `.id`. (called from get_current_user at /Users/wenbo.zhao/zwb_repos/blog_zzz/app/controllers/posts_controller.rb:44)
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", "6230fe7d-f5cb-44ff-80e5-49d336b922e9"]]
+  [1m[35mPost Load (0.7ms)[0m  SELECT "posts".* FROM "posts" WHERE "posts"."user_id" = '6230fe7d-f5cb-44ff-80e5-49d336b922e9'
+  Rendered posts/index.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 68ms (Views: 64.8ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/assets/posts.self.css?body=1" for ::1 at 2017-04-05 15:51:36 +1000
+
+
+Started GET "/assets/jquery.self.js?body=1" for ::1 at 2017-04-05 15:51:36 +1000
+
+
+Started GET "/assets/application.self.css?body=1" for ::1 at 2017-04-05 15:51:36 +1000
+
+
+Started GET "/assets/test_angular.self.js?body=1" for ::1 at 2017-04-05 15:51:36 +1000
+
+
+Started GET "/assets/jquery_ujs.self.js?body=1" for ::1 at 2017-04-05 15:51:36 +1000
+
+
+Started GET "/assets/angular/angular.self.js?body=1" for ::1 at 2017-04-05 15:51:36 +1000
+
+
+Started GET "/assets/bootstrap/transition.self.js?body=1" for ::1 at 2017-04-05 15:51:36 +1000
+
+
+Started GET "/assets/bootstrap/alert.self.js?body=1" for ::1 at 2017-04-05 15:51:36 +1000
+
+
+Started GET "/assets/bootstrap/button.self.js?body=1" for ::1 at 2017-04-05 15:51:36 +1000
+
+
+Started GET "/assets/bootstrap/carousel.self.js?body=1" for ::1 at 2017-04-05 15:51:36 +1000
+
+
+Started GET "/assets/bootstrap/collapse.self.js?body=1" for ::1 at 2017-04-05 15:51:36 +1000
+
+
+Started GET "/assets/bootstrap/dropdown.self.js?body=1" for ::1 at 2017-04-05 15:51:36 +1000
+
+
+Started GET "/assets/bootstrap/modal.self.js?body=1" for ::1 at 2017-04-05 15:51:36 +1000
+
+
+Started GET "/assets/bootstrap/tab.self.js?body=1" for ::1 at 2017-04-05 15:51:36 +1000
+
+
+Started GET "/assets/bootstrap/affix.self.js?body=1" for ::1 at 2017-04-05 15:51:36 +1000
+
+
+Started GET "/assets/bootstrap/scrollspy.self.js?body=1" for ::1 at 2017-04-05 15:51:36 +1000
+
+
+Started GET "/assets/bootstrap/tooltip.self.js?body=1" for ::1 at 2017-04-05 15:51:36 +1000
+
+
+Started GET "/assets/bootstrap/popover.self.js?body=1" for ::1 at 2017-04-05 15:51:36 +1000
+
+
+Started GET "/assets/bootstrap-sprockets.self.js?body=1" for ::1 at 2017-04-05 15:51:36 +1000
+
+
+Started GET "/assets/ckeditor/init.self.js?body=1" for ::1 at 2017-04-05 15:51:36 +1000
+
+
+Started GET "/assets/ckeditor/ckeditor.self.js?body=1" for ::1 at 2017-04-05 15:51:36 +1000
+
+
+Started GET "/assets/application.self.js?body=1" for ::1 at 2017-04-05 15:51:36 +1000
