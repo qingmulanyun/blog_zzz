@@ -21,5 +21,7 @@ module BlogZzz
     # config.i18n.default_locale = :de
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
+
+    config.assets.paths << Rails.root.join('vendor', 'assets', 'bower_components')
   end
 end
