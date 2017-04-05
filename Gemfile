@@ -25,7 +25,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'devise'
 gem 'pundit'
 
-gem 'execjs'
 gem 'bootstrap-sass', '~> 3.3.6'
 
 # integrate editor
@@ -37,8 +36,7 @@ gem "non-stupid-digest-assets"
 group :production do
   gem 'rails_12factor'
 end
-
-gem "bower-rails"
+gem 'angularjs-rails'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
