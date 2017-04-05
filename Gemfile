@@ -36,7 +36,10 @@ gem "non-stupid-digest-assets"
 group :production do
   gem 'rails_12factor'
 end
-gem 'angularjs-rails'
+
+source 'https://rails-assets.org' do
+  gem 'rails-assets-angular'
+end
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
