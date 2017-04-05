@@ -25,7 +25,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'devise'
 gem 'pundit'
 
-
+gem 'execjs'
 gem 'bootstrap-sass', '~> 3.3.6'
 
 # integrate editor
