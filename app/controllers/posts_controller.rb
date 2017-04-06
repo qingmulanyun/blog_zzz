@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_action :get_current_user
 
   def index
-    @posts = Post.where(user_id: current_user)
+    @posts = Post.where(user_id: current_user).order(updated_at: :desc)
   end
 
   def index_all
