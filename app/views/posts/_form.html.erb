@@ -9,6 +9,7 @@
 </p>
 
 <p>
-  <%= f.submit %>
+  <%= f.submit :class => 'btn btn-primary'  %>
+  <%= link_to "Cancel", user_post_path(@user, @post), :class => 'btn btn-primary'%>
 </p>
 
