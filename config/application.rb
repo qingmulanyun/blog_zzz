@@ -22,7 +22,6 @@ module BlogZzz
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
 
-    config.assets.paths << Rails.root.join('vendor', 'assets', 'bower_components')
     config.assets.initialize_on_precompile = false
   end
 end
