@@ -2,7 +2,7 @@
   <div class="container">
         <h1>Welcome to BlogZzz!</h1>
         <p class="lead">
-          You must sign in or sign up before you can access our blog.
+          Sign in to start your own posts!
         </p>
         <div class="row-fluid">
           <div class="span6">
@@ -12,3 +12,17 @@
         </div>
   </div>
 </div>
+
+<% if @posts.present?%>
+    <div class="list-group">
+      <% @posts.each do |post| %>
+          <a class="list-group-item">
+            <h4 class="list-group-item-heading"><%= post.title %></h4>
+            <span class="list-group-item-text">
+              Published: {{ <%= post.created_at.to_time.to_i * 1000 %> | date:'medium'}}
+              Author:  <%= post.user.name.to_s %>
+            </span>
+          </a>
+      <% end %>
+    </div>
+<% end %>

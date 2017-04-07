@@ -10,6 +10,7 @@
 
 <p>
   <%= f.submit :class => 'btn btn-primary'  %>
-  <%= link_to "Cancel", user_post_path(@user, @post), :class => 'btn btn-primary'%>
+  <%= link_to "Cancel", user_post_path(@user, @post), :class => 'btn btn-primary btn-cancel'  if params[:action].eql?('edit') %>
+  <%= link_to "Cancel", user_posts_path(@user), :class => 'btn btn-primary btn-cancel' if params[:action].eql?('new') %>
 </p>
 
