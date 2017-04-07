@@ -1,9 +1,11 @@
 <div class="page-header">
   <h1 class="post-header"><strong> <%= @post.title %></strong></h1>
+  <p> Published: {{ <%= @post.created_at.to_i * 1000 %> | date :'medium'  }}, last updated: {{ <%= @post.updated_at.to_i * 1000 %> | date :'medium'  }}</p>
   <div class="btn-post-operation">
-    <%= link_to 'Edit', edit_user_post_path, :class => 'btn btn-primary'%>
     <%= link_to 'Back', user_posts_path , :class => 'btn btn-primary'%>
-    <%= link_to 'Delete', user_post_path, :method => :delete, :class => 'btn btn-primary'%>
+    <%= link_to 'Edit', edit_user_post_path, :class => 'btn btn-primary'%>
+
+    <%= link_to 'Delete', user_post_path, :method => :delete, :class => 'btn btn-primary delete-post'%>
   </div>
 </div>
 
