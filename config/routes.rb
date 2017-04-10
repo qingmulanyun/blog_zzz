@@ -7,6 +7,9 @@ Rails.application.routes.draw do
     resources :posts
   end
 
+  get 'get_public_posts', to: 'session#show_public_posts'
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

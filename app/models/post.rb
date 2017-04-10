@@ -4,4 +4,6 @@ class Post < ActiveRecord::Base
 
   validates :title, presence: true
   validates :content, presence: true
+
+  scope :publicPosts, -> { where public: true}
 end

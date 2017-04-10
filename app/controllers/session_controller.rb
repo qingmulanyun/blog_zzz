@@ -1,15 +1,16 @@
 class SessionController < ApplicationController
-  skip_before_filter :authenticate_user!, :only => :root
+  skip_before_filter :authenticate_user!,  only: [:root, :show_public_posts]
 
   def root
     if user_signed_in?
       redirect_to user_posts_path(current_user)
-    else
-      show_public_posts
     end
   end
 
   def show_public_posts
-    @posts = Post.where(public: true).order(updated_at: :desc)
+    posts = Post.publicPosts.includes(:user).order(updated_at: :desc)
+    respond_to do |format|
+      format.json { render json: { results: posts.map{ |p| { title: p.title, author: p.user.name, created_at: p.created_at, content: p.content } } } }
+    end
   end
 end
