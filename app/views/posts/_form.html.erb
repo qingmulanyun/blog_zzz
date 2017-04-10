@@ -5,7 +5,12 @@
 
 <p>
   <%= f.label :content %><br>
-  <%= f.cktext_area :content %>
+  <%= f.cktext_area :content, ckeditor: { height: 600} %>
+</p>
+
+<p>
+  <%= f.radio_button :public, 'true' %> Public
+  <%= f.radio_button :public, 'false' %> Private<br />
 </p>
 
 <p>

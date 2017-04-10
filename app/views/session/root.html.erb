@@ -18,7 +18,8 @@
           <a class="list-group-item" ng-repeat="post in PublicPosts">
             <h4 class="list-group-item-heading">{{ post.title }}</h4>
             <span class="list-group-item-text">
-              Author:   {{ post.user.name }}
+              Published: {{  post.created_at | date:'medium'}}
+              Author:   {{ post.author }}
             </span>
           </a>
     </div>
