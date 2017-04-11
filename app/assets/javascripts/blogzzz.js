@@ -1,1 +1,1 @@
-APP = angular.module('blogzzz', []);
+APP = angular.module('blogzzz', ['ngSanitize']);

@@ -1,25 +1,69 @@
-<div class="jumbotron">
-  <div class="container">
-        <h1>Welcome to BlogZzz!</h1>
-        <p class="lead">
-          Sign in to start your own posts!
-        </p>
-        <div class="row-fluid">
-          <div class="span6">
-            <%= link_to "Sign In", new_user_session_path, :class => "btn btn-success" %>
-            <%= link_to "Sign Up", new_user_registration_path, :class => "btn btn-success" %>
-          </div>
-        </div>
+<div class="jumbotron welcome-header">
+  <h2>Welcome to BlogZzz!</h2>
+  <p class="lead">
+    Sign in to start your own posts!
+  </p>
+  <div class="row-fluid">
+    <div class="span6">
+      <%= link_to "Sign In", new_user_session_path, :class => "btn btn-success" %>
+      <%= link_to "Sign Up", new_user_registration_path, :class => "btn btn-success" %>
+    </div>
   </div>
 </div>
 
 
-    <div class="list-group">
-          <a class="list-group-item" ng-repeat="post in PublicPosts">
-            <h4 class="list-group-item-heading">{{ post.title }}</h4>
-            <span class="list-group-item-text">
-              Published: {{  post.created_at | date:'medium'}}
-              Author:   {{ post.author }}
-            </span>
-          </a>
-    </div>
+<ul class="nav nav-tabs">
+  <li role="presentation" class="active"><a href="#">Posts</a></li>
+  <li role="presentation"><a href="#">Images</a></li>
+  <li role="presentation"><a href="#">About Us</a></li>
+</ul>
+
+<div class="list-group public-posts-list active">
+  <article class="post" ng-repeat="post in PublicPosts" >
+    <header>
+      <div class="title">
+        <h2><a href="#">{{ post.title }}</a></h2>
+      </div>
+      <div class="meta">
+        <time class="published">{{  post.created_at | date:'medium'}}</time>
+        <a href="#" class="author"><span class="name">{{ post.author }}</span><img src="/assets/author.jpeg" alt="" /></a>
+      </div>
+    </header>
+    <a href="#" class="image featured"><img src="/assets/pic03.jpg" alt="" /></a>
+    <p ng-bind-html="post.content">
+      {{ post.content }}
+    </p>
+    <footer>
+      <ul class="actions">
+        <li><a href="#" class="button big">Continue Reading</a></li>
+      </ul>
+      <ul class="stats">
+        <li><a href="#">General</a></li>
+        <li><a href="#" class="icon fa-heart">28</a></li>
+        <li><a href="#" class="icon fa-comment">128</a></li>
+      </ul>
+    </footer>
+  </article>
+</div>
+
+
+
+<div class="list-group public-images-list inactive">
+  <a class="list-group-item" ng-repeat="post in PublicPosts">
+    <h4 class="list-group-item-heading">{{ post.title }}</h4>
+    <span class="list-group-item-text">
+      Published: {{  post.created_at | date:'medium'}}
+      Author:   {{ post.author }}
+    </span>
+  </a>
+</div>
+
+<div class="list-group about inactive">
+  <a class="list-group-item" ng-repeat="post in PublicPosts">
+    <h4 class="list-group-item-heading">{{ post.title }}</h4>
+    <span class="list-group-item-text">
+      Published: {{  post.created_at | date:'medium'}}
+      Author:   {{ post.author }}
+    </span>
+  </a>
+</div>

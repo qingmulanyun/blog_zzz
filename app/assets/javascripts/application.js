@@ -14,6 +14,7 @@
 //= require jquery_ujs
 
 //= require angular
+//= require angular-sanitize
 //= require_tree .
 //= require bootstrap-sprockets
 //= require ckeditor/init
