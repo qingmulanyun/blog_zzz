@@ -30,7 +30,7 @@
       </div>
     </header>
     <a href="#" class="image featured"><img src="/assets/pic03.jpg" alt="" /></a>
-    <p ng-bind-html="post.content">
+    <p ng-bind-html="post.content |truncate ">
       {{ post.content }}
     </p>
     <footer>
