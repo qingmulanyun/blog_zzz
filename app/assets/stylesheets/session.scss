@@ -1,6 +1,7 @@
 // Place all the styles related to the session controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import url(font-awesome.min.css);
 
 .public-posts-list {
   margin-top: 20px;
@@ -387,16 +388,6 @@ body, input, select, textarea {
     font-size: 12pt;
   }
 
-}
-
-a {
-  -moz-transition: color 0.2s ease, border-bottom-color 0.2s ease;
-  -webkit-transition: color 0.2s ease, border-bottom-color 0.2s ease;
-  -ms-transition: color 0.2s ease, border-bottom-color 0.2s ease;
-  transition: color 0.2s ease, border-bottom-color 0.2s ease;
-  border-bottom: dotted 1px rgba(160, 160, 160, 0.65);
-  color: inherit;
-  text-decoration: none;
 }
 
 a:before {
@@ -815,4 +806,29 @@ ul.actions li {
 
 .image.main img {
   width: 100%;
+}
+
+/* Icon */
+
+.icon {
+  text-decoration: none;
+  border-bottom: none;
+  position: relative;
+}
+
+.icon:before {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  text-transform: none !important;
+}
+
+.icon > .label {
+  display: none;
+}
+
+.icon.suffix:before {
+  float: right;
 }
