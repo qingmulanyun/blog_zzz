@@ -1,1 +1,1 @@
-APP = angular.module('blogzzz', ['ngSanitize']);
+APP = angular.module('blogzzz', ['ngSanitize', 'ngTruncate']);
