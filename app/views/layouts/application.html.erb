@@ -7,7 +7,7 @@
   <%= csrf_meta_tags %>
   <%= favicon_link_tag %>
 </head>
-<body ng-controller="MainCtrl">
+<body>
 <%if user_signed_in? %>
 <nav class="navbar navbar-default">
   <div class="container">
@@ -48,9 +48,9 @@
   <% end %>
   <%= yield %>
 
-  <div class="modal-footer">
+  <div class="modal-footer" ng-controller="FooterCtrl">
     <p class="navbar-text pull-left">
-    {{ test }}
+    {{ message }}
     <p class="navbar-text pull-right">
       <% if user_signed_in? %>
           Logged in as <strong><%= current_user.email %></strong>.
