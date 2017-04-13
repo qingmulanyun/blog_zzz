@@ -5,12 +5,8 @@
     <span class="label label-default">last updated: {{ <%= @post.updated_at.to_i * 1000 %> | date :'medium'  }}</span>
     <span class="label label-default"><%= @post.public ? 'Public' : 'Private' %> </span>
   </p>
-  <div class="btn-post-operation">
-    <%= link_to 'Back', user_posts_path , :class => 'btn btn-primary'%>
-    <%= link_to 'Edit', edit_user_post_path, :class => 'btn btn-primary'%>
-
-    <%= link_to 'Delete', user_post_path, :method => :delete, :class => 'btn btn-primary'%>
-  </div>
 </div>
 
 <%= @post.content.html_safe %>
+
+

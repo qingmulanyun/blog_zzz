@@ -14,8 +14,8 @@
   <meta name="twitter:image" content="https://farm6.staticflickr.com/5510/14338202952_93595258ff_z.jpg" />
 
 </head>
-<body ng-controller="MainCtrl">
-<%if user_signed_in? %>
+<body>
+<% unless %w(devise/sessions devise/passwords).include? params[:controller] %>
 <nav class="navbar navbar-default">
   <div class="container">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -29,12 +29,14 @@
       <a class="navbar-brand" href=<%= root_path %>>BlogZzz</a>
     </div>
 
+    <%if user_signed_in? %>
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li class="active"><a href=<%= root_path %>>post <span class="sr-only">(current)</span></a></li>
         <li><a href="#">about</a></li>
       </ul>
+
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%=current_user.name%> <span class="caret"></span></a>
@@ -45,19 +47,26 @@
           </ul>
         </li>
       </ul>
+      <% else %>
+          <ul class="nav navbar-nav navbar-right">
+              <%= link_to "Sign In", new_user_session_path, :class => "btn btn-default navbar-btn" %>
+              <%= link_to "Sign Up", new_user_registration_path, :class => "btn btn-default navbar-btn" %>
+          </ul>
     </div>
+    <% end %>
   </div>
 </nav>
 <% end %>
+
 <div class="container">
   <% if notice %>
       <p class="alert alert-success"><%= notice %></p>
   <% end %>
   <%= yield %>
 
-  <div class="modal-footer">
+  <div class="modal-footer" ng-controller="FooterCtrl">
     <p class="navbar-text pull-left">
-    {{ test }}
+    {{ message }}
     <p class="navbar-text pull-right">
       <% if user_signed_in? %>
           Logged in as <strong><%= current_user.email %></strong>.

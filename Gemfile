@@ -31,6 +31,8 @@ gem 'bootstrap-sass', '~> 3.3.6'
 gem 'ckeditor'
 gem 'paperclip'
 
+gem 'friendly_id'
+
 gem "non-stupid-digest-assets"
 # Please see  https://devcenter.heroku.com/articles/ruby-support#injected-plugins for more info
 group :production do

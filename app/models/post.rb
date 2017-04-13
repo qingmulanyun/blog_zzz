@@ -1,4 +1,7 @@
 class Post < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :title, use: :slugged
+
   belongs_to :user
   has_many :comments
 
@@ -6,4 +9,9 @@ class Post < ActiveRecord::Base
   validates :content, presence: true
 
   scope :publicPosts, -> { where public: true}
+
+
+  def should_generate_new_friendly_id?
+    title_changed?
+  end
 end

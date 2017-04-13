@@ -11,18 +11,17 @@
   </div>
 </div>
 
-
 <ul class="nav nav-tabs">
   <li role="presentation" class="active"><a href="#">Posts</a></li>
   <li role="presentation"><a href="#">Images</a></li>
   <li role="presentation"><a href="#">About Us</a></li>
 </ul>
 
-<div class="list-group public-posts-list active">
+<div class="list-group public-posts-list active" ng-controller="MainCtrl">
   <article class="post" ng-repeat="post in PublicPosts" >
     <header>
       <div class="title">
-        <h2><a href="#">{{ post.title }}</a></h2>
+        <h2><a href="/posts/{{ post.slug }}">{{ post.title }}</a></h2>
       </div>
       <div class="meta">
         <time class="published">{{  post.created_at | date:'medium'}}</time>
@@ -35,7 +34,7 @@
     </p>
     <footer>
       <ul class="actions">
-        <li><a href="#" class="button big">Continue Reading</a></li>
+        <li><a href="/posts/{{ post.slug }}" class="button big">Continue Reading</a></li>
       </ul>
       <ul class="stats">
         <li><a href="#">General</a></li>

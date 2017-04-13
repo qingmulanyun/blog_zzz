@@ -1,5 +1,7 @@
 class PostsController < ApplicationController
-  before_action :get_current_user
+  skip_before_filter :authenticate_user!,  only: [:show_public_post]
+  before_action :get_current_user, except: [:show_public_post]
+  before_action :get_current_post, only: [:show, :edit, :update, :destroy]
 
   def index
     @posts = Post.where(user_id: current_user).order(updated_at: :desc)
@@ -10,7 +12,6 @@ class PostsController < ApplicationController
   end
 
   def new
-
   end
 
   def create
@@ -19,32 +20,36 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = @user.posts.find(params[:id])
+  end
+
+  def show_public_post
+    @post = Post.friendly.find(params[:id])
   end
 
   def destroy
-    @post = @user.posts.find(params[:id])
     authorize @post, :destroy?
     @post.destroy!
     redirect_to user_posts_path
   end
 
   def edit
-    @post = @user.posts.find(params[:id])
   end
 
   def update
-    @post = @user.posts.find(params[:id])
     authorize @post, :update?
     @post.update(post_params)
-    redirect_to user_post_path
+    redirect_to user_post_path(@user, @post)
+  end
+
+  private
+
+  def get_current_post
+    @post = Post.friendly.find(params[:id])
   end
 
   def get_current_user
     @user = User.find(current_user)
   end
-
-  private
 
   def post_params
     params.require(:post).permit(:title, :content, :public)
