@@ -22,6 +22,10 @@ class PostsController < ApplicationController
   def show
   end
 
+  def show_public_post
+    @post = Post.friendly.find(params[:id])
+  end
+
   def destroy
     authorize @post, :destroy?
     @post.destroy!
@@ -34,7 +38,7 @@ class PostsController < ApplicationController
   def update
     authorize @post, :update?
     @post.update(post_params)
-    redirect_to user_post_path
+    redirect_to user_post_path(@user, @post)
   end
 
   private

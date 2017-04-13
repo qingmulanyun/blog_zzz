@@ -14,6 +14,9 @@ class User < ActiveRecord::Base
   def default_name
     self.first_name = 'New' if self.first_name.blank?
     self.last_name = 'Member' if self.last_name.blank?
-    self.name = self.first_name + " " + self.last_name;
+  end
+
+  def should_generate_new_friendly_id?
+    name_changed?
   end
 end
