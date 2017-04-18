@@ -8,8 +8,11 @@ class ApplicationController < ActionController::Base
 
 
   def after_sign_in_path_for(resource)
-    @user = User.find(current_user)
-    user_posts_path(@user)
+    if resource.is_a?(Admin)
+      '/product_support/admin'
+    else
+      user_posts_path(resource)
+    end
   end
 
   protected
