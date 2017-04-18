@@ -11,7 +11,7 @@
  * file per style scope.
  *
  *= require posts
- *= require session
+ *= require public.scss
  */
 
 // "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
@@ -30,4 +30,9 @@ body {
   position: fixed;
   width: 100%;
   z-index: 1000;
+  top: 0;
+}
+
+.main-body {
+  margin-top: 50px;
 }

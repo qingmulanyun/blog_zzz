@@ -1,4 +1,4 @@
-class SessionController < ApplicationController
+class PublicController < ApplicationController
   skip_before_filter :authenticate_user!,  only: [:root, :show_public_posts]
 
   def root
