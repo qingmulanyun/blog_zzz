@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :admin, only: :sessions, controllers: {sessions: 'admin'}
   mount RailsAdmin::Engine => '/product_support', as: 'rails_admin'
   mount Ckeditor::Engine => '/ckeditor'
   devise_for :users

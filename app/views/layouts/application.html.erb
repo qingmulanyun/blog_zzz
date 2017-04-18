@@ -7,7 +7,7 @@
   <%= csrf_meta_tags %>
   <%= favicon_link_tag %>
 
-  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content="@Wenbo199019" />
   <meta name="twitter:title" content="A blog for you to memorize your daily life." />
   <meta name="twitter:description" content="Sign up to start your new posts life." />
@@ -15,7 +15,7 @@
 
 </head>
 <body>
-<% unless %w(devise/sessions devise/passwords).include? params[:controller] %>
+<% unless %w(devise/sessions devise/passwords admin).include? params[:controller] %>
 <nav class="navbar navbar-default">
   <div class="container">
     <!-- Brand and toggle get grouped for better mobile display -->
