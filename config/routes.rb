@@ -2,7 +2,8 @@ Rails.application.routes.draw do
   devise_for :admin, only: :sessions, controllers: {sessions: 'admin'}
   mount RailsAdmin::Engine => '/product_support', as: 'rails_admin'
   mount Ckeditor::Engine => '/ckeditor'
-  devise_for :users, controllers: {registrations: 'registration'}
+
+  devise_for :users, controllers: {registrations: 'registration', :omniauth_callbacks => "omniauth_callbacks"}
   root 'public#root'
 
   get 'get_public_posts', to: 'public#show_public_posts'
