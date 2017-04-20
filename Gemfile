@@ -35,6 +35,8 @@ gem 'friendly_id'
 
 gem 'rails_admin'
 
+gem 'omniauth-google-oauth2'
+
 gem "non-stupid-digest-assets"
 # Please see  https://devcenter.heroku.com/articles/ruby-support#injected-plugins for more info
 group :production do
