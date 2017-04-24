@@ -12,6 +12,7 @@
  *
  *= require posts
  *= require public.scss
+ *= require_tree .
  */
 
 a.profile-list {

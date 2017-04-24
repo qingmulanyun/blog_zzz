@@ -15,65 +15,153 @@
   <meta name="twitter:image" content="http://graphics8.nytimes.com/images/2012/02/19/us/19whitney-span/19whitney-span-articleLarge.jpg">
 
 </head>
-<body>
-<% unless %w(devise/sessions devise/passwords admin).include? params[:controller] %>
-<nav class="navbar navbar-default">
-  <div class="container">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href=<%= root_path %>>BlogZzz</a>
+<header class="site-header">
+  <nav class="navbar navbar-default navbar-intimate"
+       data-offset-top="50" data-spy="affix">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- Start Toggle Nav For Mobile -->
+        <button class="navbar-toggle" data-target="#navigation" data-toggle="collapse" type="button">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <div class="logo">
+          <a class="navbar-brand" href="/"><i class="ico-3dglasses"></i></a>
+        </div>
+      </div><!-- Stat Search -->
+      <div class="side">
+        <a class="show-search"><i class="ico-search"></i></a>
+      </div><!-- Form for navbar search area -->
+      <form class="full-search">
+        <div class="container">
+          <div class="row">
+            <input class="form-control" placeholder="Search"
+                   type="text"> <a class="close-search"><span class="ico-times"></span></a>
+          </div>
+        </div>
+      </form><!-- Search form ends -->
+      <!-- Navigation Start -->
+      <div class="navbar-collapse collapse" id="navigation">
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown dropdown-toggle active">
+            <a data-toggle="dropdown" href="index.html">Home</a>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="fullscreen-slider.html">Home - Fullscreen Slider</a>
+              </li>
+              <li>
+                <a href="carousel-slider.html">Home - Post
+                  Carousel</a>
+              </li>
+              <li>
+                <a href="index.html">Home - Default</a>
+              </li>
+            </ul>
+          </li>
+          <li class="dropdown dropdown-toggle">
+            <a data-toggle="dropdown" href="portfolio.html">Portfolio</a>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="portfolio-col-3.html">Portfolio 3 column</a>
+              </li>
+              <li>
+                <a href="portfolio-col-4.html">Portfolio 4 column</a>
+              </li>
+              <li>
+                <a href="portfolio-item.html">Single Project</a>
+              </li>
+            </ul>
+          </li>
+          <li class="dropdown dropdown-toggle">
+            <a data-toggle="dropdown" href="#">Blog</a>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="blog.html">Blog View</a>
+              </li>
+              <li>
+                <a href="single.html">Single Post</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div><!-- Navigation End -->
     </div>
-
-    <%if user_signed_in? %>
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href=<%= root_path %>>post <span class="sr-only">(current)</span></a></li>
-      </ul>
-
-      <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown">
-
-          <a href="#" class="dropdown-toggle profile-list" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-            <img class="avatar" src="<%= current_user.image_url%>">
-            <%=current_user.name%> <span class="caret"></span>
-          </a>
-          <ul class="dropdown-menu">
-            <li><%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> </li>
-            <li role="separator" class="divider"></li>
-            <li> <%= link_to "Log out", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %></li>
-          </ul>
+  </nav><!-- Mobile Menu Start -->
+  <ul class="wpb-mobile-menu">
+    <li class="active">
+      <a href="#">Home</a>
+      <ul>
+        <li>
+          <a href="fullscreen-slider.html">Home - Fullscreen
+            Slider</a>
+        </li>
+        <li>
+          <a href="carousel-slider.html">Home - Post Carousel</a>
+        </li>
+        <li class="active">
+          <a href="index.html">Home - Default</a>
         </li>
       </ul>
-      <% else %>
-          <ul class="nav navbar-nav navbar-right">
-              <%= link_to "Sign In", new_user_session_path, :class => "btn btn-default navbar-btn" %>
-              <%= link_to "Sign Up", new_user_registration_path, :class => "btn btn-default navbar-btn" %>
-          </ul>
+    </li>
+    <li>
+      <a href="#">Portfolio</a>
+      <ul>
+        <li>
+          <a href="portfolio-col-3.html">Portfolio 3 column</a>
+        </li>
+        <li>
+          <a href="portfolio-col-4.html">Portfolio 4 column</a>
+        </li>
+        <li>
+          <a href="portfolio-item.html">Single Project</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="#">Blog</a>
+      <ul>
+        <li>
+          <a href="blog.html">Blog View</a>
+        </li>
+        <li>
+          <a href="single.html">Single Post</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="contact.html">Contact</a>
+    </li>
+    <li>
+      <a href="#">Download</a>
+    </li>
+  </ul><!-- Mobile Menu End -->
+</header><!-- Header Section End -->
+<!-- Hero Area Start -->
+<section class="text-center" id="hero-area">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="intro-area">
+          <h3>Welcome To</h3>
+          <h2 class="page-title">BlogZzz</h2>
+        </div>
+      </div>
     </div>
-    <% end %>
   </div>
-</nav>
-<% end %>
-
-<div class="container main-body">
-  <% if notice %>
-      <p class="alert alert-success"><%= notice %></p>
-  <% end %>
-  <%= yield %>
-
-  <div class="modal-footer" ng-controller="FooterCtrl">
-    <p class="navbar-text pull-left">
-      © {{ year | date :'yyyy'}} {{ Inc }}
-    <p class="navbar-text pull-right">
-    <a href="#">About</a>
+</section><!-- Hero Area End -->
+<!-- Content Start -->
+<div id="content">
+  <div class="container">
+    <div class="row">
+     <%= yield %>
+      <%= render partial: 'layouts/right_col'%>
+    </div>
   </div>
-</div>
+</div><!-- Content End -->
+<!-- Footer Start -->
+<%= render partial: 'layouts/footer'%>
+<!-- js  -->
 </body>
 </html>
