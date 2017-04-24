@@ -14,6 +14,9 @@
  *= require public.scss
  */
 
+a.profile-list {
+  max-height: 50px;
+}
 // "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
 @import "bootstrap-sprockets";
 @import "bootstrap";
@@ -36,3 +39,14 @@ body {
 .main-body {
   margin-top: 50px;
 }
+
+.avatar {
+  height: 24px;
+  width: 24px;
+  display: inline-block;
+  overflow: hidden;
+  line-height: 1;
+  vertical-align: middle;
+  border-radius: 3px;
+}
+
