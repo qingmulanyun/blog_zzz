@@ -5,7 +5,6 @@
         function success(response) {
             $scope.PublicPosts = response.data.results;
             console.log("success...");
-            console.log(response);
         }
 
         function failure(response) {

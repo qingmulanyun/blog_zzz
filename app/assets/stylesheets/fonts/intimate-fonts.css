@@ -1,10 +1,10 @@
 @font-face {
 	font-family: 'intimate-blog';
-	src:url('intimate-blog.eot?56br1m');
-	src:url('intimate-blog.eot?56br1m#iefix') format('embedded-opentype'),
-		url('intimate-blog.ttf?56br1m') format('truetype'),
-		url('intimate-blog.woff?56br1m') format('woff'),
-		url('intimate-blog.svg?56br1m#intimate-blog') format('svg');
+	src:url('fonts/intimate-blog.eot?56br1m');
+	src:url('fonts/intimate-blog.eot?56br1m#iefix') format('embedded-opentype'),
+		url('fonts/intimate-blog.ttf?56br1m') format('truetype'),
+		url('fonts/intimate-blog.woff?56br1m') format('woff'),
+		url('fonts/intimate-blog.svg?56br1m#intimate-blog') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
