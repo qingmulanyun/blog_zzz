@@ -24,14 +24,22 @@ class User < ActiveRecord::Base
   def self.from_omniauth(access_token)
     data = access_token.info
     user = User.where(:email => data["email"]).first
+    update_image_based_google(user, data)
 
-    # Uncomment the section below if you want users to be created if they don't exist
     unless user
         user = User.create(name: data["name"],
            email: data["email"],
+           image_url: data['image'],
            password: Devise.friendly_token[0,20]
         )
     end
     user
+  end
+
+  def self.update_image_based_google(user, data)
+    if user.present? && user.image_url.nil?
+      user.image_url =  data['image']
+      user.save!
+    end
   end
 end

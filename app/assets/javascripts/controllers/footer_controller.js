@@ -1,5 +1,6 @@
 (function(){
     APP.controller('FooterCtrl',['$scope',function($scope){
-        $scope.message = "This is a blog based on Rails and AngularJs.";
+        $scope.Inc = "Alexandra Zhao, Inc.";
+        $scope.year = new Date();
     }]);
 })();

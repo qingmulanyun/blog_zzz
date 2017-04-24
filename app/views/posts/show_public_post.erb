@@ -1,9 +1,8 @@
 <div class="page-header">
   <h1 class="post-header"><strong> <%= @post.title %></strong></h1>
   <p>
-    <span class="label label-default">Published: {{ <%= @post.created_at.to_i * 1000 %> | date :'medium'  }}</span>
-    <span class="label label-default">last updated: {{ <%= @post.updated_at.to_i * 1000 %> | date :'medium'  }}</span>
-    <span class="label label-default"><%= @post.public ? 'Public' : 'Private' %> </span>
+    <span class="label label-info">Published by <%= @post.user.name%>  {{ <%= @post.created_at.to_i * 1000 %> | date :'medium'  }}</span>
+    <span class="label label-info"><%= @post.public ? 'Public' : 'Private' %> </span>
   </p>
 </div>
 
