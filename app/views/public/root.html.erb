@@ -1,68 +1,58 @@
-<div class="jumbotron welcome-header">
-  <h2>Welcome to BlogZzz!</h2>
-  <p class="lead">
-    Sign in to start your own posts!
-  </p>
-  <div class="row-fluid">
-    <div class="span6">
-      <%= link_to "Sign In", new_user_session_path, :class => "btn btn-primary" %>
-      <%= link_to "Sign Up", new_user_registration_path, :class => "btn btn-primary" %>
-    </div>
+<div class="col-md-8" ng-controller="MainCtrl">
+    <!-- Blog Article Start-->
+    <article ng-repeat="post in PublicPosts">
+      <!-- Blog item Start -->
+      <div class="blog-item-wrap">
+        <!-- Post Format icon Start -->
+        <div class="post-format">
+          <span><i class="ico-bookmark"></i></span>
+        </div><!-- Post Format icon End -->
+        <h2 class="blog-title"><a href="/posts/{{ post.slug }}" ng-bind="post.title"></a></h2>
+        <div class="entry-meta">
+          <span class="meta-part"><i class="ico-user"></i> <a href="#" ng-bind="post.author"></a></span>
+          <span class="meta-part">
+                <i class="ico-calendar-alt-fill"></i>
+                <a href="#" ng-bind=" post.created_at | date:'medium'"></a>
+              </span>
+          <span class="meta-part">
+                <i class="ico-comments"></i>
+                <a href="#">20</a>
+              </span> <span class="meta-part">
+              <i class="ico-tag"></i>
+              <a href="#">Tech</a></span>
+          <span class="meta-part">
+                <i class="ico-heart"></i>
+                <a href="#">7</a>
+              </span>
+        </div><!-- Entry Meta End-->
+
+        <!-- Post Content Start -->
+        <div class="post-content">
+          <p ng-bind-html="post.content |truncate "></p>
+        </div><!-- Post Content End -->
+        <div class="entry-more">
+          <div class="pull-left">
+            <a class="btn btn-common" href="/posts/{{ post.slug }}">Read More <i class="ico-arrow-right"></i></a>
+          </div>
+          <div class="share-icon pull-right">
+            <span class="socialShare"></span>
+          </div>
+        </div>
+      </div><!-- Blog item End -->
+    </article><!-- Blog Article End-->
+
+    <article>
+      <!-- Pagination Start -->
+      <ul class="pager">
+        <li class="previous">
+          <a href="#"><i class="ico-arrow-left"></i>
+            Previous</a>
+        </li>
+        <li style="list-style: none"><span class="active"><a href="#">1</a></span> <span><a href="#">2</a></span> <span><a href="#">3</a></span>
+          <span><a href="#">4</a></span> <span><a href="#">5</a></span></li>
+        <li class="next">
+          <a href="#">Next <i class="ico-arrow-right"></i></a>
+        </li>
+      </ul><!-- Pagination End -->
+    </article><!-- Blog Article End-->
   </div>
-</div>
-
-<ul class="nav nav-tabs">
-  <li role="presentation" class="active"><a href="#">Posts</a></li>
-  <li role="presentation"><a href="#">Images</a></li>
-  <li role="presentation"><a href="#">About Us</a></li>
-</ul>
-
-<div class="list-group public-posts-list active" ng-controller="MainCtrl">
-  <article class="post" ng-repeat="post in PublicPosts" >
-    <header>
-      <div class="title">
-        <h2><a href="/posts/{{ post.slug }}">{{ post.title }}</a></h2>
-      </div>
-      <div class="meta">
-        <time class="published">{{  post.created_at | date:'medium'}}</time>
-        <a href="#" class="author"><span class="name">{{ post.author }}</span><img src="/assets/author.jpeg" alt="" /></a>
-      </div>
-    </header>
-    <a href="#" class="image featured"><img src="/assets/pic03.jpg" alt="" /></a>
-    <p ng-bind-html="post.content |truncate ">
-      {{ post.content }}
-    </p>
-    <footer>
-      <ul class="actions">
-        <li><a href="/posts/{{ post.slug }}" class="button big">Continue Reading</a></li>
-      </ul>
-      <ul class="stats">
-        <li><a href="#">General</a></li>
-        <li><a href="#" class="icon fa-heart">28</a></li>
-        <li><a href="#" class="icon fa-comment">128</a></li>
-      </ul>
-    </footer>
-  </article>
-</div>
-
-
-
-<div class="list-group public-images-list inactive">
-  <a class="list-group-item" ng-repeat="post in PublicPosts">
-    <h4 class="list-group-item-heading">{{ post.title }}</h4>
-    <span class="list-group-item-text">
-      Published: {{  post.created_at | date:'medium'}}
-      Author:   {{ post.author }}
-    </span>
-  </a>
-</div>
-
-<div class="list-group about inactive">
-  <a class="list-group-item" ng-repeat="post in PublicPosts">
-    <h4 class="list-group-item-heading">{{ post.title }}</h4>
-    <span class="list-group-item-text">
-      Published: {{  post.created_at | date:'medium'}}
-      Author:   {{ post.author }}
-    </span>
-  </a>
-</div>
