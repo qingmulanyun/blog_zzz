@@ -1,6 +1,5 @@
 class PostsController < ApplicationController
-  skip_before_filter :authenticate_user!,  only: [:show_public_post]
-  before_action :get_current_user, except: [:show_public_post]
+  before_action :get_current_user
   before_action :get_current_post, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -20,10 +19,6 @@ class PostsController < ApplicationController
   end
 
   def show
-  end
-
-  def show_public_post
-    @post = Post.friendly.find(params[:id])
   end
 
   def destroy

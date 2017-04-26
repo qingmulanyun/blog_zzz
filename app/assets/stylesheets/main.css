@@ -898,10 +898,16 @@ article .pager span a {
   margin-bottom: 10px;
 }
 .footer {
-  background: #333;
+  background: #fff;
   padding: 75px 0px;
-  color: #fff;
+  color: #666666;
 }
+
+.footer-inner{
+  padding-top: 20px;
+  border-top:1px solid #e3e3e3;
+}
+
 .footer .social-links {
   margin-bottom: 20px;
 }
@@ -944,13 +950,13 @@ article .pager span a {
   margin-top: 15px;
 }
 .footer .copyright p {
-  color: #fff;
+  color: #666666;
   font-weight: 300;
   font-family: 'Open Sans', sans-serif;
 }
 .footer .copyright p a {
   font-weight: 400;
-  color: #fff;
+  color: #666666;
 }
 .footer .copyright p a:hover {
   color: #ec483b;
