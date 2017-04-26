@@ -9,11 +9,9 @@ class PublicController < ApplicationController
     end
   end
 
-  def show_public_posts
-    posts = Post.publicPosts.includes(:user).order(updated_at: :asc)
-    respond_to do |format|
-      format.json { render json: { results: posts.map{ |p| { title: p.title, author: p.user.name, created_at: p.created_at, content: p.content, slug: p.slug } } } }
-    end
+  def public_posts_index
+    @posts = Post.publicPosts.includes(:user).order(updated_at: :asc)
+    render 'public_posts_index.json'
   end
 
   def show_public_post

@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {registrations: 'registration', :omniauth_callbacks => "omniauth_callbacks"}
   root 'public#root'
 
-  get 'get_public_posts', to: 'public#show_public_posts'
+  get 'get_public_posts', to: 'public#public_posts_index'
 
   get 'posts/:id', to: 'public#show_public_post'
 

@@ -3,7 +3,7 @@
         $http.get('/get_public_posts.json').then(success).catch(failure);
 
         function success(response) {
-            $scope.PublicPosts = response.data.results;
+            $scope.PublicPosts = response.data;
             console.log("success...");
         }
 
