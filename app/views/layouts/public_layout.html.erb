@@ -46,8 +46,9 @@
         <ul class="nav navbar-nav navbar-right">
           <% if user_signed_in? %>
               <li class="dropdown">
+
                 <a href="#" class="dropdown-toggle profile-list" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                  <img class="avatar" src="<%= current_user.image_url || default_profile_img_url %>">
+                  <img class="avatar" src="<%= current_user.image_url%>">
                   <%=current_user.name%> <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
@@ -56,7 +57,7 @@
                   <li> <%= link_to "Log out", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %></li>
                 </ul>
               </li>
-           <% else %>
+          <% else %>
               <li>
                 <a href="<%= new_user_session_path %>">Sign In</a>
               </li>
@@ -69,13 +70,25 @@
     </div>
   </nav>
 </header><!-- Header Section End -->
-
- <!--Content Start -->
-<div id="content" class="personal-container">
+<!--Hero Area Start -->
+<section class="text-center" id="hero-area">
   <div class="container">
     <div class="row">
-     <%= yield %>
-      <%= render partial: 'layouts/right_col_private'%>
+      <div class="col-md-12">
+        <div class="intro-area">
+          <h3>Welcome To</h3>
+          <h2 class="page-title">BlogZzz</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</section><!-- Hero Area End -->
+<!--Content Start -->
+<div id="content">
+  <div class="container">
+    <div class="row">
+      <%= yield %>
+      <%= yield :right_col if content_for? :right_col %>
     </div>
   </div>
 </div><!-- Content End -->
