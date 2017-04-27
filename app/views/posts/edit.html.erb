@@ -1,3 +1,88 @@
-<%= form_for @post, url: user_post_path(@user, @post), method: 'PUT'  do |f|%>
-    <%= render 'form', f: f %>
-<%end%>
+<div class="col-md-8 single-post" id="content">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8">
+        <ul class="pager">
+          <li class="previous">
+            <a class="defualt-btn" href="<%= user_posts_path %>"><i class="fa fa-angle-double-left" aria-hidden="true"></i> Back to the list</a>
+          </li>
+          <li class="next">
+            <a class="defualt-btn" href="<%= user_post_path %>" data-method="delete"><i class="fa fa-trash" aria-hidden="true"></i> Delete</a>
+          </li>
+        </ul>
+        <!-- Blog Article Start-->
+        <article class="single-post-content">
+          <%= form_for @post, url: user_post_path(@user, @post), method: 'PUT'  do |f|%>
+              <%= render 'form', f: f %>
+          <%end%>
+          <div class="links">
+            <a class="heart" href="#"><i class="ico-heart"></i>(143)</a>
+            <a class="twitter" href="#"><i class="ico-twitter-with-circle"></i> Tweet</a>
+            <a class="facebook" href="#"><i class="ico-facebook-with-circle"></i> Share</a>
+            <a class="google-plus" href="#"><i class=" ico-google-with-circle"></i> Google+</a>
+            <a class="linkedin" href="https://www.linkedin.com/in/wenbo-zhao-009ba1b8/" target="_blank"><i class="ico-linkedin-with-circle"></i> Linkedin</a>
+          </div>
+        </article><!-- Blog Article End-->
+        <!-- Blog Article Start -->
+        <!-- Blog Article Start -->
+        <article>
+          <!-- Start Comment Area -->
+          <div id="comments">
+            <ol class="comments-list">
+              <li>
+                <div class="comment-box clearfix">
+                  <div class="avatar">
+                    <a href="#"><img alt="" src=
+                        "img/blog/user1.jpg"></a>
+                  </div>
+                  <div class="comment-content">
+                    <div class="comment-meta">
+                      <h4 class="comment-by"><a href=
+                                                    "#">Anna Ostyankoa</a></h4>
+                    </div>
+                    <p>Lorem ipsum dolor sit amet,
+                      consectetur adipisicing elit, sed
+                      do eiusmod tempor incididunt ut
+                      labore et dolore magna aliqua. Ut
+                      enim ad minim veniam, quis nostrud
+                      exercitation ullamco laboris nisi
+                      ut aliquip ex ea commodo
+                      consequat.</p><a class="reply-link"
+                                       href="#">Reply</a>
+                  </div>
+                </div>
+              </li>
+            </ol>
+          </div><!-- End Comment Area -->
+        </article><!-- Blog Article End -->
+        <!-- Blog Article Start -->
+        <article>
+          <!-- Start Respond Form -->
+          <div id="respond">
+            <h2 class="respond-title">Add Comment</h2>
+            <form action="#">
+              <div class="row">
+                <div class="col-md-6">
+                  <input class="form-control" id="author"
+                         name="author" placeholder="Name" size="30" type="text" value="">
+                </div>
+                <div class="col-md-6">
+                  <input class="form-control" id="email"
+                         name="author" placeholder="Email" size="30" type="text" value="">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <textarea class="form-control" cols="45" id="comment" name="comment" placeholder="Comment" rows="8"></textarea>
+                  <a class="btn btn-common btn-more" id="submit" type="submit"><i class="fa fa-check"></i> Submit Comment</a>
+                </div>
+              </div>
+            </form>
+          </div><!-- End Respond Form -->
+        </article><!-- Blog Article End -->
+        <!-- Blog Article Start -->
+      </div>
+
+    </div>
+  </div>
+</div><!-- Content End -->

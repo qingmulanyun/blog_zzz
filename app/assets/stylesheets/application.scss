@@ -49,10 +49,16 @@ body {
   margin-top: 90px;
 }
 
-a.new-post-btn {
+a.defualt-btn {
   color: #fff;
   background-color: #ec483b !important;
   border: 1px solid #fff !important;
+}
+
+a.defualt-btn:hover {
+  color: #000;
+  background-color: #fff !important;
+  border: 1px solid #000 !important;
 }
 
 .sidebar {
