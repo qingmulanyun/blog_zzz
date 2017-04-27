@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   friendly_id :name, use: :slugged
 
   has_many :posts
+  has_many :comments
 
   before_save :default_name
 
