@@ -9,6 +9,7 @@
 @import "global";
 @import "nav-menu";
 @import "responsive";
+@import "comments";
 
 
 a.profile-list {
@@ -45,22 +46,14 @@ body {
   border-radius: 3px;
 }
 
+
+
 .personal-container {
   margin-top: 90px;
 }
 
-a.defualt-btn {
-  color: #fff;
-  background-color: #ec483b !important;
-  border: 1px solid #fff !important;
-}
-
-a.defualt-btn:hover {
-  color: #000;
-  background-color: #fff !important;
-  border: 1px solid #000 !important;
-}
 
 .sidebar {
   margin-top: -10px;
 }
+

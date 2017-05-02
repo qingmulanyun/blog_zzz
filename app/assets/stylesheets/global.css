@@ -261,3 +261,21 @@ ol {
   -o-transition: .5s;
   transition: .5s;
 }
+
+.defualt-btn {
+    color: #fff;
+    padding: 5px 14px;
+    background-color: #ec483b !important;
+    border: 1px solid #fff !important;
+    border-radius: 15px;
+}
+
+.defualt-btn:hover {
+    color: #000;
+    background-color: #fff !important;
+    border: 1px solid #000 !important;
+}
+
+.btn-right {
+    float: right;
+}

@@ -1,0 +1,38 @@
+<article>
+  <!-- Start Respond Form -->
+  <div id="respond">
+    <% if user_signed_in? %>
+      <%= form_for :comment, url: post_comments_path(@post) do |c| %>
+          <div class="row">
+            <div class="col-md-1 comment-avatar">
+              <div class="avatar avatar-comment">
+                <a href="#"><img alt="" src=
+                    "<%= default_profile_img_url%>"></a>
+              </div>
+            </div>
+
+            <div class="col-md-11 comment-body">
+              <div class="comment-form-head">
+                <ul class="nav nav-tabs comments-nav">
+                  <li role="presentation" class="active">
+                    <a class="comment-default" href="#">Write</a>
+                  </li>
+                </ul>
+              </div>
+              <textarea class="form-control" cols="45" id="comment" name="comment[content]" placeholder="Leave a Comment" rows="8"></textarea>
+              <button class="defualt-btn btn-right" id="submit" type="submit">Comment</button>
+            </div>
+          </div>
+      <% end %>
+    <% else %>
+        <div class="row">
+          <div class="col-md-3">
+            <a class="btn btn-common btn-more" href="<%= new_user_registration_path %>"><i class="fa fa-arrow-right"></i>Sign Up for free</a>
+          </div>
+          <div class="col-md-9">
+            to join this conversation. Already have an account? <a href="<%= new_user_session_path %>"> Sign in to comment</a>
+          </div>
+        </div>
+        <% end %>
+  </div><!-- End Respond Form -->
+</article>
