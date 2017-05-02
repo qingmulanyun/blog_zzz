@@ -1,0 +1,22 @@
+<div class="col-md-8 single-post" id="content">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8">
+        <h2 class="blog-title"><%=@post.title %></h2>
+        <%= render partial: 'shared/post/action_bar'%>
+        <hr>
+        <!-- Blog Article Start-->
+        <article class="single-post-content">
+          <%= @post.content.html_safe %>
+          <div class="links">
+            <a class="heart" href="#"><i class="ico-heart"></i>(143)</a>
+            <a href="#"> <i class="ico-comments"></i>(<%= @comments_counter %>)</a>
+          </div>
+        </article>
+        <%= render partial: 'shared/comments_list'%>
+        <%= render partial: 'shared/comment_form' %>
+        <%= render partial: 'shared/related_posts' %>
+      </div>
+    </div>
+  </div>
+</div>

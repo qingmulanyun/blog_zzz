@@ -10,9 +10,14 @@ Rails.application.routes.draw do
 
   get 'posts/:id', to: 'public#show_public_post'
 
+
+
   # this route configure will make routes pretty much catches all requests and you should have them last in your routes.rb so that other routes matches first.
   resources :users, path: '' do
     resources :posts, path: '', except: [:index]
   end
 
+  resources :posts, path: '' do
+    resources :comments
+  end
 end

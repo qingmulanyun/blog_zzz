@@ -19,6 +19,8 @@ class PostsController < ApplicationController
   end
 
   def show
+    @comments = @post.comments
+    @comments_counter = @comments.count
   end
 
   def destroy

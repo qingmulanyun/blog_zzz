@@ -16,5 +16,7 @@ class PublicController < ApplicationController
 
   def show_public_post
     @post = Post.friendly.find(params[:id])
+    @comments = Comment.where(post_id: @post.id)
+    @comments_counter = @comments.count
   end
 end

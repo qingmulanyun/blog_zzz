@@ -1,0 +1,19 @@
+<ul class="pager">
+  <% if user_signed_in? %>
+  <li class="previous">
+    <a class="defualt-btn" href="<%= user_posts_path %>"><i class="fa fa-angle-double-left" aria-hidden="true"></i> Back to the list</a>
+  </li>
+  <li class="next">
+    <a class="defualt-btn" href="<%= user_post_path %>" data-method="delete"><i class="fa fa-trash" aria-hidden="true"></i> Delete</a>
+  </li>
+  <li class="next">
+    <a class="defualt-btn" href="<%= edit_user_post_path %>"> <i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
+  </li>
+  <% else %>
+
+  <li class="previous">
+    <a class="defualt-btn" href="/"><i class="fa fa-angle-double-left" aria-hidden="true"></i> Back to the list</a>
+  </li>
+  <% end %>
+</ul>
+

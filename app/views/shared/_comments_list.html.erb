@@ -1,0 +1,28 @@
+<div class="comments-list-nav">
+  <ul class="nav nav-tabs comments-list-nav">
+    <li role="presentation" class="active">
+      <a href="#">Comments ( <%= @comments_counter %> )</a>
+    </li>
+  </ul>
+</div>
+<% @comments.each do |comment| %>
+    <article>
+      <div class="row">
+        <div class="col-md-1 comment-avatar">
+          <div class="avatar avatar-comment">
+            <a href="#"><img alt="" src=
+                "<%= comment.user.image_url.blank? ? default_profile_img_url : comment.user.image_url %>"></a>
+          </div>
+        </div>
+
+        <div class="col-md-11 comment-body">
+          <div class="comment-form-head comments-list-head">
+            <strong><%=comment.user.name %></strong><span> commented at </span><%= comment.created_at %>
+          </div>
+          <div class="comment-content">
+            <%= comment.content.html_safe %>
+          </div>
+        </div>
+      </div>
+    </article>
+<% end %>
