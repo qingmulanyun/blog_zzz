@@ -21,7 +21,7 @@
   border-color: transparent;
   border-style: solid solid outset;
   border-width: 8px;
-  border-right-color: #bfccd1;
+  border-right-color: #f6f8fa;
 }
 
 .avatar-comment {
@@ -40,16 +40,18 @@
 .comments-list-head {
   padding-top: 10px;
   padding-bottom: 10px;
-  border: 1px solid #d1d5da;
 }
 
 .comment-content {
   padding: 6px 10px !important;
-  border-right: 1px solid #d1d5da;
-  border-left: 1px solid #d1d5da;
-  border-bottom: 1px solid #d1d5da;
+
 }
 
 .comments-list-nav {
   margin-bottom: 20px;
+}
+
+.comment-body{
+  border: 1px solid #d1d5da;
+  padding-right: 0px;
 }
