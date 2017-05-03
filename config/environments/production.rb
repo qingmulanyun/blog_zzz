@@ -76,6 +76,8 @@ Rails.application.configure do
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
 
+  # set up the default URL options for the Devise mailer
+  config.action_mailer.default_url_options = { host: 'http://blogzzz.herokuapp.com/' }
   # Do not dump schema after migrations.
   # Precompile additional assets
 end
