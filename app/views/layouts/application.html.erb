@@ -75,7 +75,7 @@
   <div class="container">
     <div class="row">
      <%= yield %>
-      <%= render partial: 'layouts/right_col_private' unless %w(devise/sessions registration ).include? params[:controller] %>
+      <%= render partial: 'layouts/right_col_private' unless %w(devise/sessions devise/registrations ).include? params[:controller] %>
     </div>
   </div>
 </div><!-- Content End -->
