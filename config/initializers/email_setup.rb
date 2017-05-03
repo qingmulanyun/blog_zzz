@@ -5,8 +5,8 @@ if Rails.env.development?
       address:              'smtp.gmail.com',
       port:                 587,
       domain:               'blogzzz.herokuapp.com',
-      user_name:             'alexandrahigherone@gmail.com',
-      password:              'Alexandra1',
+      user_name:             ENV["EMAIL_SENDING_USER_NAME"],
+      password:              ENV["EMAIL_SENDING_PASS"],
       authentication:       'plain',
       enable_starttls_auto: true
   }
@@ -16,8 +16,8 @@ elsif Rails.env.production?
       address:              'smtp.gmail.com',
       port:                 587,
       domain:               'blogzzz.herokuapp.com',
-      user_name:             'alexandrahigherone@gmail.com',
-      password:              'Alexandra1',
+      user_name:             ENV["EMAIL_SENDING_USER_NAME"],
+      password:              ENV["EMAIL_SENDING_PASS"],
       authentication:       'plain',
       enable_starttls_auto: true
   }
