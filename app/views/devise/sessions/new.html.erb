@@ -18,6 +18,9 @@
               <h1>Sign in to BlogZzz</h1>
             </div>
             <div id="js-flash-container">
+              <% if alert %>
+                  <p class="alert alert-danger"><%= alert %></p>
+              <% end %>
             </div>
             <div class="auth-form-body mt-3">
               <label for="login_field">
