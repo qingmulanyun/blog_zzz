@@ -45,15 +45,8 @@
       <article>
         <!-- Pagination Start -->
         <ul class="pager">
-          <li class="previous">
-            <a href="#"><i class="ico-arrow-left"></i>
-              Previous</a>
-          </li>
-          <li style="list-style: none"><span class="active"><a href="#">1</a></span> <span><a href="#">2</a></span> <span><a href="#">3</a></span>
-            <span><a href="#">4</a></span> <span><a href="#">5</a></span></li>
-          <li class="next">
-            <a href="#">Next <i class="ico-arrow-right"></i></a>
-          </li>
+
+          <%= will_paginate @posts %>
         </ul><!-- Pagination End -->
       </article><!-- Blog Article End-->
     </div>
