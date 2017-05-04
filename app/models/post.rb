@@ -10,6 +10,7 @@ class Post < ActiveRecord::Base
 
   scope :publicPosts, -> { where public: true}
 
+  self.per_page = 5
 
   def should_generate_new_friendly_id?
     title_changed?
