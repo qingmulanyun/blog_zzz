@@ -20,3 +20,4 @@ class PublicController < ApplicationController
     @comments_counter = @comments.count
   end
 end
+
