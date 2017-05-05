@@ -5,12 +5,14 @@
     cursor: default; }
 .blogzzz_pagination .disabled {
     color: #aaaaaa !important; }
+
 .blogzzz_pagination .current,
 .ng-scope .current a,
 .blogzzz_pagination a:hover{
     background-color: #ec483b;
     border-color: #ec483b;
     color: #fff; }
+
 .blogzzz_pagination a, .blogzzz_pagination em{
     color: #666;
     font-size: 12px;
@@ -27,9 +29,10 @@
     -moz-transition: all 0.3s linear;
     -o-transition: all 0.3s linear;
     transition: all 0.3s linear; }
-.blogzzz_pagination a:hover, .blogzzz_pagination a:focus {
-    color: #ec483b !important;
-    background: transparent;}
+
+/*.blogzzz_pagination a:hover, .blogzzz_pagination a:focus {*/
+    /*color: #ec483b !important;*/
+    /*background: transparent;}*/
 
 
 .blogzzz_pagination .next_page, .blogzzz_pagination .previous_page{
@@ -49,6 +52,25 @@
     float: left;
 }
 
-.pagination {
-    width: 100%;
+
+
+/*for public posts page*/
+.blogzzz_pagination li a {
+    cursor: pointer;
+    color: #666;
+    border-color: #666;
+    margin-left: 5px;
+    display: inline-block;
+}
+
+.blogzzz_pagination li a:hover {
+    border-color: #ec483b;
+    color: #ec483b;
+    background: inherit;
+}
+
+.blogzzz_pagination li.current a:hover {
+    border-color: #ec483b;
+    color: #fff;
+    cursor: default;
 }

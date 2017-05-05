@@ -3,14 +3,14 @@
     <!--<li ng-class="{disabled:vm.pager.currentPage === 1}">-->
       <!--<a ng-click="vm.setPage(1)">First</a>-->
     <!--</li>-->
-
-      <a class="previous_page" ng-click="vm.setPage(vm.pager.currentPage - 1)"  ng-class="{disabled:vm.pager.currentPage === 1}">Previous</a>
-
+    <li ng-class="{disabled:vm.pager.currentPage === 1}">
+      <a class="previous_page" ng-click="vm.setPage(vm.pager.currentPage - 1)"><i class="ico-arrow-left"></i>Previous</a>
+    </li>
     <li ng-repeat="page in vm.pager.pages" ng-class="{current:vm.pager.currentPage === page}">
       <a ng-click="vm.setPage(page)">{{page}}</a>
     </li>
     <li ng-class="{disabled:vm.pager.currentPage === vm.pager.totalPages}">
-      <a class="next_page" ng-click="vm.setPage(vm.pager.currentPage + 1)">Next</a>
+      <a class="next_page" ng-click="vm.setPage(vm.pager.currentPage + 1)">Next<i class="ico-arrow-right"></i></a>
     </li>
     <!--<li ng-class="{disabled:vm.pager.currentPage === vm.pager.totalPages}">-->
       <!--<a ng-click="vm.setPage(vm.pager.totalPages)">Last</a>-->
