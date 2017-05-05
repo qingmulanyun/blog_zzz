@@ -627,56 +627,6 @@ article a {
   color: #e4c0be;
   font-size: 14px;
 }
-article .pager {
-  margin: 1px;
-}
-article .pager li a {
-  font-size: 22px;
-  color: #999 !important;
-  text-transform: uppercase;
-  padding: 0;
-  border: none;
-}
-article .pager li a:hover,
-article .pager li a:focus {
-  color: #ec483b !important;
-  background: transparent;
-}
-article .pager span {
-  line-height: 20px;
-  padding: 5px;
-  border: 0;
-}
-article .pager span a {
-  color: #666;
-  font-size: 12px;
-  padding: 0px;
-  margin-right: 3px;
-  border: 1px solid #666;
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
-  line-height: 28px;
-  background-color: transparent;
-  display: inline-block;
-  -webkit-transition: all 0.3s linear;
-  -moz-transition: all 0.3s linear;
-  -o-transition: all 0.3s linear;
-  transition: all 0.3s linear;
-}
-.pager > span > a:focus,
-.pager > span > a:hover {
-  background-color: #ec483b;
-  border-color: #ec483b;
-  color: #fff;
-}
-.pager > .active > a,
-.pager > .active > a:focus,
-.pager > .active > a:hover {
-  background-color: #ec483b;
-  border-color: #ec483b;
-  color: #fff;
-}
 .widget-profile .image {
   overflow: hidden;
   position: relative;
