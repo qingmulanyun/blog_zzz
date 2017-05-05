@@ -41,14 +41,9 @@
           </article>
       <% end %>
 
-
-      <article>
-        <!-- Pagination Start -->
-        <ul class="pager">
-
-          <%= will_paginate @posts %>
-        </ul><!-- Pagination End -->
-      </article><!-- Blog Article End-->
+      <div class="blogzzz_pagination">
+        <%= will_paginate @posts, :container => false %>
+      </div>
     </div>
 
 
