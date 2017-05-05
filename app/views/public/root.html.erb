@@ -2,9 +2,9 @@
     <%= render partial: 'layouts/right_col'%>
 <% end %>
 
-<div class="col-md-8" ng-controller="MainCtrl">
+<div class="col-md-8" ng-controller="MainCtrl as vm">
     <!-- Blog Article Start-->
-    <article ng-repeat="post in PublicPosts">
+    <article ng-repeat="post in vm.items">
       <!-- Blog item Start -->
       <div class="blog-item-wrap">
         <!-- Post Format icon Start -->
@@ -45,18 +45,5 @@
       </div><!-- Blog item End -->
     </article><!-- Blog Article End-->
 
-    <article>
-      <!-- Pagination Start -->
-      <ul class="pager">
-        <li class="previous">
-          <a href="#"><i class="ico-arrow-left"></i>
-            Previous</a>
-        </li>
-        <li style="list-style: none"><span class="active"><a href="#">1</a></span> <span><a href="#">2</a></span> <span><a href="#">3</a></span>
-          <span><a href="#">4</a></span> <span><a href="#">5</a></span></li>
-        <li class="next">
-          <a href="#">Next <i class="ico-arrow-right"></i></a>
-        </li>
-      </ul><!-- Pagination End -->
-    </article><!-- Blog Article End-->
+    <%= render partial: 'shared/pager/public_pager' %>
   </div>

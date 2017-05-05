@@ -11,7 +11,6 @@ angular.module('ngTruncate',[]).filter('truncate', function (){
         if (text.length <= length || text.length - end.length <= length){
             return text;
         } else {
-            console.log(text);
             console.log(text.length);
             return String(text).substring(0, length - end.length) + end;
         }

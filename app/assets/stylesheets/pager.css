@@ -6,6 +6,7 @@
 .blogzzz_pagination .disabled {
     color: #aaaaaa !important; }
 .blogzzz_pagination .current,
+.ng-scope .current a,
 .blogzzz_pagination a:hover{
     background-color: #ec483b;
     border-color: #ec483b;
@@ -46,4 +47,8 @@
 
 .blogzzz_pagination .previous_page{
     float: left;
+}
+
+.pagination {
+    width: 100%;
 }
