@@ -1,52 +1,33 @@
-<div class="container session-container session-authentication">
-  <div class="position-relative js-header-wrapper ">
-    <div class="header header-logged-out width-full pt-5 pb-4" role="banner">
-      <div class="container clearfix width-full">
-        <a class="header-logo" href="/" aria-label="Homepage" data-ga-click="(Logged out) Header, go to homepage, icon:logo-wordmark">
-        </a>
-      </div>
+<%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: 'form-horizontal'}) do |f| %>
+    <div class="auth-form-header p-0">
+      <h1>Sign in to BlogZzz</h1>
     </div>
-  </div>
-  <div role="main">
-    <div id="js-pjax-container" data-pjax-container="">
-      <div class="auth-form px-3" id="login">
-        <a class="header-logo" href="/" aria-label="Homepage" data-ga-click="(Logged out) Header, go to homepage, icon:logo-wordmark">
-          <div class="session-logo"><img class="header-logo-img" alt="" src="/assets/blog/profile.jpeg"></div>
-        </a>
-        <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: 'form-horizontal'}) do |f| %>
-            <div class="auth-form-header p-0">
-              <h1>Sign in to BlogZzz</h1>
-            </div>
-            <div id="js-flash-container">
-              <% if alert %>
-                  <p class="alert alert-danger"><%= alert %></p>
-              <% end %>
-            </div>
-            <div class="auth-form-body mt-3">
-              <label for="login_field">
-                Username or email address
-              </label>
-              <%= f.email_field :email, autofocus: true , class: "form-control input-block" , autocorrect: "off"%>
-              <label for="password">
-                Password <a href="<%= new_password_path(resource_name) %>" class="label-link">Forgot password?</a>
-              </label>
-              <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
-              <input class="btn btn-primary btn-block" data-disable-with="Signing in…" name="commit" tabindex="3" type="submit" value="Sign in">
-            </div>
-        <% end %>
-        <p class="create-account-callout mt-3">
-          New to BlogZzz?
-          <a href="<%= new_registration_path(resource_name) %>" data-ga-click="Sign in, switch to sign up" class="link-default">Create an account</a>.
-        </p>
+    <div id="js-flash-container">
+      <% if alert %>
+          <p class="alert alert-danger"><%= alert %></p>
+      <% end %>
+    </div>
+    <div class="auth-form-body mt-3">
+      <label for="login_field">
+        Username or email address
+      </label>
+      <%= f.email_field :email, autofocus: true , class: "form-control input-block" , autocorrect: "off"%>
+      <label for="password">
+        Password <a href="<%= new_password_path(resource_name) %>" class="label-link">Forgot password?</a>
+      </label>
+      <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+      <input class="btn btn-primary btn-block" data-disable-with="Signing in…" name="commit" tabindex="3" type="submit" value="Sign in">
+    </div>
+<% end %>
+<p class="create-account-callout mt-3">
+  New to BlogZzz?
+  <a href="<%= new_registration_path(resource_name) %>" data-ga-click="Sign in, switch to sign up" class="link-default">Create an account</a>.
+</p>
 
-        <%- if devise_mapping.omniauthable? %>
-            <%- resource_class.omniauth_providers.each do |provider| %>
-                <p class="create-account-callout mt-3">
-                  <a href="<%= omniauth_authorize_path(resource_name, provider) %>" data-ga-click="Sign in, switch to sign up" class="link-default"><i class="fa fa-google-plus"></i> Sign in with Google</a>
-                </p>
-            <% end -%>
-        <% end -%>
-      </div>
-    </div>
-  </div>
-</div>
+<%- if devise_mapping.omniauthable? %>
+    <%- resource_class.omniauth_providers.each do |provider| %>
+        <p class="create-account-callout mt-3">
+          <a href="<%= omniauth_authorize_path(resource_name, provider) %>" data-ga-click="Sign in, switch to sign up" class="link-default"><i class="fa fa-google-plus"></i> Sign in with Google</a>
+        </p>
+    <% end -%>
+<% end -%>
