@@ -986,6 +986,12 @@ article a {
 .social-links .linkedin:hover {
   border: 1px solid #007BB6;
 }
+.social-links .github {
+    color: #000;
+}
+.social-links .github:hover {
+    border: 1px solid #000;
+}
 .social-links .dribbble {
   color: #EC4A89;
 }
