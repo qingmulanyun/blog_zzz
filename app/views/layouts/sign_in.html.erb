@@ -20,18 +20,34 @@
   <meta name="twitter:image" content="http://graphics8.nytimes.com/images/2012/02/19/us/19whitney-span/19whitney-span-articleLarge.jpg">
 
 </head>
-<!-- Header Section End -->
 
-<!--Content Start -->
 <div id="content" >
   <div class="container">
     <div class="row">
-      <%= yield %>
+      <div class="container session-container session-authentication">
+        <div class="position-relative js-header-wrapper ">
+          <div class="header header-logged-out width-full pt-5 pb-4" role="banner">
+            <div class="container clearfix width-full">
+              <a class="header-logo" href="/" aria-label="Homepage" data-ga-click="(Logged out) Header, go to homepage, icon:logo-wordmark">
+              </a>
+            </div>
+          </div>
+        </div>
+        <div role="main">
+          <div id="js-pjax-container" data-pjax-container="">
+            <div class="auth-form px-3" id="login">
+              <a class="header-logo" href="/" aria-label="Homepage" data-ga-click="(Logged out) Header, go to homepage, icon:logo-wordmark">
+                <div class="session-logo"><img class="header-logo-img" alt="" src="/assets/blog/profile.jpeg"></div>
+              </a>
+              <%= yield %>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-</div><!-- Content End -->
-<!-- Footer Start -->
+</div>
 <%= render partial: 'layouts/footer'%>
-<!-- js  -->
+
 </body>
 </html>
