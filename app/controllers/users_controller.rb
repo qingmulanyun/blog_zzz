@@ -7,6 +7,7 @@ class UsersController < ApplicationController
                           .select("COUNT( * ) as posts, to_char(created_at, 'Month') as MONTH , to_char(created_at, 'YYYY') as YEAR")
                           .group("MONTH, YEAR")
                           .order("YEAR, MONTH")
+                          .take(12)
   end
 
   def public_hub
@@ -26,7 +27,7 @@ class UsersController < ApplicationController
     @posts_by_current_year = @user.posts.paginate(:page => params[:page]).this_year(year)
                          .select("COUNT( * ) as posts, to_char(created_at, 'Month') as MONTH , to_char(created_at, 'YYYY') as YEAR")
                          .group("MONTH, YEAR")
-                         .order("MONTH, YEAR")
+                         .order("MONTH")
   end
 
   def archive_root
