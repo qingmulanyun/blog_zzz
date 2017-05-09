@@ -44,6 +44,12 @@
     width: auto;
 }
 
+.blogzzz_pagination .next_page:hover,
+.blogzzz_pagination .previous_page:hover{
+    background-color: inherit;
+    color: #ec483b;
+}
+
 .blogzzz_pagination .next_page {
     float: right;
 }
