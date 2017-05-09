@@ -10,11 +10,17 @@ Rails.application.routes.draw do
 
   get 'posts/:id', to: 'public#show_public_post'
 
-
+  # user related after login
   get 'public_hub', to: 'users#public_hub'
+  # get ''
 
   # this route configure will make routes pretty much catches all requests and you should have them last in your routes.rb so that other routes matches first.
   resources :users, path: '' do
+    member do
+      get 'archive' => :archive_root
+      get 'archive/:year' => :archive_year
+      get 'archive/:year/:month' => :archive_month
+    end
     resources :posts, path: '', except: [:index]
   end
 
