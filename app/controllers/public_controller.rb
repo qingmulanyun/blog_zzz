@@ -10,7 +10,7 @@ class PublicController < ApplicationController
   end
 
   def public_posts_index
-    @posts = Post.publicPosts.includes(:user).order(updated_at: :asc)
+    @posts = Post.publicPosts.includes(:user, :comments, :post_votes).order(updated_at: :asc)
     render 'public_posts_index.json'
   end
 
@@ -18,6 +18,7 @@ class PublicController < ApplicationController
     @post = Post.friendly.find(params[:id])
     @comments = Comment.where(post_id: @post.id)
     @comments_counter = @comments.count
+    @votes = @post.post_votes.where(vote: true).count
   end
 end
 
