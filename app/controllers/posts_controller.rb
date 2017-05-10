@@ -26,6 +26,7 @@ class PostsController < ApplicationController
   def show
     @comments = @post.comments
     @comments_counter = @comments.count
+    @votes = @post.post_votes.where(vote: true).count
   end
 
   def destroy
