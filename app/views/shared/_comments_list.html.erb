@@ -17,7 +17,7 @@
 
         <div class="col-md-11 comment-body">
           <div class="comment-form-head comments-list-head">
-            <strong><%=comment.user.name %></strong><span> commented at </span><%= comment.created_at %>
+            <strong><%=comment.user.name %></strong><span> commented </span><%= time_ago_in_words(comment.created_at) %> ago
           </div>
           <div class="comment-content">
             <%= comment.content.html_safe %>

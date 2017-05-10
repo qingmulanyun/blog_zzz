@@ -13,7 +13,7 @@
               <div class="entry-meta">
                 <span class="meta-part">
                 <i class="ico-calendar-alt-fill"></i>
-                <a href="#"> <%=post.created_at %> </a>
+                <a href="#"> <%= time_ago_in_words(post.created_at) %> ago  </a>
               </span>
                 <span class="meta-part">
                 <i class="ico-comments"></i>

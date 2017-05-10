@@ -16,6 +16,7 @@
 
 //= require angular
 //= require angular-sanitize
+//= require moment
 //= require_tree .
 //= require bootstrap-sprockets
 //= require ckeditor/init
