@@ -3,8 +3,11 @@ class CommentsController < ApplicationController
     post_id = params[:post_id]
     @post = Post.friendly.find(post_id)
     @user = current_user
-    Comment.create(comments_params.merge!(post_id: @post.id, user_id: @user.id))
-    redirect_to user_post_path(@user, @post)
+    comment = Comment.new(comments_params.merge!(post_id: @post.id, user_id: @user.id))
+
+    authorize comment
+
+    redirect_to user_post_path(@user, @post) if comment.save
   end
 
   private

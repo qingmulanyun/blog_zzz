@@ -11,11 +11,16 @@ class PostsController < ApplicationController
   end
 
   def new
+    @post = Post.new
+    authorize @post
   end
 
   def create
-    @post = @user.posts.create! post_params
-    redirect_to user_post_path(@user, @post)
+    @post = Post.new(post_params)
+    @post.user = current_user
+    authorize @post, :create?
+
+    redirect_to user_post_path(@user, @post) if @post.save
   end
 
   def show
@@ -46,6 +51,7 @@ class PostsController < ApplicationController
 
   def get_current_user
     @user = User.find(current_user)
+    raise Exception if @user.nil?
   end
 
   def post_params

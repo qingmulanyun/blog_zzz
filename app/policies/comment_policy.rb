@@ -1,11 +1,11 @@
-class PostPolicy < ApplicationPolicy
+class CommentPolicy < ApplicationPolicy
 
   def show?
     return true
   end
 
   def create?
-   user.present?
+    user.present?
   end
 
   def update?
