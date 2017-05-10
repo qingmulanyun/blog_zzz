@@ -10,7 +10,7 @@ class PublicController < ApplicationController
   end
 
   def public_posts_index
-    @posts = Post.publicPosts.includes(:user, :comments, :post_votes).order(updated_at: :asc)
+    @posts = Post.publicPosts.includes(:user, :comments, :post_votes).order(created_at: :desc)
     render 'public_posts_index.json'
   end
 

@@ -1,1 +1,1 @@
-APP = angular.module('blogzzz', ['ngSanitize', 'ngTruncate', 'ngPagerService']);
+APP = angular.module('blogzzz', ['ngSanitize', 'ngTruncate', 'ngFromNow','ngPagerService']);
