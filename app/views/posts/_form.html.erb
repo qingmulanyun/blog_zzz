@@ -1,10 +1,10 @@
 <p>
-  <%= f.label :title %><br>
+  <%= f.label :title , class:'post_title'%>
   <%= f.text_field :title %>
 </p>
 
 <p>
-  <%= f.label :content %><br>
+  <%= f.label :content, class:'post_content' %>
   <%= f.cktext_area :content, ckeditor: { height: 600} %>
 </p>
 
@@ -14,8 +14,8 @@
 </p>
 
 <p>
-  <%= f.submit :class => 'btn btn-primary'  %>
-  <%= link_to "Cancel", user_post_path(@user, @post), :class => 'btn btn-primary btn-cancel'  if params[:action].eql?('edit') %>
-  <%= link_to "Cancel", user_posts_path(@user), :class => 'btn btn-primary btn-cancel' if params[:action].eql?('new') %>
+  <%= f.submit :class => 'default-btn'  %>
+  <%= link_to "Cancel", user_post_path(@user, @post), :class => 'default-btn btn-cancel'  if params[:action].eql?('edit') %>
+  <%= link_to "Cancel", user_posts_path(@user), :class => 'default-btn btn-cancel' if params[:action].eql?('new') %>
 </p>
-
+<br />

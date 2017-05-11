@@ -262,15 +262,16 @@ ol {
   transition: .5s;
 }
 
-.defualt-btn {
+.default-btn {
     color: #fff;
     padding: 5px 14px;
     background-color: #ec483b !important;
     border: 1px solid #fff !important;
     border-radius: 15px;
+    font-size: inherit;
 }
 
-.defualt-btn:hover {
+.default-btn:hover {
     color: #000;
     background-color: #fff !important;
     border: 1px solid #000 !important;

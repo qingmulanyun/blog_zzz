@@ -2,6 +2,7 @@ class PostsController < ApplicationController
   skip_before_filter :authenticate_user!, only: [:show]
   before_action :get_current_user
   before_action :get_current_post, only: [:show, :edit, :update, :destroy]
+  before_action :get_comments_info, only: [:show, :edit]
 
   def index
     @posts = Post.where(user_id: current_user).order(updated_at: :desc)
@@ -25,8 +26,6 @@ class PostsController < ApplicationController
   end
 
   def show
-    @comments = @post.comments
-    @comments_counter = @comments.count
     @votes = @post.post_votes.where(vote: true).count
   end
 
@@ -46,6 +45,10 @@ class PostsController < ApplicationController
   end
 
   private
+  def get_comments_info
+    @comments = @post.comments
+    @comments_counter = @comments.count
+  end
 
   def get_current_post
     @post = Post.friendly.find(params[:id])
