@@ -11,6 +11,7 @@
               </div><!-- Post Format icon End -->
               <h2 class="blog-title"><a href="#"><%=post.title %></a></h2>
               <div class="entry-meta">
+                <span class="meta-part"><i class="ico-user"></i> <a href="#"><%= post.user.name%></a></span>
                 <span class="meta-part">
                 <i class="ico-calendar-alt-fill"></i>
                 <a href="#"> <%= time_ago_in_words(post.created_at) %> ago  </a>
