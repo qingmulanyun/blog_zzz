@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  skip_before_filter :authenticate_user!, only: [:show]
   before_action :get_current_user
   before_action :get_current_post, only: [:show, :edit, :update, :destroy]
 
@@ -51,7 +52,7 @@ class PostsController < ApplicationController
   end
 
   def get_current_user
-    @user = User.find(current_user)
+    @user = User.friendly.find(params[:user_id])
     raise Exception if @user.nil?
   end
 

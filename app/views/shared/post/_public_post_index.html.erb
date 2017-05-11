@@ -7,7 +7,7 @@
       <div class="post-format">
         <span><i class="ico-bookmark"></i></span>
       </div><!-- Post Format icon End -->
-      <h2 class="blog-title"><a href="/posts/{{ post.slug }}" ng-bind="post.title"></a></h2>
+      <h2 class="blog-title"><a href="/{{ post.author_id }}/{{ post.slug }}" ng-bind="post.title"></a></h2>
       <div class="entry-meta">
         <span class="meta-part"><i class="ico-user"></i> <a href="#" ng-bind="post.author"></a></span>
         <span class="meta-part">
