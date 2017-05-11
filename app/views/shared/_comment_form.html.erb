@@ -30,7 +30,7 @@
             <a class="btn btn-common btn-more" href="<%= new_user_registration_path %>"><i class="fa fa-arrow-right"></i>Sign Up for free</a>
           </div>
           <div class="col-md-9">
-            to join this conversation. Already have an account? <a href="<%= new_user_session_path %>"> Sign in to comment</a>
+            to join this conversation. Already have an account? <a href="<%= new_user_session_path %>?redirect_to=<%=ERB::Util.url_encode(request.original_url) %>"> Sign in to comment</a>
           </div>
         </div>
         <% end %>
