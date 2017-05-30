@@ -1,4 +1,4 @@
-<div class="col-md-8 single-post" id="content">
+<div class="col-md-8 single-post">
   <div class="container">
     <div class="row">
       <div class="col-md-8">
@@ -8,14 +8,18 @@
         <!-- Blog Article Start-->
         <article class="single-post-content">
           <%= @post.content.html_safe %>
-          <div class="links">
-            <a class="heart" href="#"><i class="ico-heart"></i>(<%= @votes%>)</a>
-            <a href="#"> <i class="ico-comments"></i>(<%= @comments_counter %>)</a>
+          <hr>
+          <div class="entry-meta">
+            <span class="meta-part"><i class="ico-user"></i> <a href="#" ><%= @post.user.name %></a></span>
+            <span class="meta-part">
+                <i class="ico-calendar-alt-fill"></i>
+                <a href="#"><%= time_ago_in_words(@post.created_at) %> ago</a>
+              </span>
           </div>
         </article>
         <%= render partial: 'shared/comments_list'%>
         <%= render partial: 'shared/comment_form' %>
-        <%= render partial: 'shared/related_posts' %>
+        <!--<%= render partial: 'shared/related_posts' %>-->
       </div>
     </div>
   </div>
