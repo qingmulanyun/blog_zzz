@@ -39,6 +39,8 @@ gem 'omniauth-google-oauth2'
 
 gem 'will_paginate'
 
+gem 'acts-as-taggable-on'
+
 gem "non-stupid-digest-assets"
 # Please see  https://devcenter.heroku.com/articles/ruby-support#injected-plugins for more info
 group :production do
