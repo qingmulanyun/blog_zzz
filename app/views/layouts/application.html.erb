@@ -11,24 +11,6 @@
       width: 100%;
     }
   </style>
-</head>
-<body>
-<h3>My Google Maps Demo</h3>
-<div id="map"></div>
-<script>
-    function initMap() {
-        var uluru = {lat: 37.759921, lng: 37.759921};
-        var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 4,
-            center: uluru
-        });
-        var marker = new google.maps.Marker({
-            position: uluru,
-            map: map
-        });
-    }
-</script>
-
   <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=#{ENV['GOOGLE_MAP_API_KEY']}&callback=initMap" %>
   <%= csrf_meta_tags %>
   <%= favicon_link_tag %>
@@ -46,6 +28,23 @@
   <meta name="twitter:image" content="http://graphics8.nytimes.com/images/2012/02/19/us/19whitney-span/19whitney-span-articleLarge.jpg">
 
 </head>
+
+<body>
+<h3>My Google Maps Demo</h3>
+<div id="map"></div>
+<script>
+    function initMap() {
+        var uluru = {lat: 37.759921, lng: 37.759921};
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 4,
+            center: uluru
+        });
+        var marker = new google.maps.Marker({
+            position: uluru,
+            map: map
+        });
+    }
+</script>
 <header class="site-header">
   <nav class="navbar navbar-default navbar-intimate"
        data-offset-top="50" data-spy="affix">
