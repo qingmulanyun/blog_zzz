@@ -23,6 +23,6 @@ class Post < ActiveRecord::Base
   end
 
   def created_ip
-    self.user.current_sign_in_ip
+    self.user.current_sign_in_ip.to_s
   end
 end
