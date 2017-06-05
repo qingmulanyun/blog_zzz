@@ -39,6 +39,8 @@ gem 'omniauth-google-oauth2'
 
 gem 'will_paginate'
 
+gem 'geocoder'
+
 gem 'acts-as-taggable-on'
 
 gem "non-stupid-digest-assets"
