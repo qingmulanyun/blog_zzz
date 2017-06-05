@@ -1,6 +1,8 @@
 class Post < ActiveRecord::Base
   extend FriendlyId
   friendly_id :title, use: :slugged
+  geocoded_by :created_ip
+  before_create :geocode
 
   belongs_to :user
   has_many :comments
@@ -20,4 +22,7 @@ class Post < ActiveRecord::Base
     title_changed?
   end
 
+  def created_ip
+    self.user.current_sign_in_ip
+  end
 end
