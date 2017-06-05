@@ -11,7 +11,10 @@
       width: 100%;
     }
   </style>
-  <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=#{ENV['GOOGLE_MAP_API_KEY']}&callback=initMap" %>
+
+  <script async defer
+          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCP12MDFWZUTiDm1d1prlORktT-7IZraMs&callback=initMap">
+  </script>
   <%= csrf_meta_tags %>
   <%= favicon_link_tag %>
 
