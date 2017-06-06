@@ -1,7 +1,7 @@
 
 <% content_for :google_map_api do %>
     <script async defer
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCP12MDFWZUTiDm1d1prlORktT-7IZraMs&libraries=visualization&callback=initMap">
+            src="https://maps.googleapis.com/maps/api/js?key=<%=ENV['GOOGLE_MAP_API_KEY']%>&libraries=visualization&callback=initMap">
     </script>
 <% end %>
 
