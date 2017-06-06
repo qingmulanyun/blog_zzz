@@ -37,6 +37,14 @@ class UsersController < ApplicationController
                          .order("YEAR")
   end
 
+
+  def foot_print
+  end
+
+  def foot_print_data
+    render 'foot_print.json'
+  end
+
   private
   def get_current_user
     @user = User.find(current_user)
