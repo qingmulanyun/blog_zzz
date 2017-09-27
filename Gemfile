@@ -43,6 +43,9 @@ gem 'geocoder'
 
 gem 'acts-as-taggable-on'
 
+# Use rest_client for http request (multipart send featured)
+gem 'rest-client'
+
 gem "non-stupid-digest-assets"
 # Please see  https://devcenter.heroku.com/articles/ruby-support#injected-plugins for more info
 group :production do
