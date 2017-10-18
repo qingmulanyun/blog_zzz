@@ -58,6 +58,9 @@
         <li>
            <a href="/foot_print">Foot print</a>
         </li>
+        <li>
+          <a href="/public_transport_train">Sydney Public Transport</a>
+        </li>
       <% end %>
         </ul>
 
@@ -100,6 +103,7 @@
 <!-- Footer Start -->
 <%= render partial: 'layouts/footer'%>
 <%= yield :google_map_api if content_for? :google_map_api %>
+<%= yield :google_map_api_v2 if content_for? :google_map_api_v2 %>
 <!-- js  -->
 </body>
 </html>

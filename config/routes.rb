@@ -17,6 +17,10 @@ Rails.application.routes.draw do
 
   get 'foot_print_data', to: 'users#foot_print_data'
 
+  get 'public_transport_train', to: 'transport#public_transport'
+
+  get 'public_transport_tracking', to: 'transport#public_transport_tracking'
+
   # this route configure will make routes pretty much catches all requests and you should have them last in your routes.rb so that other routes matches first.
   resources :users, path: '' do
     member do

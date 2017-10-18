@@ -1,0 +1,17 @@
+
+<% content_for :google_map_api_v2 do %>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=<%=ENV['GOOGLE_MAP_API_KEY']%>&callback=initPuclicTransportMap">
+    </script>
+<% end %>
+
+
+<div class="col-md-12">
+  <ol class="breadcrumb">
+    <li>Sydney Trains</li>
+  </ol>
+</div>
+
+<div class="col-md-12">
+  <div id="map_public_transport"></div>
+</div>
