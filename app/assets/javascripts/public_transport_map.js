@@ -8,6 +8,9 @@ function initPuclicTransportMap() {
         mapTypeId: 'terrain'
     });
 
+    var transitLayer = new google.maps.TransitLayer();
+    transitLayer.setMap(public_transport_tracking_map);
+
     initial();
     var refresh = setInterval(refresh, 5000);
 
@@ -18,7 +21,7 @@ function initPuclicTransportMap() {
             dataType: "json",
             success: function(data){
                 for (var i = 0; i < data.length; i++) {
-                    addMarker(data[i].location, data[i].vehicle_id)
+                    addMarker(data[i].location, data[i].vehicle)
                 }
             }
         });
@@ -38,13 +41,19 @@ function initPuclicTransportMap() {
     }
 
 
-    function addMarker(location, vehicle_id) {
+    function addMarker(location, vehicle) {
         var marker = new google.maps.Marker({
-            id: vehicle_id,
+            id: vehicle.id,
             position: location,
             map: public_transport_tracking_map
         });
         markers.push(marker);
+        var infowindow = new google.maps.InfoWindow({
+            content: vehicle.label
+        });
+        marker.addListener('click', function() {
+            infowindow.open(map, marker);
+        });
     }
 
     function refreshMarker(updated_data, markers) {
@@ -52,7 +61,7 @@ function initPuclicTransportMap() {
            initial()
        } else {
            markers.map(function(marker) {
-               if(marker.id == updated_data.vehicle_id){
+               if(marker.id == updated_data.vehicle.id){
                    if(marker.position !== updated_data.location){
                        marker.setPosition(updated_data.location)
                    }

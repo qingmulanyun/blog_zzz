@@ -21,6 +21,8 @@ Rails.application.routes.draw do
 
   get 'public_transport_tracking', to: 'transport#public_transport_tracking'
 
+  get 'public_transport_timetable', to: 'transport#public_transport_time_table'
+
   # this route configure will make routes pretty much catches all requests and you should have them last in your routes.rb so that other routes matches first.
   resources :users, path: '' do
     member do
