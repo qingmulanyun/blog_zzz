@@ -17,6 +17,13 @@
 //= require angular
 //= require angular-sanitize
 //= require moment
-//= require_tree .
+//= require blogzzz.js
+//= require public_transport_map.js
+//= require test_google_map.js
+//= require services/pagerService.js
+//= require filters/fromNowFilter.js
+//= require filters/truncatePostContentFilter.js
+//= require controllers/footer_controller.js
+//= require controllers/public_posts_controller.js
 //= require bootstrap-sprockets
 //= require ckeditor/init

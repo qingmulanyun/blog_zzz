@@ -39,7 +39,7 @@ GEM
     acts-as-taggable-on (4.0.0)
       activerecord (>= 4.0)
     arel (6.0.4)
-    autoprefixer-rails (6.6.1)
+    autoprefixer-rails (7.1.2.2)
       execjs
     bcrypt (3.1.11)
     binding_of_caller (0.7.2)
@@ -48,7 +48,7 @@ GEM
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
     builder (3.2.3)
-    byebug (9.0.6)
+    byebug (10.0.0)
     ckeditor (4.2.2)
       cocaine
       orm_adapter (~> 0.5.0)
@@ -229,7 +229,7 @@ GEM
     sdoc (0.4.2)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
-    spring (2.0.0)
+    spring (2.0.1)
       activesupport (>= 4.2)
     sprockets (3.7.1)
       concurrent-ruby (~> 1.0)
