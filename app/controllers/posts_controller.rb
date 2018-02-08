@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  skip_before_filter :authenticate_user!, only: [:show]
+  skip_before_action :authenticate_user!, only: [:show]
   before_action :get_current_user
   before_action :get_current_post, only: [:show, :edit, :update, :destroy]
   before_action :get_comments_info, only: [:show, :edit]
