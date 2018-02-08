@@ -3,3 +3,7 @@
 /log
 .byebug_history
 /node_modules
+
+
+# Ignore webpack bundle.js
+/app/assets/javascripts/build/
