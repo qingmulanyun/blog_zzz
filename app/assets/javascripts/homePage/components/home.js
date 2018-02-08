@@ -47,7 +47,7 @@ class homePageBoard extends React.Component{
         return(
             <MuiThemeProvider theme={theme}>
                 <div>
-                  {currentTab}
+                  test
                 </div>
             </MuiThemeProvider>
         );
