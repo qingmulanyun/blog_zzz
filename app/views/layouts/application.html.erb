@@ -104,6 +104,8 @@
 <%= render partial: 'layouts/footer'%>
 <%= yield :google_map_api if content_for? :google_map_api %>
 <%= yield :google_map_api_v2 if content_for? :google_map_api_v2 %>
-<!-- js  -->
+
+<div id="home-page-container">Loading...</div>
+<%= javascript_include_tag 'build/homePage.bundle' %>
 </body>
 </html>
