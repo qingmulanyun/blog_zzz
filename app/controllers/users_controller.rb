@@ -47,6 +47,6 @@ class UsersController < ApplicationController
 
   private
   def get_current_user
-    @user = User.find(current_user)
+    @user = User.find(current_user.id)
   end
 end
