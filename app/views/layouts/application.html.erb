@@ -1,111 +1,127 @@
 <!DOCTYPE html>
 <html ng-app="blogzzz">
 <head>
-  <title>BlogZzz</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-
-  <style>
-    #map {
-      height: 400px;
-      width: 100%;
-    }
-  </style>
+  <title>Wenbo&Lana</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <%= stylesheet_link_tag    'application' %>
+  <%= javascript_include_tag 'application' %>
 
   <%= csrf_meta_tags %>
   <%= favicon_link_tag %>
 
-  <meta property="og:type"               content="website" />
-  <meta property="og:title"              content="A blog for you to memorize your daily life." />
-  <meta property="og:description"        content="Sign up to start your new posts life." />
-  <meta property="og:image"              content="http://static01.nyt.com/images/2015/02/19/arts/international/19iht-btnumbers19A/19iht-btnumbers19A-facebookJumbo-v2.jpg" />
-
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:site" content="@Wenbo199019" />
-  <meta name="twitter:creator" content="@Wenbo199019">
-  <meta name="twitter:title" content="A blog for you to memorize your daily life." />
-  <meta name="twitter:description" content="Sign up to start your new posts life." />
-  <meta name="twitter:image" content="http://graphics8.nytimes.com/images/2012/02/19/us/19whitney-span/19whitney-span-articleLarge.jpg">
-
 </head>
 
 <body>
-<header class="site-header">
-  <nav class="navbar navbar-default navbar-intimate"
-       data-offset-top="50" data-spy="affix">
-    <div class="container">
-      <div class="navbar-header">
-        <!-- Start Toggle Nav For Mobile -->
-        <button class="navbar-toggle" data-target="#navigation" data-toggle="collapse" type="button">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <div class="logo">
-          <a class="navbar-brand" href="/"><i class="ico-3dglasses"></i></a>
-        </div>
-      </div>
-      <div class="navbar-collapse collapse" id="navigation">
-        <ul class="nav navbar-nav navbar-left">
-          <li>
-            <a href="/">Home</a>
-          </li>
-      <% if user_signed_in? %>
-        <li>
-           <a href="/public_hub">Posts hub</a>
-        </li>
-        <li>
-           <a href="/foot_print">Foot print</a>
-        </li>
-        <li>
-          <a href="/public_transport_train">Sydney Public Transport</a>
-        </li>
-      <% end %>
-        </ul>
+  <nav class="white" role="navigation">
+    <div class="nav-wrapper container">
+      <a id="logo-container" href="#" class="brand-logo">
+        <div class="session-logo"><img class="header-logo-img" alt="" src="/assets/blog/profile.jpeg"></div>
+        Yan DaiGou
+      </a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="#">Sign In</a></li>
+      </ul>
 
-        <ul class="nav navbar-nav navbar-right">
-          <% if user_signed_in? %>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle profile-list" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                  <img class="avatar" src="<%= current_user.image_url.blank? ? default_profile_img_url : current_user.image_url %>">
-                  <%=current_user.name%> <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu">
-                  <li><%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> </li>
-                  <li role="separator" class="divider"></li>
-                  <li> <%= link_to "Log out", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %></li>
-                </ul>
-              </li>
-           <% else %>
-              <li>
-                <a href="<%= new_user_session_path %>">Sign In</a>
-              </li>
-              <li>
-                <a href="<%= new_user_registration_path %>">Sign Up</a>
-              </li>
-          <% end %>
-        </ul>
-      </div><!-- Navigation End -->
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="#">Sign In</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
   </nav>
-</header><!-- Header Section End -->
 
- <!--Content Start -->
-<div id="content" class="personal-container">
-  <div class="container">
-    <div class="row">
-     <%= yield %>
-      <%= render partial: 'layouts/right_col_private' unless %w(devise/sessions devise/registrations ).include? params[:controller] %>
+<div id="index-banner" class="parallax-container">
+  <div class="section no-pad-bot">
+    <div class="container">
+      <br><br>
+      <h1 class="header center teal-text text-lighten-2">Parallax Template</h1>
+      <div class="row center">
+        <h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
+      </div>
+      <div class="row center">
+        <a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light teal lighten-1">Get Started</a>
+      </div>
+      <br><br>
+
     </div>
   </div>
-</div><!-- Content End -->
-<!-- Footer Start -->
-<%= render partial: 'layouts/footer'%>
-<%= yield :google_map_api if content_for? :google_map_api %>
-<%= yield :google_map_api_v2 if content_for? :google_map_api_v2 %>
+  <div class="parallax"><img src="background1.jpg" alt="Unsplashed background img 1"></div>
+</div>
 
-<div id="home-page-container">Loading...</div>
-<%= javascript_include_tag 'build/homePage.bundle' %>
+<div class="container">
+  <div class="section">
+
+    <!--   Icon Section   -->
+    <div class="row">
+      <div class="col s12 m4">
+        <div class="icon-block">
+          <h2 class="center brown-text"><i class="material-icons">flash_on</i></h2>
+          <h5 class="center">Speeds up development</h5>
+
+          <p class="light">We did most of the heavy lifting for you to provide a default stylings that incorporate our custom components. Additionally, we refined animations and transitions to provide a smoother experience for developers.</p>
+        </div>
+      </div>
+
+      <div class="col s12 m4">
+        <div class="icon-block">
+          <h2 class="center brown-text"><i class="material-icons">group</i></h2>
+          <h5 class="center">User Experience Focused</h5>
+
+          <p class="light">By utilizing elements and principles of Material Design, we were able to create a framework that incorporates components and animations that provide more feedback to users. Additionally, a single underlying responsive system across all platforms allow for a more unified user experience.</p>
+        </div>
+      </div>
+
+      <div class="col s12 m4">
+        <div class="icon-block">
+          <h2 class="center brown-text"><i class="material-icons">settings</i></h2>
+          <h5 class="center">Easy to work with</h5>
+
+          <p class="light">We have provided detailed documentation as well as specific code examples to help new users get started. We are also always open to feedback and can answer any questions a user may have about Materialize.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<div class="parallax-container valign-wrapper">
+  <div class="section no-pad-bot">
+    <div class="container">
+      <div class="row center">
+        <h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
+      </div>
+    </div>
+  </div>
+  <div class="parallax"><img src="background2.jpg" alt="Unsplashed background img 2"></div>
+</div>
+
+<div class="container">
+  <div class="section">
+
+    <div class="row">
+      <div class="col s12 center">
+        <h3><i class="mdi-content-send brown-text"></i></h3>
+        <h4>Contact Us</h4>
+        <p class="left-align light">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque id nunc nec volutpat. Etiam pellentesque tristique arcu, non consequat magna fermentum ac. Cras ut ultricies eros. Maecenas eros justo, ullamcorper a sapien id, viverra ultrices eros. Morbi sem neque, posuere et pretium eget, bibendum sollicitudin lacus. Aliquam eleifend sollicitudin diam, eu mattis nisl maximus sed. Nulla imperdiet semper molestie. Morbi massa odio, condimentum sed ipsum ac, gravida ultrices erat. Nullam eget dignissim mauris, non tristique erat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<div class="parallax-container valign-wrapper">
+  <div class="section no-pad-bot">
+    <div class="container">
+      <div class="row center">
+        <h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
+      </div>
+    </div>
+  </div>
+  <div class="parallax"><img src="background3.jpg" alt="Unsplashed background img 3"></div>
+</div>
+
+<%= render partial: 'layouts/footer'%>
+
 </body>
 </html>

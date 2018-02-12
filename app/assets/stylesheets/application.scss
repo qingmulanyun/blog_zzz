@@ -1,65 +1,11 @@
-@import "bootstrap-sprockets";
-@import "bootstrap";
-@import "font-awesome-sprockets";
-@import "font-awesome";
+/*
+*= require material_icons
+*/
 
-@import "fonts/intimate-fonts";
-@import "posts";
-@import "main";
-@import "global";
-@import "nav-menu";
-@import "responsive";
-@import "comments";
-@import "session";
-@import "pager";
+@import "materialize/components/color";
+$primary-color: color("blue", "lighten-2") !default;
+$secondary-color: color("yellow", "base") !default;
+@import 'materialize';
 
 
-a.profile-list {
-  max-height: 50px;
-}
-// "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
-
-.alert {
-  margin-top: 10px;
-}
-
-body {
-  background: #f4f4f4;
-}
-
-.navbar-default {
-  position: fixed;
-  width: 100%;
-  z-index: 1000;
-  top: 0;
-}
-
-.main-body {
-  margin-top: 50px;
-}
-
-.avatar {
-  height: 24px;
-  width: 24px;
-  display: inline-block;
-  overflow: hidden;
-  line-height: 1;
-  vertical-align: middle;
-  border-radius: 3px;
-}
-
-
-
-.personal-container {
-  margin-top: 90px;
-  min-height: 650px;
-}
-
-
-.sidebar {
-  margin-top: -10px;
-}
-
-#map_public_transport {
-  height: 500px;
-}
+@import 'layout';
