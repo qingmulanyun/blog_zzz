@@ -11,11 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170604233327) do
+ActiveRecord::Schema.define(version: 20180212050050) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
+
+  create_table "addresses", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
+    t.string   "country"
+    t.string   "address_line_1"
+    t.string   "province"
+    t.string   "zip_code"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -73,6 +82,40 @@ ActiveRecord::Schema.define(version: 20170604233327) do
   add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
 
+  create_table "items", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
+    t.string   "name"
+    t.string   "image_url"
+    t.float    "price"
+    t.float    "cost"
+    t.string   "discription"
+    t.string   "status"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.uuid     "shop_id"
+  end
+
+  create_table "order_items", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
+    t.uuid     "item_id"
+    t.uuid     "order_id"
+    t.integer  "amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "order_items", ["item_id"], name: "index_order_items_on_item_id", using: :btree
+  add_index "order_items", ["order_id"], name: "index_order_items_on_order_id", using: :btree
+
+  create_table "orders", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
+    t.uuid     "seller_id"
+    t.uuid     "buyer_id"
+    t.string   "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "orders", ["buyer_id"], name: "index_orders_on_buyer_id", using: :btree
+  add_index "orders", ["seller_id"], name: "index_orders_on_seller_id", using: :btree
+
   create_table "post_votes", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
     t.uuid     "post_id"
     t.uuid     "user_id"
@@ -94,6 +137,16 @@ ActiveRecord::Schema.define(version: 20170604233327) do
   end
 
   add_index "posts", ["slug"], name: "index_posts_on_slug", using: :btree
+
+  create_table "shops", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.uuid     "user_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "shops", ["user_id"], name: "index_shops_on_user_id", using: :btree
 
   create_table "taggings", force: :cascade do |t|
     t.integer  "tag_id"
@@ -158,4 +211,8 @@ ActiveRecord::Schema.define(version: 20170604233327) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["slug"], name: "index_users_on_slug", using: :btree
 
+  add_foreign_key "items", "shops"
+  add_foreign_key "order_items", "items"
+  add_foreign_key "order_items", "orders"
+  add_foreign_key "shops", "users"
 end
