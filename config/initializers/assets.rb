@@ -19,4 +19,5 @@ Rails.application.config.assets.precompile += %w(
   .woff
   .ttf
   build/*
+  sign-in.css
 )

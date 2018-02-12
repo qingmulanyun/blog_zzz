@@ -1,7 +1,5 @@
 class PublicController < ApplicationController
   skip_before_action :authenticate_user!
-  layout 'public_layout'
-
 
   def root
     if user_signed_in?

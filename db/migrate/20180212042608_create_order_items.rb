@@ -1,4 +1,4 @@
-class CreateOrderItems < ActiveRecord::Migration
+class CreateOrderItems < ActiveRecord::Migration[4.2]
   def change
     create_table :order_items , id: :uuid do |t|
       t.references :item, foreign_key: true, type: :uuid, index: true
