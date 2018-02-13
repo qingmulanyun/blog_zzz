@@ -8,4 +8,8 @@ class ItemsController < ApplicationController
   def index
     current_user.shop.items.order(updated_at: :desc)
   end
+
+  def new
+
+  end
 end
