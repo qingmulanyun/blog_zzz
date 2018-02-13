@@ -2,12 +2,6 @@ class UsersController < ApplicationController
   before_action :get_current_user
 
   def show
-    @posts = @user.posts.paginate(:page => params[:page]).order(created_at: :desc)
-    @posts_by_month = @user.posts
-                          .select("COUNT( * ) as posts, to_char(created_at, 'Month') as MONTH , to_char(created_at, 'YYYY') as YEAR")
-                          .group("MONTH, YEAR")
-                          .order("YEAR, MONTH")
-                          .take(12)
   end
 
   def public_hub

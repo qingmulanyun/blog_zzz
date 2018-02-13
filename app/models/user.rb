@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :omniauthable,
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => [:google_oauth2]
-      extend FriendlyId
+  extend FriendlyId
   friendly_id :name, use: :slugged
 
   has_many :posts

@@ -51,11 +51,11 @@ class PostsController < ApplicationController
   end
 
   def get_current_post
-    @post = Post.friendly.find(params[:id])
+    @post = Post.find(params[:id])
   end
 
   def get_current_user
-    @user = User.friendly.find(params[:user_id])
+    @user = User.find(params[:user_id])
     raise Exception if @user.nil?
   end
 

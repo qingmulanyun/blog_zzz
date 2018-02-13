@@ -13,6 +13,11 @@
 
 <body>
   <nav class="white" role="navigation">
+    <ul id="user_profile" class="dropdown-content">
+      <li><a href="#!">Profile</a></li>
+      <li class="divider"></li>
+      <li> <%= link_to('Logout', destroy_user_session_path, method: :delete) %> </li>
+    </ul>
     <div class="nav-wrapper container">
       <a id="logo-container" href="#" class="brand-logo">
         <div class="session-logo"><img class="header-logo-img" alt="" src="/assets/blog/profile.jpeg"></div>
@@ -22,10 +27,11 @@
 
       <% if user_signed_in? %>
           <ul class="right hide-on-med-and-down">
-            <li><a href="<%= new_item_path %>">Add New Item</a></li>
+            <li><a href="#">My Shops</a></li>
+            <li><a class="dropdown-button" href="#!" data-activates="user_profile"><%= current_user.name%><i class="material-icons right">arrow_drop_down</i></a></li>
           </ul>
           <ul id="nav-mobile" class="side-nav">
-            <li><a href="<%= new_item_path %>">Add New Item</a></li>
+            <li><a href="#"><%= current_user.name%></a></li>
           </ul>
       <% else %>
           <ul class="right hide-on-med-and-down">
