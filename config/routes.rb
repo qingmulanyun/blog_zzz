@@ -33,5 +33,5 @@ Rails.application.routes.draw do
     end
   end
 
-  draw :shop
+  draw :item
 end

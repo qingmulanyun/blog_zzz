@@ -14,4 +14,7 @@ class ItemsController < ApplicationController
 
   end
 
+  def create_seller_item
+    current_user.shop.items.create!()
+  end
 end

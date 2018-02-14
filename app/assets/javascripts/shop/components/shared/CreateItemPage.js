@@ -10,7 +10,9 @@ import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
 import { connect } from 'react-redux'
 import { toggleCreateItemPage } from '../../redux/actions/rootActions'
+import { handleInputChange, submitNewItemForm } from '../../redux/actions/gridActions'
 
+var files;
 
 const styles = theme => ({
     root: {
@@ -45,13 +47,27 @@ class CreateItemPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-
         };
     }
 
+    handleUploadImage = (e) =>{
+        this.props.handleInputChange('image', e.target.value);
+        files = e.target.files;
+    };
+
+    handleSubmitNewItemForm = (e) =>{
+        var data = new FormData();
+        data.append('image', files[0]);
+        const currentItem = this.props.currentItem;
+        data.append('name', currentItem.name);
+        data.append('cost', currentItem.cost);
+        data.append('price', currentItem.price);
+        data.append('description', currentItem.description);
+        this.props.submitNewItemForm(data);
+    };
 
     render() {
-        const { classes, createItemPageOpen, currentItem} = this.props;
+        const { classes, createItemPageOpen, currentItem, handleInputChange} = this.props;
 
         return (
             <div>
@@ -72,20 +88,72 @@ class CreateItemPage extends React.Component {
                     </div>
                     <form className={classes.container} autoComplete="off">
                         <TextField
+                            multiline
                             required
                             label="名称"
-                            placeholder="名称"
                             value={currentItem.name}
                             className={classes.textField}
                             margin="normal"
                             fullWidth
+                            onChange={(e)=> handleInputChange('name', e.target.value)}
                             helperText="请输入产品名称"
                         />
 
-                        <Button raised color="primary" className={classes.button} >
-                            创建
+                        <TextField
+                            required
+                            label="成本（澳元）"
+                            type="number" step="0.01"
+                            value={currentItem.cost}
+                            className={classes.textField}
+                            onChange={(e)=> handleInputChange('cost', e.target.value)}
+                            margin="normal"
+                            fullWidth
+                            helperText="请输入产品成本"
+                        />
+
+                        <TextField
+                            required
+                            label="价格（澳元）"
+                            type="number"
+                            step="0.01"
+                            value={currentItem.price}
+                            className={classes.textField}
+                            margin="normal"
+                            onChange={(e)=> handleInputChange('price', e.target.value)}
+                            fullWidth
+                            helperText="请输入产品价格"
+                        />
+
+                        <TextField
+                            multiline
+                            required
+                            label="简介"
+                            value={currentItem.description}
+                            className={classes.textField}
+                            margin="normal"
+                            onChange={(e)=> handleInputChange('description', e.target.value)}
+                            fullWidth
+                            helperText="请输入产品简介"
+                        />
+
+                        <TextField
+                            required
+                            label="图片"
+                            type="file"
+                            value={currentItem.image}
+                            className={classes.textField}
+                            onChange={(e)=> this.handleUploadImage(e)}
+                            margin="normal"
+                            fullWidth
+                            helperText="请上传图片"
+                        />
+
+
+
+                        <Button variant="raised" color="primary" className={classes.button} onClick={(e)=>this.handleSubmitNewItemForm(e)}>
+                            添加
                         </Button>
-                        <Button raised className={classes.button} onClick={this.props.toggleCreateItemPage}>
+                        <Button variant="raised" className={classes.button} onClick={this.props.toggleCreateItemPage}>
                             取消
                         </Button>
                     </form>
@@ -110,6 +178,12 @@ const mapDispatchToProps = (dispatch) => {
     return {
         toggleCreateItemPage: ()=> {
             dispatch(toggleCreateItemPage())
+        },
+        handleInputChange: (name, value)=> {
+            dispatch(handleInputChange(name, value))
+        },
+        submitNewItemForm: (data)=> {
+            dispatch(submitNewItemForm(data))
         }
     }
 };

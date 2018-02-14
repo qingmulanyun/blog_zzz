@@ -123,7 +123,7 @@ class SellerItemsBoard extends React.Component {
                 />
 
                 <TableHeaderRow showSortingControls />
-                <TableFilterRow />
+
                 <TableSelection showSelectAll />
                 <TableColumnVisibility
                 />

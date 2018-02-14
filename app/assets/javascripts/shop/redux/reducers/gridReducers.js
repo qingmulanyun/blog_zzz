@@ -38,9 +38,10 @@ const gridInitialState = {
         message: ''
     },
     currentItem: {
+        id: '',
         name: '',
-        price: 0,
-        cost: 0,
+        price: '',
+        cost: '',
         description: '',
         status: 'New',
         image: ''
@@ -110,6 +111,18 @@ export const gridReducer = (state = gridInitialState, action) => {
                     open: true,
                     message: action.message
                 }
+            },
+        );
+        return nextState;
+    }
+    if (action.type === 'HANDLE_INPUT_CHANGE') {
+        var originCurrentItem = state.currentItem;
+
+        const nextState = Object.assign(
+            {},
+            state,
+            {
+                currentItem: Object.assign({}, originCurrentItem, action.data)
             },
         );
         return nextState;
