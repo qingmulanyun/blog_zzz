@@ -1,21 +1,7 @@
 import React from 'react';
 import { withStyles } from 'material-ui/styles';
-import Button from 'material-ui/Button';
-import AddIcon from 'material-ui-icons/Add';
 import { connect } from 'react-redux'
-
-import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
-import blue from 'material-ui/colors/blue';
-
-const theme = createMuiTheme({
-    palette: {
-        primary: blue
-    },
-});
-
-function TabContainer(props) {
-    return <div>{props.children}</div>;
-}
+import SellerItemsBoard from './SellerItemsBoard'
 
 const styles = theme => ({
     root: {
@@ -46,14 +32,10 @@ class ShopHomeBoard extends React.Component{
         const { classes } = this.props;
 
         return(
-            <MuiThemeProvider theme={theme}>
                 <div>
-                    <Button variant="raised" color="primary">
-                        添加商品
-                        <AddIcon />
-                    </Button>
+                    <SellerItemsBoard />
                 </div>
-            </MuiThemeProvider>
+
         );
     }
 }

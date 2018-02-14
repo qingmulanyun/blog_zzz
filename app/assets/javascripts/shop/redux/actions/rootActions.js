@@ -4,3 +4,9 @@ export function switchBuildComponent(tab_index) {
         data: tab_index
     }
 }
+
+export function toggleCreateItemPage() {
+    return {
+        type: "TOGGLE_CREATE_ITEM_PAGE"
+    }
+}

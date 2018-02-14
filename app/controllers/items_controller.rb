@@ -5,11 +5,13 @@ class ItemsController < ApplicationController
     Item.all
   end
 
-  def index
-    current_user.shop.items.order(updated_at: :desc)   if current_user.shop.present?
+  def seller_items
+    @items = current_user.shop.present? ?  current_user.shop.items.order(updated_at: :desc) : nil
+    render 'seller_items.json'
   end
 
   def new
 
   end
+
 end
