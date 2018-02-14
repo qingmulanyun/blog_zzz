@@ -24,8 +24,8 @@ class AddNewItem extends React.Component {
                         {({}) => (
                             <React.Fragment>
                                 <Tooltip title='添加商品' placement='bottom' enterDelay={200}>
-                                    <IconButton>
-                                        <AddIcon onClick={this.props.toggleCreateItemPage}/>
+                                    <IconButton onClick={this.props.toggleCreateItemPage}>
+                                        <AddIcon />
                                     </IconButton>
                                 </Tooltip>
 

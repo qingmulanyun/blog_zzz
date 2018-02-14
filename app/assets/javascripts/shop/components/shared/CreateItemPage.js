@@ -58,7 +58,7 @@ class CreateItemPage extends React.Component {
                 <Drawer
                     anchor="right"
                     open= {createItemPageOpen}
-                    onRequestClose={this.props.toggleCreateItemPage}
+                    onClose={this.props.toggleCreateItemPage}
                 >
                     <div className={classes.root}>
                         <AppBar position="static">
@@ -85,7 +85,7 @@ class CreateItemPage extends React.Component {
                         <Button raised color="primary" className={classes.button} >
                             创建
                         </Button>
-                        <Button raised className={classes.button} >
+                        <Button raised className={classes.button} onClick={this.props.toggleCreateItemPage}>
                             取消
                         </Button>
                     </form>
