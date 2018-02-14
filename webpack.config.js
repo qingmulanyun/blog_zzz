@@ -4,6 +4,7 @@ var path = require('path');
 module.exports = {
     entry:{
         homePage: "./app/assets/javascripts/entries/home-page.js",
+        shopPage: "./app/assets/javascripts/entries/shop-page.js",
     },
     output: {
         path: __dirname + '/app/assets/javascripts/build/',

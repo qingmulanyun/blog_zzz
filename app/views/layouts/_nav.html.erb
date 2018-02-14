@@ -1,0 +1,36 @@
+<nav class="white" role="navigation">
+  <ul id="user_profile" class="dropdown-content">
+    <li><a href="#!">个人资料</a></li>
+    <li class="divider"></li>
+    <li> <%= link_to('退出账户', destroy_user_session_path, method: :delete) %> </li>
+  </ul>
+  <div class="nav-wrapper container">
+    <a id="logo-container" href="#" class="brand-logo">
+      <div class="session-logo"><img class="header-logo-img" alt="" src="/assets/blog/profile.jpeg"></div>
+      WaLa
+    </a>
+
+
+    <% if user_signed_in? %>
+        <ul class="right hide-on-med-and-down">
+          <% if current_user.shop.present? %>
+              <li><a href="<%= user_shop_path(current_user, current_user.shop) %>">我的店铺</a></li>
+          <% else %>
+              <li><a href="<%= new_user_shop_path(current_user)%>">创建店铺</a></li>
+          <% end %>
+          <li><a class="dropdown-button" href="#!" data-activates="user_profile"><%= current_user.name%><i class="material-icons right">arrow_drop_down</i></a></li>
+        </ul>
+        <ul id="nav-mobile" class="side-nav">
+          <li><a href="#"><%= current_user.name%></a></li>
+        </ul>
+    <% else %>
+        <ul class="right hide-on-med-and-down">
+          <li><a href="<%= new_user_session_path %>">登录</a></li>
+        </ul>
+        <ul id="nav-mobile" class="side-nav">
+          <li><a href="<%= new_user_session_path %>">登录</a></li>
+        </ul>
+    <% end %>
+    <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+  </div>
+</nav>
