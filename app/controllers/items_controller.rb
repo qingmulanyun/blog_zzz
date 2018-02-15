@@ -1,8 +1,9 @@
 class ItemsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index_public]
 
-  def index_public
-    Item.all
+  def all_items
+    @all_items = Item.all
+    render 'all_items.json'
   end
 
   def seller_items

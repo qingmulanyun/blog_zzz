@@ -1,6 +1,10 @@
 const initialState = {
   currentTab: 'public',
-  createItemPageOpen: false
+  createItemPageOpen: false,
+  shop: {
+    name: '',
+    description: ''
+  }
 };
 
 export default function reducer(state = initialState, action = {}) {
@@ -15,6 +19,11 @@ export default function reducer(state = initialState, action = {}) {
               ...state,
               createItemPageOpen: false
           };
+      case "FETCH_SHOP_INFO_SUCCESSFULLY":
+          return {
+              ...state,
+              shop: action.data.myshop
+          }
       default:
       return state;
   }

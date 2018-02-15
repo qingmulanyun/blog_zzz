@@ -2,9 +2,9 @@ import React from 'react'
 import { render } from 'react-dom'
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux'
 import { Provider } from 'react-redux'
-import rootReducer from '../shop/redux/reducers/rootReducers'
-import { gridReducer } from '../shop/redux/reducers/gridReducers'
-import ShopHomeBoard from '../shop/components/home'
+import rootReducer from '../myShop/redux/reducers/rootReducers'
+import { gridReducer } from '../myShop/redux/reducers/gridReducers'
+import ShopHomeBoard from '../myShop/components/home'
 import thunk from 'redux-thunk'
 
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';

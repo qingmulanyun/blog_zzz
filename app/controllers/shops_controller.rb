@@ -17,6 +17,11 @@ class ShopsController < ApplicationController
     @shop = current_user.shop
   end
 
+  def my_shop
+    myshop = current_user.shop
+    render status: 200, json:{ myshop: myshop }
+  end
+
   def create
     current_user.create_shop(new_shop_params) unless current_user.shop.present?
     redirect_to user_path(current_user)

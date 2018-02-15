@@ -11,6 +11,7 @@ class ItemImageUploader < CarrierWave::Uploader::Base
   version :standard do
     process :eager => true
     process :resize_to_fill => [100, 150, :north]
+    cloudinary_transformation :quality => 80
   end
 
   version :thumbnail do
@@ -24,7 +25,7 @@ class ItemImageUploader < CarrierWave::Uploader::Base
   # end
 
   def public_id
-    return model.image_identifier
+    return model.id
   end
 
   def content_type_whitelist

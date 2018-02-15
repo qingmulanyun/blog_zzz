@@ -61,10 +61,6 @@ class SellerItemsBoard extends React.Component {
             columnWidths,
             onColumnWidthsChange,
             loading,
-            snackBar,
-            openCreateNewItemPage,
-            editTemplate,
-            closeSnackBar
             } = this.props;
 
         return(

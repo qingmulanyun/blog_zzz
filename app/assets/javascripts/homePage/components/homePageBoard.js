@@ -1,7 +1,8 @@
 import React from 'react';
 import { withStyles } from 'material-ui/styles';
+import { fetchAllItems } from '../redux/actions/rootActions'
 import { connect } from 'react-redux'
-import SellerItemsBoard from './SellerItemsBoard'
+import  ItemsListBoard  from './itemsListBoard'
 
 const styles = theme => ({
     root: {
@@ -26,29 +27,34 @@ const styles = theme => ({
 });
 
 
-class ShopHomeBoard extends React.Component{
+class homePageBoard extends React.Component{
 
+    componentWillMount() {
+        this.props.fetchAllItems();
+    }
     render(){
-        const { classes } = this.props;
+        const {classes, currentTab} = this.props;
 
         return(
-                <div>
-                    <SellerItemsBoard />
-                </div>
-
+            <div>
+               <ItemsListBoard />
+            </div>
         );
     }
 }
 
 const mapStateToProps = (state) => ({
-    currentTab: state.root.currentTab
+    allItems: state.root.items,
+    loading: state.root.loading
 });
 
 const mapDispatchToProps = (dispatch) => {
     return {
-
+        fetchAllItems: ()=> {
+            dispatch(fetchAllItems())
+        }
     }
 };
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(ShopHomeBoard));
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(homePageBoard));

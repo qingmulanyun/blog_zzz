@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
     if resource.is_a?(Admin)
       '/product_support/admin'
     else
-      stored_location_for(resource) || user_path(resource)
+      stored_location_for(resource) || root_path
     end
   end
 
