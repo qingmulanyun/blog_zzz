@@ -58,7 +58,6 @@ export function handleInputChange(name, value) {
 }
 
 export function submitNewItemForm(data) {
-    console.log(data)
     return  function(dispatch, getState) {
         const currentState = getState();
         $.ajax({
@@ -73,6 +72,7 @@ export function submitNewItemForm(data) {
                 dispatch(fetchingServerData(true));
             }.bind(this),
             success: function(data) {
+                dispatch(submitNewItemSuccessfully());
                 dispatch(fetchingServerData(false));
                 dispatch(fetchOwnItems());
             }.bind(this),
@@ -80,5 +80,11 @@ export function submitNewItemForm(data) {
                 dispatch(fetchingServerData(false));
             }.bind(this)
         });
+    }
+}
+
+export function submitNewItemSuccessfully(){
+    return {
+        type: "SUBMIT_NEW_ITEM_SUCCESSFULLY"
     }
 }

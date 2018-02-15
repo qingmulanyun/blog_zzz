@@ -130,8 +130,6 @@ class SellerItemsBoard extends React.Component {
                 <Toolbar />
                 <ColumnChooser />
                 <AddNewItem />
-                <TableGroupRow />
-                <GroupingPanel showSortingControls />
                 <PagingPanel
                     pageSizes={allowedPageSizes}
                 />

@@ -80,7 +80,7 @@ ActiveRecord::Schema.define(version: 20180212050050) do
 
   create_table "items", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.string "name"
-    t.string "image_url"
+    t.string "image"
     t.float "price"
     t.float "cost"
     t.string "description"

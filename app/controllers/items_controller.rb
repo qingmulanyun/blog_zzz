@@ -15,6 +15,14 @@ class ItemsController < ApplicationController
   end
 
   def create_seller_item
-    current_user.shop.items.create!()
+    current_user.shop.items.create!(new_item_params)
+  end
+
+  private
+
+  def new_item_params
+    params.permit(
+              :name, :cost, :price, :description, :image
+    )
   end
 end

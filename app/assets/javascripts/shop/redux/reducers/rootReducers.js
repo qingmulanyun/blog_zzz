@@ -10,6 +10,11 @@ export default function reducer(state = initialState, action = {}) {
               ...state,
               createItemPageOpen: !state.createItemPageOpen
           };
+      case "SUBMIT_NEW_ITEM_SUCCESSFULLY":
+          return {
+              ...state,
+              createItemPageOpen: false
+          };
       default:
       return state;
   }

@@ -29,9 +29,9 @@ gem 'bootstrap-sass', '~> 3.3.6'
 gem 'materialize-sass'
 gem 'material_icons'
 
-# integrate editor
-gem 'ckeditor'
-gem 'paperclip'
+# upload image
+gem 'carrierwave'
+gem 'cloudinary'
 
 gem 'friendly_id'
 
