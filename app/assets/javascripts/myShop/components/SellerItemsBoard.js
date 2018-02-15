@@ -9,6 +9,7 @@ import SmsIcon from 'material-ui-icons/Sms';
 import LetterIcon from 'material-ui-icons/InsertDriveFile';
 import CallIcon from 'material-ui-icons/Call'
 import moment from 'moment'
+moment.locale('ZH_CN');
 
 import {
     SortingState, SelectionState, FilteringState, PagingState, GroupingState, RowDetailState,
@@ -28,7 +29,14 @@ import Fade from 'material-ui/transitions/Fade';
 import { createGridAction, fetchOwnItems } from '../redux/actions/gridActions';
 import Button from 'material-ui/Button';
 import AddNewItem from './shared/AddNewItemButton'
+import { FormatDateCell } from '../../utilities/tableCellComponent/formatDateCell'
 
+const Cell = (props) => {
+    if (props.column.name === 'updatedAt' || props.column.name === 'createdAt' ) {
+        return <FormatDateCell {...props} />;
+    }
+    return <Table.Cell {...props} />;
+};
 
 class SellerItemsBoard extends React.Component {
 
@@ -106,7 +114,9 @@ class SellerItemsBoard extends React.Component {
 
                 <DragDropProvider />
 
-                <Table />
+                <Table
+                    cellComponent={Cell}
+                />
 
                 <TableColumnReordering
                     order={columnOrder}

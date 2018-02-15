@@ -148,8 +148,6 @@ class CreateItemPage extends React.Component {
                             helperText="请上传图片"
                         />
 
-
-
                         <Button variant="raised" color="primary" className={classes.button} onClick={(e)=>this.handleSubmitNewItemForm(e)}>
                             添加
                         </Button>

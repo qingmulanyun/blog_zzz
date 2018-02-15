@@ -1,19 +1,21 @@
 import React from 'react';
 import { withStyles } from 'material-ui/styles';
 import GridList, { GridListTile, GridListTileBar } from 'material-ui/GridList';
+import Grid from 'material-ui/Grid';
 import IconButton from 'material-ui/IconButton';
 import InfoIcon from 'material-ui-icons/Info';
 import { connect } from 'react-redux'
+import ItemCard from './itemCard'
 
 const styles = theme => ({
     root: {
         display: 'flex',
         flexWrap: 'wrap',
         justifyContent: 'space-around',
-        overflow: 'hidden',
         backgroundColor: theme.palette.background.paper,
     },
     gridList: {
+        width: "100%"
     },
     icon: {
         color: 'rgba(255, 255, 255, 0.54)',
@@ -28,22 +30,13 @@ class ItemsListBoard extends React.Component{
 
         return(
             <div className={classes.root}>
-                <GridList cellHeight={180} cols={4} className={classes.gridList} spacing={10}>
+                <Grid container spacing={10}>
                     {allItems.map((item, index )=> (
-                        <GridListTile key={index}>
-                            <img src={item.image} alt={item.name} onError={ (e)=>{e.target.src="/assets/blog/profile.jpeg"}} />
-                            <GridListTileBar
-                                title={item.name}
-                                subtitle={<span>价格: {item.price}</span>}
-                                actionIcon={
-                                    <IconButton className={classes.icon}>
-                                        <InfoIcon />
-                                    </IconButton>
-                                }
-                            />
-                        </GridListTile>
+                    <Grid item xs={6} sm={6} key={index}>
+                        <ItemCard item={item}  />
+                    </Grid>
                     ))}
-                </GridList>
+                </Grid>
             </div>
         );
     }

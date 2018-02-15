@@ -23,8 +23,8 @@ class ShopsController < ApplicationController
   end
 
   def create
-    current_user.create_shop(new_shop_params) unless current_user.shop.present?
-    redirect_to user_path(current_user)
+    shop = current_user.create_shop(new_shop_params)
+    redirect_to user_shop_path(current_user, shop)
   end
 
   private
