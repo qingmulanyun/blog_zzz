@@ -17,7 +17,7 @@ export function fetchOwnItems() {
     return  function(dispatch, getState) {
         const currentState = getState();
         $.ajax({
-            url: '/items/seller_items',
+            url: '/items/api/seller_items',
             dataType: 'json',
             type: 'GET',
             beforeSend:function(data) {
@@ -61,7 +61,7 @@ export function submitNewItemForm(data) {
     return  function(dispatch, getState) {
         const currentState = getState();
         $.ajax({
-            url: '/items/create_seller_item',
+            url: '/items/api/create_seller_item',
             dataType: 'json',
             type: 'POST',
             data: data,
@@ -86,5 +86,29 @@ export function submitNewItemForm(data) {
 export function submitNewItemSuccessfully(){
     return {
         type: "SUBMIT_NEW_ITEM_SUCCESSFULLY"
+    }
+}
+
+export function deleteItems(ids) {
+    return  function(dispatch, getState) {
+        const currentState = getState();
+        $.ajax({
+            url: '/items/api/delete_items',
+            dataType: 'json',
+            type: 'DELETE',
+            data: {
+                ids: ids
+            },
+            beforeSend:function(data) {
+                dispatch(fetchingServerData(true));
+            }.bind(this),
+            success: function(data) {
+                dispatch(fetchingServerData(false));
+                dispatch(fetchOwnItems());
+            }.bind(this),
+            error: function(xhr, status, err) {
+                dispatch(fetchingServerData(false));
+            }.bind(this)
+        });
     }
 }

@@ -20,7 +20,8 @@ const styles = theme => ({
         maxWidth: 400,
     },
     media: {
-        height: 194,
+        height: 280,
+        width: "100%"
     },
     actions: {
         display: 'flex',
@@ -53,33 +54,29 @@ class ItemCard extends React.Component {
         return (
             <div>
                 <Card className={classes.card}>
+                    <a href={`/items/${item.id}`} target="_blank">
                     <CardHeader
                         avatar={
                             <Avatar aria-label="Recipe" className={classes.avatar}>
-                                R
+                                H/C
                             </Avatar>
-                        }
-                        action={
-                            <IconButton>
-                                <MoreVertIcon />
-                            </IconButton>
                         }
                         title={item.name}
                         subheader={moment(item.updatedAt).fromNow()}
                     />
-                    <CardMedia
+                    <img
+                        onError={ (e)=>{e.target.src="/assets/blog/profile.jpeg"}}
                         className={classes.media}
-                        image={item.image}
+                        src={item.image}
                         title={item.name}
+
                     />
                     <CardContent>
                         <Typography variant="headline" component="h2">
-                            {item.price}
-                        </Typography>
-                        <Typography component="p">
-                            {item.description}
+                            ¥ {item.price}
                         </Typography>
                     </CardContent>
+                    </a>
                     <CardActions className={classes.actions} disableActionSpacing>
                         <IconButton aria-label="Add to favorites">
                             <FavoriteIcon />

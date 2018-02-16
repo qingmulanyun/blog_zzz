@@ -29,6 +29,7 @@ import Fade from 'material-ui/transitions/Fade';
 import { createGridAction, fetchOwnItems } from '../redux/actions/gridActions';
 import Button from 'material-ui/Button';
 import AddNewItem from './shared/AddNewItemButton'
+import DeleteItemsButton from './shared/DeleteItemsButton'
 import { FormatDateCell } from '../../utilities/tableCellComponent/formatDateCell'
 
 const Cell = (props) => {
@@ -70,6 +71,7 @@ class SellerItemsBoard extends React.Component {
             onColumnWidthsChange,
             loading,
             } = this.props;
+
 
         return(
         <div>
@@ -136,6 +138,7 @@ class SellerItemsBoard extends React.Component {
                 <Toolbar />
                 <ColumnChooser />
                 <AddNewItem />
+                <DeleteItemsButton />
                 <PagingPanel
                     pageSizes={allowedPageSizes}
                 />
@@ -187,7 +190,6 @@ const mapDispatchToProps = dispatch => ({
     onColumnOrderChange: order => dispatch(createGridAction('columnOrder', order)),
     onColumnWidthsChange: widths => dispatch(createGridAction('columnWidths', widths)),
     fetchOwnItems: () => dispatch(fetchOwnItems()),
-    openCreateNewItemPage: () => {console.log('test')}
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SellerItemsBoard);

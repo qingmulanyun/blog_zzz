@@ -29,7 +29,6 @@ Rails.application.routes.draw do
   # this route configure will make routes pretty much catches all requests and you should have them last in your routes.rb so that other routes matches first.
   resources :users do
     resources :shops do
-      resources :items
     end
   end
 

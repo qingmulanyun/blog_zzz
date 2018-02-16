@@ -13,27 +13,6 @@ export function switchBuildComponent(tab_index) {
     }
 }
 
-export function fetchOwnItems() {
-    return  function(dispatch, getState) {
-        const currentState = getState();
-        $.ajax({
-            url: '/items/seller_items',
-            dataType: 'json',
-            type: 'GET',
-            beforeSend:function(data) {
-                dispatch(fetchingServerData(true));
-            }.bind(this),
-            success: function(data) {
-                dispatch(fetchingServerData(false));
-                dispatch(insertOwnItemsList(data));
-            }.bind(this),
-            error: function(xhr, status, err) {
-                dispatch(fetchingServerData(false));
-            }.bind(this)
-        });
-    }
-}
-
 export function fetchingServerData(bool) {
     return {
         type: 'FETCHING_SEVER_DATA',
@@ -61,7 +40,7 @@ export function submitNewItemForm(data) {
     return  function(dispatch, getState) {
         const currentState = getState();
         $.ajax({
-            url: '/items/create_seller_item',
+            url: '/items/api/create_seller_item',
             dataType: 'json',
             type: 'POST',
             data: data,

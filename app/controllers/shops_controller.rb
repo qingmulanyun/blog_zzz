@@ -15,10 +15,12 @@ class ShopsController < ApplicationController
 
   def show
     @shop = current_user.shop
+    authorize @shop
   end
 
   def my_shop
     myshop = current_user.shop
+    authorize myshop
     render status: 200, json:{ myshop: myshop }
   end
 

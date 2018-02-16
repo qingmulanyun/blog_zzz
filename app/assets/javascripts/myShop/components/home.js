@@ -28,7 +28,7 @@ class ShopHomeBoard extends React.Component{
 
         return(
                 <div>
-                    <Typography className={classes.title} variant="raised" >
+                    <Typography className={classes.title} >
                         {currentShop.name} - 商品列表
                     </Typography>
                     <SellerItemsBoard />

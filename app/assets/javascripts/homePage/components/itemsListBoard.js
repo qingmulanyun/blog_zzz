@@ -30,9 +30,9 @@ class ItemsListBoard extends React.Component{
 
         return(
             <div className={classes.root}>
-                <Grid container spacing={10}>
+                <Grid container spacing={24}>
                     {allItems.map((item, index )=> (
-                    <Grid item xs={6} sm={6} key={index}>
+                    <Grid item xs={12} sm={6} md={6} lg={3} xl={3} key={index}>
                         <ItemCard item={item}  />
                     </Grid>
                     ))}

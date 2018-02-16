@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180212050050) do
+ActiveRecord::Schema.define(version: 20180216045310) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -78,6 +78,20 @@ ActiveRecord::Schema.define(version: 20180212050050) do
     t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
   end
 
+  create_table "item_brands", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.string "name"
+    t.string "location"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "item_types", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.string "name"
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "items", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.string "name"
     t.string "image"
@@ -88,6 +102,12 @@ ActiveRecord::Schema.define(version: 20180212050050) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.uuid "shop_id"
+    t.float "original_price", default: 0.0
+    t.float "transport_cost", default: 0.0
+    t.uuid "item_type_id"
+    t.uuid "item_brand_id"
+    t.index ["item_brand_id"], name: "index_items_on_item_brand_id"
+    t.index ["item_type_id"], name: "index_items_on_item_type_id"
   end
 
   create_table "order_items", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -200,6 +220,8 @@ ActiveRecord::Schema.define(version: 20180212050050) do
     t.index ["slug"], name: "index_users_on_slug"
   end
 
+  add_foreign_key "items", "item_brands"
+  add_foreign_key "items", "item_types"
   add_foreign_key "items", "shops"
   add_foreign_key "order_items", "items"
   add_foreign_key "order_items", "orders"

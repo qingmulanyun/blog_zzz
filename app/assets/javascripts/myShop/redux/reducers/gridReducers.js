@@ -41,7 +41,8 @@ const gridInitialState = {
         id: '',
         name: '',
         price: '',
-        cost: '',
+        original_price: '',
+        transport_cost: '',
         description: '',
         status: 'New',
         image: ''
@@ -75,6 +76,7 @@ export const gridReducer = (state = gridInitialState, action) => {
             state,
             {
                 rows: action.data,
+                selection: []
             },
         );
         return nextState;

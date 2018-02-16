@@ -1,15 +1,18 @@
-export function fetchAllItems() {
+export function fetchItem(id) {
     return  function(dispatch, getState) {
         $.ajax({
-            url: '/items/api/all_items',
+            url: '/items/api/show_item',
             dataType: 'json',
             type: 'GET',
+            data: {
+              id: id
+            },
             beforeSend:function(data) {
                 dispatch(fetchingServerData(true));
             }.bind(this),
             success: function(data) {
                 dispatch(fetchingServerData(false));
-                dispatch(fetchAllItemsSuccessfully(data));
+                dispatch(fetchItemSuccessfully(data));
             }.bind(this),
             error: function(xhr, status, err) {
                 dispatch(fetchingServerData(false));
@@ -25,9 +28,9 @@ export function fetchingServerData(bool) {
     }
 }
 
-export function fetchAllItemsSuccessfully(data) {
+export function fetchItemSuccessfully(data) {
     return {
-        type: "FETCH_ALL_ITEMS_SUCCESSFULLY",
+        type: "FETCH_ITEM_SUCCESSFULLY",
         data: data
     }
 }

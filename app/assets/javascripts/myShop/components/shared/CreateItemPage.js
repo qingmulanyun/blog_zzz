@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Drawer from 'material-ui/Drawer';
 import TextField from 'material-ui/TextField';
-import MenuItem from 'material-ui/Menu/MenuItem';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
@@ -57,10 +56,13 @@ class CreateItemPage extends React.Component {
 
     handleSubmitNewItemForm = (e) =>{
         var data = new FormData();
-        data.append('image', files[0]);
+        if( undefined !== files){
+            data.append('image', files[0]);
+        }
         const currentItem = this.props.currentItem;
         data.append('name', currentItem.name);
-        data.append('cost', currentItem.cost);
+        data.append('original_price', currentItem.original_price);
+        data.append('transport_cost', currentItem.transport_cost);
         data.append('price', currentItem.price);
         data.append('description', currentItem.description);
         this.props.submitNewItemForm(data);
@@ -101,14 +103,26 @@ class CreateItemPage extends React.Component {
 
                         <TextField
                             required
-                            label="成本（澳元）"
+                            label="原价（澳元）"
                             type="number" step="0.01"
-                            value={currentItem.cost}
+                            value={currentItem.original_price}
                             className={classes.textField}
-                            onChange={(e)=> handleInputChange('cost', e.target.value)}
+                            onChange={(e)=> handleInputChange('original_price', e.target.value)}
                             margin="normal"
                             fullWidth
-                            helperText="请输入产品成本"
+                            helperText="请输入产品原价"
+                        />
+
+                        <TextField
+                            required
+                            label="运费（澳元）"
+                            type="number" step="0.01"
+                            value={currentItem.transport_cost}
+                            className={classes.textField}
+                            onChange={(e)=> handleInputChange('transport_cost', e.target.value)}
+                            margin="normal"
+                            fullWidth
+                            helperText="请输入运费"
                         />
 
                         <TextField
