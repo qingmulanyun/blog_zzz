@@ -12,4 +12,13 @@ class ShopPolicy < ApplicationPolicy
   def my_shop?
     show?
   end
+
+  def new?
+    user.present?
+  end
+
+  def create?
+    user.present?
+  end
 end
+

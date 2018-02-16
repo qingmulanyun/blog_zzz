@@ -10,7 +10,7 @@ class ShopsController < ApplicationController
   end
 
   def new
-
+    authorize Shop
   end
 
   def show
@@ -25,6 +25,7 @@ class ShopsController < ApplicationController
   end
 
   def create
+    authorize Shop
     shop = current_user.create_shop(new_shop_params)
     redirect_to user_shop_path(current_user, shop)
   end
