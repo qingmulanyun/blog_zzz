@@ -3,8 +3,17 @@ import { render } from 'react-dom'
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux'
 import { Provider } from 'react-redux'
 import rootReducer from '../homePage/redux/reducers/rootReducers'
-import HomePageBoard from '../homePage/components/home'
+import HomePageBoard from '../homePage/components/homePageBoard'
 import thunk from 'redux-thunk'
+
+import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
+import blue from 'material-ui/colors/blue';
+
+const theme = createMuiTheme({
+    palette: {
+        primary: blue
+    },
+});
 
 const totalReducer = combineReducers({
     root: rootReducer,
@@ -20,7 +29,9 @@ let rootElement = document.getElementById('home-page-container');
 
 render(
     <Provider store={store}>
-        <HomePageBoard />
+        <MuiThemeProvider theme={theme}>
+            <HomePageBoard />
+        </MuiThemeProvider>
     </Provider>,
     rootElement
 )

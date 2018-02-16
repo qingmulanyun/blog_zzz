@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
+  def draw(routes_name) #FIND ROUTES VIA FILE NAME
+    instance_eval(File.read(Rails.root.join("config/routes/#{routes_name}.rb")))
+  end
+
   devise_for :admin, only: :sessions, controllers: {sessions: 'admin'}
   mount RailsAdmin::Engine => '/product_support', as: 'rails_admin'
-  mount Ckeditor::Engine => '/ckeditor'
 
   devise_for :users, controllers: {sessions: 'sessions', omniauth_callbacks: 'omniauth_callbacks', passwords: 'passwords'}
-  root 'public#root'
+  root 'home#show'
 
   get 'get_public_posts', to: 'public#public_posts_index'
 
@@ -24,16 +27,11 @@ Rails.application.routes.draw do
   get 'public_transport_timetable', to: 'transport#public_transport_time_table'
 
   # this route configure will make routes pretty much catches all requests and you should have them last in your routes.rb so that other routes matches first.
-  resources :users, path: '' do
-    member do
-      get 'archive' => :archive_root
-      get 'archive/:year' => :archive_year
-      get 'archive/:year/:month' => :archive_month
+  resources :users do
+    resources :shops do
     end
-    resources :posts, path: '', except: [:index]
   end
 
-  resources :posts, path: '' do
-    resources :comments
-  end
+  draw :item
+  draw :shop
 end

@@ -1,0 +1,24 @@
+<% title "创建店铺" %>
+
+<p class="flow-text">创建店铺</p>
+
+<div class="row">
+    <%= form_for(:shop, url: user_shops_path(current_user), html: {class: 'col s12'}) do |f| %>
+        <div class="row">
+          <div class="input-field col s12">
+            <input placeholder="店铺名称" id="shop-name" name="shop[name]" type="text" class="validate" required>
+            <label for="shop-name">店铺名称</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <textarea id="shop-description" placeholder="店铺简介" name="shop[description]" class="materialize-textarea"></textarea>
+            <label for="shop-description">店铺简介</label>
+          </div>
+        </div>
+
+        <button class="btn waves-effect waves-light" type="submit" name="action">创建
+          <i class="material-icons right">send</i>
+        </button>
+    <% end %>
+</div>

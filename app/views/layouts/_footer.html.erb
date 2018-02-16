@@ -1,19 +1,27 @@
-<footer class="footer" ng-controller="FooterCtrl">
+<footer class="page-footer">
   <div class="container">
     <div class="row">
-      <div class="col-md-12">
-        <div class="footer-inner text-center">
-          <div class="social-links">
-            <a class="github social-link" data-placement="top" data-toggle="tooltip" href="https://github.com/qingmulanyun" target="_blank" title="Github"><i class="fa fa-github"></i></a>
-            <a class="linkedin social-link" data-placement="top" data-toggle="tooltip" href="https://www.linkedin.com/in/wenbo-zhao-009ba1b8/"  target="_blank" title="LinkedIn"><i class="fa fa-linkedin"></i></a>
-          </div>
-          <div class="copyright">
-            <p>Copyright  © {{ year | date :'yyyy'}} {{ Inc }} Developed by
-              <a rel="nofollow" href="https://www.linkedin.com/in/wenbo-zhao-009ba1b8/" target="_blank">Wenbo Zhao</a></p>
-          </div>
-        </div>
+      <div class="col l6 s12">
+        <h5 class="white-text">Alexandria</h5>
+        <p class="grey-text text-lighten-4">Australia Oversea Shopping Platform</p>
+
+
+      </div>
+      <div class="col l3 s12">
+
+      </div>
+      <div class="col l3 s12">
+        <h5 class="white-text">Connect</h5>
+        <ul>
+          <li><a class="white-text" href="mailto:wenbo199019@gmail.com">Email: wenbo199019@gmail.com</a></li>
+        </ul>
       </div>
     </div>
   </div>
-</footer><!-- Footer End -->
-
+  <div class="footer-copyright">
+    <div class="container">
+      <p>Copyright  © <%= Date.today.year%> Alexandria.
+      Developed by <a class="white-text" rel="nofollow" href="https://www.linkedin.com/in/wenbo-zhao-009ba1b8/" target="_blank"> Wenbo Zhao</a></p>
+    </div>
+  </div>
+</footer>
