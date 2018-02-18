@@ -1,60 +1,34 @@
-<%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: 'form-horizontal'}) do |f| %>
-    <div class="auth-form-header p-0">
-      <h1>Sign in to BlogZzz</h1>
-    </div>
-    <div id="js-flash-container">
-      <% if alert %>
-          <p class="alert alert-danger"><%= alert %></p>
-      <% end %>
-    </div>
-    <div class="auth-form-body mt-3">
-      <label for="login_field">
-        Username or email address
-      </label>
-      <%= f.email_field :email, autofocus: true , class: "form-control input-block" , autocorrect: "off"%>
-      <label for="password">
-        Password <a href="<%= new_password_path(resource_name) %>" class="label-link">Forgot password?</a>
-      </label>
-      <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
-      <input class="btn btn-primary btn-block" data-disable-with="Signing in…" name="commit" tabindex="3" type="submit" value="Sign in">
-    </div>
-<% end %>
-<p class="create-account-callout mt-3">
-  New to BlogZzz?
-  <a href="<%= new_registration_path(resource_name) %>" data-ga-click="Sign in, switch to sign up" class="link-default">Create an account</a>.
-</p>
-
-<%- if devise_mapping.omniauthable? %>
-    <%- resource_class.omniauth_providers.each do |provider| %>
-        <p class="create-account-callout mt-3">
-          <a href="<%= omniauth_authorize_path(resource_name, provider) %>" data-ga-click="Sign in, switch to sign up" class="link-default"><i class="fa fa-google-plus"></i> Sign in with Google</a>
-        </p>
-    <% end -%>
-<% end -%>
-
-
-
-
-<div class="valign-wrapper row login-box">
-  <div class="col card hoverable s10 pull-s1 m6 pull-m3 l4 pull-l4">
-    <form>
-      <div class="card-content">
-        <span class="card-title">Enter credentials</span>
-        <div class="row">
-          <div class="input-field col s12">
-            <label for="email">Email address</label>
-            <input type="email" class="validate" name="email" id="email" />
+<div class="row container">
+  <div class="col s12 m6 l4 card login-card">
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: 'login-form'}) do |f| %>
+        <div class="card-content">
+          <span class="card-title">邮箱登录</span>
+          <div class="row">
+            <div class="input-field col s12">
+              <i class="material-icons prefix">email</i>
+              <input type="email" class="validate login-input" name="user[email]" id="email" required />
+            </div>
+            <div class="input-field col s12">
+              <i class="material-icons prefix">lock</i>
+              <input type="password" class="validate login-input" name="user[password]" id="password" required/>
+            </div>
+            <div class="col s12">
+              <input type="submit" class="btn waves-effect waves-light login-btn" value="登录"  data-disable-with="正在登录…" >
+            </div>
           </div>
-          <div class="input-field col s12">
-            <label for="password">Password </label>
-            <input type="password" class="validate" name="password" id="password" />
-          </div>
+
+          <p>
+            <%- if devise_mapping.omniauthable? %>
+                <%- resource_class.omniauth_providers.each do |provider| %>
+                    <i class="fa fa-google"></i><a href="<%= omniauth_authorize_path(resource_name, provider) %>" class="link-default"> Google Login</a>
+                <% end -%>
+            <% end -%>
+          </p>
         </div>
-      </div>
-      <div class="card-action right-align">
-        <input type="reset" id="reset" class="btn-flat grey-text waves-effect">
-        <input type="submit" class="btn green waves-effect waves-light" value="Login">
-      </div>
-    </form>
+        <div class="card-action">
+          <a href="<%= new_registration_path(resource_name) %>" >免费注册</a>
+        </div>
+    <% end %>
   </div>
+  <div class="col s12 m6 l8"></div>
 </div>
