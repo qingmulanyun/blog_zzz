@@ -1,4 +1,4 @@
-class RegistrationController < Devise::RegistrationsController
+class RegistrationsController < Devise::RegistrationsController
   layout 'sign_up'
 
   def create

@@ -24,28 +24,7 @@
   <%= yield %>
 </div>
 
-<footer class="black-text page-footer white">
-  <div class="container">
-    <div class="row">
-      <div class="col l6 s12">
-        <h5>Alexandria</h5>
-        <p class="text-lighten-4">Australia Overseas Shopping Platform</p>
-      </div>
-      <div class="col l3 s12">
-        <h5>Connect</h5>
-        <ul>
-          <li><a href="mailto:wenbo199019@gmail.com">Email: wenbo199019@gmail.com</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <div class="black-text footer-copyright white">
-    <div class="container">
-      <p>Copyright  © <%= Date.today.year%> Alexandria.
-        Developed by <a rel="nofollow" href="https://www.linkedin.com/in/wenbo-zhao-009ba1b8/" target="_blank"> Wenbo Zhao</a></p>
-    </div>
-  </div>
-</footer>
+<%= render partial: 'layouts/sign_footer'%>
 
 </body>
 </html>
