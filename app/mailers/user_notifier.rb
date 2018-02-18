@@ -1,5 +1,5 @@
 class UserNotifier < ApplicationMailer
-  default :from => 'Alexandra@blogzzz.com'
+  default :from => 'Alexandra@wala.com'
 
   def send_sign_up_email(user)
     @user = user
