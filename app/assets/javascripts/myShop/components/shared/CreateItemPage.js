@@ -62,7 +62,10 @@ class CreateItemPage extends React.Component {
         const currentItem = this.props.currentItem;
         data.append('name', currentItem.name);
         data.append('original_price', currentItem.original_price);
+        data.append('sale_price', currentItem.sale_price);
         data.append('transport_cost', currentItem.transport_cost);
+        data.append('commission', currentItem.commission);
+        data.append('weight', currentItem.weight);
         data.append('price', currentItem.price);
         data.append('description', currentItem.description);
         this.props.submitNewItemForm(data);
@@ -98,7 +101,6 @@ class CreateItemPage extends React.Component {
                             margin="normal"
                             fullWidth
                             onChange={(e)=> handleInputChange('name', e.target.value)}
-                            helperText="请输入产品名称"
                         />
 
                         <TextField
@@ -110,7 +112,44 @@ class CreateItemPage extends React.Component {
                             onChange={(e)=> handleInputChange('original_price', e.target.value)}
                             margin="normal"
                             fullWidth
-                            helperText="请输入产品原价"
+                            helperText="货源店产品原价"
+                        />
+
+                        <TextField
+                            required
+                            label="折后价（澳元）"
+                            type="number" step="0.01"
+                            value={currentItem.sale_price}
+                            className={classes.textField}
+                            onChange={(e)=> handleInputChange('sale_price', e.target.value)}
+                            margin="normal"
+                            fullWidth
+                            helperText="货源店进货折扣价"
+                        />
+
+                        <TextField
+                            required
+                            label="提成"
+                            type="number" step="0.01"
+                            value={currentItem.commission}
+                            className={classes.textField}
+                            onChange={(e)=> handleInputChange('commission', e.target.value)}
+                            margin="normal"
+                            fullWidth
+                            helperText="利润提成，如：20，即为20%的利润提成"
+                        />
+
+
+                        <TextField
+                            required
+                            label="重量"
+                            type="number" step="0.01"
+                            value={currentItem.weight}
+                            className={classes.textField}
+                            onChange={(e)=> handleInputChange('weight', e.target.value)}
+                            margin="normal"
+                            fullWidth
+                            helperText="单位： 克"
                         />
 
                         <TextField
@@ -127,7 +166,7 @@ class CreateItemPage extends React.Component {
 
                         <TextField
                             required
-                            label="价格（澳元）"
+                            label="售价（澳元）"
                             type="number"
                             step="0.01"
                             value={currentItem.price}

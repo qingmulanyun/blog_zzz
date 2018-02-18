@@ -1,11 +1,11 @@
 json.array! @items do |item|
   json.id item.id
   json.name item.name
-  json.price item.price * 5.3 if item.price.present?
+  json.price item.formatted_price
   json.image item.image_url
-  json.cost item.cost * 5.3 if item.cost.present?
-  json.original_price item.original_price * 5.3 if item.original_price.present?
-  json.transport_cost item.transport_cost * 5.3 if item.transport_cost.present?
+  json.cost item.formatted_sale_price
+  json.original_price item.formatted_original_price
+  json.transport_cost item.formatted_transport_cost
   json.description item.description
   json.status item.status
   json.createdAt item.created_at

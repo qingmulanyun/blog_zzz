@@ -31,10 +31,14 @@ import Button from 'material-ui/Button';
 import AddNewItem from './shared/AddNewItemButton'
 import DeleteItemsButton from './shared/DeleteItemsButton'
 import { FormatDateCell } from '../../utilities/tableCellComponent/formatDateCell'
+import { FormatStatusCell } from '../../utilities/tableCellComponent/formatStatusCell'
 
 const Cell = (props) => {
     if (props.column.name === 'updatedAt' || props.column.name === 'createdAt' ) {
         return <FormatDateCell {...props} />;
+    }
+    if (props.column.name === 'status' ) {
+        return <FormatStatusCell {...props} />;
     }
     return <Table.Cell {...props} />;
 };

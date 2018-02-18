@@ -33,7 +33,7 @@ class ItemsController < ApplicationController
   end
 
   def create_seller_item
-    new_item = current_user.shop.items.create!(new_item_params)
+    new_item = current_user.shop.items.create!(new_item_params.merge(status: 'active'))
     authorize new_item
   end
 
@@ -41,7 +41,7 @@ class ItemsController < ApplicationController
 
   def new_item_params
     params.permit(
-              :name, :original_price, :transport_cost, :price, :description, :image
+              :name, :original_price, :transport_cost, :price, :description, :image, :sale_price, :commission, :weight
     )
   end
 end

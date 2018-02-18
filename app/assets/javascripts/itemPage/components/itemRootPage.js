@@ -33,7 +33,7 @@ class ItemRootPage extends React.Component{
         return(
             <div className={classes.root}>
                 <Grid container spacing={24}>
-                    <Grid item xs={12} sm={6} md={6} xl={3} lg={6}>
+                    <Grid item xs={12} sm={6} md={6} xl={3} lg={4}>
                         <img
                             onError={ (e)=>{e.target.src="/assets/blog/profile.jpeg"}}
                             className={classes.media}
@@ -41,7 +41,7 @@ class ItemRootPage extends React.Component{
                             title={currentItem.name}
                         />
                     </Grid>
-                    <Grid item xs={12} sm={6} md={6} xl={9} lg={6}>
+                    <Grid item xs={12} sm={6} md={6} xl={9} lg={8}>
                         <ItemDetailsCard item={currentItem}/>
                     </Grid>
                 </Grid>

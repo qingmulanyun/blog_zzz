@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180216045310) do
+ActiveRecord::Schema.define(version: 20180218112111) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -96,7 +96,6 @@ ActiveRecord::Schema.define(version: 20180216045310) do
     t.string "name"
     t.string "image"
     t.float "price"
-    t.float "cost"
     t.string "description"
     t.string "status"
     t.datetime "created_at", null: false
@@ -106,6 +105,9 @@ ActiveRecord::Schema.define(version: 20180216045310) do
     t.float "transport_cost", default: 0.0
     t.uuid "item_type_id"
     t.uuid "item_brand_id"
+    t.float "sale_price", default: 0.0
+    t.float "commission"
+    t.integer "weight"
     t.index ["item_brand_id"], name: "index_items_on_item_brand_id"
     t.index ["item_type_id"], name: "index_items_on_item_type_id"
   end

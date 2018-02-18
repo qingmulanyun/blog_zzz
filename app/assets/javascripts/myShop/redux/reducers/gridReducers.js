@@ -3,7 +3,7 @@ export const GRID_STATE_CHANGE_ACTION = 'GRID_STATE_CHANGE';
 const gridInitialState = {
     columns: [
         { name: 'name', title: '名称', width: 150 },
-        { name: 'price', title: '价格', width: 100 },
+        { name: 'price', title: '售价', width: 100 },
         { name: 'cost', title: '成本' , width: 100 },
         { name: 'description', title: '简介' , width: 300 },
         { name: 'status', title: '状态', width: 150 },
@@ -42,7 +42,10 @@ const gridInitialState = {
         name: '',
         price: '',
         original_price: '',
+        sale_price: '',
+        commission: '',
         transport_cost: '',
+        weight: '',
         description: '',
         status: 'New',
         image: ''
