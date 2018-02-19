@@ -74,6 +74,19 @@ class CreateItemPage extends React.Component {
     render() {
         const { classes, createItemPageOpen, currentItem, handleInputChange} = this.props;
 
+        var transport_cost_helper_info = '';
+        var price_helper_info = '';
+
+        if(currentItem.weight.length > 0){
+            const transport_cost_tip = Math.ceil((currentItem.weight * 5.5 / 1000) + 3)
+            transport_cost_helper_info = `建议运费：${transport_cost_tip} 澳元`
+        }
+
+        if(currentItem.sale_price.length > 0 && currentItem.commission.length > 0 ){
+            const price_tip = Math.ceil((currentItem.sale_price * (1 + currentItem.commission/100)))
+            price_helper_info = `建议售价：${price_tip} 澳元`
+        }
+
         return (
             <div>
                 <Drawer
@@ -111,7 +124,6 @@ class CreateItemPage extends React.Component {
                             className={classes.textField}
                             onChange={(e)=> handleInputChange('original_price', e.target.value)}
                             margin="normal"
-                            fullWidth
                             helperText="货源店产品原价"
                         />
 
@@ -123,7 +135,6 @@ class CreateItemPage extends React.Component {
                             className={classes.textField}
                             onChange={(e)=> handleInputChange('sale_price', e.target.value)}
                             margin="normal"
-                            fullWidth
                             helperText="货源店进货折扣价"
                         />
 
@@ -135,33 +146,7 @@ class CreateItemPage extends React.Component {
                             className={classes.textField}
                             onChange={(e)=> handleInputChange('commission', e.target.value)}
                             margin="normal"
-                            fullWidth
-                            helperText="利润提成，如：20，即为20%的利润提成"
-                        />
-
-
-                        <TextField
-                            required
-                            label="重量"
-                            type="number" step="0.01"
-                            value={currentItem.weight}
-                            className={classes.textField}
-                            onChange={(e)=> handleInputChange('weight', e.target.value)}
-                            margin="normal"
-                            fullWidth
-                            helperText="单位： 克"
-                        />
-
-                        <TextField
-                            required
-                            label="运费（澳元）"
-                            type="number" step="0.01"
-                            value={currentItem.transport_cost}
-                            className={classes.textField}
-                            onChange={(e)=> handleInputChange('transport_cost', e.target.value)}
-                            margin="normal"
-                            fullWidth
-                            helperText="请输入运费"
+                            helperText="20，即为20%的利润提成"
                         />
 
                         <TextField
@@ -173,9 +158,31 @@ class CreateItemPage extends React.Component {
                             className={classes.textField}
                             margin="normal"
                             onChange={(e)=> handleInputChange('price', e.target.value)}
-                            fullWidth
-                            helperText="请输入产品价格"
+                            helperText={`建议售价：${price_helper_info}`}
                         />
+
+                        <TextField
+                            required
+                            label="重量"
+                            type="number" step="0.01"
+                            value={currentItem.weight}
+                            className={classes.textField}
+                            onChange={(e)=> handleInputChange('weight', e.target.value)}
+                            margin="normal"
+                            helperText="单位： 克"
+                        />
+
+                        <TextField
+                            required
+                            label="运费（澳元）"
+                            type="number" step="0.01"
+                            value={currentItem.transport_cost}
+                            className={classes.textField}
+                            onChange={(e)=> handleInputChange('transport_cost', e.target.value)}
+                            margin="normal"
+                            helperText={`5.5澳元/kg ${transport_cost_helper_info}`}
+                        />
+
 
                         <TextField
                             multiline
@@ -186,7 +193,7 @@ class CreateItemPage extends React.Component {
                             margin="normal"
                             onChange={(e)=> handleInputChange('description', e.target.value)}
                             fullWidth
-                            helperText="请输入产品简介"
+                            helperText="产品功能，适用人群"
                         />
 
                         <TextField

@@ -2,36 +2,38 @@ class Item < ActiveRecord::Base
   mount_uploader :image, ItemImageUploader
 
   belongs_to :shop
+  belongs_to :item_brand
+  belongs_to :item_type
 
   validates_presence_of :original_price, :transport_cost, :price, :sale_price, :weight
 
   FOREX = 5.3.freeze
 
   def cost
-    (original_price || price || 10) + (transport_cost || 3.5) + 3
+    (cost * FOREX).round(2)
   end
 
   def formatted_price
-    price * FOREX
+    (price * FOREX).round(2)
   end
 
   def display_original_price
-    price * FOREX * (1 + formatted_commission)
+    (price * FOREX * (1 + formatted_commission)).round(2)
   end
 
   def formatted_commission
-    commission / 100
+    commission/100
   end
 
   def formatted_transport_cost
-    transport_cost * FOREX
+    (transport_cost * FOREX).round(2)
   end
 
   def formatted_sale_price
-    sale_price * FOREX
+    (sale_price * FOREX).round(2)
   end
 
   def formatted_original_price
-    original_price * FOREX
+    (original_price * FOREX).round(2)
   end
 end

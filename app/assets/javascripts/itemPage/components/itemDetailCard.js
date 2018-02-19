@@ -28,6 +28,9 @@ const styles = theme => ({
         fontSize: theme.typography.pxToRem(15),
         color: theme.palette.text.secondary,
     },
+    description: {
+        display: "unset !important"
+    }
 });
 
 class ItemDetailsCard extends React.Component {
@@ -88,10 +91,10 @@ class ItemDetailsCard extends React.Component {
                         </Typography>
                     </ExpansionPanelDetails>
                 </ExpansionPanel>
-                <ExpansionPanel expanded={expanded === 'panel4'} onChange={this.handleChange('panel4')}>
-                    <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+                <ExpansionPanel expanded={expanded === 'panel4'} onChange={this.handleChange('panel4')} >
+                    <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} >
                         <Typography className={classes.secondaryHeading}>简介：</Typography>
-                        <Typography className={classes.heading}>
+                        <Typography className={classes.heading} className={classes.description}>
                             {item.description}
                         </Typography>
                     </ExpansionPanelSummary>

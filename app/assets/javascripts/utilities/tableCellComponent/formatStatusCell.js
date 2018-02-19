@@ -3,17 +3,17 @@ import * as PropTypes from 'prop-types';
 import { TableCell } from 'material-ui/Table';
 import { withStyles } from 'material-ui/styles';
 
-const getColor = (amount) => {
-    if (amount == 'deleted') {
+const getColor = (status) => {
+    if (status == 'deleted') {
         return '#F44336';
     }
-    if (amount == 'inactive') {
+    if (status == 'inactive') {
         return '#FFC107';
     }
-    if (amount == 'active') {
+    if (status == 'active') {
         return '#009688';
     }
-    return '#009688';
+    return '#FFC107';
 };
 
 const styles = theme => ({
