@@ -6,7 +6,7 @@ import IconButton from 'material-ui/IconButton';
 import InfoIcon from 'material-ui-icons/Info';
 import { connect } from 'react-redux'
 import ItemCard from './itemCard'
-
+import Paper from 'material-ui/paper'
 const styles = theme => ({
     root: {
         display: 'flex',
@@ -23,7 +23,6 @@ const styles = theme => ({
     }
 });
 
-
 class ItemsListBoard extends React.Component{
 
     render(){
@@ -34,7 +33,7 @@ class ItemsListBoard extends React.Component{
                 <Grid container spacing={24}>
                     {allItems.map((item, index )=> (
                     <Grid item xs={12} sm={6} md={6} lg={3} xl={3} key={index}>
-                        <ItemCard item={item}  />
+                        <ItemCard item={item} />
                     </Grid>
                     ))}
                 </Grid>

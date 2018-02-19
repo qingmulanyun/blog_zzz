@@ -41,8 +41,6 @@ GEM
     acts-as-taggable-on (5.0.0)
       activerecord (>= 4.2.8)
     arel (8.0.0)
-    autoprefixer-rails (7.2.5)
-      execjs
     aws_cf_signer (0.1.3)
     bcrypt (3.1.11)
     better_errors (2.4.0)
@@ -51,9 +49,6 @@ GEM
       rack (>= 0.9.0)
     binding_of_caller (0.8.0)
       debug_inspector (>= 0.0.1)
-    bootstrap-sass (3.3.7)
-      autoprefixer-rails (>= 5.2.1)
-      sass (>= 3.3.4)
     builder (3.2.3)
     byebug (10.0.0)
     carrierwave (1.2.2)
@@ -297,7 +292,6 @@ DEPENDENCIES
   acts-as-taggable-on
   better_errors
   binding_of_caller
-  bootstrap-sass (~> 3.3.6)
   byebug
   carrierwave
   cloudinary

@@ -87,7 +87,7 @@ class ItemDetailsCard extends React.Component {
                     </ExpansionPanelSummary>
                     <ExpansionPanelDetails>
                         <Typography>
-                            澳洲空运，平均发货后28天左右到货。
+                            澳洲空运，5-7 天到达国内，清关18-25 天左右。发货后平均28天左右到货。
                         </Typography>
                     </ExpansionPanelDetails>
                 </ExpansionPanel>

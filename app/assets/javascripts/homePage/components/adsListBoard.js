@@ -2,8 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import GridList, { GridListTile, GridListTileBar } from 'material-ui/GridList';
-import IconButton from 'material-ui/IconButton';
-import StarBorderIcon from 'material-ui-icons/StarBorder';
+
 import { connect } from 'react-redux'
 
 
@@ -29,37 +28,34 @@ const styles = theme => ({
     },
 });
 
+$('.carousel.carousel-slider').carousel({fullWidth: true});
+
 class AdsListBoard extends React.Component{
     render(){
         const { classes, allItems } = this.props;
 
         return (
-            <div id="carouselExampleIndicators" className="carousel slide" data-ride="carousel">
-                <ol className="carousel-indicators">
-                    <li data-target="#carouselExampleIndicators" data-slide-to="0" className="active"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                </ol>
-                <div className="carousel-inner">
-                    <div className="carousel-item active">
-                        <img className="d-block w-100" src="..." alt="First slide" />
-                    </div>
-                    <div className="carousel-item">
-                        <img className="d-block w-100" src="..." alt="Second slide" />
-                    </div>
-                    <div className="carousel-item">
-                        <img className="d-block w-100" src="..." alt="Third slide" />
-                    </div>
-                </div>
-                <a className="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                    <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span className="sr-only">Previous</span>
-                </a>
-                <a className="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                    <span className="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span className="sr-only">Next</span>
-                </a>
+        <div className="carousel carousel-slider center" data-indicators="true">
+            <div className="carousel-fixed-item center">
+
             </div>
+            <div className="carousel-item red white-text" href="#one!">
+                <h2>First Panel</h2>
+                <p className="white-text">This is your first panel</p>
+            </div>
+            <div className="carousel-item amber white-text" href="#two!">
+                <h2>Second Panel</h2>
+                <p className="white-text">This is your second panel</p>
+            </div>
+            <div className="carousel-item green white-text" href="#three!">
+                <h2>Third Panel</h2>
+                <p className="white-text">This is your third panel</p>
+            </div>
+            <div className="carousel-item blue white-text" href="#four!">
+                <h2>Fourth Panel</h2>
+                <p className="white-text">This is your fourth panel</p>
+            </div>
+        </div>
         );
     }
 }

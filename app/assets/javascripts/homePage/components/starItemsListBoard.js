@@ -29,31 +29,21 @@ const styles = theme => ({
     },
 });
 
+$(document).ready(function(){
+    $('.carousel').carousel();
+});
+
 class StarItemsListBoard extends React.Component{
     render(){
         const { classes, allItems } = this.props;
 
         return (
-            <div className={classes.root}>
-                <GridList className={classes.gridList} cols={2.5}>
-                    { allItems.map(item => (
-                        <GridListTile key={item.id}>
-                            <img src={item.image} alt={item.name} />
-                            <GridListTileBar
-                                title={item.title}
-                                classes={{
-                                    root: classes.titleBar,
-                                    title: classes.title,
-                                }}
-                                actionIcon={
-                                    <IconButton>
-                                        <StarBorderIcon className={classes.title} />
-                                    </IconButton>
-                                }
-                            />
-                        </GridListTile>
-                    ))}
-                </GridList>
+            <div className="carousel">
+                <a className="carousel-item" href="#one!"><img src="assets/blog/profile.jpeg" /></a>
+                <a className="carousel-item" href="#two!"><img src="assets/blog/profile.jpeg" /></a>
+                <a className="carousel-item" href="#three!"><img src="assets/blog/profile.jpeg"/></a>
+                <a className="carousel-item" href="#four!"><img src="assets/blog/profile.jpeg"/></a>
+                <a className="carousel-item" href="#five!"><img src="assets/blog/profile.jpeg"/></a>
             </div>
         );
     }

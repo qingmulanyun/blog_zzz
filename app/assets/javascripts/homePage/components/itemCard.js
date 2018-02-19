@@ -41,6 +41,13 @@ const styles = theme => ({
     },
 });
 
+var options = [
+    {selector: '.fire-test', offset: 50, callback: function(el) {
+        Materialize.fadeInImage($(el));
+    } }
+];
+Materialize.scrollFire(options);
+
 class ItemCard extends React.Component {
     state = { expanded: false };
 
@@ -52,7 +59,7 @@ class ItemCard extends React.Component {
         const { classes, item } = this.props;
 
         return (
-            <div>
+            <div className="fire-test">
                 <Card className={classes.card}>
                     <a href={`/items/${item.id}`} target="_blank">
                     <CardHeader
