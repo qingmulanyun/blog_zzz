@@ -3,7 +3,8 @@ import { withStyles } from 'material-ui/styles';
 import { fetchAllItems } from '../redux/actions/rootActions'
 import { connect } from 'react-redux'
 import  ItemsListBoard  from './itemsListBoard'
-
+import StarItemsListBoard from './starItemsListBoard'
+import AdsListBoard from './adsListBoard'
 const styles = theme => ({
     root: {
         flexGrow: 1,
@@ -37,7 +38,9 @@ class homePageBoard extends React.Component{
 
         return(
             <div>
-               <ItemsListBoard />
+                <AdsListBoard />
+                <StarItemsListBoard />
+                <ItemsListBoard />
             </div>
         );
     }

@@ -94,7 +94,7 @@ class ItemDetailsCard extends React.Component {
                 <ExpansionPanel expanded={expanded === 'panel4'} onChange={this.handleChange('panel4')} >
                     <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} >
                         <Typography className={classes.secondaryHeading}>简介：</Typography>
-                        <Typography className={classes.heading} className={classes.description}>
+                        <Typography className={classes.description}>
                             {item.description}
                         </Typography>
                     </ExpansionPanelSummary>
