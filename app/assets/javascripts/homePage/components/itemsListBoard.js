@@ -1,12 +1,9 @@
 import React from 'react';
 import { withStyles } from 'material-ui/styles';
-import GridList, { GridListTile, GridListTileBar } from 'material-ui/GridList';
 import Grid from 'material-ui/Grid';
-import IconButton from 'material-ui/IconButton';
-import InfoIcon from 'material-ui-icons/Info';
 import { connect } from 'react-redux'
 import ItemCard from './itemCard'
-import Paper from 'material-ui/paper'
+
 const styles = theme => ({
     root: {
         display: 'flex',
