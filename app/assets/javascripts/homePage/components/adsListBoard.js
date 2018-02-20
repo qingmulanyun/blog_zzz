@@ -16,7 +16,6 @@ const styles = theme => ({
     },
     gridList: {
         flexWrap: 'nowrap',
-        // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
         transform: 'translateZ(0)',
     },
     title: {
@@ -28,32 +27,34 @@ const styles = theme => ({
     },
 });
 
-$('.carousel.carousel-slider').carousel({fullWidth: true});
+
 
 class AdsListBoard extends React.Component{
-    render(){
-        const { classes, allItems } = this.props;
 
+    componentDidMount(prevProps, prevState){
+        $('.carousel.carousel-slider').carousel({fullWidth: true});
+    }
+    render(){
+        const { classes, ads } = this.props;
         return (
         <div className="carousel carousel-slider center" data-indicators="true">
-            <div className="carousel-fixed-item center">
-
-            </div>
+            <div className="carousel-fixed-item center"></div>
             <div className="carousel-item red white-text" href="#one!">
-                <h2>First Panel</h2>
-                <p className="white-text">This is your first panel</p>
+                <h2>欢迎来到WaLa代购平台！</h2>
+                <p className="white-text">本平台所有入驻商家均居住澳洲本地，保证澳洲正品货源。</p>
             </div>
-            <div className="carousel-item amber white-text" href="#two!">
-                <h2>Second Panel</h2>
-                <p className="white-text">This is your second panel</p>
-            </div>
-            <div className="carousel-item green white-text" href="#three!">
-                <h2>Third Panel</h2>
-                <p className="white-text">This is your third panel</p>
-            </div>
+            {
+                ads.map(function(ad,index){
+                    return <div key={index} className="carousel-item blue white-text">
+                        <h2>{ad.title}</h2>
+                        <p className="white-text">{ad.content}</p>
+                        <img src={ad.image} onError={ (e)=>{e.target.src="/assets/blog/profile.jpeg"}} />
+                    </div>
+                })
+            }
             <div className="carousel-item blue white-text" href="#four!">
-                <h2>Fourth Panel</h2>
-                <p className="white-text">This is your fourth panel</p>
+                <h2>广告位招租</h2>
+                <p className="white-text">详情咨询请邮件至E-mail: wenbo199019@gmail.com</p>
             </div>
         </div>
         );

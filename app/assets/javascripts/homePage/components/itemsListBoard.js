@@ -43,7 +43,6 @@ class ItemsListBoard extends React.Component{
 }
 
 const mapStateToProps = (state) => ({
-    allItems: state.root.items,
     loading: state.root.loading
 });
 

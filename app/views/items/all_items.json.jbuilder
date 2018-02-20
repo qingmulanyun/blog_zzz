@@ -7,6 +7,7 @@ json.array! @all_items do |item|
   json.image item.image.url || '/assets/blog/profile.jpeg'
   json.description item.description
   json.status item.status
+  json.starred item.starred
   json.shop item.shop
   json.seller item.shop.user.name
   json.createdAt item.created_at

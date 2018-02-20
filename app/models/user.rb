@@ -13,8 +13,8 @@ class User < ActiveRecord::Base
   before_save :default_name
   has_many :addresses, dependent: :destroy
   has_one :shop, dependent: :destroy
-  has_many :owned_orders, class_name: :order, foreign_key: :buyer_id, dependent: :destroy
-  has_many :admin_orders, class_name: :order, foreign_key: :seller_id, dependent: :destroy
+  has_many :owned_orders, class_name: 'Order', foreign_key: :buyer_id, dependent: :destroy
+  has_many :admin_orders, class_name: 'Order', foreign_key: :seller_id, dependent: :destroy
 
 
   def default_name

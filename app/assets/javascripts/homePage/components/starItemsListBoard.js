@@ -1,9 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
-import GridList, { GridListTile, GridListTileBar } from 'material-ui/GridList';
-import IconButton from 'material-ui/IconButton';
-import StarBorderIcon from 'material-ui-icons/StarBorder';
+import Typography from 'material-ui/Typography';
 import { connect } from 'react-redux'
 
 
@@ -29,21 +27,24 @@ const styles = theme => ({
     },
 });
 
-$(document).ready(function(){
-    $('.carousel').carousel();
-});
 
 class StarItemsListBoard extends React.Component{
+    componentDidMount(prevProps, prevState){
+        $('.carousel').carousel();
+    }
+
     render(){
-        const { classes, allItems } = this.props;
+        const { classes, starredItems } = this.props;
 
         return (
-            <div className="carousel">
-                <a className="carousel-item" href="#one!"><img src="assets/blog/profile.jpeg" /></a>
-                <a className="carousel-item" href="#two!"><img src="assets/blog/profile.jpeg" /></a>
-                <a className="carousel-item" href="#three!"><img src="assets/blog/profile.jpeg"/></a>
-                <a className="carousel-item" href="#four!"><img src="assets/blog/profile.jpeg"/></a>
-                <a className="carousel-item" href="#five!"><img src="assets/blog/profile.jpeg"/></a>
+            <div>
+                <div className="carousel">
+                    {
+                        starredItems.map(function(item,index){
+                            return <a className="carousel-item" key={index} href={`/items/${item.id}`} target="_blank"><img src={item.image} onError={ (e)=>{e.target.src="/assets/blog/profile.jpeg"}} /></a>
+                        })
+                    }
+                </div>
             </div>
         );
     }
