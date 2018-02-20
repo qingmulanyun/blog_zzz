@@ -5,27 +5,8 @@ import { connect } from 'react-redux'
 import  ItemsListBoard  from './itemsListBoard'
 import StarItemsListBoard from './starItemsListBoard'
 import AdsListBoard from './adsListBoard'
-const styles = theme => ({
-    root: {
-        flexGrow: 1,
-        marginTop: 30,
-        backgroundColor: theme.palette.background.paper,
-    },
-    rightBtn: {
-        float: 'right',
-        padding: 0,
-    },
-    title: {
-        display: 'inline-block',
-        paddingLeft: 20
-    },
-    titleContainer: {
-        flex: 1,
-        height: 36,
-        lineHeight: '36px'
-    }
 
-});
+const styles = theme => ({ });
 
 
 class homePageBoard extends React.Component{
@@ -44,7 +25,9 @@ class homePageBoard extends React.Component{
         return(
             <div>
                 {ads.length > 0 &&  <AdsListBoard ads={ads}/>}
+                {ads.length > 0 &&  <div className="divider"></div>}
                 {starredItems.length > 0 && <StarItemsListBoard starredItems={starredItems}/>}
+                {starredItems.length > 0 && <div className="divider"></div>}
                 {allItems.length > 0 && <ItemsListBoard allItems={allItems}/>}
             </div>
         );

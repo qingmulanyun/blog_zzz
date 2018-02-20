@@ -8,7 +8,7 @@ const styles = theme => ({
     root: {
         display: 'flex',
         flexWrap: 'wrap',
-        marginTop: '100px !important',
+        marginTop: '2em !important',
         justifyContent: 'space-around',
         backgroundColor: theme.palette.background.paper,
     },
@@ -27,6 +27,7 @@ class ItemsListBoard extends React.Component{
 
         return(
             <div className={classes.root}>
+                <h5 className="header">商品列表</h5>
                 <Grid container spacing={24}>
                     {allItems.map((item, index )=> (
                     <Grid item xs={12} sm={6} md={6} lg={3} xl={3} key={index}>
