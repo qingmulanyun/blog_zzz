@@ -41,6 +41,7 @@ const styles = theme => ({
     },
 });
 
+
 class ItemCard extends React.Component {
     state = { expanded: false };
 
@@ -48,11 +49,21 @@ class ItemCard extends React.Component {
         this.setState({ expanded: !this.state.expanded });
     };
 
+    componentDidMount(prevProps, prevState){
+        const itemId = this.props.item.id;
+        var options = [
+            {selector: `#fire-test-${itemId}`, offset: 50, callback: function(el) {
+                Materialize.fadeInImage($(el));
+            } }
+        ];
+        Materialize.scrollFire(options);
+    }
+
     render() {
         const { classes, item } = this.props;
 
         return (
-            <div>
+            <div className="fire-test" id={`fire-test-${item.id}`}>
                 <Card className={classes.card}>
                     <a href={`/items/${item.id}`} target="_blank">
                     <CardHeader

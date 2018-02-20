@@ -24,8 +24,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'devise'
 gem 'pundit'
 
-gem 'bootstrap-sass', '~> 3.3.6'
-
 gem 'materialize-sass'
 gem 'material_icons'
 

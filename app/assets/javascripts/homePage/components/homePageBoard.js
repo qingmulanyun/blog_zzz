@@ -1,9 +1,10 @@
 import React from 'react';
 import { withStyles } from 'material-ui/styles';
-import { fetchAllItems } from '../redux/actions/rootActions'
+import { fetchHomePageInfo } from '../redux/actions/rootActions'
 import { connect } from 'react-redux'
 import  ItemsListBoard  from './itemsListBoard'
-
+import StarItemsListBoard from './starItemsListBoard'
+import AdsListBoard from './adsListBoard'
 const styles = theme => ({
     root: {
         flexGrow: 1,
@@ -30,14 +31,21 @@ const styles = theme => ({
 class homePageBoard extends React.Component{
 
     componentWillMount() {
-        this.props.fetchAllItems();
+        this.props.fetchHomePageInfo();
     }
+
     render(){
-        const {classes, currentTab} = this.props;
+        const {classes, allItems, ads} = this.props;
+
+        const starredItems = allItems.filter(function(item) {
+            return item.starred;
+        });
 
         return(
             <div>
-               <ItemsListBoard />
+                {ads.length > 0 &&  <AdsListBoard ads={ads}/>}
+                {starredItems.length > 0 && <StarItemsListBoard starredItems={starredItems}/>}
+                {allItems.length > 0 && <ItemsListBoard allItems={allItems}/>}
             </div>
         );
     }
@@ -45,13 +53,14 @@ class homePageBoard extends React.Component{
 
 const mapStateToProps = (state) => ({
     allItems: state.root.items,
-    loading: state.root.loading
+    loading: state.root.loading,
+    ads: state.root.ads
 });
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        fetchAllItems: ()=> {
-            dispatch(fetchAllItems())
+        fetchHomePageInfo: ()=> {
+            dispatch(fetchHomePageInfo())
         }
     }
 };

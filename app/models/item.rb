@@ -7,6 +7,8 @@ class Item < ActiveRecord::Base
 
   validates_presence_of :original_price, :transport_cost, :price, :sale_price, :weight
 
+
+
   FOREX = 5.3.freeze
 
   def cost

@@ -9,6 +9,9 @@ class ItemPolicy < ApplicationPolicy
     true
   end
 
+  def home_page_info?
+    true
+  end
   def show?
     true
   end

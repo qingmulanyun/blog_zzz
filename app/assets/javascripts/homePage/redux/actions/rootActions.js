@@ -1,7 +1,7 @@
-export function fetchAllItems() {
+export function fetchHomePageInfo() {
     return  function(dispatch, getState) {
         $.ajax({
-            url: '/items/api/all_items',
+            url: '/home/api/home_page_info',
             dataType: 'json',
             type: 'GET',
             beforeSend:function(data) {
@@ -9,7 +9,7 @@ export function fetchAllItems() {
             }.bind(this),
             success: function(data) {
                 dispatch(fetchingServerData(false));
-                dispatch(fetchAllItemsSuccessfully(data));
+                dispatch(fetchHomePageInfoSuccessfully(data));
             }.bind(this),
             error: function(xhr, status, err) {
                 dispatch(fetchingServerData(false));
@@ -25,9 +25,9 @@ export function fetchingServerData(bool) {
     }
 }
 
-export function fetchAllItemsSuccessfully(data) {
+export function fetchHomePageInfoSuccessfully(data) {
     return {
-        type: "FETCH_ALL_ITEMS_SUCCESSFULLY",
+        type: "FETCH_HOME_PAGE_INFO_SUCCESSFULLY",
         data: data
     }
 }
