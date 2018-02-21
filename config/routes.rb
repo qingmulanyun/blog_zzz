@@ -10,8 +10,7 @@ Rails.application.routes.draw do
   root 'home#show'
 
   resources :users do
-    resources :shops do
-    end
+    resources :shops, except: :create
   end
 
   draw :item
