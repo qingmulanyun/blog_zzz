@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:all_items, :show]
+  skip_before_action :authenticate_user!, only: [:all_items, :show, :show_item]
 
   def all_items
     @all_items = Item.includes(shop: [:user]).all
