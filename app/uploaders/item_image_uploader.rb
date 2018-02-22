@@ -10,8 +10,7 @@ class ItemImageUploader < CarrierWave::Uploader::Base
 
   version :standard do
     process :eager => true
-    process :resize_to_fill => [100, 150, :north]
-    cloudinary_transformation :quality => 80
+    process :resize_to_fill => [302, 300, :north]
   end
 
   version :thumbnail do
