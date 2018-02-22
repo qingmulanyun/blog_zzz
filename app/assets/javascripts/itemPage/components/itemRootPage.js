@@ -12,7 +12,7 @@ const styles = theme => ({
         backgroundColor: theme.palette.background.paper,
     },
     media: {
-        height: 340,
+        height: "auto",
         width: "100%",
         border: "1px solid rgba(0,0,0,.05)"
     },

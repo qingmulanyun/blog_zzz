@@ -13,8 +13,9 @@ const styles = theme => ({
 
 
 class StarItemsListBoard extends React.Component{
+
     componentDidMount(prevProps, prevState){
-        $('.carousel').carousel();
+        $('#starred-items-container').carousel();
     }
 
     render(){
@@ -23,7 +24,7 @@ class StarItemsListBoard extends React.Component{
         return (
             <div className={classes.root}>
                 <h5 className="header center-align">本月明星产品</h5>
-                <div className="carousel">
+                <div className="carousel" id="starred-items-container">
                     {
                         starredItems.map(function(item,index){
                             return <a className="carousel-item" key={index} href={`/items/${item.id}`} target="_blank"><img src={item.image} onError={ (e)=>{e.target.src="/assets/blog/profile.jpeg"}} /></a>
