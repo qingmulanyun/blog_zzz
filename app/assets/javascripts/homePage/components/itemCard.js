@@ -20,7 +20,7 @@ const styles = theme => ({
         maxWidth: 400,
     },
     media: {
-        height: 280,
+        height: "auto",
         width: "100%"
     },
     actions: {

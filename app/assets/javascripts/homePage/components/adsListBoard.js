@@ -44,12 +44,13 @@ const styles = theme => ({
 class AdsListBoard extends React.Component{
 
     componentDidMount(prevProps, prevState){
-        $('.carousel.carousel-slider').carousel({fullWidth: true});
+        $('#ads-list-container').carousel();
     }
+
     render(){
         const { classes, ads } = this.props;
         return (
-        <div className="carousel carousel-slider center" style={{marginBottom: '2em'}} data-indicators="true">
+        <div className="carousel carousel-slider center" id="ads-list-container" style={{marginBottom: '2em'}} data-indicators="true">
             <div className="carousel-fixed-item center"></div>
             <div className="carousel-item white-text">
                 <div className={classes.adContainer}>
@@ -75,7 +76,8 @@ class AdsListBoard extends React.Component{
                     </div>
                 })
             }
-            <div className="carousel-item blue lighten-2 white-text" href="#four!">
+
+            <div className="carousel-item blue lighten-2 white-text">
                 <h2>广告位招租</h2>
                 <p className="white-text">详情咨询请邮件至E-mail: wenbo199019@gmail.com</p>
             </div>
