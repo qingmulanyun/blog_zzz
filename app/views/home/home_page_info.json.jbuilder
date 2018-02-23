@@ -5,7 +5,7 @@ json.items do
     json.price item.formatted_price
     json.original_price item.display_original_price
     json.transport_cost item.formatted_transport_cost
-    json.image item.image.url || '/assets/blog/profile.jpeg'
+    json.image item.image.standard.url || '/assets/blog/profile.jpeg'
     json.description item.description
     json.status item.status
     json.starred item.starred
@@ -21,7 +21,7 @@ json.ads do
     json.id ad.id
     json.title ad.title
     json.content ad.content
-    json.image ad.image.url || '/assets/blog/profile.jpeg'
+    json.image ad.image.standard.url || '/assets/blog/profile.jpeg'
   end
 end
 
