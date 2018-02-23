@@ -28,8 +28,10 @@ const styles = theme => ({
         fontSize: theme.typography.pxToRem(15),
         color: theme.palette.text.secondary,
     },
-    description: {
-        display: "unset !important"
+    oneColFlex: {
+        fontSize: theme.typography.pxToRem(15),
+        flexBasis: '90%',
+        flexShrink: 0,
     }
 });
 
@@ -52,8 +54,8 @@ class ItemDetailsCard extends React.Component {
             <div className={classes.root}>
                 <ExpansionPanel expanded={expanded === 'panel1'} onChange={this.handleChange('panel1')}>
                     <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                        <Typography className={classes.heading}>{item.name}</Typography>
-                        <Typography className={classes.secondaryHeading}>{item.type}</Typography>
+                        <Typography className={classes.oneColFlex}>{item.name}</Typography>
+                        {/*<Typography className={classes.secondaryHeading}>{item.type}</Typography>*/}
                     </ExpansionPanelSummary>
                     <ExpansionPanelDetails>
                         <Typography>
@@ -94,7 +96,7 @@ class ItemDetailsCard extends React.Component {
                 <ExpansionPanel expanded={expanded === 'panel4'} onChange={this.handleChange('panel4')} >
                     <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} >
                         <Typography className={classes.secondaryHeading}>简介：</Typography>
-                        <Typography className={classes.description}>
+                        <Typography className={classes.oneColFlex}>
                             {item.description}
                         </Typography>
                     </ExpansionPanelSummary>

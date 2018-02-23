@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180220043252) do
+ActiveRecord::Schema.define(version: 20180223002553) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,23 @@ ActiveRecord::Schema.define(version: 20180220043252) do
     t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "cart_items", id: :serial, force: :cascade do |t|
+    t.uuid "cart_id"
+    t.uuid "item_id"
+    t.integer "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cart_id"], name: "index_cart_items_on_cart_id"
+    t.index ["item_id"], name: "index_cart_items_on_item_id"
+  end
+
+  create_table "carts", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.uuid "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_carts_on_user_id"
   end
 
   create_table "ckeditor_assets", id: :serial, force: :cascade do |t|
@@ -134,13 +151,13 @@ ActiveRecord::Schema.define(version: 20180220043252) do
   end
 
   create_table "orders", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.uuid "seller_id"
     t.uuid "buyer_id"
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.uuid "shop_id"
     t.index ["buyer_id"], name: "index_orders_on_buyer_id"
-    t.index ["seller_id"], name: "index_orders_on_seller_id"
+    t.index ["shop_id"], name: "index_orders_on_shop_id"
   end
 
   create_table "post_votes", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -233,10 +250,14 @@ ActiveRecord::Schema.define(version: 20180220043252) do
     t.index ["slug"], name: "index_users_on_slug"
   end
 
+  add_foreign_key "cart_items", "carts"
+  add_foreign_key "cart_items", "items"
+  add_foreign_key "carts", "users"
   add_foreign_key "items", "item_brands"
   add_foreign_key "items", "item_types"
   add_foreign_key "items", "shops"
   add_foreign_key "order_items", "items"
   add_foreign_key "order_items", "orders"
+  add_foreign_key "orders", "shops"
   add_foreign_key "shops", "users"
 end

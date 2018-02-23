@@ -39,6 +39,15 @@ const styles = theme => ({
     avatar: {
         backgroundColor: red[500],
     },
+    cardTitle: {
+    overflow: "hidden",
+        whiteSpace: "nowrap",
+        textOverflow: "ellipsis",
+        width: "100%",
+        display: "inline-block"
+},cardTitleContent: {
+        width: '80%'
+    }
 });
 
 
@@ -67,6 +76,10 @@ class ItemCard extends React.Component {
                 <Card className={classes.card}>
                     <a href={`/items/${item.id}`} target="_blank">
                     <CardHeader
+                        classes={{
+                            title: classes.cardTitle,
+                            content: classes.cardTitleContent
+                        }}
                         avatar={
                             <Avatar aria-label="Recipe" className={classes.avatar}>
                                 H/C
