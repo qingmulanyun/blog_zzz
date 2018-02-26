@@ -16,4 +16,5 @@ Rails.application.routes.draw do
   draw :item
   draw :shop
   draw :home
+  draw :cart
 end

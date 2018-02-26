@@ -3,6 +3,7 @@ import { render } from 'react-dom'
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux'
 import { Provider } from 'react-redux'
 import rootReducer from '../itemPage/redux/reducers/rootReducers'
+import cartReducer from '../itemPage/redux/reducers/cartReducers'
 import ItemRootPage from '../itemPage/components/itemRootPage'
 import thunk from 'redux-thunk'
 
@@ -17,6 +18,7 @@ const theme = createMuiTheme({
 
 const totalReducer = combineReducers({
     root: rootReducer,
+    cart: cartReducer
 });
 
 const store = createStore(totalReducer, compose(

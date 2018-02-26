@@ -8,8 +8,7 @@ import ExpansionPanel, {
 import Typography from 'material-ui/Typography';
 import ExpandMoreIcon from 'material-ui-icons/ExpandMore';
 import red from 'material-ui/colors/red';
-import Button from 'material-ui/Button';
-import AddShoppingCartIcon from 'material-ui-icons/AddShoppingCart';
+import CartComponent from './cartComponent'
 
 const styles = theme => ({
     root: {
@@ -39,7 +38,7 @@ const styles = theme => ({
         margin: theme.spacing.unit,
     },actionBar: {
         cursor: "auto !important"
-    }
+    },
 });
 
 class ItemDetailsCard extends React.Component {
@@ -113,13 +112,8 @@ class ItemDetailsCard extends React.Component {
                         </Typography>
                     </ExpansionPanelDetails>
                 </ExpansionPanel>
-                <ExpansionPanel expanded={false} classes={{ root: classes.actionBar}}   >
-                    <ExpansionPanelDetails >
-                        <Button variant="raised" color="primary" className={classes.button}>
-                            <AddShoppingCartIcon />
-                            加入购物车
-                        </Button>
-                    </ExpansionPanelDetails>
+                <ExpansionPanel expanded={true} classes={{ root: classes.actionBar}}   >
+                    <CartComponent item={item}/>
                 </ExpansionPanel>
             </div>
         );

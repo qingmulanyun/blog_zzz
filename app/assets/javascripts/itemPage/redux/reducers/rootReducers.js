@@ -1,6 +1,7 @@
 const initialState = {
     item: {},
-    loading: false
+    loading: false,
+    requireLogin: ''
 };
 
 export default function reducer(state = initialState, action = {}) {
@@ -14,6 +15,16 @@ export default function reducer(state = initialState, action = {}) {
           return {
               ...state,
               loading: action.isFetching
+          };
+      case "REQUIRE_LOGIN":
+          return {
+              ...state,
+              requireLogin: "required"
+          };
+      case "HANDLE_CLOSE_LOGIN_DIALOG":
+          return {
+              ...state,
+              requireLogin: initialState.requireLogin
           };
       default:
       return state;
