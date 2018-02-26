@@ -10,7 +10,7 @@ class ItemImageUploader < CarrierWave::Uploader::Base
 
   version :standard do
     process :eager => true
-    process :resize_to_fill => [302, 300, :north]
+    process :resize_to_fill => [302, 300, :fill]
   end
 
   version :thumbnail do

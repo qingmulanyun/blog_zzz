@@ -34,3 +34,9 @@ export function fetchItemSuccessfully(data) {
         data: data
     }
 }
+
+export function handleCloseLoginDialog() {
+    return {
+        type: "HANDLE_CLOSE_LOGIN_DIALOG"
+    }
+}
