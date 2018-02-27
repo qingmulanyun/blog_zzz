@@ -2,7 +2,8 @@ import React from 'react';
 import { withStyles } from 'material-ui/styles';
 import { connect } from 'react-redux'
 import Button from 'material-ui/Button';
-import { handleCloseLoginDialog, fetchingServerData } from '../redux/actions/rootActions'
+import { handleCloseLoginDialog } from '../redux/actions/rootActions'
+import { loginAndAddItemToCart } from '../redux/actions/cartActions'
 import Dialog, {
     DialogActions,
     DialogContent,
@@ -38,36 +39,14 @@ const styles = theme => ({
 class LoginDialog extends React.Component{
 
     login =()=> {
-        var nameInput = this.refs.user_email;
-        var passwordInput = this.refs.user_password;
-        $.ajax({
-            url: '/users/sign_in',
-            dataType: 'json',
-            type: 'POST',
-            data: {
-                user: {
-                    email: nameInput.value,
-                    password: passwordInput.value,
-                    callback: '/test'
-                }
-            },
-            beforeSend:function(data) {
-                // dispatch(fetchingServerData(true));
-            }.bind(this),
-            success: function(data) {
-                // dispatch(fetchingServerData(false));
-                // dispatch(fetchShopInfoSuccessfully(data));
-                console.log(data)
-            }.bind(this),
-            error: function(xhr, status, err) {
-                console.log(xhr.status)
-                // dispatch(fetchingServerData(false));
-            }.bind(this)
-        });
+        const email = this.refs.user_email.value;
+        const password = this.refs.user_password.value;
+        const callback = window.location.href;
+        this.props.handleLoginAndAddItemToCart(email, password, callback)
     };
 
     render(){
-        const {classes, requireLogin, handleCloseLoginDialog } = this.props;
+        const {classes, requireLogin, handleCloseLoginDialog} = this.props;
 
         const dialogOpen = requireLogin === 'required';
 
@@ -117,6 +96,9 @@ const mapDispatchToProps = (dispatch) => {
     return {
         handleCloseLoginDialog:()=>{
             dispatch(handleCloseLoginDialog());
+        },
+        handleLoginAndAddItemToCart:(email, password, callback)=> {
+            dispatch(loginAndAddItemToCart(email, password, callback))
         }
     }
 };

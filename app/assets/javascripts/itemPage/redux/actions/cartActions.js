@@ -24,7 +24,7 @@ export function handleAddItemToCart(itemId){
             }.bind(this),
             success: function(data) {
                 dispatch(fetchingServerData(false));
-                dispatch(fetchItemSuccessfully(data));
+                // dispatch(fetchItemSuccessfully(data));
             }.bind(this),
             error: function(xhr, status, err) {
                 if(xhr.status === 401){
@@ -39,5 +39,35 @@ export function handleAddItemToCart(itemId){
 export function requireLogin() {
     return {
         type: "REQUIRE_LOGIN"
+    }
+}
+
+export function loginAndAddItemToCart(email, password, callback_url) {
+    return  function(dispatch, getState) {
+        $.ajax({
+            url: '/users/sign_in',
+            dataType: 'json',
+            type: 'POST',
+            data: {
+                user: {
+                    email: email,
+                    password: password,
+                    callback: callback_url
+                }
+            },
+            beforeSend:function(data) {
+                dispatch(fetchingServerData(true));
+            }.bind(this),
+            success: function(data) {
+                const tempArray = data.redirect_url.split("/");
+                const itemId = tempArray[tempArray.length - 1];
+                dispatch(fetchingServerData(false));
+                window.location.href = data.redirect_url;
+            }.bind(this),
+            error: function(xhr, status, err) {
+                console.log(xhr.status)
+                dispatch(fetchingServerData(false));
+            }.bind(this)
+        });
     }
 }

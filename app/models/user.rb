@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
   has_many :addresses, dependent: :destroy
   has_one :shop, dependent: :destroy
   has_many :owned_orders, class_name: 'Order', foreign_key: :buyer_id, dependent: :destroy
+  has_one :cart, dependent: :destroy
 
 
   def default_name
