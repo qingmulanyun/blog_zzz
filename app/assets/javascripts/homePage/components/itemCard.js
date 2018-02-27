@@ -11,8 +11,9 @@ import red from 'material-ui/colors/red';
 import FavoriteIcon from 'material-ui-icons/Favorite';
 import ShareIcon from 'material-ui-icons/Share';
 import ExpandMoreIcon from 'material-ui-icons/ExpandMore';
-import MoreVertIcon from 'material-ui-icons/MoreVert';
+
 import moment from 'moment'
+import Grow from 'material-ui/transitions/Grow';
 moment.locale('ZH_CN');
 
 const styles = theme => ({
@@ -58,21 +59,11 @@ class ItemCard extends React.Component {
         this.setState({ expanded: !this.state.expanded });
     };
 
-    componentDidMount(prevProps, prevState){
-        const itemId = this.props.item.id;
-        var options = [
-            {selector: `#fire-test-${itemId}`, offset: 50, callback: function(el) {
-                Materialize.fadeInImage($(el));
-            } }
-        ];
-        Materialize.scrollFire(options);
-    }
-
     render() {
         const { classes, item } = this.props;
 
         return (
-            <div className="fire-test" id={`fire-test-${item.id}`}>
+            <Grow in={true} timeout={1000} style={{ transitionDelay: 500 }}>
                 <Card className={classes.card}>
                     <a href={`/items/${item.id}`} target="_blank">
                     <CardHeader
@@ -127,7 +118,7 @@ class ItemCard extends React.Component {
                         </CardContent>
                     </Collapse>
                 </Card>
-            </div>
+            </Grow>
         );
     }
 }
