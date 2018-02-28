@@ -3,6 +3,7 @@ import { withStyles } from 'material-ui/styles';
 import { connect } from 'react-redux'
 import Button from 'material-ui/Button';
 import { handleCloseLoginDialog } from '../redux/actions/rootActions'
+import { loginAndAddItemToCart } from '../redux/actions/cartActions'
 import Dialog, {
     DialogActions,
     DialogContent,
@@ -37,8 +38,15 @@ const styles = theme => ({
 
 class LoginDialog extends React.Component{
 
+    login =()=> {
+        const email = this.refs.user_email.value;
+        const password = this.refs.user_password.value;
+        const callback = window.location.href;
+        this.props.handleLoginAndAddItemToCart(email, password, callback)
+    };
+
     render(){
-        const {classes, requireLogin, handleCloseLoginDialog } = this.props;
+        const {classes, requireLogin, handleCloseLoginDialog} = this.props;
 
         const dialogOpen = requireLogin === 'required';
 
@@ -49,34 +57,31 @@ class LoginDialog extends React.Component{
                 keepMounted
                 aria-labelledby="alert-dialog-slide-title"
                 aria-describedby="alert-dialog-slide-description"
+                onClose={handleCloseLoginDialog}
+                maxWidth="xs"
             >
-                <DialogTitle id="alert-dialog-slide-title">
-                    邮箱登录
-                </DialogTitle>
-                <DialogContent>
-                    <div className="row">
-                        <div className="input-field col s12">
-                            <i className="material-icons prefix">email</i>
-                            <input type="email" className="validate login-input" name="user[email]" id="email" required />
+                <form className="login-form" id="new_user" action="/users/sign_in" method="post">
+                    <DialogTitle id="alert-dialog-slide-title">
+                        邮箱登录
+                    </DialogTitle>
+                    <DialogContent>
+                        <div className="row">
+                            <div className="input-field col s12">
+                                <i className="material-icons prefix">email</i>
+                                <input type="email" className="validate login-input" name="user[email]" id="email" ref="user_email"  required />
+                            </div>
+                            <div className="input-field col s12">
+                                <i className="material-icons prefix">lock</i>
+                                <input type="password" className="validate login-input" name="user[password]" ref="user_password" id="password" required/>
+                            </div>
+                            <div className="col s12">
+                                <Button  variant="raised" color="primary"  data-disable-with="正在登录…" onClick={this.login}> 登录</Button>
+                            </div>
                         </div>
-                        <div className="input-field col s12">
-                            <i className="material-icons prefix">lock</i>
-                            <input type="password" className="validate login-input" name="user[password]" id="password" required/>
-                        </div>
-                        <div className="col s12">
-                            <input type="submit" className="btn waves-effect waves-light login-btn" value="登录"  data-disable-with="正在登录…" />
-                        </div>
-                    </div>
-                    <a href="/users/sign_up" >免费注册</a>
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={ handleCloseLoginDialog } color="secondary">
-                        取消
-                    </Button>
-                    <Button onClick={ handleCloseLoginDialog } color="primary">
-                        登录
-                    </Button>
-                </DialogActions>
+                        <a href="/users/sign_up" >免费注册</a>
+                    </DialogContent>
+
+                </form>
             </Dialog>
         );
     }
@@ -91,6 +96,9 @@ const mapDispatchToProps = (dispatch) => {
     return {
         handleCloseLoginDialog:()=>{
             dispatch(handleCloseLoginDialog());
+        },
+        handleLoginAndAddItemToCart:(email, password, callback)=> {
+            dispatch(loginAndAddItemToCart(email, password, callback))
         }
     }
 };
