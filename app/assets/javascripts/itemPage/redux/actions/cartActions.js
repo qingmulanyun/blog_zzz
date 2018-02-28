@@ -24,7 +24,7 @@ export function handleAddItemToCart(itemId){
             }.bind(this),
             success: function(data) {
                 dispatch(fetchingServerData(false));
-                // dispatch(fetchItemSuccessfully(data));
+                dispatch(addItemToCartSuccessfully(data));
             }.bind(this),
             error: function(xhr, status, err) {
                 if(xhr.status === 401){
@@ -71,3 +71,20 @@ export function loginAndAddItemToCart(email, password, callback_url) {
         });
     }
 }
+
+export function addItemToCartSuccessfully(data){
+    return {
+        type: "ADD_ITEM_TO_CART_SUCCESSFULLY",
+        data: {
+            addedItem: data.item,
+            addedQuantity: data.added_quantity
+        }
+    }
+}
+
+export function handleCloseCartConfirmDialog() {
+    return {
+        type: "CLOSE_CART_CONFIRM_DIALOG"
+    }
+}
+

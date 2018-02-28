@@ -11,6 +11,7 @@ class CartsController < ApplicationController
     else
       cart.cart_items.create!(cart: cart, item_id: item.id, quantity: params[:item_quantity])
     end
+    render json: {item: item, added_quantity: params[:item_quantity]}
   end
 
   def remove_item

@@ -6,6 +6,7 @@ import AddShoppingCartIcon from 'material-ui-icons/AddShoppingCart';
 import  { ExpansionPanelDetails } from 'material-ui/ExpansionPanel';
 import { handleChangeItemQuantity, handleAddItemToCart } from '../redux/actions/cartActions'
 import LoginDialog from './loginDialog'
+import CartConfirmDialog from './cartConfirmDialog'
 const styles = theme => ({
     quantityContainer: {
         width: "50px",
@@ -53,6 +54,7 @@ class CartComponent extends React.Component{
                 加入购物车
             </Button>
             <LoginDialog />
+            <CartConfirmDialog />
         </ExpansionPanelDetails>
         );
     }
