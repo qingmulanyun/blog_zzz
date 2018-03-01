@@ -83,8 +83,75 @@ export function addItemToCartSuccessfully(data){
 }
 
 export function handleCloseCartConfirmDialog() {
+    return  function(dispatch, getState) {
+        dispatch(handleShowCartItemsListPage());
+        dispatch(closeCartConfirmDialog());
+    }
+}
+
+export function closeCartConfirmDialog() {
     return {
         type: "CLOSE_CART_CONFIRM_DIALOG"
     }
 }
 
+
+export function toggleItemsListPage(boolean) {
+    return {
+        type: "TOGGLE_ITEMS_LIST_PAGE",
+        data: boolean
+    }
+}
+
+export function handleShowCartItemsListPage() {
+    return  function(dispatch, getState) {
+        $.ajax({
+            url: '/carts/api/cart_items',
+            dataType: 'json',
+            type: 'GET',
+            beforeSend:function(data) {
+                dispatch(toggleItemsListPage(true))
+                dispatch(fetchingServerData(true));
+            }.bind(this),
+            success: function(data) {
+                dispatch(insertCartItems(data));
+                dispatch(fetchingServerData(false));
+            }.bind(this),
+            error: function(xhr, status, err) {
+                console.log(xhr.status);
+                dispatch(fetchingServerData(false));
+            }.bind(this)
+        });
+    }
+}
+
+export function insertCartItems(data) {
+    return {
+        type: "INSERT_CART_ITEMS",
+        data: data
+    }
+}
+
+export function handleDeleteCartItems(cartItemId){
+    return  function(dispatch, getState) {
+        $.ajax({
+            url: '/carts/api/destroy_item',
+            dataType: 'json',
+            type: 'DELETE',
+            data: {
+                cart_item_id: cartItemId
+            },
+            beforeSend:function(data) {
+                dispatch(fetchingServerData(true));
+            }.bind(this),
+            success: function(data) {
+                dispatch(insertCartItems(data));
+                dispatch(fetchingServerData(false));
+            }.bind(this),
+            error: function(xhr, status, err) {
+                console.log(xhr.status);
+                dispatch(fetchingServerData(false));
+            }.bind(this)
+        });
+    }
+}

@@ -12,4 +12,8 @@ class CartPolicy < ApplicationPolicy
   def remove_item?
     true
   end
+
+  def show_items?
+    true
+  end
 end
