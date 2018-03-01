@@ -1,7 +1,8 @@
 const initialState = {
     item: {},
     loading: false,
-    requireLogin: ''
+    requireLogin: '',
+    isLogin: false,
 };
 
 export default function reducer(state = initialState, action = {}) {

@@ -3,7 +3,9 @@ const initialState = {
     itemQuantity: 1,
     addedItem: {},
     addedQuantity: 0,
-    cartConfirmdialogOpen: false
+    cartConfirmdialogOpen: false,
+    cartItemsListOpen: false,
+    cartItems: []
 };
 
 export default function reducer(state = initialState, action = {}) {
@@ -24,6 +26,17 @@ export default function reducer(state = initialState, action = {}) {
           return {
               ...state,
               cartConfirmdialogOpen: false,
+              cartItemsListOpen: true,
+          };
+      case "TOGGLE_ITEMS_LIST_PAGE":
+          return {
+              ...state,
+              cartItemsListOpen: action.data
+          };
+      case "INSERT_CART_ITEMS":
+          return {
+              ...state,
+              cartItems: action.data
           };
       default:
       return state;

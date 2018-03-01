@@ -17,4 +17,19 @@ class CartsController < ApplicationController
   def remove_item
     authorize Cart
   end
+
+  def show_items
+    authorize Cart
+    cart = current_user.cart || current_user.create_cart
+    @cart_items = cart.cart_items
+    render 'cart_items.json'
+  end
+
+  def destroy_item
+    cart_item = current_user.cart.cart_items.find(params[:cart_item_id])
+    authorize cart_item
+    cart_item.destroy!
+    @cart_items = current_user.cart.cart_items
+    render 'cart_items.json'
+  end
 end

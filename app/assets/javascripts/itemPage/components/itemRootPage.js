@@ -4,6 +4,7 @@ import { fetchItem } from '../redux/actions/rootActions'
 import { connect } from 'react-redux'
 import Grid from 'material-ui/Grid';
 import ItemDetailsCard from './itemDetailCard'
+import CartItemsList from './cartItemsList'
 
 const styles = theme => ({
     root: {
@@ -45,7 +46,7 @@ class ItemRootPage extends React.Component{
                         <ItemDetailsCard item={currentItem}/>
                     </Grid>
                 </Grid>
-
+                <CartItemsList />
             </div>
         );
     }
