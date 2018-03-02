@@ -13,16 +13,18 @@
 
     <% if user_signed_in? %>
         <ul class="right hide-on-med-and-down">
+          <li class="collection-item"><a href="<%= carts_cart_items_path %>"><i class="material-icons left">shopping_cart</i>购物车</a></li>
           <% if current_user.shop.present? %>
               <li><a href="<%= user_shop_path(current_user, current_user.shop) %>">我的店铺</a></li>
           <% end %>
-          <li><a class="dropdown-button" href="#!" data-activates="user_profile"><%= current_user.name%><i class="material-icons right"></i></a></li>
+          <li><a class="dropdown-button" href="#!" data-activates="user_profile"><%= current_user.name%><i class="material-icons right">arrow_drop_down</i></a></li>
         </ul>
         <ul id="nav-mobile" class="side-nav collection">
           <li class="collection-item"><a href="#"><%= current_user.name%></a></li>
           <% if current_user.shop.present? %>
               <li class="collection-item"><a href="<%= user_shop_path(current_user, current_user.shop) %>">我的店铺</a></li>
           <% end %>
+          <li class="collection-item"><a href="<%= carts_cart_items_path %>"><i class="material-icons left">shopping_cart</i>购物车</a></li>
         </ul>
     <% else %>
         <ul class="right hide-on-med-and-down">
@@ -32,6 +34,6 @@
           <li  class="collection-item"><a href="<%= new_user_session_path %>">登录</a></li>
         </ul>
     <% end %>
-    <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons"></i></a>
+    <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
   </div>
 </nav>

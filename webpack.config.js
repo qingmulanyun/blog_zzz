@@ -6,7 +6,9 @@ module.exports = {
         homePage: "./app/assets/javascripts/entries/home-page.js",
         shopPage: "./app/assets/javascripts/entries/my-shop-page.js",
         itemPage: "./app/assets/javascripts/entries/item-page.js",
+        cartPage: "./app/assets/javascripts/entries/cart-page.js"
     },
+    watch: true,
     output: {
         path: __dirname + '/app/assets/javascripts/build/',
         filename: "[name].bundle.js",
