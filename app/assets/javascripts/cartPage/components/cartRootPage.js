@@ -1,7 +1,7 @@
 import React from 'react';
 import { withStyles } from 'material-ui/styles';
 import { connect } from 'react-redux'
-import CartItemsBoard from './CartItemsBoard'
+import CartItemsBoard from './cartItemsBoard'
 import Typography from 'material-ui/Typography';
 import { Loading } from '../../utilities/loadingComponent/loading';
 const styles = theme => ({
