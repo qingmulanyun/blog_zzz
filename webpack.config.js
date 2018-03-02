@@ -8,7 +8,6 @@ module.exports = {
         itemPage: "./app/assets/javascripts/entries/item-page.js",
         cartPage: "./app/assets/javascripts/entries/cart-page.js"
     },
-    watch: true,
     output: {
         path: __dirname + '/app/assets/javascripts/build/',
         filename: "[name].bundle.js",
