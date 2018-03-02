@@ -113,7 +113,7 @@ class CartItemsList extends React.Component {
 
                             })
                         }
-                        { cartItems.length > 0 ? <Button variant="raised" color="primary" className={classes.fullWidthbutton}>
+                        { cartItems.length > 0 ? <Button href="/carts/cart_items" target="_blank" variant="raised" color="primary" className={classes.fullWidthbutton}>
                             去购物车结算
                         </Button> : <SnackbarContent
                             className={classes.fullWidthbutton}

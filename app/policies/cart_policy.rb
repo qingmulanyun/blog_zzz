@@ -16,4 +16,8 @@ class CartPolicy < ApplicationPolicy
   def show_items?
     true
   end
+
+  def index?
+    true
+  end
 end

@@ -14,29 +14,34 @@ import {
     GroupingPanel, PagingPanel, DragDropProvider, TableColumnReordering, TableColumnResizing, Toolbar,
 } from '@devexpress/dx-react-grid-material-ui';
 
-import { Loading } from '../../utilities/loadingComponent/loading';
 
-import { createGridAction, fetchOwnItems } from '../redux/actions/gridActions';
+import { createGridAction, fetchOwnCartItems } from '../redux/actions/gridActions';
 
-import AddNewItem from './shared/AddNewItemButton'
 import DeleteItemsButton from './shared/DeleteItemsButton'
-import { FormatDateCell } from '../../utilities/tableCellComponent/formatDateCell'
-import { FormatStatusCell } from '../../utilities/tableCellComponent/formatStatusCell'
-
+import { FormatCurrencyCell } from '../../utilities/tableCellComponent/formatCurrencyCell'
+import { FormatItemImageCell } from '../../utilities/tableCellComponent/formatItemImageCell'
+import { FormatItemNameCell } from '../../utilities/tableCellComponent/formatItemNameCell'
+import { FormatActionCell } from '../../utilities/tableCellComponent/formatActionCell'
 const Cell = (props) => {
-    if (props.column.name === 'updatedAt' || props.column.name === 'createdAt' ) {
-        return <FormatDateCell {...props} />;
+    if (props.column.name === 'price' || props.column.name === 'total_price' ) {
+        return <FormatCurrencyCell {...props} />;
     }
-    if (props.column.name === 'status' ) {
-        return <FormatStatusCell {...props} />;
+    if (props.column.name === 'image'  ) {
+        return <FormatItemImageCell {...props} />;
+    }
+    if (props.column.name === 'item_info'  ) {
+        return <FormatItemNameCell {...props} />;
+    }
+    if (props.column.name === 'actions'  ) {
+        return <FormatActionCell {...props} />;
     }
     return <Table.Cell {...props} />;
 };
 
-class SellerItemsBoard extends React.Component {
+class CartItemsBoard extends React.Component {
 
     componentDidMount() {
-        this.props.fetchOwnItems();
+        this.props.fetchOwnCartItems();
     }
 
     render (){
@@ -63,87 +68,83 @@ class SellerItemsBoard extends React.Component {
             onColumnOrderChange,
             columnWidths,
             onColumnWidthsChange,
-            loading,
-            } = this.props;
-
+        } = this.props;
 
         return(
-        <div>
-            <Grid
-                rows={rows}
-                columns={columns}
-            >
-                <FilteringState
-                    filters={filters}
-                    onFiltersChange={onFiltersChange}
-                />
-                <SortingState
-                    sorting={sorting}
-                    onSortingChange={onSortingChange}
-                />
-                <GroupingState
-                    grouping={grouping}
-                    onGroupingChange={onGroupingChange}
-                    expandedGroups={expandedGroups}
-                    onExpandedGroupsChange={onExpandedGroupsChange}
-                />
-                <PagingState
-                    currentPage={currentPage}
-                    onCurrentPageChange={onCurrentPageChange}
-                    pageSize={pageSize}
-                    onPageSizeChange={onPageSizeChange}
-                />
-                <RowDetailState
-                    expandedRows={expandedRows}
-                    onExpandedRowsChange={onExpandedRowsChange}
-                />
-                <SelectionState
-                    selection={selection}
-                    onSelectionChange={onSelectionChange}
-                />
+            <div>
+                <Grid
+                    rows={rows}
+                    columns={columns}
+                >
+                    <FilteringState
+                        filters={filters}
+                        onFiltersChange={onFiltersChange}
+                    />
+                    <SortingState
+                        sorting={sorting}
+                        onSortingChange={onSortingChange}
+                    />
+                    <GroupingState
+                        onGroupingChange={onGroupingChange}
+                        expandedGroups={expandedGroups}
+                        onExpandedGroupsChange={onExpandedGroupsChange}
+                        grouping={grouping}
+                    />
+                    <PagingState
+                        currentPage={currentPage}
+                        onCurrentPageChange={onCurrentPageChange}
+                        pageSize={pageSize}
+                        onPageSizeChange={onPageSizeChange}
+                    />
+                    <RowDetailState
+                        expandedRows={expandedRows}
+                        onExpandedRowsChange={onExpandedRowsChange}
+                    />
+                    <SelectionState
+                        selection={selection}
+                        onSelectionChange={onSelectionChange}
+                    />
 
-                <IntegratedFiltering />
-                <IntegratedSorting />
 
-                <IntegratedPaging />
-                <IntegratedSelection />
+                    <IntegratedFiltering />
+                    <IntegratedSorting />
 
-                <DragDropProvider />
+                    <IntegratedPaging />
+                    <IntegratedSelection />
 
-                <Table
-                    cellComponent={Cell}
-                />
+                    <DragDropProvider />
 
-                <TableColumnReordering
-                    order={columnOrder}
-                    onOrderChange={onColumnOrderChange}
-                />
+                    <Table
+                        cellComponent={Cell}
+                    />
 
-                <TableColumnResizing
-                    columnWidths={columnWidths}
-                    onColumnWidthsChange={onColumnWidthsChange}
-                />
+                    <TableColumnReordering
+                        order={columnOrder}
+                        onOrderChange={onColumnOrderChange}
+                    />
 
-                <TableHeaderRow showSortingControls />
+                    <TableColumnResizing
+                        columnWidths={columnWidths}
+                        onColumnWidthsChange={onColumnWidthsChange}
+                    />
 
-                <TableSelection showSelectAll />
-                <TableColumnVisibility
-                />
-                <Toolbar />
-                <ColumnChooser />
-                <AddNewItem />
-                <DeleteItemsButton />
-                <PagingPanel
-                    pageSizes={allowedPageSizes}
-                />
-            </Grid>
-            {loading && <Loading />}
-        </div>
+                    <TableHeaderRow showSortingControls />
+
+                    <TableSelection showSelectAll />
+
+                    <Toolbar />
+
+                    <DeleteItemsButton />
+                    <PagingPanel
+                        pageSizes={allowedPageSizes}
+                    />
+                </Grid>
+            </div>
         );
     }
 }
 
-SellerItemsBoard.propTypes = {
+CartItemsBoard.propTypes = {
     rows: PropTypes.array.isRequired,
     columns: PropTypes.array.isRequired,
     // detailColumns: PropTypes.array.isRequired,
@@ -183,7 +184,7 @@ const mapDispatchToProps = dispatch => ({
     onPageSizeChange: pageSize => dispatch(createGridAction('pageSize', pageSize)),
     onColumnOrderChange: order => dispatch(createGridAction('columnOrder', order)),
     onColumnWidthsChange: widths => dispatch(createGridAction('columnWidths', widths)),
-    fetchOwnItems: () => dispatch(fetchOwnItems()),
+    fetchOwnCartItems: () => dispatch(fetchOwnCartItems()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(SellerItemsBoard);
+export default connect(mapStateToProps, mapDispatchToProps)(CartItemsBoard);
