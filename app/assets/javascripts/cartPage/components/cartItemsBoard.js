@@ -1,9 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import moment from 'moment'
-moment.locale('ZH_CN');
-
 import {
     SortingState, SelectionState, FilteringState, PagingState, GroupingState, RowDetailState,
     IntegratedFiltering, IntegratedGrouping, IntegratedPaging, IntegratedSorting, IntegratedSelection,
@@ -18,6 +15,7 @@ import {
 import { createGridAction, fetchOwnCartItems } from '../redux/actions/gridActions';
 
 import DeleteItemsButton from './shared/DeleteItemsButton'
+import CheckoutButton from './shared/checkoutButton'
 import { FormatCurrencyCell } from '../../utilities/tableCellComponent/formatCurrencyCell'
 import { FormatItemImageCell } from '../../utilities/tableCellComponent/formatItemImageCell'
 import { FormatItemNameCell } from '../../utilities/tableCellComponent/formatItemNameCell'
@@ -133,8 +131,9 @@ class CartItemsBoard extends React.Component {
                     <TableSelection showSelectAll />
 
                     <Toolbar />
-
                     <DeleteItemsButton />
+                    <CheckoutButton />
+
                     <PagingPanel
                         pageSizes={allowedPageSizes}
                     />
