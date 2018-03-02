@@ -139,7 +139,7 @@ export function handleDeleteCartItems(cartItemId){
             dataType: 'json',
             type: 'DELETE',
             data: {
-                cart_item_id: cartItemId
+                cart_item_id: [cartItemId]
             },
             beforeSend:function(data) {
                 dispatch(fetchingServerData(true));
