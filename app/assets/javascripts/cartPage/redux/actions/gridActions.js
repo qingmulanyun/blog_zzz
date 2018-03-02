@@ -32,18 +32,18 @@ export function deleteItems(ids) {
     return  function(dispatch, getState) {
         const currentState = getState();
         $.ajax({
-            url: '/carts/api/delete_cart_items',
+            url: '/carts/api/destroy_item',
             dataType: 'json',
             type: 'DELETE',
             data: {
-                ids: ids
+                cart_item_id: ids
             },
             beforeSend:function(data) {
                 dispatch(fetchingServerData(true));
             }.bind(this),
             success: function(data) {
                 dispatch(fetchingServerData(false));
-                dispatch(fetchOwnItems());
+                dispatch(fetchOwnCartItems());
             }.bind(this),
             error: function(xhr, status, err) {
                 dispatch(fetchingServerData(false));

@@ -6,10 +6,13 @@ class CartItemPolicy < ApplicationPolicy
   end
 
   def destroy_item?
-    record.cart.id == user.cart.id
+    record.each do |cart_item|
+      return false if cart_item.cart.user_id != user.id
+    end
+    return true
   end
 
   def update_item?
-    destroy_item?
+    record.cart.user_id == user.id
   end
 end

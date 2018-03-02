@@ -1,11 +1,11 @@
-import React from 'react'
-import { render } from 'react-dom'
-import { createStore, applyMiddleware, compose, combineReducers } from 'redux'
-import { Provider } from 'react-redux'
-import rootReducer from '../CartPage/redux/reducers/rootReducers'
-import { gridReducer } from '../CartPage/redux/reducers/gridReducers'
-import CartRootPage from '../CartPage/components/cartRootPage'
-import thunk from 'redux-thunk'
+import React from 'react';
+import { render } from 'react-dom';
+import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
+import { Provider } from 'react-redux';
+import rootReducer from '../cartPage/redux/reducers/rootReducers';
+import { gridReducer } from '../cartPage/redux/reducers/gridReducers';
+import CartRootPage from '../cartPage/components/cartRootPage';
+import thunk from 'redux-thunk';
 
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import blue from 'material-ui/colors/blue';

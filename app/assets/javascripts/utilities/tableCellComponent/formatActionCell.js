@@ -12,7 +12,7 @@ import Dialog, {
     DialogContentText,
     DialogTitle,
 } from 'material-ui/Dialog';
-// import { handleCartItemQuantityChange } from '../../cartPage/redux/actions/gridActions'
+import { handleCartItemQuantityChange } from '../../cartPage/redux/actions/gridActions'
 
 const styles = theme => ({
     formatDateCell: {
@@ -53,7 +53,7 @@ class FormatActionCellBase extends React.Component {
 
     handleEditCartItemQuantity = (cartItemId) => {
         const quantity = this.refs.cartItemQuantity.value;
-        // this.props.handleCartItemQuantityChange(cartItemId, quantity);
+        this.props.handleCartItemQuantityChange(cartItemId, quantity);
         this.setState({ open: false });
     };
 
