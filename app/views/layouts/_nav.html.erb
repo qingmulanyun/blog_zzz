@@ -24,7 +24,7 @@
           <% if current_user.shop.present? %>
               <li class="collection-item"><a href="<%= user_shop_path(current_user, current_user.shop) %>">我的店铺</a></li>
           <% end %>
-          <li class="collection-item"><a href="<%= carts_cart_items_path %>"><i class="material-icons left">shopping_cart</i>购物车</a></li>
+          <li class="collection-item"><a href="<%= carts_cart_items_path %>"><i class="material-icons left">shopping_cart</i>购物车 <span class="cart-badges"><%= current_user.cart_items_count%></span></a></li>
         </ul>
     <% else %>
         <ul class="right hide-on-med-and-down">
