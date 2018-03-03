@@ -11,7 +11,6 @@ class ItemBrandAvatarUploader < CarrierWave::Uploader::Base
   version :standard do
     process :eager => true
     process :resize_to_fill => [50, 50, :north]
-    cloudinary_transformation :quality => 80
   end
 
   version :thumbnail do

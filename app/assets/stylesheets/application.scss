@@ -1,13 +1,12 @@
 /*
 *= require material_icons
 */
+
 @import "font-awesome-sprockets";
 @import "font-awesome";
 @import "materialize/components/color";
-$primary-color: color("blue", "lighten-2") !default;
-$secondary-color: color("blue", "darken-4") !default;
+@import 'colors';
 @import 'materialize';
-
 
 @import 'layout';
 @import 'sign';
