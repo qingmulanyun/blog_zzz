@@ -47,4 +47,8 @@ class User < ActiveRecord::Base
       user.save!
     end
   end
+
+  def cart_items_count
+    cart.cart_items.count
+  end
 end

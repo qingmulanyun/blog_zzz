@@ -10,7 +10,7 @@ class AdImageUploader < CarrierWave::Uploader::Base
 
   version :standard do
     process :eager => true
-    process :resize_to_fill => [302, 300, :north]
+    process :resize_and_pad => [302, 300, :transparent]
   end
 
   version :thumbnail do
