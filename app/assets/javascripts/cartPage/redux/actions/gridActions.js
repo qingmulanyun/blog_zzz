@@ -91,7 +91,7 @@ export function handleSubmitOrders(ids) {
             dataType: 'json',
             type: 'POST',
             data: {
-                ids: ids
+                cart_items_ids: ids
             },
             beforeSend:function(data) {
                 dispatch(fetchingServerData(true));

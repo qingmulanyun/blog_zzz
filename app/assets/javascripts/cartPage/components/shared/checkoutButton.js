@@ -162,7 +162,7 @@ class CheckoutButton extends React.Component {
                             ordersList.map(function(items_per_shop, index){
                                 var shopTotalPrice = 0;
                                 var shopTotalTransport = 0;
-                                return <div>
+                                return <div key={index} >
                                     <Typography variant="caption" gutterBottom align="left" className={classes.shopName}>
                                         {items_per_shop[0].shop_name}
                                     </Typography>
