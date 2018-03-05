@@ -9,7 +9,11 @@ class OrdersController < ApplicationController
       Order.transaction do
         order = current_user.owned_orders.create!(shop_id: shop_id, statue: 'new' )
         cart_items.each { |cart_item|
-          order.order_items.create!(item_id: cart_item.item.id, quantity: cart_item.quantity)
+          order.order_items.create!(item_id: cart_item.item.id,
+                                    quantity: cart_item.quantity,
+                                    price: cart_item.item.price,
+                                    transport_cost: cart_item.item.transport_cost
+          )
           cart_item.destroy!
         }
       end
@@ -18,5 +22,11 @@ class OrdersController < ApplicationController
 
   def index
     authorize Order
+  end
+
+  def buyer_orders
+    @orders = Order.find_by_buyer_id(current_user.id).includes(:order_items, :items)
+    authorize @orders
+    render 'buyer_orders.json'
   end
 end
