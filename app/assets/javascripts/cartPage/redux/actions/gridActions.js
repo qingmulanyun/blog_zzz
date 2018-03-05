@@ -83,3 +83,26 @@ export function insertOwnCartItemsList(data) {
         data: data
     }
 }
+
+export function handleSubmitOrders(ids) {
+    return  function(dispatch, getState) {
+        $.ajax({
+            url: '/orders/api/create',
+            dataType: 'json',
+            type: 'POST',
+            data: {
+                ids: ids
+            },
+            beforeSend:function(data) {
+                dispatch(fetchingServerData(true));
+            }.bind(this),
+            success: function(data) {
+                dispatch(fetchingServerData(false));
+                window.location.href = '/orders/index';
+            }.bind(this),
+            error: function(xhr, status, err) {
+                dispatch(fetchingServerData(false));
+            }.bind(this)
+        });
+    }
+}

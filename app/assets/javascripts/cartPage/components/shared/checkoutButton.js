@@ -15,6 +15,7 @@ import Grid from 'material-ui/Grid';
 import Typography from 'material-ui/Typography';
 import { Loading } from '../../../utilities/loadingComponent/loading';
 import blue from 'material-ui/colors/blue';
+import { handleSubmitOrders } from '../../redux/actions/gridActions'
 
 const styles = theme => ({
     button: {
@@ -67,7 +68,7 @@ class CheckoutButton extends React.Component {
     };
 
     handleSubmitOrder = (ids) => {
-        // this.props.deleteItems(ids);
+        this.props.submitOrders(ids);
         this.setState({ orderDialogOpen: false });
     };
 
@@ -224,6 +225,9 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => {
     return {
+        submitOrders:(ids) => {
+            dispatch(handleSubmitOrders(ids))
+        }
     }
 };
 
