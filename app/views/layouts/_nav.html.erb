@@ -5,11 +5,14 @@
     <li> <%= link_to('退出账户', destroy_user_session_path, method: :delete) %> </li>
   </ul>
 
-  <ul id="shop_info" class="dropdown-content">
-    <li><a href="<%= own_shop_user_path(current_user) %>">商品列表</a></li>
-    <li class="divider"></li>
-    <li><a href="<%= shops_seller_orders_path %>">已接订单</a></li>
-  </ul>
+  <% if user_signed_in? && current_user.shop.present? %>
+      <ul id="shop_info" class="dropdown-content">
+        <li><a href="<%= own_shop_user_path(current_user) %>">商品列表</a></li>
+        <li class="divider"></li>
+        <li><a href="<%= shops_seller_orders_path %>">已接订单</a></li>
+      </ul>
+  <% end %>
+
   <div class="nav-wrapper container">
     <a id="logo-container" href="/" class="brand-logo">
       <div class="session-logo"><img class="header-logo-img" alt="" src="/assets/blog/profile.jpeg"></div>
