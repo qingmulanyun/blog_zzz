@@ -17,11 +17,14 @@ const getColor = (status) => {
 };
 
 const formatStatus = (status) => {
+    if (status == 'sending') {
+        return '正在发货';
+    }
     if (status == 'sent') {
         return '已发货';
     }
     if (status == 'buying') {
-        return '卖家正在采购';
+        return '正在采购';
     }
     if (status == 'deleted') {
         return '已删除';
@@ -30,7 +33,7 @@ const formatStatus = (status) => {
         return '已取消';
     }
     if (status == 'new') {
-        return '已下单，等待卖家发货';
+        return '已下单，等待发货';
     }
     return ' ';
 };

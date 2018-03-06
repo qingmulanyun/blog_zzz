@@ -34,21 +34,46 @@ export function insertSellerOrders(data) {
     }
 }
 
-export function cancelOrder(orderId) {
+export function handleOrderStatusChange(orderId, status) {
     return  function(dispatch, getState) {
         $.ajax({
-            url: '/orders/api/cancel',
+            url: '/orders/api/update',
             dataType: 'json',
             type: 'PATCH',
             data: {
-                id: orderId
+                id: orderId,
+                status: status
             },
             beforeSend:function(data) {
                 dispatch(fetchingServerData(true));
             }.bind(this),
             success: function(data) {
                 dispatch(fetchingServerData(false));
-                dispatch(insertBuyerOrders(data));
+                dispatch(fetchSellerOrders(data));
+            }.bind(this),
+            error: function(xhr, status, err) {
+                dispatch(fetchingServerData(false));
+            }.bind(this)
+        });
+    }
+}
+
+export function handleSubmitDeliveryTrackNumber(orderId, trackNumber) {
+    return  function(dispatch, getState) {
+        $.ajax({
+            url: '/orders/api/update_delivery_track_number',
+            dataType: 'json',
+            type: 'PATCH',
+            data: {
+                id: orderId,
+                track_number: trackNumber
+            },
+            beforeSend:function(data) {
+                dispatch(fetchingServerData(true));
+            }.bind(this),
+            success: function(data) {
+                dispatch(fetchingServerData(false));
+                dispatch(fetchSellerOrders(data));
             }.bind(this),
             error: function(xhr, status, err) {
                 dispatch(fetchingServerData(false));

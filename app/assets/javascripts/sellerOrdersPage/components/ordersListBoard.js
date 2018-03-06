@@ -192,7 +192,7 @@ const mapDispatchToProps = dispatch => ({
     onPageSizeChange: pageSize => dispatch(createGridAction('pageSize', pageSize)),
     onColumnOrderChange: order => dispatch(createGridAction('columnOrder', order)),
     onColumnWidthsChange: widths => dispatch(createGridAction('columnWidths', widths)),
-    fetchBuyerOrders: () => dispatch(fetchBuyerOrders()),
+    fetchSellerOrders: () => dispatch(fetchSellerOrders()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(OrdersListBoard);

@@ -3,7 +3,9 @@ import { connect } from 'react-redux'
 import { TableCell } from 'material-ui/Table';
 import { withStyles } from 'material-ui/styles';
 import IconButton from 'material-ui/IconButton';
-import CancelIcon from 'material-ui-icons/Cancel';
+import AddShoppingCart from 'material-ui-icons/AddShoppingCart';
+import SendIcon from 'material-ui-icons/Send';
+import EditSendIcon from 'material-ui-icons/Edit';
 import Tooltip from 'material-ui/Tooltip';
 import Dialog, {
     DialogActions,
@@ -12,7 +14,7 @@ import Dialog, {
     DialogTitle,
 } from 'material-ui/Dialog';
 import Button from 'material-ui/Button';
-import { cancelOrder } from '../../redux/actions/gridActions'
+import { handleOrderStatusChange, handleSubmitDeliveryTrackNumber } from '../../redux/actions/gridActions'
 
 const styles = theme => ({
     formatDateCell: {
@@ -39,56 +41,118 @@ class FormatActionCellBase extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            open: false,
+            deliveryTrackDialogOpen: false,
+            updateDeliveryTrackDialogOpen: false
         };
     }
 
-    handleClickOpen = () => {
-        this.setState({ open: true });
+    handleClickOpenDeliveryTrackDialog = () => {
+        this.setState({ deliveryTrackDialogOpen: true });
     };
 
-    handleClose = () => {
-        this.setState({ open: false });
+    handleCloseDeliveryTrackDialog = () => {
+        this.setState({ deliveryTrackDialogOpen: false });
     };
 
-    handleCancelOrder = (orderId) => {
-        this.props.cancelOrder(orderId);
-        this.setState({ open: false });
-    }
+    submitDeliveryTrackNumber = (orderId) => {
+        const deliveryTrackNumber = this.refs.deliveryTrackNumber.value;
+        this.props.handleSubmitDeliveryTrackNumber(orderId, deliveryTrackNumber)
+        this.setState({ deliveryTrackDialogOpen: false });
+    };
 
+    //update track number
+
+    handleClickOpenUpdateDeliveryTrackDialog = () => {
+        this.setState({ updateDeliveryTrackDialogOpen: true });
+    };
+
+    handleCloseUpdateDeliveryTrackDialog = () => {
+        this.setState({ updateDeliveryTrackDialogOpen: false });
+    };
+
+    submitUpdatedDeliveryTrackNumber = (orderId) => {
+        const deliveryTrackNumber = this.refs.updatedDeliveryTrackNumber.value;
+        this.props.handleSubmitDeliveryTrackNumber(orderId, deliveryTrackNumber)
+        this.setState({ updateDeliveryTrackDialogOpen: false });
+    };
 
     render(){
-        const { tableColumn, value, classes, style } = this.props;
+        const { tableColumn, value, classes, style, handleOrderStatusChange } = this.props;
         return (
             <TableCell
                 className={classes.formatDateCell}
             >
                 {
-                    value.status === 'new' &&  <Tooltip id="tooltip-edit-quantity" title="取消订单" placement="right">
-                        <IconButton color="primary" className={classes.button} aria-label="取消订单" onClick={this.handleClickOpen}>
-                            <CancelIcon />
+                    value.status === 'new' &&  <Tooltip id="tooltip-edit-quantity" title="采购货物" placement="right">
+                        <IconButton color="primary" className={classes.button} aria-label="采购货物" onClick={(e)=> handleOrderStatusChange(value.id ,'buying')}>
+                            <AddShoppingCart />
                         </IconButton>
                     </Tooltip>
                 }
-
+                {
+                    value.status === 'buying' &&  <Tooltip id="tooltip-edit-quantity" title="发货" placement="right">
+                        <IconButton color="primary" className={classes.button} aria-label="发货" onClick={this.handleClickOpenDeliveryTrackDialog}>
+                            <SendIcon />
+                        </IconButton>
+                    </Tooltip>
+                }
+                {
+                    value.status === 'sent' &&  <Tooltip id="tooltip-edit-quantity" title="修改运单号" placement="right">
+                        <IconButton color="primary" className={classes.button} aria-label="修改运单号" onClick={this.handleClickOpenUpdateDeliveryTrackDialog}>
+                            <EditSendIcon />
+                        </IconButton>
+                    </Tooltip>
+                }
                 <Dialog
-                    open={this.state.open}
-                    onClose={this.handleClose}
+                    open={this.state.deliveryTrackDialogOpen}
+                    onClose={this.handleDeliveryTrackDialogClose}
                     aria-labelledby="form-dialog-title"
                     fullWidth
                 >
-                    <DialogTitle id="form-dialog-title">取消订单</DialogTitle>
+                    <DialogTitle id="form-dialog-title">添加运单号</DialogTitle>
                     <DialogContent>
                         <DialogContentText>
-                            您确定要取消该订单（{value.id}）？
+                            请输入订单 {value.id} 的运单号。
                         </DialogContentText>
+
+                        <input
+                            defaultValue=""
+                            ref="deliveryTrackNumber"
+                        />
                     </DialogContent>
                     <DialogActions>
-                        <Button onClick={this.handleClose} color="primary">
+                        <Button onClick={this.handleCloseDeliveryTrackDialog} color="primary">
                             取消
                         </Button>
-                        <Button onClick={(e) => this.handleCancelOrder(value.id)} color="primary">
-                            确定
+                        <Button onClick={(e) => this.submitDeliveryTrackNumber(value.id)} color="primary">
+                            提交
+                        </Button>
+                    </DialogActions>
+                </Dialog>
+
+                <Dialog
+                    open={this.state.updateDeliveryTrackDialogOpen}
+                    onClose={this.handleCloseUpdateDeliveryTrackDialog}
+                    aria-labelledby="form-dialog-title"
+                    fullWidth
+                >
+                    <DialogTitle id="form-dialog-title">修改运单号</DialogTitle>
+                    <DialogContent>
+                        <DialogContentText>
+                            请输入订单 {value.id} 的运单号。
+                        </DialogContentText>
+
+                        <input
+                            defaultValue={value.delivery_track_number}
+                            ref="updatedDeliveryTrackNumber"
+                        />
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={this.handleCloseUpdateDeliveryTrackDialog} color="primary">
+                            取消
+                        </Button>
+                        <Button onClick={(e) => this.submitUpdatedDeliveryTrackNumber(value.id)} color="primary">
+                            提交
                         </Button>
                     </DialogActions>
                 </Dialog>
@@ -104,8 +168,11 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        cancelOrder:(orderId)=>{
-            dispatch(cancelOrder(orderId))
+        handleOrderStatusChange:(orderId, status)=>{
+            dispatch(handleOrderStatusChange(orderId, status))
+        },
+        handleSubmitDeliveryTrackNumber:(orderId, trackNumber)=>{
+            dispatch(handleSubmitDeliveryTrackNumber(orderId, trackNumber))
         }
     }
 };
