@@ -1,7 +1,7 @@
 json.array! @orders do |order|
   json.id order.id
   json.created_at order.created_at
-  json.shop_name order.shop.name
+  json.buyer_name order.buyer.name
   json.status order.status
   json.items order.order_items.each do |order_item|
     json.image order_item.item.image
@@ -16,6 +16,7 @@ json.array! @orders do |order|
   json.actions do
     json.id order.id
     json.status order.status
+    json.delivery_track_number order.delivery_track_number
   end
   json.delivery_track_number order.delivery_track_number
 end

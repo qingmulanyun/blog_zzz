@@ -12,7 +12,7 @@ import {
 } from '@devexpress/dx-react-grid-material-ui';
 
 
-import { createGridAction, fetchBuyerOrders } from '../redux/actions/gridActions';
+import { createGridAction, fetchSellerOrders } from '../redux/actions/gridActions';
 
 import { FormatCurrencyCell } from '../../utilities/tableCellComponent/formatCurrencyCell'
 import { FormatItemImageCell } from '../../utilities/tableCellComponent/formatItemImageCell'
@@ -47,7 +47,7 @@ const Cell = (props) => {
 class OrdersListBoard extends React.Component {
 
     componentDidMount() {
-        this.props.fetchBuyerOrders();
+        this.props.fetchSellerOrders();
     }
 
     render (){
@@ -192,7 +192,7 @@ const mapDispatchToProps = dispatch => ({
     onPageSizeChange: pageSize => dispatch(createGridAction('pageSize', pageSize)),
     onColumnOrderChange: order => dispatch(createGridAction('columnOrder', order)),
     onColumnWidthsChange: widths => dispatch(createGridAction('columnWidths', widths)),
-    fetchBuyerOrders: () => dispatch(fetchBuyerOrders()),
+    fetchSellerOrders: () => dispatch(fetchSellerOrders()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(OrdersListBoard);

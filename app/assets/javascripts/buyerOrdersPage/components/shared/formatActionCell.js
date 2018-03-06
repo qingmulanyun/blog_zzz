@@ -71,7 +71,6 @@ class FormatActionCellBase extends React.Component {
                     </Tooltip>
                 }
 
-
                 <Dialog
                     open={this.state.open}
                     onClose={this.handleClose}

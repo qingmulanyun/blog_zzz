@@ -2,12 +2,12 @@ export const GRID_STATE_CHANGE_ACTION = 'GRID_STATE_CHANGE';
 
 const gridInitialState = {
     columns: [
-        { name: 'created_at', title: '下单时间', width: 150 },
+        { name: 'created_at', title: '下单时间', width: 100 },
         { name: 'id', title: '订单号', width: 300 },
-        { name: 'shop_name', title: '店铺名称', width: 150 },
+        { name: 'buyer_name', title: '买家', width: 100 },
         { name: 'status', title: '交易状态', width: 150 },
-        { name: 'delivery_track_number', title: '快递单号', width: 200 },
-        { name: 'actions', title: '交易操作', width: 100 },
+        { name: 'delivery_track_number', title: '运单号', width: 250 },
+        { name: 'actions', title: '交易操作', width: 100 }
     ],
     rows: [],
     sorting: [],
@@ -19,16 +19,15 @@ const gridInitialState = {
     currentPage: 0,
     pageSize: 10,
     allowedPageSizes: [10, 20, 40],
-    columnOrder: [ 'created_at', 'id', 'shop_name', 'status', 'delivery_track_number', 'actions'],
+    columnOrder: [ 'created_at', 'id', 'shop_name', 'status', 'delivery_track_number', 'actions' ],
     columnWidths:
         [
-            { columnName: 'created_at', width: 150 },
+            { columnName: 'created_at', width: 100 },
             { columnName: 'id', width: 300 },
-            { columnName: 'shop_name', width: 150 },
+            { columnName: 'buyer_name', width: 100 },
             { columnName: 'status', width: 150 },
-            { columnName: 'delivery_track_number', width: 200 },
+            { columnName: 'delivery_track_number', width: 250 },
             { columnName: 'actions', width: 100 },
-
         ],
     type: 'all',
     itemsColumns: [
@@ -36,13 +35,13 @@ const gridInitialState = {
         { name: 'item_info', title: '商品' },
         { name: 'price', title: '单价' },
         { name: 'quantity', title: '数量' },
-        { name: 'total_price', title: '实付款' },
+        { name: 'total_price', title: '应付款' },
     ],
     itemsColumnsExtensions: [
         { columnName: 'image', width: 60 },
         { columnName: 'item_info', width: 300 },
-        { columnName: 'price', width: 150 },
-        { columnName: 'quantity', width: 150 },
+        { columnName: 'price', width: 100 },
+        { columnName: 'quantity', width: 100 },
         { columnName: 'total_price', width: 150 },
     ],
 };
@@ -58,7 +57,7 @@ export const gridReducer = (state = gridInitialState, action) => {
         );
         return nextState;
     }
-    if (action.type === 'INSERT_BUYER_ORDERS') {
+    if (action.type === 'INSERT_SELLER_ORDERS') {
         const nextState = Object.assign(
             {},
             state,

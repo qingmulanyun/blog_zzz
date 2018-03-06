@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   root 'home#show'
 
   resources :users do
-    resources :shops, except: :create
+    get 'own_shop', on: :member
   end
 
   draw :item
