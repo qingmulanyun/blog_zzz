@@ -19,7 +19,7 @@ import DeleteIcon from 'material-ui-icons/Delete';
 import { deleteItems } from '../../redux/actions/gridActions'
 import { Loading } from '../../../utilities/loadingComponent/loading';
 
-class DeleteItemsButton extends React.Component {
+class CancelOrdersButton extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -110,4 +110,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(DeleteItemsButton);
+export default connect(mapStateToProps, mapDispatchToProps)(CancelOrdersButton);

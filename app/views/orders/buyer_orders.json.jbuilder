@@ -15,6 +15,7 @@ json.array! @orders do |order|
   end
   json.actions do
     json.id order.id
+    json.status order.status
   end
 end
 

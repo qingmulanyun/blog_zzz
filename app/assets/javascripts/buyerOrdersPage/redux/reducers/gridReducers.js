@@ -4,7 +4,7 @@ const gridInitialState = {
     columns: [
         { name: 'created_at', title: '下单时间', width: 150 },
         { name: 'id', title: '订单号', width: 300 },
-        { name: 'shop_name', title: '店铺名称', width: 300 },
+        { name: 'shop_name', title: '店铺名称', width: 150 },
         { name: 'status', title: '交易状态', width: 150 },
         { name: 'actions', title: '交易操作', width: 100 },
     ],
@@ -23,7 +23,7 @@ const gridInitialState = {
         [
             { columnName: 'created_at', width: 150 },
             { columnName: 'id', width: 300 },
-            { columnName: 'shop_name', width: 300 },
+            { columnName: 'shop_name', width: 150 },
             { columnName: 'status', width: 150 },
             { columnName: 'actions', width: 100 },
 

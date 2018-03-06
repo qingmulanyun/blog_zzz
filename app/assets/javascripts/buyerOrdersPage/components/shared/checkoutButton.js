@@ -7,7 +7,6 @@ import {
 import Dialog, {
     DialogActions,
     DialogContent,
-    DialogContentText,
     DialogTitle,
 } from 'material-ui/Dialog';
 import Button from 'material-ui/Button';

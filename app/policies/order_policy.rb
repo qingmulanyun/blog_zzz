@@ -19,4 +19,8 @@ class OrderPolicy < ApplicationPolicy
     end
     return true
   end
+
+  def cancel?
+    record.buyer_id == user.id
+  end
 end
