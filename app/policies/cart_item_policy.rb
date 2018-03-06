@@ -15,4 +15,11 @@ class CartItemPolicy < ApplicationPolicy
   def update_item?
     record.cart.user_id == user.id
   end
+
+  def create?
+    record.each do |cart_item|
+      return false if cart_item.cart.user_id != user.id
+    end
+    return true
+  end
 end

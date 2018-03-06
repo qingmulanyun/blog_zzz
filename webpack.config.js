@@ -6,7 +6,8 @@ module.exports = {
         homePage: "./app/assets/javascripts/entries/home-page.js",
         shopPage: "./app/assets/javascripts/entries/my-shop-page.js",
         itemPage: "./app/assets/javascripts/entries/item-page.js",
-        cartPage: "./app/assets/javascripts/entries/cart-page.js"
+        cartPage: "./app/assets/javascripts/entries/cart-page.js",
+        buyerOrdersPage: "./app/assets/javascripts/entries/buyer-orders-page.js"
     },
     output: {
         path: __dirname + '/app/assets/javascripts/build/',
