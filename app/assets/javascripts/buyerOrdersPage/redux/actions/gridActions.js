@@ -33,3 +33,26 @@ export function insertBuyerOrders(data) {
         data: data
     }
 }
+
+export function cancelOrder(orderId) {
+    return  function(dispatch, getState) {
+        $.ajax({
+            url: '/orders/api/cancel',
+            dataType: 'json',
+            type: 'PATCH',
+            data: {
+                id: orderId
+            },
+            beforeSend:function(data) {
+                dispatch(fetchingServerData(true));
+            }.bind(this),
+            success: function(data) {
+                dispatch(fetchingServerData(false));
+                dispatch(insertBuyerOrders(data));
+            }.bind(this),
+            error: function(xhr, status, err) {
+                dispatch(fetchingServerData(false));
+            }.bind(this)
+        });
+    }
+}

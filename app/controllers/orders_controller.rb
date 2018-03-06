@@ -30,9 +30,21 @@ class OrdersController < ApplicationController
     render 'buyer_orders.json'
   end
 
+  def cancel
+    order = Order.find(cancel_params[:id])
+    authorize order
+    order.update!(status: 'canceled')
+    @orders = Order.includes(:order_items).where(buyer_id: current_user.id)
+    render 'buyer_orders.json'
+  end
+
   private
 
   def cart_items_params
     params.permit(cart_items_ids: [])
+  end
+
+  def cancel_params
+    params.permit(:id)
   end
 end
