@@ -8,7 +8,7 @@
   <ul id="shop_info" class="dropdown-content">
     <li><a href="<%= own_shop_user_path(current_user) %>">商品列表</a></li>
     <li class="divider"></li>
-    <li><a href="<%= shops_seller_orders_path %>">已接订单</a> </li>
+    <li><a href="<%= shops_seller_orders_path %>">已接订单</a></li>
   </ul>
   <div class="nav-wrapper container">
     <a id="logo-container" href="/" class="brand-logo">
@@ -29,7 +29,8 @@
         <ul id="nav-mobile" class="side-nav collection">
           <li class="collection-item"><a href="#"><%= current_user.name%></a></li>
           <% if current_user.shop.present? %>
-              <li class="collection-item"><a href="<%= own_shop_user_path(current_user) %>">我的店铺</a></li>
+              <li class="collection-item"><a href="<%= own_shop_user_path(current_user) %>">商品列表</a></li>
+              <li class="collection-item"><a href="<%= shops_seller_orders_path %>">已接订单</a></li>
           <% end %>
           <li class="collection-item"><a href="<%= orders_my_orders_path %>"><i class="material-icons left">description</i>我的订单</a></li>
           <li class="collection-item"><a href="<%= carts_cart_items_path %>"><i class="material-icons left">shopping_cart</i>购物车 <span class="cart-badges"><%= current_user.cart_items_count%></span></a></li>
