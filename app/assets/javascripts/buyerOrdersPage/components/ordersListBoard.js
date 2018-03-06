@@ -14,12 +14,14 @@ import {
 
 import { createGridAction, fetchBuyerOrders } from '../redux/actions/gridActions';
 
-import DeleteItemsButton from './shared/DeleteItemsButton'
-import CheckoutButton from './shared/checkoutButton'
 import { FormatCurrencyCell } from '../../utilities/tableCellComponent/formatCurrencyCell'
 import { FormatItemImageCell } from '../../utilities/tableCellComponent/formatItemImageCell'
 import { FormatItemNameCell } from '../../utilities/tableCellComponent/formatItemNameCell'
-import { FormatActionCell } from '../../utilities/tableCellComponent/formatActionCell'
+import { FormatActionCell } from './shared/formatActionCell'
+import { FormatDateCell } from './shared/formatDateCell'
+import { FormatStatusCell } from './shared/formatStatusCell'
+
+import ItemDetailContainer from './itemsDetailsContainer'
 const Cell = (props) => {
     if (props.column.name === 'price' || props.column.name === 'total_price' ) {
         return <FormatCurrencyCell {...props} />;
@@ -32,6 +34,12 @@ const Cell = (props) => {
     }
     if (props.column.name === 'actions'  ) {
         return <FormatActionCell {...props} />;
+    }
+    if (props.column.name === 'created_at'  ) {
+        return <FormatDateCell {...props} />;
+    }
+    if (props.column.name === 'status'  ) {
+        return <FormatStatusCell {...props} />;
     }
     return <Table.Cell {...props} />;
 };
@@ -129,7 +137,9 @@ class OrdersListBoard extends React.Component {
                     <TableHeaderRow showSortingControls />
 
                     <TableSelection showSelectAll />
-
+                    <TableRowDetail
+                        contentComponent={ItemDetailContainer}
+                    />
                     <Toolbar />
 
                     <PagingPanel
