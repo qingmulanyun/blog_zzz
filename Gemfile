@@ -33,7 +33,7 @@ gem 'cloudinary'
 
 gem 'friendly_id'
 
-gem 'rails_admin'
+gem 'rails_admin', '~> 1.3'
 
 gem 'omniauth-google-oauth2'
 
