@@ -13,19 +13,19 @@
 
     <% if user_signed_in? %>
         <ul class="right hide-on-med-and-down">
-          <li class="collection-item"><a href="<%= orders_index_path %>"><i class="material-icons left">description</i>我的订单</a></li>
+          <li class="collection-item"><a href="<%= orders_my_orders_path %>"><i class="material-icons left">description</i>我的订单</a></li>
           <li class="collection-item"><a href="<%= carts_cart_items_path %>"><i class="material-icons left">shopping_cart</i>购物车 <span class="cart-badges"><%= current_user.cart_items_count%></span></a></li>
           <% if current_user.shop.present? %>
-              <li><a href="<%= user_shop_path(current_user, current_user.shop) %>">我的店铺</a></li>
+              <li><a href="<%= own_shop_user_path(current_user) %>">我的店铺</a></li>
           <% end %>
           <li><a class="dropdown-button" href="#!" data-activates="user_profile"><%= current_user.name%><i class="material-icons right">arrow_drop_down</i></a></li>
         </ul>
         <ul id="nav-mobile" class="side-nav collection">
           <li class="collection-item"><a href="#"><%= current_user.name%></a></li>
           <% if current_user.shop.present? %>
-              <li class="collection-item"><a href="<%= user_shop_path(current_user, current_user.shop) %>">我的店铺</a></li>
+              <li class="collection-item"><a href="<%= own_shop_user_path(current_user) %>">我的店铺</a></li>
           <% end %>
-          <li class="collection-item"><a href="<%= orders_index_path %>"><i class="material-icons left">description</i>我的订单</a></li>
+          <li class="collection-item"><a href="<%= orders_my_orders_path %>"><i class="material-icons left">description</i>我的订单</a></li>
           <li class="collection-item"><a href="<%= carts_cart_items_path %>"><i class="material-icons left">shopping_cart</i>购物车 <span class="cart-badges"><%= current_user.cart_items_count%></span></a></li>
         </ul>
     <% else %>

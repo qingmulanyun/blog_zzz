@@ -13,11 +13,6 @@ class ShopsController < ApplicationController
     authorize Shop
   end
 
-  def show
-    @shop = current_user.shop
-    authorize @shop
-  end
-
   def my_shop
     myshop = current_user.shop
     authorize myshop

@@ -24,6 +24,10 @@ class OrdersController < ApplicationController
     authorize Order
   end
 
+  def admin_index
+    authorize Order
+  end
+
   def buyer_orders
     @orders = Order.includes(:order_items).where(buyer_id: current_user.id)
     authorize @orders

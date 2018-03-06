@@ -1,5 +1,6 @@
 # Order
-get '/orders/index', to: 'orders#index'
+get '/orders/my_orders', to: 'orders#index'
+
 
 # API
 post '/orders/api/create', to: 'orders#create'

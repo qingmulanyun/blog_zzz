@@ -20,5 +20,9 @@ class ShopPolicy < ApplicationPolicy
   def create?
     user.present?
   end
+
+  def own_shop?
+    record.user_id = user.id
+  end
 end
 

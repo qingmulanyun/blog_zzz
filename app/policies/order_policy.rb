@@ -23,4 +23,8 @@ class OrderPolicy < ApplicationPolicy
   def cancel?
     record.buyer_id == user.id
   end
+
+  def admin_index?
+    user.shop.present?
+  end
 end
