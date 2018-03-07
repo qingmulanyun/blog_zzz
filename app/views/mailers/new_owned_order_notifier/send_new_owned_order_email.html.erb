@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+    </head>
+  <body>
+  <h1>您好， <%= @user.name %></h1>
+  <p>您收到了新订单：<%= @order.id %></p>
+  <p>买家：<%= @order.buyer.name %></p>
+  <p>请尽快去采购。</p>
+  </body>
+</html>

@@ -62,7 +62,8 @@ class OrdersController < ApplicationController
   def update_delivery_track_number
     order = Order.find(update_track_number_params[:id])
     authorize order
-    order.update!(delivery_track_number: update_track_number_params[:track_number], status: 'sent')
+    order.update!(delivery_track_number: update_track_number_params[:track_number])
+    order.sent
     @orders = Order.includes(:order_items).where(shop_id: current_user.shop.id)
     render 'seller_orders.json'
   end

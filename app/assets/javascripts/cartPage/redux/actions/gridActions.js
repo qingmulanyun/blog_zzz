@@ -98,7 +98,7 @@ export function handleSubmitOrders(ids) {
             }.bind(this),
             success: function(data) {
                 dispatch(fetchingServerData(false));
-                window.location.href = '/orders/index';
+                window.location.href = '/orders/my_orders';
             }.bind(this),
             error: function(xhr, status, err) {
                 dispatch(fetchingServerData(false));
