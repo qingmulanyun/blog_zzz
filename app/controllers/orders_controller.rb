@@ -46,7 +46,7 @@ class OrdersController < ApplicationController
   def cancel
     order = Order.find(cancel_params[:id])
     authorize order
-    order.update!(status: 'canceled')
+    order.cancel
     @orders = Order.includes(:order_items).where(buyer_id: current_user.id)
     render 'buyer_orders.json'
   end
