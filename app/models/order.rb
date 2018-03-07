@@ -12,12 +12,20 @@ class Order < ActiveRecord::Base
       OrderSentNotifier.send_delivery_track_email(order).deliver
     end
 
+    after_transition all - [:canceled]  => :canceled do |order, transition|
+      OrderCanceledNotifier.send_order_canceled_email(order).deliver
+    end
+
     event :buying do
       transition :new => :buying
     end
 
     event :sent do
       transition all - [:sent] => :sent
+    end
+
+    event :cancel do
+      transition all - [:canceled] => :canceled
     end
 
   end
