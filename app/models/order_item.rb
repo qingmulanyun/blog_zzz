@@ -6,6 +6,9 @@ class OrderItem < ActiveRecord::Base
   FOREX = 5.3.freeze
 
 
+  def name
+    item.name
+  end
   def formatted_price
     (price * FOREX).round(2)
   end

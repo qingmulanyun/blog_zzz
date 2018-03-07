@@ -32,6 +32,26 @@
         </tr>
 
         <tr>
+          <td colspan="2" style="border:1px solid #002d6a;">
+            货物信息
+            <ul style="padding-left:0;margin:0; list-style:none;color:rgb(0, 45, 106);font-weight:400;border-top: 1px solid #002d6a;">
+              <% @order.order_items.each do |order_item| %>
+                  <li><%= order_item.name%> *  <%= order_item.quantity%>件</li>
+              <% end %>
+            </ul>
+          </td>
+        </tr>
+
+        <tr>
+          <td colspan="2" style="border:1px solid #002d6a;">
+            应付款
+            <ul style="padding-left:0;margin:0; list-style:none;color:rgb(0, 45, 106);font-weight:400;border-top: 1px solid #002d6a;">
+              <li>¥ <%= @order.order_price%></li>
+            </ul>
+          </td>
+        </tr>
+
+        <tr>
           <td colspan="2" style="font-size:14px">
             预计20天左右到达。
           </td>

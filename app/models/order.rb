@@ -37,4 +37,8 @@ class Order < ActiveRecord::Base
   def new_owned_order_notification
     NewOwnedOrderNotifier.send_new_owned_order_email(self).deliver
   end
+
+  def order_price
+    order_items.reduce(0){|sum, item| sum + (item.formatted_price + item.formatted_transport_cost) * item.quantity}
+  end
 end
