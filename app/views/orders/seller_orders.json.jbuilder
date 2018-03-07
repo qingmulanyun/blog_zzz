@@ -11,7 +11,7 @@ json.array! @orders do |order|
     end
     json.price order_item.formatted_price
     json.quantity order_item.quantity
-    json.total_price (order_item.quantity * order_item.formatted_price) + order_item.formatted_transport_cost
+    json.total_price order_item.quantity * (order_item.formatted_price + order_item.formatted_transport_cost)
   end
   json.actions do
     json.id order.id
