@@ -78,6 +78,7 @@ Rails.application.configure do
 
   # set up the default URL options for the Devise mailer
   config.action_mailer.default_url_options = { host: 'http://blogzzz.herokuapp.com/' }
+  config.action_mailer.asset_host = "http://blogzzz.herokuapp.com/"
   # Do not dump schema after migrations.
   # Precompile additional assets
 end
