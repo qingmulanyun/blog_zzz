@@ -5,6 +5,6 @@ class OrderSentNotifier < ApplicationMailer
     @user = order.buyer
     @order = order
     mail(:to => @user.email,
-    :subject => '已发货')
+    :subject => 'Wala - 已发货')
   end
 end

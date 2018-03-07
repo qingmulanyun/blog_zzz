@@ -5,6 +5,6 @@ class OrderCanceledNotifier < ApplicationMailer
     @user = order.buyer
     @order = order
     mail(:to => @user.email,
-    :subject => '取消订单')
+    :subject => 'Wala - 取消订单')
   end
 end

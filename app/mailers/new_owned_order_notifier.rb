@@ -5,6 +5,6 @@ class NewOwnedOrderNotifier < ApplicationMailer
     @user = order.shop.user
     @order = order
     mail(:to => @user.email,
-    :subject => '新订单生成')
+    :subject => 'Wala - 新订单生成')
   end
 end

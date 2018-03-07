@@ -5,6 +5,6 @@ class UserNotifier < ApplicationMailer
     @user = user
     mail(
         to: @user.email,
-        subject:  'Thanks for signing up for Wala.')
+        subject:  'Wala - 注册确认')
   end
 end
