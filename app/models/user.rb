@@ -49,6 +49,7 @@ class User < ActiveRecord::Base
   end
 
   def cart_items_count
+    create_cart if cart.nil?
     cart.cart_items.count
   end
 end

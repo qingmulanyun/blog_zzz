@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+    </head>
+  <body>
+  <h1>您好， <%= @user.name %></h1>
+  <p>您的订单：<%= @order.id %> 已经发货。</p>
+  <p>运单号：<%= @order.delivery_track_number %></p>
+  <p>预计20天左右到达。</p>
+  </body>
+</html>
