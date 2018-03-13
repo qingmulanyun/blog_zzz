@@ -31,6 +31,10 @@ const styles = theme => ({
     },
     searchLable: {
         margin: "unset !important"
+    },
+    errorTips: {
+        display: "block",
+        marginLeft:  theme.spacing.unit
     }
 });
 
@@ -60,10 +64,11 @@ class ItemsListBoard extends React.Component{
                     </Grid>
                 </Grid>
                 {loading && <Loading />}
-                {allItems.length ==0 && !loading && <Typography variant="headline">
-                    抱歉，没有您要搜索的商品
-                </Typography>}
+
                 <Grid container spacing={24} className={classes.container}>
+                    {allItems.length ==0 && !loading && <Typography  variant="caption" gutterBottom align="center" className={classes.errorTips}>
+                        抱歉，没有您要搜索的商品
+                    </Typography>}
                     {allItems.map((item, index )=> (
                     <Grid item xs={12} sm={6} md={6} lg={3} xl={3} key={index}>
                         <ItemCard item={item} />
