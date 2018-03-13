@@ -16,11 +16,8 @@ class homePageBoard extends React.Component{
     }
 
     render(){
-        const {classes, allItems, ads} = this.props;
+        const {starredItems, allItems, ads} = this.props;
 
-        const starredItems = allItems.filter(function(item) {
-            return item.starred;
-        });
 
         return(
             <div>
@@ -28,7 +25,7 @@ class homePageBoard extends React.Component{
                 {ads.length > 0 &&  <div className="divider"></div>}
                 {starredItems.length > 0 && <StarItemsListBoard starredItems={starredItems}/>}
                 {starredItems.length > 0 && <div className="divider"></div>}
-                {allItems.length > 0 && <ItemsListBoard allItems={allItems}/>}
+                <ItemsListBoard allItems={allItems}/>
             </div>
         );
     }
@@ -37,7 +34,8 @@ class homePageBoard extends React.Component{
 const mapStateToProps = (state) => ({
     allItems: state.root.items,
     loading: state.root.loading,
-    ads: state.root.ads
+    ads: state.root.ads,
+    starredItems: state.root.starredItems
 });
 
 const mapDispatchToProps = (dispatch) => {

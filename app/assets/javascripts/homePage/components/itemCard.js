@@ -63,7 +63,7 @@ class ItemCard extends React.Component {
         const { classes, item } = this.props;
 
         return (
-            <Grow in={true} timeout={1000} style={{ transitionDelay: 500 }}>
+            <Grow in={true} timeout={1000}>
                 <Card className={classes.card}>
                     <a href={`/items/${item.id}`} target="_blank">
                     <CardHeader

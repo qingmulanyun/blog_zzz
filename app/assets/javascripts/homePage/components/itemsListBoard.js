@@ -3,6 +3,9 @@ import { withStyles } from 'material-ui/styles';
 import Grid from 'material-ui/Grid';
 import { connect } from 'react-redux'
 import ItemCard from './itemCard'
+import Typography from 'material-ui/Typography';
+import { handleSearchKeywordsChange } from '../redux/actions/rootActions'
+import { Loading } from '../../utilities/loadingComponent/loading'
 
 const styles = theme => ({
     root: {
@@ -17,18 +20,55 @@ const styles = theme => ({
     },
     icon: {
         color: 'rgba(255, 255, 255, 0.54)',
+    },
+    container: {
+        paddingTop: theme.spacing.unit,
+        minHeight: 500
+    },
+    titleBar: {
+        display: "flex",
+        alignItems: "center"
+    },
+    searchLable: {
+        margin: "unset !important"
+    },
+    errorTips: {
+        display: "block",
+        marginLeft:  theme.spacing.unit
     }
 });
 
 class ItemsListBoard extends React.Component{
 
+    handleSearchItems = keyWords => {
+        this.props.searchKeywordsChange(keyWords);
+    }
+
     render(){
-        const {classes, allItems} = this.props;
+        const {classes, allItems, loading} = this.props;
 
         return(
             <div className={classes.root}>
-                <h5 className="header">商品列表</h5>
-                <Grid container spacing={24}>
+                <Grid container>
+                    <Grid item xs={12} sm={6} md={6} lg={3} xl={3} className={classes.titleBar}>
+                        <Typography variant="headline">
+                            商品列表
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={12} sm={6} md={6} lg={9} xl={9} >
+                        <div className="input-field">
+                            <input type="text" id="autocomplete-input" className="autocomplete" onChange={(e)=>this.handleSearchItems(e.target.value)}/>
+                            <i className="material-icons prefix">search</i>
+                            <label className={classes.searchLable}>搜索商品</label>
+                        </div>
+                    </Grid>
+                </Grid>
+                {loading && <Loading />}
+
+                <Grid container spacing={24} className={classes.container}>
+                    {allItems.length ==0 && !loading && <Typography  variant="caption" gutterBottom align="center" className={classes.errorTips}>
+                        抱歉，没有您要搜索的商品
+                    </Typography>}
                     {allItems.map((item, index )=> (
                     <Grid item xs={12} sm={6} md={6} lg={3} xl={3} key={index}>
                         <ItemCard item={item} />
@@ -46,7 +86,9 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => {
     return {
-
+        searchKeywordsChange: (keyWords)=> {
+            dispatch(handleSearchKeywordsChange(keyWords))
+        }
     }
 };
 
