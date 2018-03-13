@@ -12,6 +12,11 @@ class ItemPolicy < ApplicationPolicy
   def home_page_info?
     true
   end
+
+  def search_items?
+    true
+  end
+
   def show?
     true
   end

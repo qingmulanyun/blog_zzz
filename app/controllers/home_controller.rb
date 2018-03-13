@@ -11,4 +11,11 @@ class HomeController < ApplicationController
     authorize Item
     render 'home_page_info.json'
   end
+
+  def search_items
+    keywords = params[:key_words]
+    @items = Item.includes(shop: [:user]).where('lower(items.name) LIKE :search or lower(items.description) LIKE :search', search: "%#{keywords}%")
+    authorize Item
+    render 'items.json'
+  end
 end
