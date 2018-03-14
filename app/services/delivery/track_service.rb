@@ -14,10 +14,14 @@ module Delivery
     end
 
     def query_delivery_order
+      result = []
       response = Net::HTTP.post_form(URI.parse(@url), { OrderId: @track_number})
       doc = Nokogiri::HTML(response.body)
-      a = doc.css('igg_LaytonItem','ig_LaytonItem')
-      puts a
+      doc.css('table').last.css('span').each do |span_ele|
+        if span_ele.child.present?
+         Date.parse(span_ele.child.inner_text)
+        end
+      end
     end
   end
 end
