@@ -68,6 +68,10 @@ class OrdersController < ApplicationController
     render 'seller_orders.json'
   end
 
+  def delivery_tracking
+
+  end
+
   private
 
   def cart_items_params
