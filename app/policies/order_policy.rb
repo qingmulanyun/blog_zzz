@@ -42,4 +42,8 @@ class OrderPolicy < ApplicationPolicy
   def admin_index?
     user.shop.present?
   end
+  
+  def delivery_tracking?
+    record.buyer_id = user.id || record.shop_id = user.shop.id
+  end
 end
