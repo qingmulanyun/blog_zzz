@@ -7,6 +7,7 @@ import AddShoppingCart from 'material-ui-icons/AddShoppingCart';
 import SendIcon from 'material-ui-icons/Send';
 import EditSendIcon from 'material-ui-icons/Edit';
 import Tooltip from 'material-ui/Tooltip';
+import DeliveryIcon from 'material-ui-icons/LocalShipping';
 import Dialog, {
     DialogActions,
     DialogContent,
@@ -14,7 +15,16 @@ import Dialog, {
     DialogTitle,
 } from 'material-ui/Dialog';
 import Button from 'material-ui/Button';
-import { handleOrderStatusChange, handleSubmitDeliveryTrackNumber } from '../../redux/actions/gridActions'
+import { handleOrderStatusChange, handleSubmitDeliveryTrackNumber, deliveryTrack, insertDeliveryTrack } from '../../redux/actions/gridActions'
+import List, {
+    ListItem,
+    ListItemAvatar,
+    ListItemIcon,
+    ListItemSecondaryAction,
+    ListItemText,
+} from 'material-ui/List';
+import classnames from 'classnames';
+import blue from 'material-ui/colors/blue'
 
 const styles = theme => ({
     formatDateCell: {
@@ -35,6 +45,9 @@ const styles = theme => ({
     },
     quantityName: {
         lineHeight: 3.5
+    },
+    latestInfo: {
+        color: blue[500]
     }
 });
 class FormatActionCellBase extends React.Component {
@@ -42,7 +55,8 @@ class FormatActionCellBase extends React.Component {
         super(props);
         this.state = {
             deliveryTrackDialogOpen: false,
-            updateDeliveryTrackDialogOpen: false
+            updateDeliveryTrackDialogOpen: false,
+            deliveryTrackInfoDialogOpen: false
         };
     }
 
@@ -56,7 +70,7 @@ class FormatActionCellBase extends React.Component {
 
     submitDeliveryTrackNumber = (orderId) => {
         const deliveryTrackNumber = this.refs.deliveryTrackNumber.value;
-        this.props.handleSubmitDeliveryTrackNumber(orderId, deliveryTrackNumber)
+        this.props.handleSubmitDeliveryTrackNumber(orderId, deliveryTrackNumber);
         this.setState({ deliveryTrackDialogOpen: false });
     };
 
@@ -72,12 +86,24 @@ class FormatActionCellBase extends React.Component {
 
     submitUpdatedDeliveryTrackNumber = (orderId) => {
         const deliveryTrackNumber = this.refs.updatedDeliveryTrackNumber.value;
-        this.props.handleSubmitDeliveryTrackNumber(orderId, deliveryTrackNumber)
+        this.props.handleSubmitDeliveryTrackNumber(orderId, deliveryTrackNumber);
         this.setState({ updateDeliveryTrackDialogOpen: false });
     };
 
+    //check Delivery Track info
+
+    handleDeliveryTrackDialogClose = () => {
+        this.setState({ deliveryTrackInfoDialogOpen: false });
+        this.props.clearDeliveryTrack();
+    };
+
+    handleDeliveryTrack = (orderId) => {
+        this.props.deliveryTrack(orderId);
+        this.setState({ deliveryTrackInfoDialogOpen: true });
+    }
+
     render(){
-        const { tableColumn, value, classes, style, handleOrderStatusChange } = this.props;
+        const { deliveryTracking, value, classes, loading, handleOrderStatusChange } = this.props;
         return (
             <TableCell
                 className={classes.formatDateCell}
@@ -97,12 +123,24 @@ class FormatActionCellBase extends React.Component {
                     </Tooltip>
                 }
                 {
-                    value.status === 'sent' &&  <Tooltip id="tooltip-edit-quantity" title="修改运单号" placement="right">
+                    value.status === 'sent' &&
+                        <Tooltip id="tooltip-edit-quantity" title="修改运单号" placement="right">
                         <IconButton color="primary" className={classes.button} aria-label="修改运单号" onClick={this.handleClickOpenUpdateDeliveryTrackDialog}>
                             <EditSendIcon />
                         </IconButton>
                     </Tooltip>
+
                 }
+
+                {
+                    value.delivery_track_number.length > 0 && <Tooltip id="tooltip-track-delivery" title="查看物流" placement="right">
+                        <IconButton color="primary" className={classes.button} aria-label="查看物流" onClick={(e) =>this.handleDeliveryTrack(value.id)}>
+                            <DeliveryIcon />
+                        </IconButton>
+                    </Tooltip>
+
+                }
+
                 <Dialog
                     open={this.state.deliveryTrackDialogOpen}
                     onClose={this.handleDeliveryTrackDialogClose}
@@ -156,6 +194,33 @@ class FormatActionCellBase extends React.Component {
                         </Button>
                     </DialogActions>
                 </Dialog>
+
+                <Dialog
+                    open={this.state.deliveryTrackInfoDialogOpen}
+                    onClose={this.handleDeliveryTrackDialogClose}
+                    aria-labelledby="form-dialog-title"
+                    fullWidth
+                >
+                    <DialogTitle id="form-dialog-title">物流查询</DialogTitle>
+                    <DialogContent>
+                        <List dense={true}>
+                            {
+
+                                deliveryTracking.map(function(deliveryInfo, index){
+                                    return  <ListItem key={index} className={classnames({ [classes.latestInfo]: index+1 === deliveryTracking.length })}>
+                                        {`${deliveryInfo.time}  ${deliveryInfo.location} ${deliveryInfo.description} `}
+                                    </ListItem>
+                                })
+                            }
+                        </List>
+
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={this.handleDeliveryTrackDialogClose} color="primary">
+                            关闭
+                        </Button>
+                    </DialogActions>
+                </Dialog>
             </TableCell>
         )
     }
@@ -163,7 +228,8 @@ class FormatActionCellBase extends React.Component {
 
 
 const mapStateToProps = (state) => ({
-
+    deliveryTracking: state.grid.deliveryTracking,
+    loading: state.root.loading
 });
 
 const mapDispatchToProps = (dispatch) => {
@@ -173,6 +239,12 @@ const mapDispatchToProps = (dispatch) => {
         },
         handleSubmitDeliveryTrackNumber:(orderId, trackNumber)=>{
             dispatch(handleSubmitDeliveryTrackNumber(orderId, trackNumber))
+        },
+        deliveryTrack:(orderId)=>{
+            dispatch(deliveryTrack(orderId))
+        },
+        clearDeliveryTrack: () => {
+            dispatch(insertDeliveryTrack([]))
         }
     }
 };

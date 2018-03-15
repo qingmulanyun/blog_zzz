@@ -41,6 +41,8 @@ gem 'will_paginate'
 
 gem 'geocoder'
 
+gem 'nokogiri'
+
 gem 'acts-as-taggable-on'
 gem 'state_machine'
 # Use rest_client for http request (multipart send featured)

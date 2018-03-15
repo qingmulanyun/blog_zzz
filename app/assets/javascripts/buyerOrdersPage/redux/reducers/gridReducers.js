@@ -6,8 +6,8 @@ const gridInitialState = {
         { name: 'id', title: '订单号', width: 300 },
         { name: 'shop_name', title: '店铺名称', width: 150 },
         { name: 'status', title: '交易状态', width: 150 },
-        { name: 'delivery_track_number', title: '快递单号', width: 200 },
-        { name: 'actions', title: '交易操作', width: 100 },
+        { name: 'delivery_track_number', title: '快递单号', width: 150 },
+        { name: 'actions', title: '交易操作', width: 350 },
     ],
     rows: [],
     sorting: [],
@@ -26,8 +26,8 @@ const gridInitialState = {
             { columnName: 'id', width: 300 },
             { columnName: 'shop_name', width: 150 },
             { columnName: 'status', width: 150 },
-            { columnName: 'delivery_track_number', width: 200 },
-            { columnName: 'actions', width: 100 },
+            { columnName: 'delivery_track_number', width: 150 },
+            { columnName: 'actions', width: 350 },
 
         ],
     type: 'all',
@@ -45,6 +45,7 @@ const gridInitialState = {
         { columnName: 'quantity', width: 150 },
         { columnName: 'total_price', width: 150 },
     ],
+    deliveryTracking: [],
 };
 
 export const gridReducer = (state = gridInitialState, action) => {
@@ -64,6 +65,16 @@ export const gridReducer = (state = gridInitialState, action) => {
             state,
             {
                 rows: action.data,
+            },
+        );
+        return nextState;
+    }
+    if (action.type === 'INSERT_DELIVERY_TRACK') {
+        const nextState = Object.assign(
+            {},
+            state,
+            {
+                deliveryTracking: action.data,
             },
         );
         return nextState;

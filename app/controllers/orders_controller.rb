@@ -68,6 +68,13 @@ class OrdersController < ApplicationController
     render 'seller_orders.json'
   end
 
+  def delivery_tracking
+    order = Order.find( params[:order_id])
+    authorize order
+    @result = ::Delivery::Track_service.new(order.delivery_track_number, ENV['DELIVERY_SERVICE_HOST_URL']).query_delivery_order
+    render 'delivery_tracking_info.json'
+  end
+
   private
 
   def cart_items_params

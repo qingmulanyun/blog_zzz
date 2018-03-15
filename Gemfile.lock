@@ -305,6 +305,7 @@ DEPENDENCIES
   jquery-rails
   material_icons
   materialize-sass
+  nokogiri
   non-stupid-digest-assets
   omniauth-google-oauth2
   pg (~> 0.20)
