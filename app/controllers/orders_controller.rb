@@ -71,7 +71,7 @@ class OrdersController < ApplicationController
   def delivery_tracking
     order = Order.find( params[:order_id])
     authorize order
-    @result = Delivery::Track_service.new(order.delivery_track_number,ENV['delivery_service_host_url']).query_delivery_order
+    @result = ::Delivery::Track_service.new(order.delivery_track_number, ENV['DELIVERY_SERVICE_HOST_URL']).query_delivery_order
     render 'delivery_tracking_info.json'
   end
 

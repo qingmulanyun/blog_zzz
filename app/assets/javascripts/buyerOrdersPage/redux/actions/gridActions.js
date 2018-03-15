@@ -56,3 +56,33 @@ export function cancelOrder(orderId) {
         });
     }
 }
+
+export function deliveryTrack(orderId) {
+    return  function(dispatch, getState) {
+        $.ajax({
+            url: '/orders/api/delivery_tracking',
+            dataType: 'json',
+            type: 'GET',
+            data: {
+                order_id: orderId
+            },
+            beforeSend:function(data) {
+                dispatch(fetchingServerData(true));
+            }.bind(this),
+            success: function(data) {
+                dispatch(fetchingServerData(false));
+                dispatch(insertDeliveryTrack(data));
+            }.bind(this),
+            error: function(xhr, status, err) {
+                dispatch(fetchingServerData(false));
+            }.bind(this)
+        });
+    }
+}
+
+export function insertDeliveryTrack(data){
+    return {
+        type: "INSERT_DELIVERY_TRACK",
+        data: data
+    }
+}
