@@ -16,7 +16,7 @@ json.array! @orders do |order|
   json.actions do
     json.id order.id
     json.status order.status
-    json.delivery_track_number order.delivery_track_number
+    json.delivery_track_number order.delivery_track_number || ''
   end
   json.delivery_track_number order.delivery_track_number
 end
