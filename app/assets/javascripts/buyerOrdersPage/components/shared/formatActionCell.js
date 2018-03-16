@@ -29,7 +29,6 @@ const styles = theme => ({
         paddingRight: theme.spacing.unit,
     },
     button: {
-        margin: theme.spacing.unit,
     },
     quantityContainer: {
         width: "100px",
