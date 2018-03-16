@@ -55,7 +55,7 @@ class ItemsListBoard extends React.Component{
                             商品列表
                         </Typography>
                     </Grid>
-                    <Grid item xs={12} sm={6} md={6} lg={9} xl={9} >
+                    <Grid item xs={10} sm={6} md={6} lg={9} xl={9} >
                         <div className="input-field">
                             <input type="text" id="autocomplete-input" className="autocomplete" onChange={(e)=>this.handleSearchItems(e.target.value)}/>
                             <i className="material-icons prefix">search</i>

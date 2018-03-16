@@ -1,18 +1,22 @@
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: 'form-horizontal' }) do |f| %>
-    <div class="auth-form-header p-0">
-      <h1>Reset your password</h1>
-    </div>
-    <div id="js-flash-container">
-      <% if alert %>
-          <p class="alert alert-danger"><%= alert %></p>
-      <% end %>
-    </div>
-    <div class="auth-form-body mt-3">
-      <label for="login_field">
-        Enter your email address and we will send you a link to reset your password.
-      </label>
-      <%= f.email_field :email, autofocus: true, class: "form-control input-block" %>
+<div class="row container">
+  <div class="col s12 m6 l4 card login-card">
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: {method: :post, class: 'login-form'}) do |f| %>
+        <div class="card-content">
+          <span class="card-title">忘记密码</span>
+          <p> 请输入您注册时的邮箱地址，我们将会发送重置密码的链接到您的邮箱中，请注意查收。</p>
+          <div class="row">
+            <div class="input-field col s12">
+              <i class="material-icons prefix">email</i>
+              <input type="email" class="validate login-input" name="user[email]" id="user_email" autofocus="autofocus" required />
+            </div>
 
-      <input class="btn btn-primary btn-block" data-disable-with="Sending email…" name="commit" tabindex="3" type="submit" value="Send password reset email">
-    </div>
-<% end %>
+            <div class="col s12">
+              <button class="btn waves-light login-btn" type="submit" data-disable-with="正在发送…">发送重置密码链接
+              </button>
+            </div>
+          </div>
+        </div>
+    <% end %>
+  </div>
+  <div class="col s12 m6 l8"></div>
+</div>
