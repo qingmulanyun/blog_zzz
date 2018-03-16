@@ -36,7 +36,7 @@ const gridInitialState = {
         { name: 'item_info', title: '商品' },
         { name: 'price', title: '单价' },
         { name: 'quantity', title: '数量' },
-        { name: 'total_price', title: '实付款' },
+        { name: 'total_price', title: '实付款(含运费)' },
     ],
     itemsColumnsExtensions: [
         { columnName: 'image', width: 60 },
