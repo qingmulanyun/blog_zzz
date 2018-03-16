@@ -28,6 +28,10 @@ class Order < ActiveRecord::Base
       transition all - [:canceled] => :canceled
     end
 
+    event :delivered do
+      transition all - [:delivered] => :delivered
+    end
+
   end
 
   def new_order_notification

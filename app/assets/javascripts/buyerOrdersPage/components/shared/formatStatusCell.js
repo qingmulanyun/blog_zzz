@@ -2,6 +2,7 @@ import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import { TableCell } from 'material-ui/Table';
 import { withStyles } from 'material-ui/styles';
+import blue from 'material-ui/colors/blue'
 
 const getColor = (status) => {
     if (status == 'deleted') {
@@ -12,6 +13,9 @@ const getColor = (status) => {
     }
     if (status == 'new') {
         return '#009688';
+    }
+    if (status == 'delivered') {
+        return blue[500]
     }
     return '#FFC107';
 };
@@ -31,6 +35,9 @@ const formatStatus = (status) => {
     }
     if (status == 'new') {
         return '已下单，等待卖家发货';
+    }
+    if (status == 'delivered') {
+        return '送达，交易结束'
     }
     return ' ';
 };
