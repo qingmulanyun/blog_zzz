@@ -1,5 +1,5 @@
 class RegistrationsController < Devise::RegistrationsController
-  layout 'sign_up'
+  layout 'sign_up', only: [:create]
 
   def create
     super do |resource|
