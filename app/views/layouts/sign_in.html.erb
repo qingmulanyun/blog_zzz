@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html ng-app="blogzzz">
 <head>
-  <title>登录 &bull; Wala</title>
+  <title> <%= yield(:title) if content_for?(:title) %> &bull; Wala</title>
   <%= stylesheet_link_tag    'application' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
