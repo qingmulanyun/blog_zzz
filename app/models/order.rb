@@ -16,6 +16,10 @@ class Order < ActiveRecord::Base
       OrderCanceledNotifier.send_order_canceled_email(order).deliver
     end
 
+    after_transition all - [:delivered]  => :delivered do |order, transition|
+      OrderDeliveredNotifier.send_delivered_confirmation_email(order).deliver
+    end
+
     event :buying do
       transition :new => :buying
     end
