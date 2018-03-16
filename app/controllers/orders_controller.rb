@@ -75,6 +75,15 @@ class OrdersController < ApplicationController
     render 'delivery_tracking_info.json'
   end
 
+  # buyer only
+  def confirm_delivered
+    order = Order.find( params[:id])
+    authorize order
+    order.delivered
+    @orders = Order.includes(:order_items).where(shop_id: current_user.shop.id)
+    render 'buyer_orders.json'
+  end
+
   private
 
   def cart_items_params

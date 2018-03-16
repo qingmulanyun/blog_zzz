@@ -86,3 +86,26 @@ export function insertDeliveryTrack(data){
         data: data
     }
 }
+
+export function confirmDelivered(orderId){
+    return  function(dispatch, getState) {
+        $.ajax({
+            url: '/orders/api/confirm_delivered',
+            dataType: 'json',
+            type: 'PATCH',
+            data: {
+                id: orderId
+            },
+            beforeSend:function(data) {
+                dispatch(fetchingServerData(true));
+            }.bind(this),
+            success: function(data) {
+                dispatch(fetchingServerData(false));
+                dispatch(insertBuyerOrders(data));
+            }.bind(this),
+            error: function(xhr, status, err) {
+                dispatch(fetchingServerData(false));
+            }.bind(this)
+        });
+    }
+}

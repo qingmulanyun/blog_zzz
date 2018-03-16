@@ -16,7 +16,7 @@ const FormatCurrencyCellBase = ({
     <TableCell
         className={classes.formatDateCell}
     >
-        {`¥ ${value}`}
+        {`¥ ${value.toFixed(2)}`}
     </TableCell>
 );
 

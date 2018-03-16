@@ -46,4 +46,8 @@ class OrderPolicy < ApplicationPolicy
   def delivery_tracking?
     record.buyer_id = user.id || record.shop_id = user.shop.id
   end
+
+  def confirm_delivered?
+    record.buyer_id = user.id
+  end
 end

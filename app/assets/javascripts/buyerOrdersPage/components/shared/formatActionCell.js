@@ -5,6 +5,7 @@ import { withStyles } from 'material-ui/styles';
 import IconButton from 'material-ui/IconButton';
 import CancelIcon from 'material-ui-icons/Cancel';
 import DeliveryIcon from 'material-ui-icons/LocalShipping';
+import ConfirmIcon from 'material-ui-icons/LocalMall';
 import Tooltip from 'material-ui/Tooltip';
 import Dialog, {
     DialogActions,
@@ -13,7 +14,7 @@ import Dialog, {
     DialogTitle,
 } from 'material-ui/Dialog';
 import Button from 'material-ui/Button';
-import { cancelOrder, deliveryTrack, insertDeliveryTrack } from '../../redux/actions/gridActions'
+import { cancelOrder, deliveryTrack, insertDeliveryTrack, confirmDelivered } from '../../redux/actions/gridActions'
 import List, {
     ListItem,
     ListItemAvatar,
@@ -23,6 +24,8 @@ import List, {
 } from 'material-ui/List';
 import classnames from 'classnames';
 import blue from 'material-ui/colors/blue'
+import Avatar from 'material-ui/Avatar';
+
 const styles = theme => ({
     formatDateCell: {
         paddingLeft: theme.spacing.unit,
@@ -51,7 +54,8 @@ class FormatActionCellBase extends React.Component {
         super(props);
         this.state = {
             cancelOrderDialogOpen: false,
-            deliveryTrackDialogOpen: false
+            deliveryTrackDialogOpen: false,
+            confirmDeliveredDialogOpen: false
         };
     }
 
@@ -66,7 +70,7 @@ class FormatActionCellBase extends React.Component {
     handleCancelOrder = (orderId) => {
         this.props.cancelOrder(orderId);
         this.setState({ cancelOrderDialogOpen: false });
-    }
+    };
 
 
     handleDeliveryTrackDialogClose = () => {
@@ -77,11 +81,24 @@ class FormatActionCellBase extends React.Component {
     handleDeliveryTrack = (orderId) => {
         this.props.deliveryTrack(orderId);
         this.setState({ deliveryTrackDialogOpen: true });
+    };
+
+    // confirm delivered
+    alertConfirmDeliveredDialog = () => {
+        this.setState({ confirmDeliveredDialogOpen: true });
+    };
+
+    handleConfirmDeliveredDialogClose = () => {
+        this.setState({ confirmDeliveredDialogOpen: false });
+    };
+
+    handleConfirmDelivered = (orderId) => {
+        this.props.confirmDelivered(orderId);
+        this.setState({ confirmDeliveredDialogOpen: false });
     }
 
-
     render(){
-        const { loading, value, classes, deliveryTracking } = this.props;
+        const { value, classes, deliveryTracking, row } = this.props;
         return (
             <TableCell
                 className={classes.formatDateCell}
@@ -98,6 +115,14 @@ class FormatActionCellBase extends React.Component {
                     value.delivery_track_number.length > 0 &&  <Tooltip id="tooltip-track-delivery" title="查看物流" placement="right">
                         <IconButton color="primary" className={classes.button} aria-label="查看物流" onClick={(e) =>this.handleDeliveryTrack(value.id)}>
                             <DeliveryIcon />
+                        </IconButton>
+                    </Tooltip>
+                }
+
+                {
+                    value.status === 'sent' && <Tooltip id="tooltip-confirm-delivered" title="确认收货" placement="right">
+                        <IconButton color="primary" className={classes.button} aria-label="确认收货" onClick={this.alertConfirmDeliveredDialog}>
+                            <ConfirmIcon />
                         </IconButton>
                     </Tooltip>
                 }
@@ -150,6 +175,42 @@ class FormatActionCellBase extends React.Component {
                         </Button>
                     </DialogActions>
                 </Dialog>
+
+                <Dialog
+                    open={this.state.confirmDeliveredDialogOpen}
+                    onClose={this.handleConfirmDeliveredDialogClose}
+                    aria-labelledby="form-dialog-title"
+                    fullWidth
+                >
+                    <DialogTitle id="form-dialog-title">确认收货</DialogTitle>
+                    <DialogContent>
+                        <DialogContentText>
+                            您确定已经收到货物？
+                        </DialogContentText>
+                        <List dense={true}>
+                            {
+
+                                row.items.map(function(item, index){
+                                    return  <ListItem key={index}>
+                                        <Avatar src={item.image.thumbnail.url} />
+                                        <ListItemText primary={`${item.item_info.name}， ${item.quantity} 件`} />
+
+                                    </ListItem>
+                                })
+                            }
+                        </List>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={this.handleConfirmDeliveredDialogClose} color="primary">
+                            取消
+                        </Button>
+                        <Button onClick={(e) => this.handleConfirmDelivered(value.id)} color="primary">
+                            确定
+                        </Button>
+                    </DialogActions>
+                </Dialog>
+
+
             </TableCell>
         )
     }
@@ -171,6 +232,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         clearDeliveryTrack: () => {
             dispatch(insertDeliveryTrack([]))
+        },
+        confirmDelivered: (orderId) => {
+            dispatch(confirmDelivered(orderId))
         }
     }
 };
