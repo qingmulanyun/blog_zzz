@@ -18,4 +18,5 @@ Rails.application.routes.draw do
   draw :home
   draw :cart
   draw :order
+  draw :setting
 end
