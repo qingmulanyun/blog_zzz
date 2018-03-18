@@ -1,16 +1,5 @@
 <% title "个人资料" %>
 
-<div class="row">
+<div id="profile-container">Loading...</div>
 
-  <div class="col s3">
-    <div class="collection">
-      <a class="collection-item active">账户信息</a>
-      <a href="<%= setting_addresses_path%>" class="collection-item">收货地址</a>
-    </div>
-  </div>
-
-  <div class="col s9">
-    <!-- Teal page content  -->
-  </div>
-
-</div>
+<%= javascript_include_tag 'build/profilePage.bundle' %>

@@ -8,7 +8,8 @@ module.exports = {
         itemPage: "./app/assets/javascripts/entries/item-page.js",
         cartPage: "./app/assets/javascripts/entries/cart-page.js",
         buyerOrdersPage: "./app/assets/javascripts/entries/buyer-orders-page.js",
-        sellerOrdersPage: "./app/assets/javascripts/entries/seller-orders-page.js"
+        sellerOrdersPage: "./app/assets/javascripts/entries/seller-orders-page.js",
+        profilePage: "./app/assets/javascripts/entries/profile-page.js"
     },
     output: {
         path: __dirname + '/app/assets/javascripts/build/',
