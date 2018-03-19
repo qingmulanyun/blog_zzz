@@ -8,7 +8,9 @@ import Button from 'material-ui/Button';
 import Save from 'material-ui-icons/Save';
 import TextField from 'material-ui/TextField';
 import { fetchProfileInfo, submitUpdateProfile, handleChangeProfile } from '../redux/actions/profileActions'
-
+import { closeTip } from '../redux/actions/rootActions'
+import Snackbar from '../../utilities/Snackbar/Snackbar';
+import { Done } from "material-ui-icons";
 
 const style = theme => ({
     formContainer: {
@@ -36,7 +38,7 @@ class Profile extends React.Component {
     }
 
     render (){
-        const { classes, profile, handleSubmitUpdateProfile, handleChangeProfile } = this.props;
+        const { classes, profile, handleSubmitUpdateProfile, handleChangeProfile, tipOpen, handleCloseTip } = this.props;
         return (
 
             <div>
@@ -99,6 +101,16 @@ class Profile extends React.Component {
                         </div>
                     </form>
                 </div>
+
+                <Snackbar
+                    place="tc"
+                    color="info"
+                    icon={Done}
+                    message="个人资料保存成功"
+                    open={tipOpen}
+                    closeNotification={ handleCloseTip }
+                    close
+                />
             </div>
         )
     }
@@ -106,7 +118,8 @@ class Profile extends React.Component {
 
 
 const mapStateToProps = (state) => ({
-    profile: state.profile
+    profile: state.profile,
+    tipOpen: state.root.topOpen
 });
 
 const mapDispatchToProps = (dispatch) => {
@@ -119,6 +132,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         handleSubmitUpdateProfile: ()=>{
             dispatch(submitUpdateProfile())
+        },
+        handleCloseTip: ()=>{
+            dispatch(closeTip())
         }
     }
 };

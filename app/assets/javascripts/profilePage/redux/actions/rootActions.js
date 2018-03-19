@@ -4,3 +4,9 @@ export function fetchingServerData(bool) {
         isFetching: bool
     }
 }
+
+export function closeTip() {
+    return {
+        type: 'CLOSE_TIP'
+    }
+}

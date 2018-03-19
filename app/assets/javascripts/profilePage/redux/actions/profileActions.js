@@ -61,11 +61,18 @@ export function submitUpdateProfile(){
             success: function(data) {
                 dispatch(fetchingServerData(false));
                 dispatch(insertProfileInfo(data.profile_info));
+                dispatch(updateProfileSuccessfully());
             }.bind(this),
             error: function(xhr, status, err) {
                 dispatch(fetchingServerData(false));
             }.bind(this)
         });
+    }
+}
+
+export function updateProfileSuccessfully(){
+    return {
+        type: "UPDATE_PROFILE_SUCCESSFULLY"
     }
 }
 

@@ -3,6 +3,7 @@ import { LOCATION_CHANGE } from 'react-router-redux';
 const initialState = {
   loading: false,
   currentTab: 'profile',
+  topOpen: false
 };
 
 export default function reducer(state = initialState, action = {}) {
@@ -17,6 +18,16 @@ export default function reducer(state = initialState, action = {}) {
           return {
               ...state,
               loading: action.isFetching
+          };
+      case "UPDATE_PROFILE_SUCCESSFULLY":
+          return {
+              ...state,
+              topOpen: true
+          };
+      case "CLOSE_TIP":
+          return {
+              ...state,
+              topOpen: false
           };
       default:
       return state;
