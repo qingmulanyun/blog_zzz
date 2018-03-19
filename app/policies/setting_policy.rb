@@ -3,7 +3,11 @@ class SettingPolicy < ApplicationPolicy
     true
   end
 
-  def addresses_index?
+  def profile_info?
+    true
+  end
+
+  def update_profile_info?
     true
   end
 end
