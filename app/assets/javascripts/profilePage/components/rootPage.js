@@ -3,6 +3,7 @@ import { withStyles } from 'material-ui/styles';
 import { connect } from 'react-redux';
 import Sidebar from './sidebarComponent'
 import classnames from 'classnames'
+import { Loading } from '../../utilities/loadingComponent/loading';
 
 const style = theme => ({
     contentContainer: {
@@ -13,10 +14,10 @@ const style = theme => ({
 class RootPage extends React.Component {
 
     render (){
-        const { classes } = this.props;
+        const { classes, loading } = this.props;
         return (
             <div className="row">
-
+                {loading && <Loading />}
                 <div className="col s3">
                     <Sidebar />
                 </div>
@@ -30,4 +31,16 @@ class RootPage extends React.Component {
     }
 }
 
-export default withStyles(style)(RootPage)
+
+const mapStateToProps = (state) => ({
+    loading: state.root.loading
+});
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+
+    }
+};
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(style)(RootPage));

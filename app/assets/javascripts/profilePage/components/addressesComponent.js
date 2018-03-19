@@ -21,6 +21,10 @@ const style = theme => ({
 
 class Addresses extends React.Component {
 
+    componentDidMount(prevProps, prevState){
+        document.title = "收货地址";
+    }
+
     render (){
         const { classes } = this.props;
         return (
