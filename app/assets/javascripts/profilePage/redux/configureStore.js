@@ -3,16 +3,17 @@ import { createStore, applyMiddleware, combineReducers } from 'redux'
 import { routerReducer, routerMiddleware } from 'react-router-redux';
 import { browserHistory } from 'react-router';
 import thunk from 'redux-thunk';
+import rootReducer from './reducers/rootReducers'
 
 
-
-const rootReducer = combineReducers({
-   routing: routerReducer
+const totalReducer = combineReducers({
+    root: rootReducer,
+    routing: routerReducer
 });
 
 export function configureStore() {
   return createStore(
-    rootReducer,
+      totalReducer,
     applyMiddleware(
       routerMiddleware(browserHistory),
       thunk
