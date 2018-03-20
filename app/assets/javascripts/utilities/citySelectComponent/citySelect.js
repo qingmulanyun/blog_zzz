@@ -1,11 +1,52 @@
 import React from 'react';
-import { provinceData } from './data/stateCityData'
+import PropTypes from 'prop-types';
+import { provinceData } from './data/stateCityData';
+import MenuItem from 'material-ui/Menu/MenuItem';
+import TextField from 'material-ui/TextField';
+import { withStyles } from 'material-ui/styles';
+import findIndex from 'lodash.findindex';
+const style = theme => ({
+    rootContainer: {
+        marginTop: theme.spacing.unit,
+    },
+    button: {
+        margin: theme.spacing.unit,
+    },
+    rightIcon: {
+        marginRight: theme.spacing.unit,
+    },
+    formContainer: {
+        display: 'flex',
+        flexWrap: 'wrap',
+    },
+    textField: {
+        marginRight: theme.spacing.unit * 4,
+        width: 100,
+    },
+    addressLine: {
+        width: 450,
+    },
+    menu: {
+        width: 200,
+    },
+});
 
+const propTypes={
+    defaultValue:PropTypes.object,//{ province:'北京',city:'北京',area:'东城区'}
+    value:PropTypes.object,//{ province:'北京',city:'北京',area:'东城区'}
+    onChange:PropTypes.func
+}
+
+const defaultProps={
+    defaultValue:{ province:'山东',city:'滨州',area:'博兴县'},
+    value:null,
+    onChange:()=>{}
+}
 class CitySelect extends React.Component {
     constructor() {
         super();
         this.state = {
-            province:'北京',
+            province:'山东',
             provinceIndex: 0,
             cityIndex: 0,
             cities: provinceData[0].city,
@@ -102,33 +143,95 @@ class CitySelect extends React.Component {
     }
 
     render() {
-        const provinceOptions = provinceData.map((province,index) => <Option key={province.name}>{province.name}</Option>);
-        const cityOptions = this.state.cities.map((city,index) => <Option key={city.name}>{city.name}</Option>);
-        const areaOptions = this.state.areas.map((area,index) => <Option key={area}>{area}</Option>);
+        const {classes } = this.props;
+        const provinceOptions = provinceData.map((option, index)=> (
+            <MenuItem key={index} value={option.name}>
+                {option.name}
+            </MenuItem>
+        ));
+        const cityOptions = this.state.cities.map((option, index) => (
+            <MenuItem key={index} value={option.name}>
+                {option.name}
+            </MenuItem>
+        ));
+        const areaOptions = this.state.areas.map((option, index) => (
+            <MenuItem key={index} value={option}>
+                {option}
+            </MenuItem>
+        ));
         return (
             <div>
-                <Select
+                <TextField
+                    id="country"
+                    label="所在地区"
+                    className={classes.textField}
+                    value='中国'
+                    type="textarea"
+                    margin="normal"
+                    disabled
+                    required
+                />
+                <TextField
+                    id="province"
+                    select
+                    label="请选择省份"
+                    className={classes.textField}
                     value={this.state.province}
-                    className="province"
-                    onChange={this.handleProvinceChange}>
+                    SelectProps={{
+                        MenuProps: {
+                            className: classes.menu,
+                        },
+                    }}
+                    onChange={(e)=>this.handleProvinceChange(e.target.value)}
+                    required
+                    helperText=""
+                    margin="normal"
+                >
                     {provinceOptions}
-                </Select>
-                <Select
-                    value={this.state.secondCity}
-                    className="city"
-                    onChange={this.handleCityChange}>
-                    {cityOptions}
-                </Select>
-                <Select
-                    value={this.state.secondArea}
-                    className="area"
-                    onChange={this.onSecondAreaChange}>
-                    {areaOptions}
-                </Select>
+                </TextField>
 
+                <TextField
+                    id="province"
+                    select
+                    label="请选择市区"
+                    className={classes.textField}
+                    value={this.state.secondCity}
+                    SelectProps={{
+                        MenuProps: {
+                            className: classes.menu,
+                        },
+                    }}
+                    onChange={(e)=>this.handleCityChange(e.target.value)}
+                    required
+                    helperText=""
+                    margin="normal"
+                    >
+                    {cityOptions}
+                </TextField>
+
+                <TextField
+                    id="province"
+                    select
+                    label="请选择地区"
+                    className={classes.textField}
+                    value={this.state.secondArea}
+                    SelectProps={{
+                        MenuProps: {
+                            className: classes.menu,
+                        },
+                    }}
+                    onChange={(e)=>this.onSecondAreaChange(e.target.value)}
+                    required
+                    helperText=""
+                    margin="normal"
+                >
+                    {areaOptions}
+                </TextField>
             </div>
         );
     }
 }
+CitySelect.propTypes = propTypes;
+CitySelect.defaultProps = defaultProps;
 
-export default CitySelect;
+export default withStyles(style)(CitySelect);

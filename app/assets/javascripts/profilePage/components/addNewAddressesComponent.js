@@ -11,9 +11,9 @@ import Dialog, {
     DialogContentText,
     DialogTitle,
 } from 'material-ui/Dialog';
-import MenuItem from 'material-ui/Menu/MenuItem';
 import { FormControlLabel } from 'material-ui/Form';
 import Checkbox from 'material-ui/Checkbox';
+import CitySelect from '../../utilities/citySelectComponent/citySelect';
 
 const style = theme => ({
     rootContainer: {
@@ -34,31 +34,12 @@ const style = theme => ({
         width: 150,
     },
     addressLine: {
-        width: 430,
+        width: 500,
     },
     menu: {
         width: 200,
     },
 });
-
-const currencies = [
-    {
-        value: 'USD',
-        label: '$',
-    },
-    {
-        value: 'EUR',
-        label: '€',
-    },
-    {
-        value: 'BTC',
-        label: '฿',
-    },
-    {
-        value: 'JPY',
-        label: '¥',
-    },
-];
 
 class AddNewAddresses extends React.Component {
 
@@ -68,7 +49,10 @@ class AddNewAddresses extends React.Component {
 
     state = {
         addAddressesDialogOpen: false,
-        primaryAddress: false
+        primaryAddress: false,
+        province: '山东',
+        city: '滨州',
+        area: '博兴县'
     };
 
     handleClickOpen = () => {
@@ -80,12 +64,17 @@ class AddNewAddresses extends React.Component {
     };
 
     handleSaveNewAddress = () => {
+        const email = this.refs.address_line_1.value;
         this.setState({ addAddressesDialogOpen: false });
     };
 
     togglePrimary = () => {
         const current_primaryAddress = this.state.primaryAddress;
         this.setState({ primaryAddress: !current_primaryAddress });
+    };
+
+    handleCitySelect = (value) => {
+        this.setState({ province: value.province, city: value.city,  area: value.area });
     };
 
     render (){
@@ -109,50 +98,21 @@ class AddNewAddresses extends React.Component {
                             请填写国内可邮寄的有效地址。
                         </DialogContentText>
                         <div className={classes.formContainer}>
-                            <TextField
-                                id="country"
-                                label="所在地区"
-                                className={classes.textField}
-                                value='中国'
-                                type="textarea"
-                                margin="normal"
-                                disabled
-                                required
-                            />
-
-                            <TextField
-                                id="province"
-                                select
-                                label="请选择省市区"
-                                className={classes.textField}
-                                value="USD"
-                                SelectProps={{
-                                    MenuProps: {
-                                        className: classes.menu,
-                                    },
-                                }}
-                                required
-                                helperText=""
-                                margin="normal"
-                            >
-                                {currencies.map(option => (
-                                    <MenuItem key={option.value} value={option.value}>
-                                        {option.label}
-                                    </MenuItem>
-                                ))}
-                            </TextField>
-
+                            <CitySelect onChange={this.handleCitySelect}/>
                             <TextField
                                 id="address_line_1"
                                 label="详细地址"
+                                ref="address_line_1"
                                 className={classes.addressLine}
                                 required
+                                fullWidth
                                 multiline={true}
                                 rows={20}
                                 helperText="建议您如实填写详细收货地址，例如街道名称，门牌号码，楼层和房间号码等信息。"
                             />
 
                             <TextField
+                                ref="name"
                                 id="receiver_name"
                                 label="收货人姓名"
                                 className={classes.textField}
@@ -161,6 +121,7 @@ class AddNewAddresses extends React.Component {
                                 required
                             />
                             <TextField
+                                ref="phone"
                                 id="receiver_phone"
                                 label="手机号码"
                                 className={classes.textField}
@@ -172,6 +133,7 @@ class AddNewAddresses extends React.Component {
                                 className={classes.addressLine}
                                 control={
                                     <Checkbox
+                                        ref="isPrimaryAddress"
                                         checked={this.state.primaryAddress}
                                         value="primary"
                                         onChange={this.togglePrimary}
@@ -195,4 +157,18 @@ class AddNewAddresses extends React.Component {
     }
 }
 
-export default withStyles(style)(AddNewAddresses)
+const mapStateToProps = (state) => ({
+    currentAddress: state.address.currentAddress,
+});
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        fetchProfileInfo: ()=> {
+            dispatch(fetchProfileInfo())
+        }
+    }
+};
+
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(style)(AddNewAddresses));
