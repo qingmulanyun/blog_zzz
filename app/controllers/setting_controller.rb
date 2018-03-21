@@ -17,9 +17,25 @@ class SettingController < ApplicationController
     render json: {status: 200, profile_info: current_user}
   end
 
+  def addresses_index
+    authorize :setting, :addresses_index?
+    render json: { addresses: current_user.addresses.order(is_primary: :desc) }
+  end
+
+  def create_address
+    authorize :setting, :create_address?
+    current_user.primary_address&.dis_primary if address_params[:is_primary]
+    current_user.addresses.create!(address_params)
+    render json: { addresses: current_user.addresses.order(is_primary: :desc) }
+  end
+
   private
 
   def update_profile_param
     params.require(:user).permit(:name, :phone)
+  end
+
+  def address_params
+    params.require(:address).permit(:country, :province, :city, :area, :address_line_1, :receiver_name, :receiver_phone, :is_primary)
   end
 end

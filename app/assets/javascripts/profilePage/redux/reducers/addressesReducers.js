@@ -16,23 +16,10 @@ const initialState = {
 
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
-      case "INSERT_PROFILE_INFO":
+      case "INSERT_ADDRESSES_INFO":
           return {
               ...state,
-              id: action.data.id,
-              name: action.data.name,
-              email: action.data.email,
-              phone: action.data.phone
-          };
-      case "HANDLE_CHANGE_USER_NAME":
-          return {
-              ...state,
-              name: action.data,
-          };
-      case "HANDLE_CHANGE_USER_INFO":
-          return {
-              ...state,
-              [action.key]: action.value,
+              addresses: action.data
           };
       default:
       return state;

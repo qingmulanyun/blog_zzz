@@ -26,6 +26,10 @@ class User < ActiveRecord::Base
     name_changed?
   end
 
+  def primary_address
+    addresses.find_by(is_primary: true)
+  end
+
   def self.from_omniauth(access_token)
     data = access_token.info
     user = User.where(:email => data["email"]).first

@@ -14,6 +14,7 @@ import Dialog, {
 import { FormControlLabel } from 'material-ui/Form';
 import Checkbox from 'material-ui/Checkbox';
 import CitySelect from '../../utilities/citySelectComponent/citySelect';
+import { submitAddNewAddress } from '../redux/actions/addressesActions'
 
 const style = theme => ({
     rootContainer: {
@@ -52,7 +53,10 @@ class AddNewAddresses extends React.Component {
         primaryAddress: false,
         province: '山东',
         city: '滨州',
-        area: '博兴县'
+        area: '博兴县',
+        addressLine: '',
+        name:'',
+        phone:''
     };
 
     handleClickOpen = () => {
@@ -60,12 +64,22 @@ class AddNewAddresses extends React.Component {
     };
 
     handleClose = () => {
-        this.setState({ addAddressesDialogOpen: false });
+        this.setState({ addAddressesDialogOpen: false, primaryAddress: false });
     };
 
     handleSaveNewAddress = () => {
-        const email = this.refs.address_line_1.value;
-        this.setState({ addAddressesDialogOpen: false });
+        var params = {
+            receiver_name: this.state.name,
+            receiver_phone: this.state.phone,
+            address_line_1: this.state.addressLine,
+            country: 'CN',
+            province: this.state.province,
+            city: this.state.city,
+            area: this.state.area,
+            is_primary: this.state.primaryAddress
+        };
+        this.props.submitAddNewAddress(params);
+        this.setState({ addAddressesDialogOpen: false, primaryAddress: false});
     };
 
     togglePrimary = () => {
@@ -79,6 +93,8 @@ class AddNewAddresses extends React.Component {
 
     render (){
         const { classes } = this.props;
+        const { name, phone, addressLine, province, city, area } = this.state;
+        const saveBtnDisable = (name.length == 0 || phone.length == 0 || addressLine.length == 0 || province.length == 0 || city.length == 0|| area.length ==0)
         return (
             <div>
                 <div className={classnames('row', classes.rootContainer)}>
@@ -102,7 +118,7 @@ class AddNewAddresses extends React.Component {
                             <TextField
                                 id="address_line_1"
                                 label="详细地址"
-                                ref="address_line_1"
+                                onChange={(e)=>this.setState({addressLine: e.target.value})}
                                 className={classes.addressLine}
                                 required
                                 fullWidth
@@ -112,7 +128,7 @@ class AddNewAddresses extends React.Component {
                             />
 
                             <TextField
-                                ref="name"
+                                onChange={(e)=>this.setState({name: e.target.value})}
                                 id="receiver_name"
                                 label="收货人姓名"
                                 className={classes.textField}
@@ -121,7 +137,7 @@ class AddNewAddresses extends React.Component {
                                 required
                             />
                             <TextField
-                                ref="phone"
+                                onChange={(e)=>this.setState({phone: e.target.value})}
                                 id="receiver_phone"
                                 label="手机号码"
                                 className={classes.textField}
@@ -147,7 +163,7 @@ class AddNewAddresses extends React.Component {
                         <Button onClick={this.handleClose} color="primary">
                             取消
                         </Button>
-                        <Button onClick={this.handleSaveNewAddress} color="primary">
+                        <Button onClick={this.handleSaveNewAddress} color="primary" disabled={saveBtnDisable}>
                             保存
                         </Button>
                     </DialogActions>
@@ -163,8 +179,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        fetchProfileInfo: ()=> {
-            dispatch(fetchProfileInfo())
+        submitAddNewAddress: (params)=> {
+            dispatch(submitAddNewAddress(params))
         }
     }
 };
