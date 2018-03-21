@@ -10,4 +10,12 @@ class SettingPolicy < ApplicationPolicy
   def update_profile_info?
     true
   end
+
+  def create_address?
+    true
+  end
+
+  def addresses_index?
+    true
+  end
 end

@@ -5,12 +5,14 @@ import { browserHistory } from 'react-router';
 import thunk from 'redux-thunk';
 import rootReducer from './reducers/rootReducers'
 import profileReducer from './reducers/profileReducers'
+import addressesReducer from './reducers/addressesReducers'
 
 
 const totalReducer = combineReducers({
     root: rootReducer,
     profile: profileReducer,
-    routing: routerReducer
+    address: addressesReducer,
+    routing: routerReducer,
 });
 
 export function configureStore() {
