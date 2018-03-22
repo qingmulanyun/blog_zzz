@@ -24,6 +24,11 @@ export default function reducer(state = initialState, action = {}) {
               ...state,
               topOpen: true
           };
+      case "CREAT_NEW_ADDRESS_SUCCESSFULLY":
+          return {
+              ...state,
+              topOpen: true
+          };
       case "CLOSE_TIP":
           return {
               ...state,

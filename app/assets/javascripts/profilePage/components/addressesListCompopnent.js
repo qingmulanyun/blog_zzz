@@ -57,7 +57,6 @@ class AddressesList extends React.Component {
                 <List>
                     {
                         addresses.map(function (address, index) {
-                            console.log(address)
                             return <div key={index}>
                                 <ListItem>
                                     <ListItemAvatar>

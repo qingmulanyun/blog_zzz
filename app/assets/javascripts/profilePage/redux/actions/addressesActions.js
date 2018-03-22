@@ -35,11 +35,19 @@ export function submitAddNewAddress(params){
             success: function(data) {
                 dispatch(fetchingServerData(false));
                 dispatch(insertAddressesInfo(data.addresses));
+                dispatch(createNewAddressSuccessfully());
             }.bind(this),
             error: function(xhr, status, err) {
                 dispatch(fetchingServerData(false));
             }.bind(this)
         });
+    }
+}
+
+
+export function createNewAddressSuccessfully(){
+    return {
+        type: "CREAT_NEW_ADDRESS_SUCCESSFULLY"
     }
 }
 

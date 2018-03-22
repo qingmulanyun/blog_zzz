@@ -43,7 +43,11 @@ class Addresses extends React.Component {
                 <Typography variant="headline" gutterBottom>
                     收货地址管理
                 </Typography>
+                <Typography variant="caption" gutterBottom>
+                    最多可创建8个收货地址
+                </Typography>
                 <Divider />
+
                 <AddNewAddresses />
                 <AddressesList />
             </div>
