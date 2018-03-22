@@ -4,6 +4,7 @@ import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 import rootReducer from '../cartPage/redux/reducers/rootReducers';
 import { gridReducer } from '../cartPage/redux/reducers/gridReducers';
+import addressReducer from '../cartPage/redux/reducers/addressesReducers'
 import CartRootPage from '../cartPage/components/cartRootPage';
 import thunk from 'redux-thunk';
 
@@ -18,7 +19,8 @@ const theme = createMuiTheme({
 
 const totalReducer = combineReducers({
     root: rootReducer,
-    grid: gridReducer
+    grid: gridReducer,
+    address: addressReducer
 });
 
 const store = createStore(totalReducer, compose(

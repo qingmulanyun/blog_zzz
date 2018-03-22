@@ -15,7 +15,10 @@ import Grid from 'material-ui/Grid';
 import Typography from 'material-ui/Typography';
 import { Loading } from '../../../utilities/loadingComponent/loading';
 import blue from 'material-ui/colors/blue';
-import { handleSubmitOrders } from '../../redux/actions/gridActions'
+import { handleSubmitOrders } from '../../redux/actions/gridActions';
+import DeliveryAddress from './deliveryAddress';
+import Divider from 'material-ui/Divider'
+import { fetchAllAddresses } from '../../redux/actions/addressesActions'
 
 const styles = theme => ({
     button: {
@@ -52,6 +55,9 @@ const styles = theme => ({
 });
 
 class CheckoutButton extends React.Component {
+    componentDidMount() {
+        this.props.fetchAddressesInfo();
+    }
     constructor(props) {
         super(props);
         this.state = {
@@ -82,7 +88,7 @@ class CheckoutButton extends React.Component {
 
     render (){
         const { orderDialogOpen } = this.state;
-        const { classes, selectedIndexes, rows, loading } = this.props;
+        const { classes, selectedIndexes, rows, loading, addresses } = this.props;
 
         var selectedIds =[];
         var totalPrice = 0;
@@ -137,6 +143,13 @@ class CheckoutButton extends React.Component {
                     open={orderDialogOpen}
                     aria-labelledby="order-list"
                 >
+                    <DialogTitle id="order-list">确认收货地址
+                    </DialogTitle>
+                    <DialogContent>
+                        {addresses.length == 0 && '您还没有添加自己的收货地址，您的订单提交后将被送货至Wala国内代收点。您还可以到 "个人资料->收货地址管理" 添加自己的收货地址 '}
+                        {addresses.length > 0 && <DeliveryAddress addressesList={addresses}/>}
+                    </DialogContent>
+                    <Divider style={{margin: "1.5em"}}/>
                     <DialogTitle id="order-list">确认订单信息
                     </DialogTitle>
                     <DialogContent>
@@ -220,13 +233,17 @@ class CheckoutButton extends React.Component {
 const mapStateToProps = (state) => ({
     selectedIndexes: state.grid.selection,
     rows: state.grid.rows,
-    loading: state.root.loading
+    loading: state.root.loading,
+    addresses: state.address.addresses
 });
 
 const mapDispatchToProps = (dispatch) => {
     return {
         submitOrders:(ids) => {
             dispatch(handleSubmitOrders(ids))
+        },
+        fetchAddressesInfo:() => {
+            dispatch(fetchAllAddresses())
         }
     }
 };

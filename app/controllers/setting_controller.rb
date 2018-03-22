@@ -24,8 +24,10 @@ class SettingController < ApplicationController
 
   def create_address
     authorize :setting, :create_address?
-    current_user.primary_address&.dis_primary if address_params[:is_primary].eql?('true')
-    current_user.addresses.create!(address_params)
+    Address.transaction do
+      current_user.primary_address&.dis_primary if address_params[:is_primary].eql?('true')
+      current_user.addresses.create!(address_params)
+    end
     render json: { addresses: current_user.addresses.order(is_primary: :desc) }
   end
 

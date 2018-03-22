@@ -20,4 +20,8 @@ class CartPolicy < ApplicationPolicy
   def index?
     true
   end
+
+  def destroy_item?
+    true
+  end
 end
