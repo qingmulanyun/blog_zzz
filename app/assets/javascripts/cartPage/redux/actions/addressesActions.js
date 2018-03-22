@@ -57,3 +57,10 @@ export function insertAddressesInfo(data){
         data: data
     }
 }
+
+export function selectDeliveryAddress(addressId){
+    return {
+        type: "SELECT_DELIVERY_ADDRESS",
+        data: addressId
+    }
+}

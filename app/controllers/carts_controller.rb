@@ -30,7 +30,7 @@ class CartsController < ApplicationController
 
   def destroy_item
     cart_items = @cart.cart_items.find(params[:cart_item_id])
-    authorize cart_items
+    authorize Cart
     cart_items.each(&:destroy)
     @cart_items = @cart.cart_items.includes(item:[:shop]).order(created_at: :asc)
     render 'cart_items.json'

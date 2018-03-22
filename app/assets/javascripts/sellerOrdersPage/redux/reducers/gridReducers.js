@@ -7,7 +7,8 @@ const gridInitialState = {
         { name: 'buyer_name', title: '买家', width: 100 },
         { name: 'status', title: '交易状态', width: 150 },
         { name: 'delivery_track_number', title: '运单号', width: 200 },
-        { name: 'actions', title: '交易操作', width: 350 }
+        { name: 'actions', title: '交易操作', width: 350 },
+        { name: 'delivery_address', title: '收货地址', width: 300 },
     ],
     rows: [],
     sorting: [],
@@ -19,7 +20,7 @@ const gridInitialState = {
     currentPage: 0,
     pageSize: 10,
     allowedPageSizes: [10, 20, 40],
-    columnOrder: [ 'created_at', 'id', 'shop_name', 'status', 'delivery_track_number', 'actions' ],
+    columnOrder: [ 'created_at', 'id', 'shop_name', 'status', 'delivery_track_number', 'delivery_address','actions' ],
     columnWidths:
         [
             { columnName: 'created_at', width: 100 },
@@ -28,6 +29,7 @@ const gridInitialState = {
             { columnName: 'status', width: 150 },
             { columnName: 'delivery_track_number', width: 200 },
             { columnName: 'actions', width: 350 },
+            { columnName: 'delivery_address', width: 300 },
         ],
     type: 'all',
     itemsColumns: [

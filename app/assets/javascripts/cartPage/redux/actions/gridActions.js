@@ -86,12 +86,14 @@ export function insertOwnCartItemsList(data) {
 
 export function handleSubmitOrders(ids) {
     return  function(dispatch, getState) {
+        const currentState = getState();
         $.ajax({
             url: '/orders/api/create',
             dataType: 'json',
             type: 'POST',
             data: {
-                cart_items_ids: ids
+                cart_items_ids: ids,
+                address_id: currentState.address.deliveryAddress
             },
             beforeSend:function(data) {
                 dispatch(fetchingServerData(true));

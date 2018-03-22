@@ -15,6 +15,9 @@ import { FormControlLabel } from 'material-ui/Form';
 import Checkbox from 'material-ui/Checkbox';
 import CitySelect from '../../utilities/citySelectComponent/citySelect';
 import { submitAddNewAddress } from '../redux/actions/addressesActions'
+import Snackbar from '../../utilities/Snackbar/Snackbar';
+import { Done } from "material-ui-icons";
+import { closeTip } from '../redux/actions/rootActions'
 
 const style = theme => ({
     rootContainer: {
@@ -92,13 +95,13 @@ class AddNewAddresses extends React.Component {
     };
 
     render (){
-        const { classes } = this.props;
+        const { classes, tipOpen, handleCloseTip, addresses } = this.props;
         const { name, phone, addressLine, province, city, area } = this.state;
         const saveBtnDisable = (name.length == 0 || phone.length == 0 || addressLine.length == 0 || province.length == 0 || city.length == 0|| area.length ==0)
         return (
             <div>
                 <div className={classnames('row', classes.rootContainer)}>
-                    <Button className={classes.button} variant="raised" color="primary" onClick={this.handleClickOpen}>
+                    <Button className={classes.button} variant="raised" color="primary" onClick={this.handleClickOpen} disabled={addresses.length >= 8}>
                         <AddIcon className={classes.rightIcon} />
                         添加收货地址
                     </Button>
@@ -168,6 +171,15 @@ class AddNewAddresses extends React.Component {
                         </Button>
                     </DialogActions>
                 </Dialog>
+                <Snackbar
+                    place="tc"
+                    color="info"
+                    icon={Done}
+                    message="添加新收货地址成功"
+                    open={tipOpen}
+                    closeNotification={ handleCloseTip }
+                    close
+                />
             </div>
         )
     }
@@ -175,12 +187,17 @@ class AddNewAddresses extends React.Component {
 
 const mapStateToProps = (state) => ({
     currentAddress: state.address.currentAddress,
+    addresses: state.address.addresses,
+    tipOpen: state.root.topOpen
 });
 
 const mapDispatchToProps = (dispatch) => {
     return {
         submitAddNewAddress: (params)=> {
             dispatch(submitAddNewAddress(params))
+        },
+        handleCloseTip: ()=>{
+            dispatch(closeTip())
         }
     }
 };
