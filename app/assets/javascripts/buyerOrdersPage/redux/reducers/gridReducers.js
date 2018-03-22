@@ -2,12 +2,13 @@ export const GRID_STATE_CHANGE_ACTION = 'GRID_STATE_CHANGE';
 
 const gridInitialState = {
     columns: [
-        { name: 'created_at', title: '下单时间', width: 150 },
-        { name: 'id', title: '订单号', width: 300 },
-        { name: 'shop_name', title: '店铺名称', width: 150 },
+        { name: 'created_at', title: '下单时间', width: 100 },
+        { name: 'id', title: '订单号', width: 270 },
+        { name: 'shop_name', title: '店铺名称', width: 120 },
         { name: 'status', title: '交易状态', width: 150 },
         { name: 'delivery_track_number', title: '快递单号', width: 150 },
-        { name: 'actions', title: '交易操作', width: 350 },
+        { name: 'actions', title: '交易操作', width: 150 },
+        { name: 'delivery_address', title: '收货地址', width: 300 },
     ],
     rows: [],
     sorting: [],
@@ -19,16 +20,16 @@ const gridInitialState = {
     currentPage: 0,
     pageSize: 10,
     allowedPageSizes: [10, 20, 40],
-    columnOrder: [ 'created_at', 'id', 'shop_name', 'status', 'delivery_track_number', 'actions'],
+    columnOrder: [ 'created_at', 'shop_name', 'status', 'delivery_track_number', 'delivery_address','actions','id'],
     columnWidths:
         [
-            { columnName: 'created_at', width: 150 },
-            { columnName: 'id', width: 300 },
-            { columnName: 'shop_name', width: 150 },
+            { columnName: 'created_at', width: 100 },
+            { columnName: 'id', width: 270 },
+            { columnName: 'shop_name', width: 120 },
             { columnName: 'status', width: 150 },
             { columnName: 'delivery_track_number', width: 150 },
-            { columnName: 'actions', width: 350 },
-
+            { columnName: 'actions', width: 150 },
+            { columnName: 'delivery_address', width: 300 },
         ],
     type: 'all',
     itemsColumns: [

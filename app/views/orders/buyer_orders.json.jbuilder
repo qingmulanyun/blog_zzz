@@ -19,5 +19,9 @@ json.array! @orders do |order|
     json.delivery_track_number order.delivery_track_number || ''
   end
   json.delivery_track_number order.delivery_track_number
+  json.delivery_address do
+    json.address order.address.present? ? order.address.full_address : ''
+    json.receiver order.address.present? ? order.address.receiver : ''
+  end
 end
 

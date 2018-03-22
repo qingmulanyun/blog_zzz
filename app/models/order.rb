@@ -3,7 +3,7 @@ class Order < ActiveRecord::Base
   has_many :order_items, dependent: :destroy
   belongs_to :shop
   belongs_to :buyer, class_name: 'User'
-  has_one :address
+  belongs_to :address
 
   scope :new_created, -> { where status: 'new' }
   after_create :new_order_notification, :new_owned_order_notification

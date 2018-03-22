@@ -17,6 +17,7 @@ import { createGridAction, fetchSellerOrders } from '../redux/actions/gridAction
 import { FormatCurrencyCell } from '../../utilities/tableCellComponent/formatCurrencyCell'
 import { FormatItemImageCell } from '../../utilities/tableCellComponent/formatItemImageCell'
 import { FormatItemNameCell } from '../../utilities/tableCellComponent/formatItemNameCell'
+import { FormatAddressCell } from '../../utilities/tableCellComponent/formatAddressCell'
 import { FormatActionCell } from './shared/formatActionCell'
 import { FormatDateCell } from './shared/formatDateCell'
 import { FormatStatusCell } from './shared/formatStatusCell'
@@ -40,6 +41,9 @@ const Cell = (props) => {
     }
     if (props.column.name === 'status'  ) {
         return <FormatStatusCell {...props} />;
+    }
+    if (props.column.name === 'delivery_address'  ) {
+        return <FormatAddressCell {...props} />;
     }
     return <Table.Cell {...props} />;
 };
