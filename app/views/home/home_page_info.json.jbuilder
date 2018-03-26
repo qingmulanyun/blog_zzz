@@ -9,6 +9,7 @@ json.items do
     json.description item.description
     json.status item.status
     json.starred item.starred
+    json.sales_number item.sales_number
     json.shop item.shop
     json.seller item.shop.user.name
     json.createdAt item.created_at

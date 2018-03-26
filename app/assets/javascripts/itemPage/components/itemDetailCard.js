@@ -61,11 +61,10 @@ class ItemDetailsCard extends React.Component {
                 <ExpansionPanel expanded={expanded === 'panel1'} onChange={this.handleChange('panel1')}>
                     <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
                         <Typography className={classes.oneColFlex}>{item.name}</Typography>
-                        {/*<Typography className={classes.secondaryHeading}>{item.type}</Typography>*/}
                     </ExpansionPanelSummary>
                     <ExpansionPanelDetails>
                         <Typography>
-                           {item.name_details}
+                            {`销量：${item.sales_number}件`}
                         </Typography>
                     </ExpansionPanelDetails>
                 </ExpansionPanel>
