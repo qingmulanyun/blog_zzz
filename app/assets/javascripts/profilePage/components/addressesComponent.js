@@ -6,6 +6,10 @@ import Divider from 'material-ui/Divider';
 import AddNewAddresses from './addNewAddressesComponent'
 import AddressesList from './addressesListCompopnent'
 
+import Snackbar from '../../utilities/Snackbar/Snackbar';
+import { Done } from "material-ui-icons";
+import { closeTip } from '../redux/actions/rootActions'
+
 const style = theme => ({
     rootContainer: {
         marginTop: theme.spacing.unit,
@@ -37,7 +41,7 @@ class Addresses extends React.Component {
     }
 
     render (){
-        const { classes } = this.props;
+        const { classes, tipOpen, tipMessage, handleCloseTip } = this.props;
         return (
             <div>
                 <Typography variant="headline" gutterBottom>
@@ -50,9 +54,33 @@ class Addresses extends React.Component {
 
                 <AddNewAddresses />
                 <AddressesList />
+                <Snackbar
+                    place="tc"
+                    color="info"
+                    icon={Done}
+                    message={tipMessage}
+                    open={tipOpen}
+                    closeNotification={ handleCloseTip }
+                    close
+                />
             </div>
         )
     }
 }
 
-export default withStyles(style)(Addresses)
+const mapStateToProps = (state) => ({
+    currentAddress: state.address.currentAddress,
+    addresses: state.address.addresses,
+    tipOpen: state.root.tipOpen,
+    tipMessage: state.root.tipMessage
+});
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        handleCloseTip: ()=>{
+            dispatch(closeTip())
+        }
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(style)(Addresses));

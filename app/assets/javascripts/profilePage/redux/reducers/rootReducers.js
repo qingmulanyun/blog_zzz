@@ -3,7 +3,8 @@ import { LOCATION_CHANGE } from 'react-router-redux';
 const initialState = {
   loading: false,
   currentTab: 'profile',
-  topOpen: false
+  tipOpen: false,
+  tipMessage: ''
 };
 
 export default function reducer(state = initialState, action = {}) {
@@ -27,12 +28,19 @@ export default function reducer(state = initialState, action = {}) {
       case "CREAT_NEW_ADDRESS_SUCCESSFULLY":
           return {
               ...state,
-              topOpen: true
+              tipOpen: true,
+              tipMessage: '添加新收货地址成功！'
+          };
+      case "DELETE_ADDRESS_SUCCESSFULLY":
+          return {
+              ...state,
+              tipOpen: true,
+              tipMessage: '删除收货地址成功！'
           };
       case "CLOSE_TIP":
           return {
               ...state,
-              topOpen: false
+              tipOpen: false
           };
       default:
       return state;

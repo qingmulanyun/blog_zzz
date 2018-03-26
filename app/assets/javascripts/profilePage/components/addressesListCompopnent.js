@@ -4,20 +4,16 @@ import { withStyles } from 'material-ui/styles';
 import List, {
     ListItem,
     ListItemAvatar,
-    ListItemIcon,
     ListItemSecondaryAction,
     ListItemText,
 } from 'material-ui/List';
 import Avatar from 'material-ui/Avatar';
-import IconButton from 'material-ui/IconButton';
-import { FormGroup, FormControlLabel } from 'material-ui/Form';
-
+import DeleteAddressButton from './deleteAddressButton'
 import FolderIcon from 'material-ui-icons/Business';
-import DeleteIcon from 'material-ui-icons/Delete';
 import Divider from 'material-ui/Divider'
 import { fetchAllAddresses } from '../redux/actions/addressesActions'
-import Button from 'material-ui/Button';
 import classnames from 'classnames'
+
 const style = theme => ({
     rootContainer: {
         marginTop: theme.spacing.unit,
@@ -42,6 +38,9 @@ const style = theme => ({
     menu: {
         width: 200,
     },
+    displayBtn: {
+        cursor: "unset"
+    }
 });
 
 class AddressesList extends React.Component {
@@ -69,16 +68,7 @@ class AddressesList extends React.Component {
                                         secondary={`收件人：${address.receiver_name}，电话：${address.receiver_phone}`}
                                     />
                                     <ListItemSecondaryAction>
-                                        {
-                                           address.is_primary && <IconButton aria-label="Delete">
-                                               <Button color="primary" disabled>
-                                                   默认地址
-                                               </Button>
-                                           </IconButton>
-                                        }
-                                        <IconButton aria-label="Delete">
-                                            <DeleteIcon />
-                                        </IconButton>
+                                        <DeleteAddressButton address={address}/>
                                     </ListItemSecondaryAction>
                                 </ListItem>
                                 <Divider />

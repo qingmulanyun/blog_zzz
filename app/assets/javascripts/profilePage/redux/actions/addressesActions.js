@@ -57,3 +57,33 @@ export function insertAddressesInfo(data){
         data: data
     }
 }
+
+export function deleteAddress(id){
+    return  function(dispatch, getState) {
+        $.ajax({
+            url: '/setting/api/address',
+            dataType: 'json',
+            type: 'DELETE',
+            data: {
+                id: id
+            },
+            beforeSend:function(data) {
+                dispatch(fetchingServerData(true));
+            }.bind(this),
+            success: function(data) {
+                dispatch(fetchingServerData(false));
+                dispatch(insertAddressesInfo(data.addresses));
+                dispatch(deleteAddressSuccessfully());
+            }.bind(this),
+            error: function(xhr, status, err) {
+                dispatch(fetchingServerData(false));
+            }.bind(this)
+        });
+    }
+}
+
+export function deleteAddressSuccessfully(){
+    return {
+        type: "DELETE_ADDRESS_SUCCESSFULLY"
+    }
+}
