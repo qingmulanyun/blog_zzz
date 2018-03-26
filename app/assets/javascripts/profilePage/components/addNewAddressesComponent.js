@@ -95,7 +95,7 @@ class AddNewAddresses extends React.Component {
     };
 
     render (){
-        const { classes, tipOpen, handleCloseTip, addresses } = this.props;
+        const { classes, addresses } = this.props;
         const { name, phone, addressLine, province, city, area } = this.state;
         const saveBtnDisable = (name.length == 0 || phone.length == 0 || addressLine.length == 0 || province.length == 0 || city.length == 0|| area.length ==0)
         return (
@@ -171,15 +171,6 @@ class AddNewAddresses extends React.Component {
                         </Button>
                     </DialogActions>
                 </Dialog>
-                <Snackbar
-                    place="tc"
-                    color="info"
-                    icon={Done}
-                    message="添加新收货地址成功"
-                    open={tipOpen}
-                    closeNotification={ handleCloseTip }
-                    close
-                />
             </div>
         )
     }
@@ -195,9 +186,6 @@ const mapDispatchToProps = (dispatch) => {
     return {
         submitAddNewAddress: (params)=> {
             dispatch(submitAddNewAddress(params))
-        },
-        handleCloseTip: ()=>{
-            dispatch(closeTip())
         }
     }
 };

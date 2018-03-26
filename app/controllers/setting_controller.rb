@@ -31,6 +31,13 @@ class SettingController < ApplicationController
     render json: { addresses: current_user.addresses.order(is_primary: :desc) }
   end
 
+  def delete_address
+    address = Address.find(params[:id])
+    authorize address
+    address.destroy!
+    render json: { addresses: current_user.addresses.order(is_primary: :desc) }
+  end
+
   private
 
   def update_profile_param
