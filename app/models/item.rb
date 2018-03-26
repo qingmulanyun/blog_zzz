@@ -4,6 +4,7 @@ class Item < ActiveRecord::Base
   belongs_to :shop
   belongs_to :item_brand
   belongs_to :item_type
+  has_many :order_items
 
   validates_presence_of :original_price, :transport_cost, :price, :sale_price, :weight
 
@@ -37,5 +38,9 @@ class Item < ActiveRecord::Base
 
   def formatted_original_price
     (original_price * FOREX).round(2)
+  end
+
+  def sales_number
+    order_items&.sum(:quantity)
   end
 end

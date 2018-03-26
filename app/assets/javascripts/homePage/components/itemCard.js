@@ -11,7 +11,7 @@ import red from 'material-ui/colors/red';
 import FavoriteIcon from 'material-ui-icons/Favorite';
 import ShareIcon from 'material-ui-icons/Share';
 import ExpandMoreIcon from 'material-ui-icons/ExpandMore';
-
+import Chip from 'material-ui/Chip';
 import moment from 'moment'
 import Grow from 'material-ui/transitions/Grow';
 moment.locale('ZH_CN');
@@ -48,7 +48,10 @@ const styles = theme => ({
         display: "inline-block"
 },cardTitleContent: {
         width: '80%'
-    }
+    },
+    chip: {
+        margin: theme.spacing.unit / 2,
+    },
 });
 
 
@@ -93,11 +96,9 @@ class ItemCard extends React.Component {
                     </CardContent>
                     </a>
                     <CardActions className={classes.actions} disableActionSpacing>
+                        <Chip label={`销量：${item.sales_number} 件`} className={classes.chip} />
                         <IconButton aria-label="Add to favorites">
                             <FavoriteIcon />
-                        </IconButton>
-                        <IconButton aria-label="Share">
-                            <ShareIcon />
                         </IconButton>
                         <IconButton
                             className={classnames(classes.expand, {
