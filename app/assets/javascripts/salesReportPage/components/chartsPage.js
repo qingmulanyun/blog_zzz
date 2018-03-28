@@ -27,10 +27,12 @@ const chartData = {
     datasets: [
         {
             label: "My First dataset",
-            fill: true,
-            pointHoverRadius: 5,
-            pointRadius: 1,
-            pointHitRadius: 10,
+            fillColor: "rgba(220,220,220,0.2)",
+            strokeColor: "rgba(220,220,220,1)",
+            pointColor: "rgba(220,220,220,1)",
+            pointStrokeColor: "#fff",
+            pointHighlightFill: "#fff",
+            pointHighlightStroke: "rgba(220,220,220,1)",
             data: [65, 59, 80, 81, 56, 55, 40],
             spanGaps: true,
         }
@@ -39,7 +41,8 @@ const chartData = {
 
 const chartOptions ={
     responsive: true,
-    maintainAspectRatio: true
+    maintainAspectRatio: true,
+
 }
 
 class ReportRootPage extends React.Component{
