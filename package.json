@@ -37,6 +37,7 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
     "bower": "^1.8.0",
+    "chart.js": "^1.1.1",
     "css-loader": "^0.28.9",
     "lodash.findindex": "^4.6.0",
     "material-ui": "^1.0.0-beta.23",

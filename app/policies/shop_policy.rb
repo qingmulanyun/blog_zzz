@@ -24,5 +24,9 @@ class ShopPolicy < ApplicationPolicy
   def own_shop?
     record.user_id = user.id
   end
+
+  def shop_report?
+    true
+  end
 end
 

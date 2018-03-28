@@ -1,9 +1,9 @@
 import React from 'react';
 import { withStyles } from 'material-ui/styles';
 import { connect } from 'react-redux'
-import OrdersListBoard from './ordersListBoard'
-import Typography from 'material-ui/Typography';
 import { Loading } from '../../utilities/loadingComponent/loading';
+import Typography from 'material-ui/Typography';
+import ChartsPage from './chartsPage'
 
 const styles = theme => ({
     title: {
@@ -17,7 +17,7 @@ const styles = theme => ({
 });
 
 
-class OrdersRootPage extends React.Component{
+class ReportRootPage extends React.Component{
 
     render(){
         const { classes, loading } = this.props;
@@ -25,10 +25,12 @@ class OrdersRootPage extends React.Component{
         return(
                 <div>
                     <Typography className={classes.title} >
-                       已接订单
+                        销售报告
                     </Typography>
                     {loading && <Loading />}
-                    <OrdersListBoard />
+
+                   <ChartsPage />
+
                 </div>
 
         );
@@ -46,4 +48,4 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(OrdersRootPage));
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(ReportRootPage));

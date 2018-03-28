@@ -9,6 +9,7 @@ module.exports = {
         cartPage: "./app/assets/javascripts/entries/cart-page.js",
         buyerOrdersPage: "./app/assets/javascripts/entries/buyer-orders-page.js",
         sellerOrdersPage: "./app/assets/javascripts/entries/seller-orders-page.js",
+        salesReportPage: "./app/assets/javascripts/entries/sales-report-page.js",
         profilePage: "./app/assets/javascripts/entries/profile-page.js"
     },
     output: {
