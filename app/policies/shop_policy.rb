@@ -28,5 +28,9 @@ class ShopPolicy < ApplicationPolicy
   def shop_report?
     true
   end
+
+  def sale_report?
+    true
+  end
 end
 

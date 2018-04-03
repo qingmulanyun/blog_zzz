@@ -30,6 +30,11 @@ class ShopsController < ApplicationController
     redirect_to user_shop_path(current_user, shop)
   end
 
+  def sale_report
+    authorize Shop
+    current_user.shop.admin_orders.delivered_orders.group('created_at').sum(:sold_price)
+  end
+
   private
 
   def new_shop_params
