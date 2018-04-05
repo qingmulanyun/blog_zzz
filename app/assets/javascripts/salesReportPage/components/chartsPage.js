@@ -4,7 +4,8 @@ import { connect } from 'react-redux'
 import { Line as LineChart } from 'react-chartjs';
 import { Bar as BarChart } from 'react-chartjs';
 import Grid from 'material-ui/Grid';
-
+import moment from 'moment'
+moment.locale('ZH_CN');
 const styles = theme => ({
     root: {
         display: 'flex',
@@ -22,8 +23,8 @@ const styles = theme => ({
     },
 });
 
-const chartData = {
-    labels: ["January", "February", "March", "April", "May", "June", "July"],
+var chartData = {
+    labels: [],
     datasets: [
         {
             label: "My First dataset",
@@ -33,7 +34,7 @@ const chartData = {
             pointStrokeColor: "#fff",
             pointHighlightFill: "#fff",
             pointHighlightStroke: "rgba(220,220,220,1)",
-            data: [65, 59, 80, 81, 56, 55, 40],
+            data: [],
             spanGaps: true,
         }
     ]
@@ -42,14 +43,28 @@ const chartData = {
 const chartOptions ={
     responsive: true,
     maintainAspectRatio: true,
-
 }
 
 class ReportRootPage extends React.Component{
 
     render(){
-        const { classes, loading } = this.props;
-
+        const { classes, loading, reportData } = this.props;
+        chartData = {
+            labels: reportData.labels.map(date => moment(date).format('YYYY[年] MMM')),
+            datasets: [
+                {
+                    label: "My First dataset",
+                    fillColor: "rgba(220,220,220,0.2)",
+                    strokeColor: "rgba(220,220,220,1)",
+                    pointColor: "rgba(220,220,220,1)",
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "rgba(220,220,220,1)",
+                    data: reportData.data,
+                    spanGaps: true,
+                }
+            ]
+        }
         return(
             <div className={classes.root}>
                 <Grid container  spacing={24} className={classes.container}>

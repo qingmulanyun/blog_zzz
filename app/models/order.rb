@@ -8,7 +8,6 @@ class Order < ActiveRecord::Base
   scope :new_created, -> { where status: 'new' }
   scope :delivered_orders, -> { where status: 'delivered' }
   after_create :new_order_notification, :new_owned_order_notification
-  before_create :set_sold_price
 
   state_machine :status, :initial => :new do
     after_transition all - [:sent]  => :sent do |order, transition|
@@ -20,6 +19,7 @@ class Order < ActiveRecord::Base
     end
 
     after_transition all - [:delivered]  => :delivered do |order, transition|
+      order.update_attributes!(sold_price: order.order_price)
       OrderDeliveredNotifier.send_delivered_confirmation_email(order).deliver
     end
 
@@ -47,10 +47,6 @@ class Order < ActiveRecord::Base
 
   def new_owned_order_notification
     NewOwnedOrderNotifier.send_new_owned_order_email(self).deliver
-  end
-
-  def set_sold_price
-    self.sold_price = order_price
   end
 
   def order_price

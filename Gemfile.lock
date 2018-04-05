@@ -91,6 +91,8 @@ GEM
     geocoder (1.4.5)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
+    groupdate (4.0.0)
+      activesupport (>= 4.2)
     gtfs-realtime-bindings (0.0.5)
       protobuf (>= 3.0)
     haml (5.0.4)
@@ -300,6 +302,7 @@ DEPENDENCIES
   font-awesome-sass
   friendly_id
   geocoder
+  groupdate
   gtfs-realtime-bindings (~> 0.0.5)
   jbuilder (~> 2.0)
   jquery-rails

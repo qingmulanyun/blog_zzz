@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { Loading } from '../../utilities/loadingComponent/loading';
 import Typography from 'material-ui/Typography';
 import ChartsPage from './chartsPage'
+import { fetchReportData } from '../redux/actions/rootActions'
 
 const styles = theme => ({
     title: {
@@ -19,8 +20,13 @@ const styles = theme => ({
 
 class ReportRootPage extends React.Component{
 
+    componentDidMount(){
+        this.props.fetchReportData();
+    }
+
+
     render(){
-        const { classes, loading } = this.props;
+        const { classes, loading, reportData } = this.props;
 
         return(
                 <div>
@@ -29,7 +35,7 @@ class ReportRootPage extends React.Component{
                     </Typography>
                     {loading && <Loading />}
 
-                   <ChartsPage />
+                  { Object.keys(reportData).length > 0 && <ChartsPage reportData={reportData}/>}
 
                 </div>
 
@@ -38,12 +44,15 @@ class ReportRootPage extends React.Component{
 }
 
 const mapStateToProps = (state) => ({
-    loading: state.root.loading
+    loading: state.root.loading,
+    reportData: state.root.data
 });
 
 const mapDispatchToProps = (dispatch) => {
     return {
-
+        fetchReportData:() => {
+            dispatch(fetchReportData());
+        }
     }
 };
 

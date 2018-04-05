@@ -32,7 +32,10 @@ class ShopsController < ApplicationController
 
   def sale_report
     authorize Shop
-    current_user.shop.admin_orders.delivered_orders.group('created_at').sum(:sold_price)
+    orders = current_user.shop.admin_orders.delivered_orders.group_by_month(:created_at).sum(:sold_price)
+    base_hash = base_month_hash(orders.keys[0], Date.current)
+    @result = base_hash.merge!(orders)
+    render 'sale_report.json'
   end
 
   private
@@ -43,5 +46,14 @@ class ShopsController < ApplicationController
         .permit(
             :name, :description
         )
+  end
+
+  def base_month_hash(start_month, end_month)
+    temp_hash = {}
+    while start_month <= end_month  do
+      temp_hash[start_month] = 0
+      start_month += 1.month
+    end
+    temp_hash
   end
 end

@@ -1,5 +1,6 @@
 const initialState = {
-    loading: false
+    loading: false,
+    data: {}
 };
 
 export default function reducer(state = initialState, action = {}) {
@@ -8,6 +9,11 @@ export default function reducer(state = initialState, action = {}) {
           return {
               ...state,
               loading: action.isFetching
+          };
+      case "INSERT_REPORT_DATA":
+          return {
+              ...state,
+              data: action.data
           };
       default:
       return state;
