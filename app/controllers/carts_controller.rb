@@ -8,7 +8,7 @@ class CartsController < ApplicationController
   def add_item
     authorize Cart
     item = Item.find(params[:item_id])
-    cart_item = CartItem.find_by(item_id: item.id)
+    cart_item = @cart.cart_items.find_by(item_id: item.id)
     if cart_item.present?
       original_quantity = cart_item.quantity
       cart_item.update_attributes!(quantity: original_quantity + params[:item_quantity].to_i)
