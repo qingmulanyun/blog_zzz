@@ -11,16 +11,16 @@ class Order < ActiveRecord::Base
 
   state_machine :status, :initial => :new do
     after_transition all - [:sent]  => :sent do |order, transition|
-      OrderSentNotifier.send_delivery_track_email(order).deliver
+      OrderSentNotifier.send_delivery_track_email(order).deliver_later
     end
 
     after_transition all - [:canceled]  => :canceled do |order, transition|
-      OrderCanceledNotifier.send_order_canceled_email(order).deliver
+      OrderCanceledNotifier.send_order_canceled_email(order).deliver_later
     end
 
     after_transition all - [:delivered]  => :delivered do |order, transition|
       order.update_attributes!(sold_price: order.order_price)
-      OrderDeliveredNotifier.send_delivered_confirmation_email(order).deliver
+      OrderDeliveredNotifier.send_delivered_confirmation_email(order).deliver_later
     end
 
     event :buying do
@@ -42,11 +42,11 @@ class Order < ActiveRecord::Base
   end
 
   def new_order_notification
-    NewOrderNotifier.send_new_order_email(self).deliver
+    NewOrderNotifier.send_new_order_email(self).deliver_later
   end
 
   def new_owned_order_notification
-    NewOwnedOrderNotifier.send_new_owned_order_email(self).deliver
+    NewOwnedOrderNotifier.send_new_owned_order_email(self).deliver_later
   end
 
   def order_price

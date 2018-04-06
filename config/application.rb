@@ -23,5 +23,6 @@ module BlogZzz
     # Do not swallow errors in after_commit/after_rollback callbacks.
     # config.i18n.default_locale = "zh-CN"
     config.assets.initialize_on_precompile = false
+    config.active_job.queue_adapter = :delayed_job
   end
 end
