@@ -50,9 +50,11 @@ class ShopsController < ApplicationController
 
   def base_month_hash(start_month, end_month)
     temp_hash = {}
-    while start_month <= end_month  do
-      temp_hash[start_month] = 0
-      start_month += 1.month
+    if start_month.present?
+      while start_month <= end_month  do
+        temp_hash[start_month] = 0
+        start_month += 1.month
+      end
     end
     temp_hash
   end
