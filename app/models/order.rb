@@ -6,6 +6,7 @@ class Order < ActiveRecord::Base
   belongs_to :address
 
   scope :new_created, -> { where status: 'new' }
+  scope :delivered_orders, -> { where status: 'delivered' }
   after_create :new_order_notification, :new_owned_order_notification
 
   state_machine :status, :initial => :new do
@@ -18,6 +19,7 @@ class Order < ActiveRecord::Base
     end
 
     after_transition all - [:delivered]  => :delivered do |order, transition|
+      order.update_attributes!(sold_price: order.order_price)
       OrderDeliveredNotifier.send_delivered_confirmation_email(order).deliver
     end
 

@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import OrdersListBoard from './ordersListBoard'
 import Typography from 'material-ui/Typography';
 import { Loading } from '../../utilities/loadingComponent/loading';
+
 const styles = theme => ({
     title: {
         marginBottom: 1,
