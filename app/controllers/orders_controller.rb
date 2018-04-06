@@ -80,7 +80,7 @@ class OrdersController < ApplicationController
     order = Order.find( params[:id])
     authorize order
     order.delivered
-    @orders = Order.includes(:order_items).where(shop_id: current_user.shop.id)
+    @orders = Order.includes(:order_items).where(buyer_id: current_user.id).order(created_at: :desc)
     render 'buyer_orders.json'
   end
 
