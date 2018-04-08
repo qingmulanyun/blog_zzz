@@ -24,6 +24,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'devise'
 gem 'pundit'
 gem 'groupdate'
+gem 'delayed_job_active_record'
+gem 'daemons'
 gem 'materialize-sass'
 gem 'material_icons'
 

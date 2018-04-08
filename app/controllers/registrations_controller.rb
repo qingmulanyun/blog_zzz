@@ -3,7 +3,7 @@ class RegistrationsController < Devise::RegistrationsController
 
   def create
     super do |resource|
-      UserNotifier.send_sign_up_email(resource).deliver
+      UserNotifier.send_sign_up_email(resource).deliver_later
     end
   end
 end
