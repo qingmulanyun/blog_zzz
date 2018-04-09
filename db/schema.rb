@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180406052428) do
+ActiveRecord::Schema.define(version: 20180409060824) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -158,8 +158,10 @@ ActiveRecord::Schema.define(version: 20180406052428) do
     t.float "commission"
     t.integer "weight"
     t.boolean "starred", default: false
+    t.uuid "wish_product_id"
     t.index ["item_brand_id"], name: "index_items_on_item_brand_id"
     t.index ["item_type_id"], name: "index_items_on_item_type_id"
+    t.index ["wish_product_id"], name: "index_items_on_wish_product_id"
   end
 
   create_table "order_items", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -278,6 +280,20 @@ ActiveRecord::Schema.define(version: 20180406052428) do
     t.index ["slug"], name: "index_users_on_slug"
   end
 
+  create_table "wish_products", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.string "name"
+    t.string "status"
+    t.string "image"
+    t.uuid "user_id"
+    t.uuid "item_brand_id"
+    t.uuid "item_type_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_brand_id"], name: "index_wish_products_on_item_brand_id"
+    t.index ["item_type_id"], name: "index_wish_products_on_item_type_id"
+    t.index ["user_id"], name: "index_wish_products_on_user_id"
+  end
+
   add_foreign_key "addresses", "users"
   add_foreign_key "cart_items", "carts"
   add_foreign_key "cart_items", "items"
@@ -285,9 +301,13 @@ ActiveRecord::Schema.define(version: 20180406052428) do
   add_foreign_key "items", "item_brands"
   add_foreign_key "items", "item_types"
   add_foreign_key "items", "shops"
+  add_foreign_key "items", "wish_products"
   add_foreign_key "order_items", "items"
   add_foreign_key "order_items", "orders"
   add_foreign_key "orders", "addresses"
   add_foreign_key "orders", "shops"
   add_foreign_key "shops", "users"
+  add_foreign_key "wish_products", "item_brands"
+  add_foreign_key "wish_products", "item_types"
+  add_foreign_key "wish_products", "users"
 end
