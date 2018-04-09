@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180409045218) do
+ActiveRecord::Schema.define(version: 20180409060824) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -158,8 +158,10 @@ ActiveRecord::Schema.define(version: 20180409045218) do
     t.float "commission"
     t.integer "weight"
     t.boolean "starred", default: false
+    t.uuid "wish_product_id"
     t.index ["item_brand_id"], name: "index_items_on_item_brand_id"
     t.index ["item_type_id"], name: "index_items_on_item_type_id"
+    t.index ["wish_product_id"], name: "index_items_on_wish_product_id"
   end
 
   create_table "order_items", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -299,6 +301,7 @@ ActiveRecord::Schema.define(version: 20180409045218) do
   add_foreign_key "items", "item_brands"
   add_foreign_key "items", "item_types"
   add_foreign_key "items", "shops"
+  add_foreign_key "items", "wish_products"
   add_foreign_key "order_items", "items"
   add_foreign_key "order_items", "orders"
   add_foreign_key "orders", "addresses"
