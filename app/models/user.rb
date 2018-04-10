@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   has_one :shop, dependent: :destroy
   has_many :owned_orders, class_name: 'Order', foreign_key: :buyer_id, dependent: :destroy
   has_one :cart, dependent: :destroy
-
+  has_many :wish_products
 
   def default_name
     self.first_name = 'New' if self.first_name.blank?

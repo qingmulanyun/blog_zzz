@@ -25,6 +25,11 @@
     <% if user_signed_in? %>
         <ul class="right hide-on-med-and-down">
           <li class="collection-item">
+            <a href="<%= wish_products_new_path %>">
+              <i class="material-icons left">loyalty</i>申请心愿产品
+            </a>
+          </li>
+          <li class="collection-item">
             <a href="<%= orders_my_orders_path %>">
               <i class="material-icons left">description</i>我的订单
             </a>

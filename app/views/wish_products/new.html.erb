@@ -1,0 +1,32 @@
+<div id="wish-product-form-container">
+  <div class="sign-up-container row ">
+    <div class="col s12 m2 l4"></div>
+    <%= form_for(@wish_product, url: {action: "create"}, html: {class: 'form-horizontal'}) do |f| %>
+        <div class="col s12 m6 l4 ">
+          <div class="card-content">
+            <span class="card-title">用户信息</span>
+            <div class="input-field col s12">
+              <input type="text"  class="validate" name="user[name]" id="user_name" required />
+              <label for="user_name">用户名：</label>
+            </div>
+            <div class="input-field col s12">
+              <input type="email" class="validate" name="user[email]" id="user_email" required/>
+              <label for="user_email">邮箱：</label>
+            </div>
+            <div class="input-field col s12">
+              <input type="password" pattern=".{6,}" class="validate" name="user[password]" id="user_password" required />
+              <label for="user_password">密码：</label>
+            </div>
+            <div class="input-field col s12">
+              <input type="password" class="validate" name="user[password_confirmation]" id="user_password_confirmation" required/>
+              <label for="user_password_confirmation">确认密码：</label>
+            </div>
+          </div>
+          <div class="card-action">
+            <input type="submit" name="commit" value="注册" data-disable-with="正在注册..." class="btn waves-light login-btn">
+          </div>
+        </div>
+    <% end %>
+    <div class="col s12 m2 l4"></div>
+  </div>
+</div>
