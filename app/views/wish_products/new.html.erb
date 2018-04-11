@@ -1,32 +1,69 @@
+<% title "申请心愿产品" %>
+
 <div id="wish-product-form-container">
-  <div class="sign-up-container row ">
-    <div class="col s12 m2 l4"></div>
+  <div class="card-content">
+    <span class="card-title">申请心愿产品</span>
+    <div class="col s12">
+      <blockquote>
+        如果产品列表中无法找到您想要购买的产品，您可以在此处将您的心愿产品信息填写并提交申请表单。
+        如果您所提交的信息通过Wala平台的审核，我们会把您的心愿请求广播给Wala平台所有卖家，卖家将会亲自去实体店为您搜购您的心愿产品。
+        您将会收到各个卖家对您心愿产品的报价，最终由您来决定从哪个卖家来进行购买。
+      </blockquote>
+
+      <blockquote>
+        为了能让卖家更快更准确的为您找到您的心愿产品，请提供 <strong class="blue-text text-darken-2">产品名称</strong>
+        和 1 张心愿产品的 <strong class="blue-text text-darken-2">正面图片</strong>（不大于2MB）。
+      </blockquote>
+    </div>
+  </div>
+  <div class="row wish-product-form">
+    <span class="card-title">心愿产品信息</span>
     <%= form_for(@wish_product, url: {action: "create"}, html: {class: 'form-horizontal'}) do |f| %>
-        <div class="col s12 m6 l4 ">
+        <div class="col s12 m6 l6 ">
           <div class="card-content">
-            <span class="card-title">用户信息</span>
             <div class="input-field col s12">
-              <input type="text"  class="validate" name="user[name]" id="user_name" required />
-              <label for="user_name">用户名：</label>
-            </div>
-            <div class="input-field col s12">
-              <input type="email" class="validate" name="user[email]" id="user_email" required/>
-              <label for="user_email">邮箱：</label>
-            </div>
-            <div class="input-field col s12">
-              <input type="password" pattern=".{6,}" class="validate" name="user[password]" id="user_password" required />
-              <label for="user_password">密码：</label>
-            </div>
-            <div class="input-field col s12">
-              <input type="password" class="validate" name="user[password_confirmation]" id="user_password_confirmation" required/>
-              <label for="user_password_confirmation">确认密码：</label>
+              <input type="text"  class="validate" name="wish_product[name]" id="wish_product_name" required />
+              <label for="user_name">产品名称：</label>
             </div>
           </div>
-          <div class="card-action">
-            <input type="submit" name="commit" value="注册" data-disable-with="正在注册..." class="btn waves-light login-btn">
+
+        </div>
+        <div class="file-field input-field col s12 m6 l6">
+          <div class="btn">
+            <span>上传图片</span>
+            <input type="file" name="wish_product[image]" id="wish_product_image" accept="image/*"  required>
+          </div>
+          <div class="file-path-wrapper">
+            <input class="file-path validate" type="text" placeholder="请上传小于2MB的图片" required>
           </div>
         </div>
+        <div class="col s12 m12 l12">
+          <img id="wish_product_image_preview" src="<%= asset_path( 'default-img.gif' ) %>" alt="产品图片预览" />
+        </div>
+        <div class="col s12 m12 l12 btn-container">
+          <input type="submit" name="commit" value="提交申请" data-disable-with="正在提交..." class="btn waves-light login-btn">
+        </div>
     <% end %>
-    <div class="col s12 m2 l4"></div>
   </div>
 </div>
+
+<script>
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            if(input.files[0].size/1024/1024 > 2){
+               alert('图片大于2MB，请重新选择！')
+                input.value = "";
+            } else {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#wish_product_image_preview').attr('src', e.target.result);
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    }
+
+    $("#wish_product_image").change(function() {
+        readURL(this);
+    });
+</script>

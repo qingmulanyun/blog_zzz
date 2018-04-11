@@ -17,6 +17,9 @@ const getColor = (status) => {
     if (status == 'delivered') {
         return blue[500]
     }
+    if (status == 'sent') {
+        return blue[300];
+    }
     return '#FFC107';
 };
 
