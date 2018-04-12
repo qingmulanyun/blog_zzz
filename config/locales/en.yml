@@ -23,3 +23,8 @@ en:
   hello: "Hello world"
   falure:
     NoEmail: "Email cannot be blank!"
+  wish_product:
+    notice:
+      create_success: "Create a new wish product successfully!"
+    error:
+      create_failure: "Error! Failed to create wish product!"

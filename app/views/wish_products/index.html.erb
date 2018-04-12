@@ -1,0 +1,57 @@
+<% title "心愿产品" %>
+
+<div id="wish-product-form-container">
+
+  <% flash.each do |key, value| -%>
+      <div class="chip">
+        <%= value %>
+        <i class="close material-icons">close</i>
+      </div>
+  <% end %>
+  <div class="card-content mg-bt-1em">
+    <span class="card-title">心愿产品</span>
+    <div class="col s12">
+      <blockquote>
+        如果产品列表中无法找到您想要购买的产品，您可以在此处将您的心愿产品信息填写并提交申请表单。
+        如果您所提交的信息通过Wala平台的审核，我们会把您的心愿请求广播给Wala平台所有卖家，卖家将会亲自去实体店为您搜购您的心愿产品。
+        您将会收到各个卖家对您心愿产品的报价，最终由您来决定从哪个卖家来进行购买。
+      </blockquote>
+
+      <% if current_user.is_allowed_to_wish? %>
+          <a class="waves-effect waves-light btn" href="<%= wish_products_new_path %>"> 申请心愿产品 </a>
+      <% else %>
+          <blockquote>
+            <strong class="red-text text-darken-2">您只能同时申请两件心愿产品，当已提交的两件产品申请通过审核之后你才能继续提交新的申请。</strong>
+          </blockquote>
+      <% end %>
+
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="card-content wish-product-list-container">
+    <span class="card-title">已提交的心愿产品</span>
+    <div class="row">
+      <% @wish_products.each do |wish_product| %>
+          <div class="col s12 m6 l6 xl3 ">
+            <div class="card">
+              <div class="card-image">
+                <img src=<%=wish_product.image.standard.url || '/assets/blog/profile.jpeg' %> >
+              </div>
+              <div class="card-content">
+                <span class="card-title">
+                  <%= wish_product.name %>
+                </span>
+                <p>
+                  <%= wish_product.description%>
+                </p>
+              </div>
+              <div class="card-action">
+                <%= wish_product.status %>
+              </div>
+            </div>
+          </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+

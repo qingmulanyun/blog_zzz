@@ -30,6 +30,10 @@ class User < ActiveRecord::Base
     addresses.find_by(is_primary: true)
   end
 
+  def is_allowed_to_wish?
+    wish_products.count < 2
+  end
+
   def self.from_omniauth(access_token)
     data = access_token.info
     user = User.where(:email => data["email"]).first
