@@ -67,3 +67,8 @@ zh-CN:
       not_locked: "未锁定。"
       not_saved:
         other: "发生%{count}个错误，导致%{resource}保存失败："
+  wish_product:
+    notice:
+      create_success: "提交心愿产品成功！"
+    errors:
+      create_failure: "提交心愿产品失败！"

@@ -1,0 +1,77 @@
+<% title "申请心愿产品" %>
+
+<div id="wish-product-form-container">
+  <div class="card-content">
+    <span class="card-title">申请心愿产品</span>
+    <div class="col s12">
+      <blockquote>
+        为了能让卖家更快更准确的为您找到您的心愿产品，请提供 <strong class="blue-text text-darken-2">产品名称</strong>
+        和 1 张心愿产品的 <strong class="blue-text text-darken-2">正面图片</strong>（不大于2MB）。
+      </blockquote>
+    </div>
+  </div>
+
+  <% if current_user.is_allowed_to_wish? %>
+      <div class="row wish-product-form">
+        <span class="card-title">心愿产品信息</span>
+        <%= form_for(@wish_product, url: {action: "create"}, html: {class: 'form-horizontal'}) do |f| %>
+            <div class="col s12 m6 l6 ">
+              <div class="input-field col s12">
+                <input type="text"  class="validate" name="wish_product[name]" id="wish_product_name" required />
+                <label for="wish_product_name">产品名称：</label>
+              </div>
+
+            </div>
+            <div class="file-field input-field col s12 m6 l6">
+              <div class="btn">
+                <span>上传图片</span>
+                <%= f.file_field :image, accept: 'image/*', required: true %>
+                <!-- not working with pure html <input accept="image/*" required="required" type="file" name="wish_product[image]" id="wish_product_image">-->
+              </div>
+              <div class="file-path-wrapper">
+                <input class="file-path validate" type="text" placeholder="请上传小于2MB的图片" required>
+              </div>
+            </div>
+            <div class="col s12 m12 l12">
+              <div class="input-field col s12">
+                <input type="text"  class="validate" name="wish_product[description]" id="wish_product_description" required />
+                <label for="wish_product_description">功能简介：</label>
+              </div>
+            </div>
+            <div class="col s12 m12 l12">
+              <img id="wish_product_image_preview" src="<%= asset_path( 'default-img.gif' ) %>" alt="产品图片预览" />
+            </div>
+            <div class="col s12 m12 l12 btn-container">
+              <input type="submit" name="commit" value="提交申请" data-disable-with="正在提交..." class="btn waves-light login-btn">
+            </div>
+        <% end %>
+      </div>
+  <% else %>
+      <blockquote>
+        <strong class="red-text text-darken-2">您只能同时申请两件心愿产品，当已提交的两件产品申请通过审核之后你才能继续提交新的申请。</strong>
+      </blockquote>
+  <% end %>
+
+
+</div>
+
+<script>
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            if(input.files[0].size/1024/1024 > 2){
+               alert('图片大于2MB，请重新选择！')
+                input.value = "";
+            } else {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#wish_product_image_preview').attr('src', e.target.result);
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    }
+
+    $("#wish_product_image").change(function() {
+        readURL(this);
+    });
+</script>

@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   has_one :shop, dependent: :destroy
   has_many :owned_orders, class_name: 'Order', foreign_key: :buyer_id, dependent: :destroy
   has_one :cart, dependent: :destroy
-
+  has_many :wish_products
 
   def default_name
     self.first_name = 'New' if self.first_name.blank?
@@ -28,6 +28,10 @@ class User < ActiveRecord::Base
 
   def primary_address
     addresses.find_by(is_primary: true)
+  end
+
+  def is_allowed_to_wish?
+    wish_products.count < 2
   end
 
   def self.from_omniauth(access_token)

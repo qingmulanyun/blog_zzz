@@ -19,4 +19,5 @@ Rails.application.routes.draw do
   draw :cart
   draw :order
   draw :setting
+  draw :wish_product
 end
