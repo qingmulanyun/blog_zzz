@@ -14,27 +14,36 @@
         为了能让卖家更快更准确的为您找到您的心愿产品，请提供 <strong class="blue-text text-darken-2">产品名称</strong>
         和 1 张心愿产品的 <strong class="blue-text text-darken-2">正面图片</strong>（不大于2MB）。
       </blockquote>
+
+      <blockquote>
+        <strong class="blue-text text-darken-2">正面图片</strong>
+      </blockquote>
     </div>
   </div>
   <div class="row wish-product-form">
     <span class="card-title">心愿产品信息</span>
     <%= form_for(@wish_product, url: {action: "create"}, html: {class: 'form-horizontal'}) do |f| %>
         <div class="col s12 m6 l6 ">
-          <div class="card-content">
-            <div class="input-field col s12">
-              <input type="text"  class="validate" name="wish_product[name]" id="wish_product_name" required />
-              <label for="user_name">产品名称：</label>
-            </div>
+          <div class="input-field col s12">
+            <input type="text"  class="validate" name="wish_product[name]" id="wish_product_name" required />
+            <label for="wish_product_name">产品名称：</label>
           </div>
 
         </div>
         <div class="file-field input-field col s12 m6 l6">
           <div class="btn">
             <span>上传图片</span>
-            <input type="file" name="wish_product[image]" id="wish_product_image" accept="image/*"  required>
+            <%= f.file_field :image, accept: 'image/*', required: true %>
+            <!-- not working with pure html <input accept="image/*" required="required" type="file" name="wish_product[image]" id="wish_product_image">-->
           </div>
           <div class="file-path-wrapper">
             <input class="file-path validate" type="text" placeholder="请上传小于2MB的图片" required>
+          </div>
+        </div>
+        <div class="col s12 m12 l12">
+          <div class="input-field col s12">
+            <input type="text"  class="validate" name="wish_product[description]" id="wish_product_description" required />
+            <label for="wish_product_description">功能简介：</label>
           </div>
         </div>
         <div class="col s12 m12 l12">
