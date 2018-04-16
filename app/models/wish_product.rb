@@ -6,10 +6,10 @@ class WishProduct < ApplicationRecord
   belongs_to :item_brand
   belongs_to :item_type
 
-  after_create :publish_notification_to_shops
+  after_create :publish_notification_to_admin
 
   state_machine :status, :initial => :pending do
-    # after_transition all - [:sent]  => :sent do |order, transition|
+    # after_transition all - [:approved]  => :approved do |wish_product, transition|
     #
     # end
 
@@ -23,7 +23,7 @@ class WishProduct < ApplicationRecord
 
   end
 
-  def publish_notification_to_shops
-  #   todo send email to all active shops' owners.
+  def publish_notification_to_admin
+    NewPendingWishProductNotifier.send_notification_to_admin(self).deliver_later
   end
 end
