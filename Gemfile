@@ -37,6 +37,8 @@ gem 'friendly_id'
 
 gem 'rails_admin', '~> 1.3'
 
+gem 'rails_admin_state'
+
 gem 'omniauth-google-oauth2'
 
 gem 'will_paginate'

@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
   extend FriendlyId
   friendly_id :name, use: :slugged
 
+  scope :sellers, -> { joins(:shop) }
+
   has_many :posts
   has_many :comments
   has_many :post_votes
@@ -16,6 +18,17 @@ class User < ActiveRecord::Base
   has_many :owned_orders, class_name: 'Order', foreign_key: :buyer_id, dependent: :destroy
   has_one :cart, dependent: :destroy
   has_many :wish_products
+
+  rails_admin do
+    list do
+      field :email
+      field :name
+      field :role
+      field :last_sign_in_at
+      field :last_sign_in_ip
+      field :created_at
+    end
+  end
 
   def default_name
     self.first_name = 'New' if self.first_name.blank?
