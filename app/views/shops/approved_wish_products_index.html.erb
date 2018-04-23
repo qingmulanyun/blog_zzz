@@ -1,0 +1,35 @@
+<% title "心愿产品" %>
+
+<div id="wish-product-form-container">
+  <% if @wish_products.size > 0 %>
+      <div class="card-content wish-product-list-container">
+        <span class="card-title">买家心愿产品</span>
+        <div class="row">
+          <% @wish_products.each do |wish_product| %>
+              <div class="col s12 m6 l6 xl3 ">
+                <div class="card">
+                  <div class="card-image">
+                    <img src=<%=wish_product.image.standard.url || '/assets/blog/profile.jpeg' %> >
+                  </div>
+                  <div class="card-content">
+                <span class="card-title">
+                  <%= wish_product.name %>
+                </span>
+                    <p>
+                      买家：<%= wish_product.user.name%>
+                    </p>
+                    <p>
+                      <%= wish_product.description%>
+                    </p>
+                  </div>
+                  <div class="card-action">
+                    向买家报价
+                  </div>
+                </div>
+              </div>
+          <% end %>
+        </div>
+      </div>
+  <% end %>
+</div>
+
