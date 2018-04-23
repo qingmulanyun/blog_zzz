@@ -36,5 +36,9 @@ class ShopPolicy < ApplicationPolicy
   def approved_wish_products_index?
     record.user_id = user.id
   end
+
+  def approved_wish_products_list?
+    approved_wish_products_index?
+  end
 end
 

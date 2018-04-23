@@ -41,7 +41,13 @@ class ShopsController < ApplicationController
   def approved_wish_products_index
     shop = current_user.shop
     authorize shop
+  end
+
+  def approved_wish_products_list
+    shop = current_user.shop
+    authorize shop
     @wish_products = WishProduct.status_at('approved')
+    render 'wish_products.json'
   end
 
   private
