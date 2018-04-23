@@ -1,0 +1,44 @@
+<div>
+  <div style="width: 50%;margin: 0 auto;position:relative;background-color:#fff;border:1px solid rgba(0, 0, 0, 0.125);border-radius:0.25rem;min-width:399px;max-width: 499px">
+    <div style="text-align: center;font-size: 9px;padding: 0.65rem 0rem;background-color: #3399FF;border-top: 1px solid rgba(0, 0, 0, 0.125);">
+      <%=image_tag('blog/profile.jpeg', alt: 'wala-logo', style:"max-height: 3em;vertical-align:middle; float:left;margin-left:20px") %>
+      <span style=" vertical-align: middle;font-size: 20px;font-weight: 500;color: #FFFFFF;">心愿订单</span>
+      <div style=" width:100%;border-bottom: 3px solid #FFFFFF;margin-top:5px"></div>
+    </div>
+    <div style="padding:1em">
+
+      <table style="border-collapse:separate; border-spacing:5px 20px;font-weight:300;">
+
+        <tr>
+          <td colspan="2">
+            <b>您好, Wala 卖家</b>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" style="font-size:16px">
+            用户 <%= @wish_product.user.name %> 提交了一个心愿产品  <strong><%= @wish_product.name %></strong> ，您可以为其搜索该产品并提供报价。
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" style="border:1px solid #002d6a;">
+            心愿信息
+            <ul style="padding-left:0;margin:0; list-style:none;color:rgb(0, 45, 106);font-weight:400;border-top: 1px solid #002d6a;">
+              <li>心愿号: <%= @wish_product.id %></li>
+              <li>创建日期: <%= @wish_product.created_at.strftime('%Y-%m-%d') %></li>
+            </ul>
+          </td>
+        </tr>
+
+        <tr>
+          <td colspan="2" style="font-size:14px">
+
+          </td>
+        </tr>
+      </table>
+
+    </div>
+    <div style="text-align:center;font-size:9px;padding:0.75rem 1.25rem;background-color:#f7f7f9;border-top:1px solid rgba(0, 0, 0, 0.125);">
+      This email was sent by Alexandria © <%= Date.today.year %>.
+    </div>
+  </div>
+</div>
