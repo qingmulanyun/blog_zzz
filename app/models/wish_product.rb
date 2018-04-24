@@ -6,6 +6,8 @@ class WishProduct < ApplicationRecord
   belongs_to :item_brand
   belongs_to :item_type
 
+  scope :status_at, lambda { |status| where(status: status )}
+
   rails_admin do
     edit do
       field :name

@@ -9,7 +9,10 @@
   <% if user_signed_in? && current_user.shop.present? %>
       <ul id="shop_info" class="dropdown-content">
         <li><a href="<%= shops_my_shop_shop_report_path %>">销售报告</a></li>
+        <li class="divider"></li>
         <li><a href="<%= own_shop_user_path(current_user) %>">商品列表</a></li>
+        <li class="divider"></li>
+        <li><a href="<%= shops_approved_wish_products_path %>">心愿申请 <span class="cart-badges-orders"><%= WishProduct.status_at('approved').count > 0 ? WishProduct.status_at('approved').count : '' %></span></a></li>
         <li class="divider"></li>
         <li><a href="<%= shops_seller_orders_path %>">已接订单 <span class="cart-badges-orders"><%= current_user.shop.new_orders.count > 0 ? current_user.shop.new_orders.count : '' %></span></a></li>
       </ul>

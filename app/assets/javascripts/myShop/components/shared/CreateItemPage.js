@@ -42,6 +42,10 @@ const styles = theme => ({
     },
 });
 
+const imageInputProps = {
+    accept: "image/*",
+};
+
 class CreateItemPage extends React.Component {
     constructor(props) {
         super(props);
@@ -205,6 +209,7 @@ class CreateItemPage extends React.Component {
                             onChange={(e)=> this.handleUploadImage(e)}
                             margin="normal"
                             fullWidth
+                            inputProps={imageInputProps}
                             helperText="请上传图片"
                         />
 
