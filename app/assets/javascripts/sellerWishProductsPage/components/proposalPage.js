@@ -34,6 +34,9 @@ const styles = theme => ({
     }
 });
 
+const imageInputProps = {
+    accept: "image/*",
+};
 
 class ProposalPage extends React.Component{
 
@@ -148,6 +151,7 @@ class ProposalPage extends React.Component{
                                     margin="normal"
                                     fullWidth
                                     helperText="请上传图片"
+                                    inputProps={imageInputProps}
                                 />
                                 <img className={classes.image} id="wish_product_proposal_image_preview" src="/assets/default-img.gif" alt="产品图片预览" />
                                 <Button variant="raised" color="primary" className={classes.button} >
