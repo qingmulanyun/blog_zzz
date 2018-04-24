@@ -6,6 +6,8 @@ import Typography from 'material-ui/Typography';
 import { Loading } from '../../utilities/loadingComponent/loading';
 import { fetchWishProductsInfo } from '../redux/actions/rootActions'
 import WishProductsListBoard from './wishProductsListBoard'
+import ProposalPage from './proposalPage'
+
 const styles = theme => ({
     title: {
         marginBottom: 1,
@@ -34,6 +36,7 @@ class WishProductsRootPage extends React.Component{
                     </Typography>
                     {loading && <Loading />}
                     <WishProductsListBoard />
+                    <ProposalPage />
                 </div>
 
         );

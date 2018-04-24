@@ -8,12 +8,15 @@ import Avatar from 'material-ui/Avatar';
 import IconButton from 'material-ui/IconButton';
 import Typography from 'material-ui/Typography';
 import red from 'material-ui/colors/red';
-import FavoriteIcon from 'material-ui-icons/Favorite';
+
 import RingIcon from 'material-ui-icons/RoomService';
 import ExpandMoreIcon from 'material-ui-icons/ExpandMore';
-import Chip from 'material-ui/Chip';
+import { connect } from 'react-redux'
 import moment from 'moment'
 import Grow from 'material-ui/transitions/Grow';
+import Tooltip from 'material-ui/Tooltip';
+import { toggleProposalPage } from '../redux/actions/rootActions'
+
 moment.locale('ZH_CN');
 
 const styles = theme => ({
@@ -63,7 +66,7 @@ class WishProductCard extends React.Component {
     };
 
     render() {
-        const { classes, wishProduct } = this.props;
+        const { classes, wishProduct, toggleProposalPage } = this.props;
 
         return (
             <Grow in={true} timeout={1000}>
@@ -95,9 +98,11 @@ class WishProductCard extends React.Component {
                     </CardContent>
 
                     <CardActions className={classes.actions} disableActionSpacing>
-                        <IconButton aria-label="Add to favorites">
-                            <RingIcon />
-                        </IconButton>
+                        <Tooltip id="tooltip-right" title="向买家报价" placement="right">
+                            <IconButton aria-label="make a proposal" onClick={(e)=> toggleProposalPage(true)}>
+                                <RingIcon />
+                            </IconButton>
+                        </Tooltip>
                         <IconButton
                             className={classnames(classes.expand, {
                                 [classes.expandOpen]: this.state.expanded,
@@ -126,4 +131,18 @@ WishProductCard.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(WishProductCard);
+const mapStateToProps = (state) => ({
+    loading: state.root.loading,
+    proposalPageOpen: state.root.proposalPageOpen
+});
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        toggleProposalPage: (boolean) => {
+            dispatch(toggleProposalPage(boolean))
+        }
+    }
+};
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(WishProductCard));

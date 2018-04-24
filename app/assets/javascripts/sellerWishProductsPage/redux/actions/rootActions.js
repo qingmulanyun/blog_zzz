@@ -31,3 +31,10 @@ export function fetchWishProductsInfoSuccessfully(data) {
         data: data
     }
 }
+
+export function toggleProposalPage(boolean) {
+    return {
+        type: "TOGGLE_PROPOSAL_PAGE",
+        data: boolean
+    }
+}

@@ -1,5 +1,6 @@
 const initialState = {
     loading: false,
+    proposalPageOpen: false,
     allWishProducts: []
 };
 
@@ -14,6 +15,11 @@ export default function reducer(state = initialState, action = {}) {
           return {
               ...state,
               allWishProducts: action.data
+          };
+      case "TOGGLE_PROPOSAL_PAGE":
+          return {
+              ...state,
+              proposalPageOpen: action.data
           };
       default:
       return state;
