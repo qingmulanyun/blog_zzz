@@ -39,7 +39,7 @@ class CartComponent extends React.Component{
                        max="99"
                        className={classes.quantityInput}
                        value={itemQuantity}
-                       disabled={!item.addable}
+                       disabled={item.unaddable}
                        onChange={(e)=> handleChangeItemQuantity(e.target.value)}
                 />
                 <span className={classes.quantityName}>件</span>
@@ -48,14 +48,14 @@ class CartComponent extends React.Component{
             <Button variant="raised"
                     color="primary"
                     className={classes.button}
-                    disabled={!item.addable}
+                    disabled={item.unaddable}
                     onClick={(e)=> handleAddItemToCart(item.id)}
             >
                 <AddShoppingCartIcon />
                 加入购物车
             </Button>
 
-            { !item.addable && <Button color="secondary" className={classes.button}>
+            { item.unaddable && <Button color="secondary" className={classes.button}>
                 只有VIP会员可以购买次商品
             </Button>}
             <LoginDialog />
