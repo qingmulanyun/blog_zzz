@@ -43,7 +43,7 @@ class ItemRootPage extends React.Component{
                         />
                     </Grid>
                     <Grid item xs={12} sm={6} md={6} xl={9} lg={8}>
-                        <ItemDetailsCard item={currentItem}/>
+                       { Object.keys(currentItem).length !== 0 && <ItemDetailsCard item={currentItem}/>}
                     </Grid>
                 </Grid>
                 <CartItemsList />

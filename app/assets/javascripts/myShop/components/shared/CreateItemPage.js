@@ -40,6 +40,11 @@ const styles = theme => ({
     button: {
         margin: theme.spacing.unit,
     },
+    image: {
+        width: "95%",
+        margin: theme.spacing.unit,
+        height: "95%"
+    }
 });
 
 const imageInputProps = {
@@ -55,6 +60,12 @@ class CreateItemPage extends React.Component {
 
     handleUploadImage = (e) =>{
         this.props.handleInputChange('image', e.target.value);
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            $('#create_new_item_image_preview').attr('src', e.target.result);
+        };
+        reader.readAsDataURL(e.target.files[0]);
+
         files = e.target.files;
     };
 
@@ -212,7 +223,7 @@ class CreateItemPage extends React.Component {
                             inputProps={imageInputProps}
                             helperText="请上传图片"
                         />
-
+                        <img className={classes.image} id="create_new_item_image_preview" src="/assets/default-img.gif" alt="产品图片预览" />
                         <Button variant="raised" color="primary" className={classes.button} onClick={(e)=>this.handleSubmitNewItemForm(e)}>
                             添加
                         </Button>

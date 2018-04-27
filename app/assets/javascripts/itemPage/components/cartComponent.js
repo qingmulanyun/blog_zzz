@@ -31,7 +31,6 @@ class CartComponent extends React.Component{
 
     render(){
         const {classes, item, itemQuantity, handleChangeItemQuantity, handleAddItemToCart } = this.props;
-
         return(
         <ExpansionPanelDetails >
             <div className={classes.quantityContainer}>
@@ -57,7 +56,7 @@ class CartComponent extends React.Component{
             </Button>
 
             { !item.addable && <Button color="secondary" className={classes.button}>
-                只有会员可以购买次商品
+                只有VIP会员可以购买次商品
             </Button>}
             <LoginDialog />
             <CartConfirmDialog />
