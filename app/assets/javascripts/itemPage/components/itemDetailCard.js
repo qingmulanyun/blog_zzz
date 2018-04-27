@@ -111,7 +111,7 @@ class ItemDetailsCard extends React.Component {
                         </Typography>
                     </ExpansionPanelDetails>
                 </ExpansionPanel>
-                <ExpansionPanel expanded={true} classes={{ root: classes.actionBar}}   >
+                <ExpansionPanel expanded={true} classes={{ root: classes.actionBar}} >
                     <CartComponent item={item}/>
                 </ExpansionPanel>
             </div>
