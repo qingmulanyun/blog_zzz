@@ -30,6 +30,13 @@ class User < ActiveRecord::Base
       field :last_sign_in_ip
       field :created_at
     end
+
+    edit do
+      field :email
+      field :name
+      field :membership
+      field :password
+    end
   end
 
   def default_name
