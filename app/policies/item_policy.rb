@@ -39,4 +39,9 @@ class ItemPolicy < ApplicationPolicy
     end
     return true
   end
+
+  # add item to cart
+  def add_item?
+    record.membership <= user.membership
+  end
 end

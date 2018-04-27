@@ -5,10 +5,6 @@ class CartPolicy < ApplicationPolicy
     end
   end
 
-  def add_item?
-    true
-  end
-
   def remove_item?
     true
   end
