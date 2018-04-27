@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
     list do
       field :email
       field :name
-      field :role
+      field :membership
       field :last_sign_in_at
       field :last_sign_in_ip
       field :created_at
