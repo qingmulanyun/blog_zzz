@@ -20,7 +20,7 @@ const gridInitialState = {
     currentPage: 0,
     pageSize: 10,
     allowedPageSizes: [10, 20, 40],
-    columnOrder: [ 'created_at', 'shop_name', 'status', 'delivery_track_number', 'delivery_address','actions','id'],
+    columnOrder: [ 'created_at', 'shop_name', 'status', 'actions', 'delivery_track_number', 'delivery_address','id'],
     columnWidths:
         [
             { columnName: 'created_at', width: 100 },

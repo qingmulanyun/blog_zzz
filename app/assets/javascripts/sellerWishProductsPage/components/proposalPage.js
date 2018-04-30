@@ -40,6 +40,17 @@ const imageInputProps = {
 
 class ProposalPage extends React.Component{
 
+    handleUploadImage = (e) =>{
+        // this.props.handleInputChange('image', e.target.value);
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            $('#wish_product_proposal_image_preview').attr('src', e.target.result);
+        };
+        reader.readAsDataURL(e.target.files[0]);
+
+        files = e.target.files;
+    };
+
     render(){
         const { classes, proposalPageOpen, toggleProposalPage } = this.props;
 
@@ -147,7 +158,7 @@ class ProposalPage extends React.Component{
                                     type="file"
                                     // value={currentItem.image}
                                     className={classes.textField}
-                                    // onChange={(e)=> this.handleUploadImage(e)}
+                                    onChange={(e)=> this.handleUploadImage(e)}
                                     margin="normal"
                                     fullWidth
                                     helperText="请上传图片"
