@@ -44,7 +44,7 @@ class WishProductsListBoard extends React.Component{
                 <div>
                     <Grid container spacing={24} className={classes.container}>
                         {allWishProducts.length ==0 && !loading && <Typography  variant="caption" gutterBottom align="center" className={classes.errorTips}>
-                            抱歉，没有您要搜索的商品
+                            还没有买家提出申请
                         </Typography>}
                         {allWishProducts.map((wishProduct, index )=> (
                             <Grid item xs={12} sm={6} md={6} lg={3} xl={3} key={index}>
