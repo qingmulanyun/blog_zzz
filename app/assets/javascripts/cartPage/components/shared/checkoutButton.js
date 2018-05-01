@@ -199,7 +199,7 @@ class CheckoutButton extends React.Component {
                                                         <div className={classes.content}>¥{item.transport_cost}</div>
                                                     </Grid>
                                                     <Grid item xs={3}>
-                                                        <div className={classes.content}>¥{item.total_price + item.transport_cost}</div>
+                                                        <div className={classes.content}>¥{(item.total_price + item.transport_cost).toFixed(2)}</div>
                                                     </Grid>
                                                 </Grid>
                                             })
