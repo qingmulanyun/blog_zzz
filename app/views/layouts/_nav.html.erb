@@ -12,9 +12,9 @@
         <li class="divider"></li>
         <li><a href="<%= own_shop_user_path(current_user) %>">商品列表</a></li>
         <li class="divider"></li>
-        <li><a href="<%= shops_approved_wish_products_path %>">心愿申请 <span class="cart-badges-orders"><%= WishProduct.status_at('approved').count > 0 ? WishProduct.status_at('approved').count : '' %></span></a></li>
+        <li><a href="<%= shops_approved_wish_products_path %>">心愿申请 <%= wish_products_count %></a></li>
         <li class="divider"></li>
-        <li><a href="<%= shops_seller_orders_path %>">已接订单 <span class="cart-badges-orders"><%= current_user.shop.new_orders.count > 0 ? current_user.shop.new_orders.count : '' %></span></a></li>
+        <li><a href="<%= shops_seller_orders_path %>">已接订单<%= orders_count %></a></li>
       </ul>
   <% end %>
 
@@ -39,19 +39,19 @@
           </li>
           <li class="collection-item">
             <a href="<%= carts_cart_items_path %>">
-              <i class="material-icons left">shopping_cart</i>购物车 <span class="cart-badges"><%= current_user.cart_items_count%></span>
+              <i class="material-icons left">shopping_cart</i>购物车 <%= cart_items_count %>
             </a>
           </li>
           <% if current_user.shop.present? %>
               <li>
                 <a class="dropdown-button" href="#!" data-activates="shop_info">我的店铺
-                  <span class="cart-badges-orders"><%= current_user.shop.new_orders.count > 0 ? current_user.shop.new_orders.count : '' %></span>
+                  <%= orders_count %>
                   <i class="material-icons right">arrow_drop_down</i>
                 </a>
               </li>
           <% end %>
           <li>
-            <a class="dropdown-button" href="#!" data-activates="user_profile"><%= current_user.name%>
+            <a class="dropdown-button" href="#!" data-activates="user_profile"><%= current_user.name%> <%= membership_display %>
               <i class="material-icons right">arrow_drop_down</i>
             </a>
           </li>
@@ -59,7 +59,7 @@
         <ul id="nav-mobile" class="side-nav collection">
           <li class="collection-item">
             <a href="<%= setting_path %>">
-              <%= current_user.name%>
+              <%= current_user.name%> <%= membership_display %>
             </a>
           </li>
           <% if current_user.shop.present? %>
@@ -67,7 +67,7 @@
                 <a href="<%= own_shop_user_path(current_user) %>">商品列表</a>
               </li>
               <li class="collection-item">
-                <a href="<%= shops_seller_orders_path %>">已接订单 <span class="cart-badges-orders"><%= current_user.shop.new_orders.count > 0 ? current_user.shop.new_orders.count : '' %></span></a>
+                <a href="<%= shops_seller_orders_path %>">已接订单 <%= orders_count %></a>
               </li>
           <% end %>
           <li class="collection-item">
@@ -82,7 +82,7 @@
           </li>
           <li class="collection-item">
             <a href="<%= carts_cart_items_path %>">
-              <i class="material-icons left">shopping_cart</i>购物车 <span class="cart-badges"><%= current_user.cart_items_count%></span>
+              <i class="material-icons left">shopping_cart</i>购物车 <%= cart_items_count %>
             </a>
           </li>
         </ul>
