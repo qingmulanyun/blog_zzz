@@ -23,12 +23,9 @@ module Delivery
         if span_ele.child.present?
           content = span_ele.child.inner_text
           temp_str += "#{content}||"
-           if collections[index + 1].present? && collections[index + 1].child.present?
-             next_content = collections[index + 1].child.inner_text
-             if valid_date?(next_content)
-               result.push(temp_str)
-               temp_str = ''
-             end
+           if valid_tracking_info(collections, index)
+             result.push(temp_str)
+             temp_str = ''
            end
         end
       end
@@ -36,6 +33,10 @@ module Delivery
     end
 
     private
+
+    def valid_tracking_info(collections, index)
+      collections[index + 1].present? && collections[index + 1].child.present? && valid_date?(collections[index + 1].child.inner_text) || collections[index + 1].nil?
+    end
 
     def valid_date?(string)
       DateTime.strptime(string, '%Y-%m-%d %H:%M:%S')
