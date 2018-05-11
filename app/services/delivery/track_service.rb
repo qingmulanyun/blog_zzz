@@ -15,13 +15,13 @@ module Delivery
 
     def query_delivery_order
       result = []
-      response = Net::HTTP.post_form(URI.parse(@url), { OrderId: @track_number})
+      response = Net::HTTP.post_form(URI.parse(@url), { act: 'show', waybill: @track_number, submit: '立即查询'})
       doc = Nokogiri::HTML(response.body)
       temp_str = ''
-      collections = doc.css('table').last.css('span').to_a
-      collections.each_with_index do |span_ele, index|
-        if span_ele.child.present?
-          content = span_ele.child.inner_text
+      collections = doc.css('table').last.css('td').to_a.drop(3)
+      collections.each_with_index do |td_ele, index|
+        if td_ele.inner_text.present?
+          content = td_ele.inner_text.strip
           temp_str += "#{content}||"
            if valid_tracking_info(collections, index)
              result.push(temp_str)
@@ -35,7 +35,7 @@ module Delivery
     private
 
     def valid_tracking_info(collections, index)
-      collections[index + 1].present? && collections[index + 1].child.present? && valid_date?(collections[index + 1].child.inner_text) || collections[index + 1].nil?
+      collections[index + 1].present? && collections[index + 1].present? && valid_date?(collections[index + 1].inner_text.strip) || collections[index + 1].nil?
     end
 
     def valid_date?(string)
