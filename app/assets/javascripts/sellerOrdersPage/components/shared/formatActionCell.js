@@ -207,7 +207,7 @@ class FormatActionCellBase extends React.Component {
                             {
 
                                 deliveryTracking.map(function(deliveryInfo, index){
-                                    return  <ListItem key={index} className={classnames({ [classes.latestInfo]: index+1 === deliveryTracking.length })}>
+                                    return  <ListItem key={index} className={classnames({ [classes.latestInfo]: index === 0 })}>
                                         {`${deliveryInfo.time}  ${deliveryInfo.location} ${deliveryInfo.description} `}
                                     </ListItem>
                                 })
