@@ -1,7 +1,3 @@
-require "net/http"
-require "net/https"
-require "uri"
-
 module Delivery
   class Track_service
     attr_accessor :track_number, :url
@@ -15,7 +11,14 @@ module Delivery
 
     def query_delivery_order
       result = []
-      response = Net::HTTP.post_form(URI.parse(@url), { act: 'show', waybill: @track_number, submit: '立即查询'})
+      response = RestClient.post(@url, { act: 'show', waybill: @track_number, submit: '立即查询'})  { |response, request, result|
+        case response.code
+          when 301, 302, 307
+            response.follow_redirection
+          else
+            response.return!
+        end
+      }
       doc = Nokogiri::HTML(response.body)
       temp_str = ''
       collections = doc.css('table').last.css('td').to_a.drop(3)
