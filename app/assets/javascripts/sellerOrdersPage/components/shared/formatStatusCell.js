@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
-import { TableCell } from '@material-ui/core/Table';
+import TableCell from '@material-ui/core/TableCell';
 import { withStyles } from "@material-ui/core/styles";
 import blue from '@material-ui/core/colors/blue'
 
