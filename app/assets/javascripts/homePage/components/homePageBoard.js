@@ -1,5 +1,5 @@
 import React from 'react';
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from "@material-ui/core/styles";
 import { fetchHomePageInfo } from '../redux/actions/rootActions'
 import { connect } from 'react-redux'
 import  ItemsListBoard  from './itemsListBoard'

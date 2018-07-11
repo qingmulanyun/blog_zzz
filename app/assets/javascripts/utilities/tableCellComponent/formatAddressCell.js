@@ -1,11 +1,11 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
-import { TableCell } from 'material-ui/Table';
-import { withStyles } from 'material-ui/styles';
+import { TableCell } from '@material-ui/core/Table';
+import { withStyles } from "@material-ui/core/styles";
 import {
     ListItem,
     ListItemText,
-} from 'material-ui/List';
+} from '@material-ui/core/List';
 
 const styles = theme => ({
     formatCell: {

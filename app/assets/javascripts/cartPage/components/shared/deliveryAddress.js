@@ -1,12 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import { withStyles } from 'material-ui/styles';
-import {
-    Template, TemplatePlaceholder, Plugin, TemplateConnector,
-} from '@devexpress/dx-react-core';
+import { withStyles } from "@material-ui/core/styles";
+
 import { selectDeliveryAddress } from '../../redux/actions/addressesActions'
-import Radio, { RadioGroup } from 'material-ui/Radio';
-import { FormLabel, FormControl, FormControlLabel, FormHelperText } from 'material-ui/Form';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormLabel from '@material-ui/core/FormLabel';
+import FormControl from '@material-ui/core/FormControl';
+
 
 const styles = theme => ({
     root: {

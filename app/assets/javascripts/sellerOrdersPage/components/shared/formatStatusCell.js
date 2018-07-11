@@ -1,8 +1,8 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
-import { TableCell } from 'material-ui/Table';
-import { withStyles } from 'material-ui/styles';
-import blue from 'material-ui/colors/blue'
+import { TableCell } from '@material-ui/core/Table';
+import { withStyles } from "@material-ui/core/styles";
+import blue from '@material-ui/core/colors/blue'
 
 const getColor = (status) => {
     if (status == 'deleted') {

@@ -6,9 +6,9 @@ import {
 } from '@devexpress/dx-react-core';
 
 
-import IconButton from 'material-ui/IconButton';
-import Tooltip from 'material-ui/Tooltip';
-import AddIcon from 'material-ui-icons/AddCircle';
+import IconButton from '@material-ui/core/IconButton';
+import Tooltip from '@material-ui/core/Tooltip';
+import AddIcon from '@material-ui/icons/AddCircle';
 import { toggleCreateItemPage } from '../../redux/actions/rootActions'
 import CreateItemPage from './CreateItemPage'
 

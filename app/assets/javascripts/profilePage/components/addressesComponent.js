@@ -1,13 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { withStyles } from 'material-ui/styles';
-import Typography from 'material-ui/Typography'
-import Divider from 'material-ui/Divider';
+import { withStyles } from "@material-ui/core/styles";
+import Typography from '@material-ui/core/Typography'
+import Divider from '@material-ui/core/Divider';
 import AddNewAddresses from './addNewAddressesComponent'
 import AddressesList from './addressesListCompopnent'
 
 import Snackbar from '../../utilities/Snackbar/Snackbar';
-import { Done } from "material-ui-icons";
+import Done from "@material-ui/icons/Done";
 import { closeTip } from '../redux/actions/rootActions'
 
 const style = theme => ({

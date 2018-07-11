@@ -1,8 +1,8 @@
 import React from 'react';
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from "@material-ui/core/styles";
 import { connect } from 'react-redux'
 
-import Typography from 'material-ui/Typography';
+import Typography from '@material-ui/core/Typography';
 import { Loading } from '../../utilities/loadingComponent/loading';
 import { fetchWishProductsInfo } from '../redux/actions/rootActions'
 import WishProductsListBoard from './wishProductsListBoard'

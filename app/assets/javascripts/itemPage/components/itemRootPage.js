@@ -1,8 +1,8 @@
 import React from 'react';
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from "@material-ui/core/styles";
 import { fetchItem } from '../redux/actions/rootActions'
 import { connect } from 'react-redux'
-import Grid from 'material-ui/Grid';
+import Grid from '@material-ui/core/Grid';
 import ItemDetailsCard from './itemDetailCard'
 import CartItemsList from './cartItemsList'
 

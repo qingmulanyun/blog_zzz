@@ -1,10 +1,10 @@
 import React from 'react';
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from "@material-ui/core/styles";
 import { connect } from 'react-redux'
-import TextField from 'material-ui/TextField';
+import TextField from '@material-ui/core/TextField';
 import { toggleProposalPage } from '../redux/actions/rootActions'
-import Drawer from 'material-ui/Drawer';
-import Button from 'material-ui/Button';
+import Drawer from '@material-ui/core/Drawer';
+import Button from '@material-ui/core/Button';
 
 const styles = theme => ({
     title: {

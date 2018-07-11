@@ -1,8 +1,8 @@
 import React from 'react';
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from "@material-ui/core/styles";
 import { connect } from 'react-redux'
 import SellerItemsBoard from './SellerItemsBoard'
-import Typography from 'material-ui/Typography';
+import Typography from '@material-ui/core/Typography';
 import { fetchShopInfo } from '../redux/actions/rootActions'
 
 const styles = theme => ({

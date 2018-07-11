@@ -1,16 +1,15 @@
 import React from 'react';
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from "@material-ui/core/styles";
 import { connect } from 'react-redux'
-import Button from 'material-ui/Button';
+import Button from '@material-ui/core/Button';
 import { handleCloseLoginDialog } from '../redux/actions/rootActions'
 import { loginAndAddItemToCart } from '../redux/actions/cartActions'
-import Dialog, {
-    DialogActions,
-    DialogContent,
-    DialogContentText,
-    DialogTitle,
-} from 'material-ui/Dialog';
-import Slide from 'material-ui/transitions/Slide';
+import Dialog from '@material-ui/core/Dialog';
+
+import DialogContent from '@material-ui/core/DialogContent';
+
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Slide from '@material-ui/core/Slide';
 
 function Transition(props) {
     return <Slide direction="up" {...props} />;

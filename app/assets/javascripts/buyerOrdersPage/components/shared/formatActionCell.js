@@ -1,30 +1,26 @@
 import * as React from 'react';
 import { connect } from 'react-redux'
-import { TableCell } from 'material-ui/Table';
-import { withStyles } from 'material-ui/styles';
-import IconButton from 'material-ui/IconButton';
-import CancelIcon from 'material-ui-icons/Cancel';
-import DeliveryIcon from 'material-ui-icons/LocalShipping';
-import ConfirmIcon from 'material-ui-icons/LocalMall';
-import Tooltip from 'material-ui/Tooltip';
-import Dialog, {
-    DialogActions,
-    DialogContent,
-    DialogContentText,
-    DialogTitle,
-} from 'material-ui/Dialog';
-import Button from 'material-ui/Button';
+import { TableCell } from '@material-ui/core/Table';
+import { withStyles } from "@material-ui/core/styles";
+import IconButton from '@material-ui/core/IconButton';
+import CancelIcon from '@material-ui/icons/Cancel';
+import DeliveryIcon from '@material-ui/icons/LocalShipping';
+import ConfirmIcon from '@material-ui/icons/LocalMall';
+import Tooltip from '@material-ui/core/Tooltip';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Button from '@material-ui/core/Button';
 import { cancelOrder, deliveryTrack, insertDeliveryTrack, confirmDelivered } from '../../redux/actions/gridActions'
-import List, {
-    ListItem,
-    ListItemAvatar,
-    ListItemIcon,
-    ListItemSecondaryAction,
-    ListItemText,
-} from 'material-ui/List';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+
+import ListItemText from '@material-ui/core/ListItemText';
 import classnames from 'classnames';
-import blue from 'material-ui/colors/blue'
-import Avatar from 'material-ui/Avatar';
+import blue from '@material-ui/core/colors/blue'
+import Avatar from '@material-ui/core/Avatar';
 
 const styles = theme => ({
     formatDateCell: {
