@@ -32,11 +32,11 @@ const styles = theme => ({
 class CartConfirmDialog extends React.Component{
 
     render(){
-        const {classes, addedItem, addedQuantity, handleCloseCartConfirmDialog, cartConfirmdialogOpen } = this.props;
+        const {classes, addedItem, addedQuantity, handleCloseCartConfirmDialog, cartConfirmDialogOpen } = this.props;
 
         return(
             <Dialog
-                open={cartConfirmdialogOpen}
+                open={cartConfirmDialogOpen}
                 onClose={handleCloseCartConfirmDialog}
                 aria-labelledby="alert-dialog-title"
                 aria-describedby="alert-dialog-description"
@@ -60,7 +60,7 @@ class CartConfirmDialog extends React.Component{
 const mapStateToProps = (state) => ({
     addedItem: state.cart.addedItem,
     addedQuantity: state.cart.addedQuantity,
-    cartConfirmdialogOpen: state.cart.cartConfirmdialogOpen
+    cartConfirmDialogOpen: state.cart.cartConfirmDialogOpen
 });
 
 const mapDispatchToProps = (dispatch) => {
