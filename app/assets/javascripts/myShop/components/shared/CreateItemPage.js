@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import Drawer from 'material-ui/Drawer';
-import TextField from 'material-ui/TextField';
-import AppBar from 'material-ui/AppBar';
-import Toolbar from 'material-ui/Toolbar';
-import Typography from 'material-ui/Typography';
-import Button from 'material-ui/Button';
+import withStyles from "@material-ui/core/styles/withStyles";
+import Drawer from '@material-ui/core/Drawer';
+import TextField from '@material-ui/core/TextField';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux'
 import { toggleCreateItemPage } from '../../redux/actions/rootActions'
 import { handleInputChange, submitNewItemForm } from '../../redux/actions/gridActions'

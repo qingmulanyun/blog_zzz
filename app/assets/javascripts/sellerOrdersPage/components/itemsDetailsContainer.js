@@ -1,5 +1,5 @@
 import React from 'react';
-import { withStyles } from 'material-ui/styles';
+import withStyles from "@material-ui/core/styles/withStyles";
 import { connect } from 'react-redux';
 import {
     SortingState, SelectionState, FilteringState, PagingState, GroupingState, RowDetailState,
@@ -10,7 +10,7 @@ import {
     Table, TableHeaderRow, TableFilterRow, TableSelection, TableGroupRow, TableRowDetail, ColumnChooser, TableColumnVisibility,
     GroupingPanel, PagingPanel, DragDropProvider, TableColumnReordering, TableColumnResizing, Toolbar,
 } from '@devexpress/dx-react-grid-material-ui';
-import Paper from 'material-ui/Paper';
+import Paper from '@material-ui/core/Paper';
 
 import { FormatItemImageCell } from '../../utilities/tableCellComponent/formatItemImageCell'
 import { FormatItemNameCell } from '../../utilities/tableCellComponent/formatItemNameCell'

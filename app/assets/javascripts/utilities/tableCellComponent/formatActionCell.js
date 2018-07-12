@@ -1,17 +1,16 @@
 import * as React from 'react';
 import { connect } from 'react-redux'
-import { TableCell } from 'material-ui/Table';
-import { withStyles } from 'material-ui/styles';
-import IconButton from 'material-ui/IconButton';
-import EditIcon from 'material-ui-icons/Edit';
-import Tooltip from 'material-ui/Tooltip';
-import Button from 'material-ui/Button';
-import Dialog, {
-    DialogActions,
-    DialogContent,
-    DialogContentText,
-    DialogTitle,
-} from 'material-ui/Dialog';
+import TableCell from '@material-ui/core/TableCell';
+import withStyles from "@material-ui/core/styles/withStyles";
+import IconButton from '@material-ui/core/IconButton';
+import EditIcon from '@material-ui/icons/Edit';
+import Tooltip from '@material-ui/core/Tooltip';
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 import { handleCartItemQuantityChange } from '../../cartPage/redux/actions/gridActions'
 
 const styles = theme => ({

@@ -7,8 +7,8 @@ import { gridReducer } from '../sellerOrdersPage/redux/reducers/gridReducers';
 import OrdersRootPage from '../sellerOrdersPage/components/ordersRootPage';
 import thunk from 'redux-thunk';
 
-import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
-import blue from 'material-ui/colors/blue';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import blue from "@material-ui/core/colors/blue";
 
 const theme = createMuiTheme({
     palette: {

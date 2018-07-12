@@ -1,8 +1,8 @@
 import React from 'react';
-import { withStyles } from 'material-ui/styles';
+import withStyles from "@material-ui/core/styles/withStyles";
 import { connect } from 'react-redux'
 import { Loading } from '../../utilities/loadingComponent/loading';
-import Typography from 'material-ui/Typography';
+import Typography from '@material-ui/core/Typography';
 import ChartsPage from './chartsPage'
 import { fetchReportData } from '../redux/actions/rootActions'
 

@@ -1,9 +1,9 @@
 import React from 'react';
-import { withStyles } from 'material-ui/styles';
+import withStyles from "@material-ui/core/styles/withStyles";
 import { connect } from 'react-redux'
 import { Line as LineChart } from 'react-chartjs';
 import { Bar as BarChart } from 'react-chartjs';
-import Grid from 'material-ui/Grid';
+import Grid from '@material-ui/core/Grid';
 import moment from 'moment'
 moment.locale('ZH_CN');
 const styles = theme => ({

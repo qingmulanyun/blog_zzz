@@ -6,8 +6,8 @@ import rootReducer from '../sellerWishProductsPage/redux/reducers/rootReducers'
 import WishProductsBoard from '../sellerWishProductsPage/components/wishProductsRootPage'
 import thunk from 'redux-thunk'
 
-import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
-import blue from 'material-ui/colors/blue';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import blue from "@material-ui/core/colors/blue";
 
 const theme = createMuiTheme({
     palette: {

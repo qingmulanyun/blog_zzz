@@ -1,16 +1,16 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { withStyles } from 'material-ui/styles';
-import Typography from 'material-ui/Typography'
-import Divider from 'material-ui/Divider';
+import withStyles from "@material-ui/core/styles/withStyles";
+import Typography from '@material-ui/core/Typography'
+import Divider from '@material-ui/core/Divider';
 import classnames from 'classnames'
-import Button from 'material-ui/Button';
-import Save from 'material-ui-icons/Save';
-import TextField from 'material-ui/TextField';
+import Button from '@material-ui/core/Button';
+import Save from '@material-ui/icons/Save';
+import TextField from '@material-ui/core/TextField';
 import { fetchProfileInfo, submitUpdateProfile, handleChangeProfile } from '../redux/actions/profileActions'
 import { closeTip } from '../redux/actions/rootActions'
 import Snackbar from '../../utilities/Snackbar/Snackbar';
-import { Done } from "material-ui-icons";
+import Done from "@material-ui/icons/Done";
 
 const style = theme => ({
     formContainer: {

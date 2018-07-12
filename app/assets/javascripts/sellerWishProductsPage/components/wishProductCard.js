@@ -1,20 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
+import withStyles from "@material-ui/core/styles/withStyles";
 import classnames from 'classnames';
-import Card, { CardHeader, CardContent, CardActions } from 'material-ui/Card';
-import Collapse from 'material-ui/transitions/Collapse';
-import Avatar from 'material-ui/Avatar';
-import IconButton from 'material-ui/IconButton';
-import Typography from 'material-ui/Typography';
-import red from 'material-ui/colors/red';
+import Card, { CardHeader, CardContent, CardActions } from '@material-ui/core/Card';
+import Collapse from '@material-ui/core/Collapse';
+import Avatar from '@material-ui/core/Avatar';
+import IconButton from '@material-ui/core/IconButton';
+import Typography from '@material-ui/core/Typography';
+import red from "@material-ui/core/colors/red";
 
-import RingIcon from 'material-ui-icons/RoomService';
-import ExpandMoreIcon from 'material-ui-icons/ExpandMore';
+import RingIcon from '@material-ui/icons/RoomService';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { connect } from 'react-redux'
 import moment from 'moment'
-import Grow from 'material-ui/transitions/Grow';
-import Tooltip from 'material-ui/Tooltip';
+import Grow from '@material-ui/core/Grow';
+import Tooltip from '@material-ui/core/Tooltip';
 import { toggleProposalPage } from '../redux/actions/rootActions'
 
 moment.locale('ZH_CN');

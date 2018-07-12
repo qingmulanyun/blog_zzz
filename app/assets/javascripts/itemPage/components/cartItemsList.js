@@ -1,23 +1,26 @@
 import React from 'react';
 import { connect } from 'react-redux'
 
-import { withStyles } from 'material-ui/styles';
+import withStyles from "@material-ui/core/styles/withStyles";
 import classNames from 'classnames';
-import Drawer from 'material-ui/Drawer';
-import AppBar from 'material-ui/AppBar';
-import Toolbar from 'material-ui/Toolbar';
-import Typography from 'material-ui/Typography';
-import Button from 'material-ui/Button';
-import IconButton from 'material-ui/IconButton';
-import HideIcon from 'material-ui-icons/KeyboardArrowRight';
+import Drawer from '@material-ui/core/Drawer';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import HideIcon from '@material-ui/icons/KeyboardArrowRight';
 import { toggleItemsListPage, handleShowCartItemsListPage, handleDeleteCartItems } from '../redux/actions/cartActions'
-import ShoppingCartIcon from 'material-ui-icons/ShoppingCart'
-import List, { ListItem, ListItemText, ListItemSecondaryAction } from 'material-ui/List';
-import DeleteIcon from 'material-ui-icons/Delete';
-import Avatar from 'material-ui/Avatar';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart'
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+import DeleteIcon from '@material-ui/icons/Delete';
+import Avatar from '@material-ui/core/Avatar';
 import { Loading } from '../../utilities/loadingComponent/loading'
-import Divider from 'material-ui/Divider';
-import { SnackbarContent } from 'material-ui/Snackbar';
+import Divider from '@material-ui/core/Divider';
+import SnackbarContent from '@material-ui/core/SnackbarContent';
 
 const drawerWidth = 400;
 

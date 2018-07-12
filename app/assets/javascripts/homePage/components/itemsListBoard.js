@@ -1,9 +1,9 @@
 import React from 'react';
-import { withStyles } from 'material-ui/styles';
-import Grid from 'material-ui/Grid';
+import withStyles from "@material-ui/core/styles/withStyles";
+import Grid from '@material-ui/core/Grid';
 import { connect } from 'react-redux'
 import ItemCard from './itemCard'
-import Typography from 'material-ui/Typography';
+import Typography from '@material-ui/core/Typography';
 import { handleSearchKeywordsChange } from '../redux/actions/rootActions'
 import { Loading } from '../../utilities/loadingComponent/loading'
 
