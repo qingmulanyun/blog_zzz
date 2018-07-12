@@ -1,5 +1,5 @@
 import React from 'react';
-import { withStyles } from "@material-ui/core/styles";
+import withStyles from "@material-ui/core/styles/withStyles";
 import { fetchItem } from '../redux/actions/rootActions'
 import { connect } from 'react-redux'
 import Grid from '@material-ui/core/Grid';

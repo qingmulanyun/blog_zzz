@@ -1,5 +1,5 @@
 import React from 'react';
-import { withStyles } from "@material-ui/core/styles";
+import withStyles from "@material-ui/core/styles/withStyles";
 import { connect } from 'react-redux'
 import SellerItemsBoard from './SellerItemsBoard'
 import Typography from '@material-ui/core/Typography';

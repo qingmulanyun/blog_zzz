@@ -1,5 +1,5 @@
 import React from 'react';
-import { withStyles } from "@material-ui/core/styles";
+import withStyles from "@material-ui/core/styles/withStyles";
 import { connect } from 'react-redux'
 import { Line as LineChart } from 'react-chartjs';
 import { Bar as BarChart } from 'react-chartjs';

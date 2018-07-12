@@ -1,5 +1,5 @@
 import React from 'react';
-import { withStyles } from "@material-ui/core/styles";
+import withStyles from "@material-ui/core/styles/withStyles";
 import { connect } from 'react-redux';
 import {
     SortingState, SelectionState, FilteringState, PagingState, GroupingState, RowDetailState,

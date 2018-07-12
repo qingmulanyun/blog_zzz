@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { provinceData } from './data/stateCityData';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
-import { withStyles } from "@material-ui/core/styles";
+import withStyles from "@material-ui/core/styles/withStyles";
 import findIndex from 'lodash.findindex';
 const style = theme => ({
     rootContainer: {

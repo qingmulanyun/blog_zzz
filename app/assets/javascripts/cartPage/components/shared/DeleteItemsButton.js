@@ -12,7 +12,6 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import IconButton from '@material-ui/core/IconButton';
 import Button from '@material-ui/core/Button';
-
 import Tooltip from '@material-ui/core/Tooltip';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { deleteItems } from '../../redux/actions/gridActions'
@@ -69,9 +68,9 @@ class DeleteItemsButton extends React.Component {
                 <Dialog
                     fullWidth
                     open={deleteWarningDialogOpen}
-                    aria-labelledby="delete-items-warning"
+                    aria-labelledby="delete-cart-items-warning"
                 >
-                    <DialogTitle id="delete-items-warning">删除商品
+                    <DialogTitle id="delete-cart-items-warning">删除商品
                     </DialogTitle>
                     <DialogContent>
                         <DialogContentText>

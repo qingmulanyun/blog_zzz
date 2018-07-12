@@ -69,9 +69,9 @@ class CancelOrdersButton extends React.Component {
                 <Dialog
                     fullWidth
                     open={deleteWarningDialogOpen}
-                    aria-labelledby="delete-items-warning"
+                    aria-labelledby="delete-order-items-warning"
                 >
-                    <DialogTitle id="delete-items-warning">删除商品
+                    <DialogTitle id="delete-order-items-warning">删除商品
                     </DialogTitle>
                     <DialogContent>
                         <DialogContentText>

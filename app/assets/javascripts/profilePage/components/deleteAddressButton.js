@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import { withStyles } from "@material-ui/core/styles";
+import withStyles from "@material-ui/core/styles/withStyles";
 
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -64,9 +64,9 @@ class deleteAddressButton extends React.Component {
                 <Dialog
                     fullWidth
                     open={deleteWarningDialogOpen}
-                    aria-labelledby="delete-items-warning"
+                    aria-labelledby="delete-address-warning"
                 >
-                    <DialogTitle id="delete-items-warning">删除地址
+                    <DialogTitle id="delete-address-warning">删除地址
                     </DialogTitle>
                     <DialogContent>
                         <DialogContentText>

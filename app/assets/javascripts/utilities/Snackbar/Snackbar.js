@@ -1,6 +1,6 @@
 import React from "react";
 import IconButton from '@material-ui/core/IconButton';
-import { withStyles } from "@material-ui/core/styles";
+import withStyles from "@material-ui/core/styles/withStyles";
 import Snack from '@material-ui/core/Snackbar';
 import Close from '@material-ui/icons/Close';
 import PropTypes from "prop-types";

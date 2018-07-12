@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux'
 import TableCell from '@material-ui/core/TableCell';
-import { withStyles } from "@material-ui/core/styles";
+import withStyles from "@material-ui/core/styles/withStyles";
 import IconButton from '@material-ui/core/IconButton';
 import AddShoppingCart from '@material-ui/icons/AddShoppingCart';
 import SendIcon from '@material-ui/icons/Send';

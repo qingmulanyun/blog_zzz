@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { withStyles } from "@material-ui/core/styles";
+import withStyles from "@material-ui/core/styles/withStyles";
 import Typography from '@material-ui/core/Typography'
 import Divider from '@material-ui/core/Divider';
 import classnames from 'classnames'
