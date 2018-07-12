@@ -175,7 +175,7 @@ class AddNewAddresses extends React.Component {
 const mapStateToProps = (state) => ({
     currentAddress: state.address.currentAddress,
     addresses: state.address.addresses,
-    tipOpen: state.root.topOpen
+    tipOpen: state.root.tipOpen
 });
 
 const mapDispatchToProps = (dispatch) => {

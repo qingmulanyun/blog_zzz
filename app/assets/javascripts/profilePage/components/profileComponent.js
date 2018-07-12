@@ -119,7 +119,7 @@ class Profile extends React.Component {
 
 const mapStateToProps = (state) => ({
     profile: state.profile,
-    tipOpen: state.root.topOpen
+    tipOpen: state.root.tipOpen
 });
 
 const mapDispatchToProps = (dispatch) => {

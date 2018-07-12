@@ -23,7 +23,7 @@ export default function reducer(state = initialState, action = {}) {
       case "UPDATE_PROFILE_SUCCESSFULLY":
           return {
               ...state,
-              topOpen: true
+              tipOpen: true
           };
       case "CREAT_NEW_ADDRESS_SUCCESSFULLY":
           return {
