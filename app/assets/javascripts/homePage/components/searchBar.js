@@ -2,10 +2,9 @@ import React from 'react';
 import withStyles from "@material-ui/core/styles/withStyles";
 import Grid from '@material-ui/core/Grid';
 import { connect } from 'react-redux'
-import ItemCard from './itemCard'
 import Typography from '@material-ui/core/Typography';
 import { handleSearchKeywordsChange } from '../redux/actions/rootActions'
-import { Loading } from '../../utilities/loadingComponent/loading'
+import debounce from 'lodash/debounce';
 
 const styles = theme => ({
     root: {
@@ -40,9 +39,13 @@ const styles = theme => ({
 
 class SearchBar extends React.Component{
 
-    handleSearchItems = keyWords => {
+    handleSearchItems = (keyWords) => {
         this.props.searchKeywordsChange(keyWords);
     };
+
+    debounceSearch = (keyWords) => {
+        debounce(this.handleSearchItems(keyWords), 1000);
+    }
 
     render(){
         const {classes} = this.props;
@@ -57,7 +60,7 @@ class SearchBar extends React.Component{
                     </Grid>
                     <Grid item xs={10} sm={6} md={6} lg={9} xl={9} >
                         <div className="input-field">
-                            <input type="text" id="autocomplete-input" className="autocomplete" onChange={(e)=>this.handleSearchItems(e.target.value)}/>
+                            <input type="text" id="autocomplete-input" className="autocomplete" onChange={(e)=>this.debounceSearch(e.target.value)}/>
                             <i className="material-icons prefix">search</i>
                             <label className={classes.searchLable}>搜索商品</label>
                         </div>
