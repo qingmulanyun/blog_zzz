@@ -1,17 +1,25 @@
 module Delivery
   class Track_service
-    attr_accessor :track_number, :url
+    attr_accessor :track_numbers, :url
 
     include Exceptions
 
-    def initialize(track_number, url)
+    def initialize(track_numbers, url)
       @url = url
-      @track_number = track_number
+      @track_numbers = track_numbers
     end
 
     def query_delivery_order
+      query_result = {}
+      track_numbers.each do |track_number|
+        query_result[track_number] = shipping_carrier_api(track_number)
+      end
+      query_result
+    end
+
+    def shipping_carrier_api(track_number)
       result = []
-      response = RestClient.post(@url, { act: 'show', waybill: @track_number, submit: '立即查询'})  { |response, request, result|
+      response = RestClient.post(@url, { act: 'show', waybill: track_number, submit: '立即查询'})  { |response, request, result|
         case response.code
           when 301, 302, 307
             response.follow_redirection
