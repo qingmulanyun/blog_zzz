@@ -95,6 +95,7 @@ class FormatActionCellBase extends React.Component {
 
     render(){
         const { value, classes, deliveryTracking, row } = this.props;
+
         return (
             <TableCell
                 className={classes.formatDateCell}
@@ -153,16 +154,22 @@ class FormatActionCellBase extends React.Component {
                 >
                     <DialogTitle id="form-dialog-title">物流查询</DialogTitle>
                     <DialogContent>
-                        <List dense={true}>
-                            {
-
-                                deliveryTracking.map(function(deliveryInfo, index){
-                                    return  <ListItem key={index} className={classnames({ [classes.latestInfo]: index === 0 })}>
-                                        {`${deliveryInfo.time}  ${deliveryInfo.location} ${deliveryInfo.description} `}
-                                    </ListItem>
-                                })
-                            }
-                        </List>
+                        {
+                            deliveryTracking.map(function(deliveryInfo, index){
+                                return <div>
+                                <List dense={true}>
+                                   运单号: { deliveryInfo.track_number}
+                                </List>
+                                    {
+                                        deliveryInfo.details.map(function(details, index){
+                                            return  <List dense={true}>
+                                                运单号: { deliveryInfo.track_number}
+                                            </List>
+                                        })
+                                    }
+                                </div>
+                            })
+                        }
 
                     </DialogContent>
                     <DialogActions>
