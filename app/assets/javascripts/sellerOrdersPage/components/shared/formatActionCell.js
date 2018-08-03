@@ -17,12 +17,10 @@ import Button from '@material-ui/core/Button';
 import { handleOrderStatusChange, handleSubmitDeliveryTrackNumber, deliveryTrack, insertDeliveryTrack } from '../../redux/actions/gridActions'
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
-import ListItemText from '@material-ui/core/ListItemText';
+import Divider from '@material-ui/core/Divider';
 import classnames from 'classnames';
 import blue from '@material-ui/core/colors/blue'
+import green from '@material-ui/core/colors/green'
 
 const styles = theme => ({
     formatDateCell: {
@@ -46,6 +44,10 @@ const styles = theme => ({
     },
     latestInfo: {
         color: blue[500]
+    },
+    trackingNumber: {
+        color: green[500],
+        fontSize: 18
     }
 });
 class FormatActionCellBase extends React.Component {
@@ -102,7 +104,6 @@ class FormatActionCellBase extends React.Component {
 
     render(){
         const { deliveryTracking, value, classes, loading, handleOrderStatusChange } = this.props;
-        console.log(deliveryTracking)
         return (
             <TableCell
                 className={classes.formatDateCell}
@@ -202,16 +203,25 @@ class FormatActionCellBase extends React.Component {
                 >
                     <DialogTitle id="form-dialog-title">物流查询</DialogTitle>
                     <DialogContent>
-                        <List dense={true}>
-                            {
-
-                                deliveryTracking.map(function(deliveryInfo, index){
-                                    return  <ListItem key={index} className={classnames({ [classes.latestInfo]: index === 0 })}>
-                                        {`${deliveryInfo.time}  ${deliveryInfo.location} ${deliveryInfo.description} `}
-                                    </ListItem>
-                                })
-                            }
-                        </List>
+                        {
+                            deliveryTracking.map(function(deliveryInfo, index){
+                                return <div key={index}>
+                                    <List dense={true}>
+                                        <ListItem className={classes.trackingNumber}>
+                                            运单号: { deliveryInfo.track_number}
+                                        </ListItem>
+                                        {
+                                            deliveryInfo.details.map(function(details, index){
+                                                return  <ListItem key={index} className={classnames({ [classes.latestInfo]: index === 0 })}>
+                                                    {`${details.time}  ${details.location} ${details.description}`}
+                                                </ListItem>
+                                            })
+                                        }
+                                    </List>
+                                    <Divider />
+                                </div>
+                            })
+                        }
 
                     </DialogContent>
                     <DialogActions>

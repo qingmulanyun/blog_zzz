@@ -32,7 +32,6 @@ const FormatAddressCellBase = ({
 );
 
 FormatAddressCellBase.propTypes = {
-    value: PropTypes.string.isRequired,
     classes: PropTypes.object.isRequired,
     style: PropTypes.object,
     tableColumn: PropTypes.object,
