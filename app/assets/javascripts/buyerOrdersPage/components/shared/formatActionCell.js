@@ -20,6 +20,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import classnames from 'classnames';
 import blue from '@material-ui/core/colors/blue'
+import green from '@material-ui/core/colors/green'
 import Avatar from '@material-ui/core/Avatar';
 
 const styles = theme => ({
@@ -43,6 +44,10 @@ const styles = theme => ({
     },
     latestInfo: {
         color: blue[500]
+    },
+    trackingNumber: {
+        color: green[500],
+        fontSize: 18
     }
 });
 class FormatActionCellBase extends React.Component {
@@ -95,6 +100,7 @@ class FormatActionCellBase extends React.Component {
 
     render(){
         const { value, classes, deliveryTracking, row } = this.props;
+
         return (
             <TableCell
                 className={classes.formatDateCell}
@@ -153,17 +159,25 @@ class FormatActionCellBase extends React.Component {
                 >
                     <DialogTitle id="form-dialog-title">物流查询</DialogTitle>
                     <DialogContent>
-                        <List dense={true}>
-                            {
-
-                                deliveryTracking.map(function(deliveryInfo, index){
-                                    return  <ListItem key={index} className={classnames({ [classes.latestInfo]: index === 0 })}>
-                                        {`${deliveryInfo.time}  ${deliveryInfo.location} ${deliveryInfo.description} `}
-                                    </ListItem>
-                                })
-                            }
-                        </List>
-
+                        {
+                            deliveryTracking.map(function(deliveryInfo, index){
+                                return <div key={index}>
+                                    <List dense={true}>
+                                        <ListItem className={classes.trackingNumber}>
+                                            运单号: { deliveryInfo.track_number}
+                                        </ListItem>
+                                        {
+                                            deliveryInfo.details.map(function(details, index){
+                                                return  <ListItem key={index} className={classnames({ [classes.latestInfo]: index === 0 })}>
+                                                    {`${details.time}  ${details.location} ${details.description}`}
+                                                </ListItem>
+                                            })
+                                        }
+                                    </List>
+                                    <Divider />
+                                </div>
+                            })
+                        }
                     </DialogContent>
                     <DialogActions>
                         <Button onClick={this.handleDeliveryTrackDialogClose} color="primary">
