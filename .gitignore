@@ -9,3 +9,5 @@
 /app/assets/javascripts/build/
 
 /public/.DS_Store
+# Ignore application configuration
+/config/application.yml
