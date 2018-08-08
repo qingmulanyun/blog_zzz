@@ -28,7 +28,7 @@ gem 'delayed_job_active_record'
 gem 'daemons'
 gem 'materialize-sass'
 gem 'material_icons'
-
+gem 'figaro'
 # upload image
 gem 'carrierwave'
 gem 'cloudinary'
