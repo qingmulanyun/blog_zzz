@@ -22,6 +22,7 @@ import classnames from 'classnames';
 import blue from '@material-ui/core/colors/blue'
 import green from '@material-ui/core/colors/green'
 import Avatar from '@material-ui/core/Avatar';
+import Divider from '@material-ui/core/Divider';
 
 const styles = theme => ({
     formatDateCell: {
