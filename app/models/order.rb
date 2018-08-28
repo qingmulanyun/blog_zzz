@@ -7,6 +7,7 @@ class Order < ActiveRecord::Base
 
   scope :new_created, -> { where status: 'new' }
   scope :delivered_orders, -> { where status: 'delivered' }
+  scope :sent_orders, -> { where status: 'sent' }
   after_create :new_order_notification, :new_owned_order_notification
 
   rails_admin do
@@ -19,6 +20,7 @@ class Order < ActiveRecord::Base
 
   state_machine :status, :initial => :new do
     after_transition all - [:sent]  => :sent do |order, transition|
+      order.update_attributes!(sent_at: DateTime.now)
       OrderSentNotifier.send_delivery_track_email(order).deliver_later
     end
 
