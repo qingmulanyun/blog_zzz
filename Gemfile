@@ -25,6 +25,10 @@ gem 'devise'
 gem 'pundit'
 gem 'groupdate'
 gem 'delayed_job_active_record'
+
+# Extends delayed_job to support recurring jobs.
+gem 'delayed_job_recurring'
+
 gem 'daemons'
 gem 'materialize-sass'
 gem 'material_icons'

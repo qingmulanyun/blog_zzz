@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180427001421) do
+ActiveRecord::Schema.define(version: 2018_08_28_035936) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -162,6 +162,7 @@ ActiveRecord::Schema.define(version: 20180427001421) do
     t.integer "membership", default: 0
     t.index ["item_brand_id"], name: "index_items_on_item_brand_id"
     t.index ["item_type_id"], name: "index_items_on_item_type_id"
+    t.index ["starred"], name: "index_items_on_starred"
     t.index ["wish_product_id"], name: "index_items_on_wish_product_id"
   end
 
@@ -186,9 +187,11 @@ ActiveRecord::Schema.define(version: 20180427001421) do
     t.string "delivery_track_number"
     t.uuid "address_id"
     t.float "sold_price"
+    t.datetime "sent_at"
     t.index ["address_id"], name: "index_orders_on_address_id"
     t.index ["buyer_id"], name: "index_orders_on_buyer_id"
     t.index ["shop_id"], name: "index_orders_on_shop_id"
+    t.index ["status"], name: "index_orders_on_status"
   end
 
   create_table "post_votes", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -210,6 +213,29 @@ ActiveRecord::Schema.define(version: 20180427001421) do
     t.float "latitude"
     t.float "longitude"
     t.index ["slug"], name: "index_posts_on_slug"
+  end
+
+  create_table "promotion_codes", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.string "key"
+    t.integer "max_use"
+    t.integer "times_used", default: 0
+    t.uuid "promotion_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["promotion_id"], name: "index_promotion_codes_on_promotion_id"
+  end
+
+  create_table "promotions", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.boolean "active"
+    t.string "type"
+    t.float "amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_promotions_on_name", unique: true
   end
 
   create_table "shops", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -309,6 +335,7 @@ ActiveRecord::Schema.define(version: 20180427001421) do
   add_foreign_key "order_items", "orders"
   add_foreign_key "orders", "addresses"
   add_foreign_key "orders", "shops"
+  add_foreign_key "promotion_codes", "promotions"
   add_foreign_key "shops", "users"
   add_foreign_key "wish_products", "item_brands"
   add_foreign_key "wish_products", "item_types"
