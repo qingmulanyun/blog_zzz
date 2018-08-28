@@ -9,6 +9,14 @@ class Order < ActiveRecord::Base
   scope :delivered_orders, -> { where status: 'delivered' }
   after_create :new_order_notification, :new_owned_order_notification
 
+  rails_admin do
+    edit do
+      field :delivery_track_number
+      field :status, :state
+      field :sold_price
+    end
+  end
+
   state_machine :status, :initial => :new do
     after_transition all - [:sent]  => :sent do |order, transition|
       OrderSentNotifier.send_delivery_track_email(order).deliver_later
