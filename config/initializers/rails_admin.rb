@@ -8,6 +8,8 @@ RailsAdmin.config do |config|
   end
   config.current_user_method(&:current_admin)
 
+  config.excluded_models = ['ActiveStorage::Blob', 'ActiveStorage::Attachment']
+  
   ## == Cancan ==
   # config.authorize_with :cancan
 
