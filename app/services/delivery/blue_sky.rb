@@ -1,13 +1,5 @@
 module Delivery
-  class Track_service
-    attr_accessor :track_numbers, :url
-
-    include Exceptions
-
-    def initialize(track_numbers, url)
-      @url = url
-      @track_numbers = track_numbers
-    end
+  class BlueSky < BaseCarrier
 
     def query_delivery_order
       query_result = {}
