@@ -4,6 +4,7 @@ class Order < ActiveRecord::Base
   belongs_to :shop
   belongs_to :buyer, class_name: 'User'
   belongs_to :address
+  has_one :carrier
 
   scope :new_created, -> { where status: 'new' }
   scope :delivered_orders, -> { where status: 'delivered' }

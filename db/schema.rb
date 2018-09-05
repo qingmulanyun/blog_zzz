@@ -10,9 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_28_035936) do
+ActiveRecord::Schema.define(version: 2018_09_05_065028) do
 
   # These are extensions that must be enabled in order to support this database
+  enable_extension "pgcrypto"
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
 
@@ -56,6 +57,16 @@ ActiveRecord::Schema.define(version: 2018_08_28_035936) do
     t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "carriers", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name"
+    t.string "internal_symbol"
+    t.string "status"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["internal_symbol"], name: "index_carriers_on_internal_symbol", unique: true
   end
 
   create_table "cart_items", id: :serial, force: :cascade do |t|
@@ -188,8 +199,10 @@ ActiveRecord::Schema.define(version: 2018_08_28_035936) do
     t.uuid "address_id"
     t.float "sold_price"
     t.datetime "sent_at"
+    t.uuid "carrier_id"
     t.index ["address_id"], name: "index_orders_on_address_id"
     t.index ["buyer_id"], name: "index_orders_on_buyer_id"
+    t.index ["carrier_id"], name: "index_orders_on_carrier_id"
     t.index ["shop_id"], name: "index_orders_on_shop_id"
     t.index ["status"], name: "index_orders_on_status"
   end
@@ -334,6 +347,7 @@ ActiveRecord::Schema.define(version: 2018_08_28_035936) do
   add_foreign_key "order_items", "items"
   add_foreign_key "order_items", "orders"
   add_foreign_key "orders", "addresses"
+  add_foreign_key "orders", "carriers"
   add_foreign_key "orders", "shops"
   add_foreign_key "promotion_codes", "promotions"
   add_foreign_key "shops", "users"
