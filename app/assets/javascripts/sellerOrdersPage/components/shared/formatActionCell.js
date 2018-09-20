@@ -283,12 +283,12 @@ class FormatActionCellBase extends React.Component {
                                         <ListItem className={classes.trackingNumber}>
                                             运单号: { deliveryInfo.track_number}
                                         </ListItem>
-                                        {
+                                        { deliveryInfo.details.length > 0 ?
                                             deliveryInfo.details.map(function(details, index){
                                                 return  <ListItem key={index} className={classnames({ [classes.latestInfo]: index === 0 })}>
                                                     {`${details.time}  ${details.location} ${details.description}`}
                                                 </ListItem>
-                                            })
+                                            }) : <ListItem> 没有关于该订单号的信息，请核对订单号是否正确。</ListItem>
                                         }
                                     </List>
                                     <Divider />
