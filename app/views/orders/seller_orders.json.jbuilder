@@ -17,6 +17,7 @@ json.array! @orders do |order|
     json.id order.id
     json.status order.status
     json.delivery_track_number order.delivery_track_number || ''
+    json.carrier_id order.carrier_id || ''
   end
   json.delivery_track_number order.delivery_track_number
   json.delivery_address do

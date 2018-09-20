@@ -58,7 +58,7 @@ export function handleOrderStatusChange(orderId, status) {
     }
 }
 
-export function handleSubmitDeliveryTrackNumber(orderId, trackNumber) {
+export function handleSubmitDeliveryTrackNumber(orderId, trackNumber, carrier_id) {
     return  function(dispatch, getState) {
         $.ajax({
             url: '/orders/api/update_delivery_track_number',
@@ -66,7 +66,8 @@ export function handleSubmitDeliveryTrackNumber(orderId, trackNumber) {
             type: 'PATCH',
             data: {
                 id: orderId,
-                track_number: trackNumber
+                track_number: trackNumber,
+                carrier_id: carrier_id
             },
             beforeSend:function(data) {
                 dispatch(fetchingServerData(true));

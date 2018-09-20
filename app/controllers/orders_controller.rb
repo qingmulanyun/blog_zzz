@@ -62,7 +62,7 @@ class OrdersController < ApplicationController
   def update_delivery_track_number
     order = Order.find(update_track_number_params[:id])
     authorize order
-    order.update!(delivery_track_number: update_track_number_params[:track_number])
+    order.update!(delivery_track_number: update_track_number_params[:track_number], carrier_id: update_track_number_params[:carrier_id])
     order.sent
     @orders = Order.includes(:order_items).where(shop_id: current_user.shop.id)
     render 'seller_orders.json'
@@ -100,6 +100,6 @@ class OrdersController < ApplicationController
   end
 
   def update_track_number_params
-    params.permit(:id, :track_number)
+    params.permit(:id, :track_number, :carrier_id)
   end
 end

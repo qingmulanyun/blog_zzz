@@ -15,9 +15,14 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Button from '@material-ui/core/Button';
 import { handleOrderStatusChange, handleSubmitDeliveryTrackNumber, deliveryTrack, insertDeliveryTrack } from '../../redux/actions/gridActions'
+import { fetchingServerData } from '../../redux/actions/rootActions'
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import Divider from '@material-ui/core/Divider';
+import Select from '@material-ui/core/Select';
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
 import classnames from 'classnames';
 import blue from '@material-ui/core/colors/blue'
 import green from '@material-ui/core/colors/green'
@@ -29,6 +34,10 @@ const styles = theme => ({
     },
     button: {
 
+    },
+    formControl: {
+        marginBottom: theme.spacing.unit * 3,
+        minWidth: 120,
     },
     quantityContainer: {
         width: "100px",
@@ -56,27 +65,60 @@ class FormatActionCellBase extends React.Component {
         this.state = {
             deliveryTrackDialogOpen: false,
             updateDeliveryTrackDialogOpen: false,
-            deliveryTrackInfoDialogOpen: false
+            deliveryTrackInfoDialogOpen: false,
+            carriers: [],
+            selectedCarrier: props.value.carrier_id,
+            deliveryTrackNumber: props.value.delivery_track_number
         };
     }
 
+    getCarriers = () => {
+        $.ajax({
+            url: '/carriers',
+            dataType: 'json',
+            type: 'GET',
+            beforeSend:function(data) {
+                this.props.fetchingServer(true)
+            }.bind(this),
+            success: function(data) {
+                this.setState({ carriers: data });
+                this.props.fetchingServer(false);
+            }.bind(this),
+            error: function(xhr, status, err) {
+                this.props.fetchingServer(false)
+            }.bind(this)
+        });
+    };
+
     handleClickOpenDeliveryTrackDialog = () => {
         this.setState({ deliveryTrackDialogOpen: true });
+        this.getCarriers();
     };
 
     handleCloseDeliveryTrackDialog = () => {
         this.setState({ deliveryTrackDialogOpen: false });
     };
 
+    handleDeliveryTrackNumber = event => {
+        this.setState({ deliveryTrackNumber: event.target.value });
+    };
+
     submitDeliveryTrackNumber = (orderId) => {
-        const deliveryTrackNumber = this.refs.deliveryTrackNumber.value;
-        this.props.handleSubmitDeliveryTrackNumber(orderId, deliveryTrackNumber);
+        const deliveryTrackNumber = this.state.deliveryTrackNumber;
+        const carrier_id = this.state.selectedCarrier;
+        this.props.handleSubmitDeliveryTrackNumber(orderId, deliveryTrackNumber, carrier_id);
         this.setState({ deliveryTrackDialogOpen: false });
+    };
+
+    //
+    selectCarrier = event => {
+        this.setState({ selectedCarrier: event.target.value });
     };
 
     //update track number
 
     handleClickOpenUpdateDeliveryTrackDialog = () => {
+        this.getCarriers();
         this.setState({ updateDeliveryTrackDialogOpen: true });
     };
 
@@ -85,8 +127,9 @@ class FormatActionCellBase extends React.Component {
     };
 
     submitUpdatedDeliveryTrackNumber = (orderId) => {
-        const deliveryTrackNumber = this.refs.updatedDeliveryTrackNumber.value;
-        this.props.handleSubmitDeliveryTrackNumber(orderId, deliveryTrackNumber);
+        const deliveryTrackNumber = this.state.deliveryTrackNumber;
+        const carrier_id = this.state.selectedCarrier;
+        this.props.handleSubmitDeliveryTrackNumber(orderId, deliveryTrackNumber, carrier_id);
         this.setState({ updateDeliveryTrackDialogOpen: false });
     };
 
@@ -147,22 +190,36 @@ class FormatActionCellBase extends React.Component {
                     aria-labelledby="form-dialog-title"
                     fullWidth
                 >
-                    <DialogTitle id="form-dialog-title">添加运单号</DialogTitle>
+                    <DialogTitle id="form-dialog-title">快递信息 - {value.id}</DialogTitle>
                     <DialogContent>
-                        <DialogContentText>
-                            请输入订单 {value.id} 的运单号。
-                        </DialogContentText>
+                        <FormControl className={classes.formControl}>
+                            <InputLabel htmlFor="carrier-id">快递公司</InputLabel>
+                            <Select
+                                onChange={this.selectCarrier}
+                                value = {this.state.selectedCarrier}
+                                inputProps={{
+                                    name: 'carrier-name',
+                                    id: 'carrier-id',
+                                }}
+                            >
+                                {
+                                    this.state.carriers.map(function(carrier, index){
+                                        return   <MenuItem key={index} value={carrier.id}>{carrier.name}</MenuItem>
+                                    })
+                                }
+                            </Select>
+                        </FormControl>
+                        <div classname="input-field col">
+                            <label for="delivery-tracking-number">快递单号</label>
+                            <input placeholder="快递单号"  id="delivery-tracking-number"  defaultValue="" type="text" className="validate" onChange={this.handleDeliveryTrackNumber} ref="deliveryTrackNumber"/>
+                        </div>
 
-                        <input
-                            defaultValue=""
-                            ref="deliveryTrackNumber"
-                        />
                     </DialogContent>
                     <DialogActions>
                         <Button onClick={this.handleCloseDeliveryTrackDialog} color="primary">
                             取消
                         </Button>
-                        <Button onClick={(e) => this.submitDeliveryTrackNumber(value.id)} color="primary">
+                        <Button onClick={(e) => this.submitDeliveryTrackNumber(value.id)} color="primary" disabled={this.state.selectedCarrier.length <= 0 || this.state.deliveryTrackNumber.length <= 0 }>
                             提交
                         </Button>
                     </DialogActions>
@@ -174,22 +231,38 @@ class FormatActionCellBase extends React.Component {
                     aria-labelledby="form-dialog-title"
                     fullWidth
                 >
-                    <DialogTitle id="form-dialog-title">修改运单号</DialogTitle>
+                    <DialogTitle id="form-dialog-title">修改快递信息 - {value.id}</DialogTitle>
                     <DialogContent>
-                        <DialogContentText>
-                            请输入订单 {value.id} 的运单号。
-                        </DialogContentText>
+                        <DialogContent>
+                            <FormControl className={classes.formControl}>
+                                <InputLabel htmlFor="carrier-id">快递公司</InputLabel>
+                                <Select
+                                    onChange={this.selectCarrier}
+                                    value = {this.state.selectedCarrier}
+                                    inputProps={{
+                                        name: 'carrier-name',
+                                        id: 'carrier-id',
+                                    }}
+                                >
+                                    {
+                                        this.state.carriers.map(function(carrier, index){
+                                            return   <MenuItem key={index} value={carrier.id}>{carrier.name}</MenuItem>
+                                        })
+                                    }
+                                </Select>
+                            </FormControl>
+                            <div classname="input-field col">
+                                <label for="delivery-tracking-number">快递单号</label>
+                                <input placeholder="快递单号" id="delivery-tracking-number"  value={this.state.deliveryTrackNumber} type="text" className="validate" onChange={this.handleDeliveryTrackNumber}/>
+                            </div>
 
-                        <input
-                            defaultValue={value.delivery_track_number}
-                            ref="updatedDeliveryTrackNumber"
-                        />
+                        </DialogContent>
                     </DialogContent>
                     <DialogActions>
                         <Button onClick={this.handleCloseUpdateDeliveryTrackDialog} color="primary">
                             取消
                         </Button>
-                        <Button onClick={(e) => this.submitUpdatedDeliveryTrackNumber(value.id)} color="primary">
+                        <Button onClick={(e) => this.submitUpdatedDeliveryTrackNumber(value.id)} color="primary" disabled={this.state.selectedCarrier.length <= 0 || this.state.deliveryTrackNumber.length <= 0 }>
                             提交
                         </Button>
                     </DialogActions>
@@ -246,14 +319,17 @@ const mapDispatchToProps = (dispatch) => {
         handleOrderStatusChange:(orderId, status)=>{
             dispatch(handleOrderStatusChange(orderId, status))
         },
-        handleSubmitDeliveryTrackNumber:(orderId, trackNumber)=>{
-            dispatch(handleSubmitDeliveryTrackNumber(orderId, trackNumber))
+        handleSubmitDeliveryTrackNumber:(orderId, trackNumber, carrier_id)=>{
+            dispatch(handleSubmitDeliveryTrackNumber(orderId, trackNumber, carrier_id))
         },
         deliveryTrack:(orderId)=>{
             dispatch(deliveryTrack(orderId))
         },
         clearDeliveryTrack: () => {
             dispatch(insertDeliveryTrack([]))
+        },
+        fetchingServer: (boolean)=>{
+            dispatch(fetchingServerData(boolean));
         }
     }
 };
