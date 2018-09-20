@@ -62,7 +62,7 @@ class OrdersController < ApplicationController
   def update_delivery_track_number
     order = Order.find(update_track_number_params[:id])
     authorize order
-    order.update!(delivery_track_number: update_track_number_params[:track_number])
+    order.update!(delivery_track_number: update_track_number_params[:track_number], carrier_id: update_track_number_params[:carrier_id])
     order.sent
     @orders = Order.includes(:order_items).where(shop_id: current_user.shop.id)
     render 'seller_orders.json'
@@ -72,7 +72,9 @@ class OrdersController < ApplicationController
     order = Order.find( params[:order_id])
     authorize order
     delivery_track_numbers = order.delivery_track_number.split(',').map(&:strip)
-    @result = ::Delivery::Track_service.new(delivery_track_numbers, ENV['DELIVERY_SERVICE_HOST_URL']).query_delivery_order
+    carrier = Carrier.find_by(id: order.carrier_id)
+    carrier_service = carrier.present? ? carrier.internal_symbol.camelize : 'AuExpress'
+    @result = "::Delivery::#{carrier_service}".constantize.new(delivery_track_numbers).query_delivery_order
     render 'delivery_tracking_info.json'
   end
 
@@ -100,6 +102,6 @@ class OrdersController < ApplicationController
   end
 
   def update_track_number_params
-    params.permit(:id, :track_number)
+    params.permit(:id, :track_number, :carrier_id)
   end
 end
