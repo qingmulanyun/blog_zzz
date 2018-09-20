@@ -72,7 +72,9 @@ class OrdersController < ApplicationController
     order = Order.find( params[:order_id])
     authorize order
     delivery_track_numbers = order.delivery_track_number.split(',').map(&:strip)
-    @result = ::Delivery::Track_service.new(delivery_track_numbers, ENV['DELIVERY_SERVICE_HOST_URL']).query_delivery_order
+    carrier = Carrier.find_by(id: order.carrier_id)
+    carrier_service = carrier.present? ? carrier.internal_symbol.camelize : 'AuExpress'
+    @result = "::Delivery::#{carrier_service}".constantize.new(delivery_track_numbers).query_delivery_order
     render 'delivery_tracking_info.json'
   end
 
