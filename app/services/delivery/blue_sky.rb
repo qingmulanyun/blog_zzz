@@ -1,9 +1,10 @@
 module Delivery
   class BlueSky < BaseCarrier
-
+    @@url = ENV['BLUE_SKY_SERVICE_HOST_URL']
+    
     def shipping_carrier_api(track_number)
       result = []
-      response = RestClient.post(@@url, { act: 'show', waybill: track_number, submit: '立即查询'})  { |response, request, result|
+      response = RestClient.post(@@url, { cno: track_number})  { |response, request, result|
         case response.code
           when 301, 302, 307
             response.follow_redirection
@@ -13,15 +14,16 @@ module Delivery
       }
       doc = Nokogiri::HTML(response.body)
       temp_str = ''
-      collections = doc.css('table').last.css('td').to_a.drop(3)
+      collections = doc.at_css("table#oTHtable").elements
       collections.each_with_index do |td_ele, index|
-        if td_ele.inner_text.present?
-          content = td_ele.inner_text.strip
-          temp_str += "#{content}||"
-           if valid_tracking_info(collections, index)
-             result.push(temp_str)
-             temp_str = ''
-           end
+        next if index.zero? # remove the header line
+        if td_ele.present?
+          td_ele.elements.each_with_index do |details|
+            content = details.inner_text.strip
+            temp_str += "#{content}||"
+          end
+          result.push(temp_str)
+          temp_str = ''
         end
       end
       result
