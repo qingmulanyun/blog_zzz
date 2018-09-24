@@ -22,7 +22,7 @@ module Delivery
             content = details.inner_text.strip
             temp_str += "#{content}||"
           end
-          result.push(temp_str)
+          result.unshift(temp_str)
           temp_str = ''
         end
       end
