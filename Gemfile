@@ -57,7 +57,7 @@ gem 'state_machine'
 gem 'rest-client'
 
 gem 'rgeo-geojson'
-
+gem 'money-rails'
 gem 'gtfs-realtime-bindings', '~> 0.0.5'
 
 gem "non-stupid-digest-assets"
