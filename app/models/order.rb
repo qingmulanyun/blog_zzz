@@ -5,7 +5,9 @@ class Order < ActiveRecord::Base
   belongs_to :buyer, class_name: 'User'
   belongs_to :address
   has_one :carrier
-
+  
+  monetize :sold_price_cents, with_model_currency: :sold_price_currency
+  
   scope :new_created, -> { where status: 'new' }
   scope :delivered_orders, -> { where status: 'delivered' }
   scope :sent_orders, -> { where status: 'sent' }
@@ -61,6 +63,6 @@ class Order < ActiveRecord::Base
   end
 
   def order_price
-    order_items.reduce(0){|sum, item| sum + (item.formatted_price + item.formatted_transport_cost) * item.quantity}
+    order_items.reduce(0){|sum, item| sum + (item.price + item.transport_cost) * item.quantity}
   end
 end

@@ -2,15 +2,18 @@ class OrderItem < ActiveRecord::Base
 
   belongs_to :order
   belongs_to :item
-
-  FOREX = 5.3.freeze
-
+  
+  monetize :price_cents, with_model_currency: :price_currency
+  monetize :transport_cost_cents, with_model_currency: :transport_cost_currency
+  
+  FOREX = "CNY".freeze
+ 
 
   def name
     item.name
   end
   def formatted_price
-    (price * FOREX).round(2)
+    price.exchange_to(FOREX).to_f
   end
 
   def formatted_commission
@@ -18,14 +21,6 @@ class OrderItem < ActiveRecord::Base
   end
 
   def formatted_transport_cost
-    (transport_cost * FOREX).round(2)
-  end
-
-  def formatted_sale_price
-    (sale_price * FOREX).round(2)
-  end
-
-  def formatted_original_price
-    (original_price * FOREX).round(2)
+    transport_cost.exchange_to(FOREX).to_f
   end
 end

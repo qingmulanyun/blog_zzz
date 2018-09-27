@@ -9,22 +9,23 @@ class Item < ActiveRecord::Base
 
   enum membership: [ :normal, :vip]
 
-  validates_presence_of :original_price, :transport_cost, :price, :sale_price, :weight
+  monetize :price_cents, with_model_currency: :price_currency
+  monetize :original_price_cents, with_model_currency: :original_price_currency
+  monetize :transport_cost_cents, with_model_currency: :transport_cost_currency
+  monetize :sale_price_cents, with_model_currency: :sale_price_currency
+
+  validates_presence_of :original_price_cents, :transport_cost_cents, :price_cents, :sale_price_cents, :weight
 
   scope :starred, -> { where starred: true }
 
-  FOREX = 5.3.freeze
-
-  def cost
-    (cost * FOREX).round(2)
-  end
+  FOREX = "CNY".freeze
 
   def formatted_price
-    (price * FOREX).round(2)
+    price.exchange_to(FOREX).to_f
   end
 
   def display_original_price
-    (price * FOREX * (1 + formatted_commission)).round(2)
+    price.exchange_to(FOREX).to_f * (1 + formatted_commission)
   end
 
   def formatted_commission
@@ -32,15 +33,15 @@ class Item < ActiveRecord::Base
   end
 
   def formatted_transport_cost
-    (transport_cost * FOREX).round(2)
+    transport_cost.exchange_to(FOREX).to_f
   end
 
   def formatted_sale_price
-    (sale_price * FOREX).round(2)
+    sale_price.exchange_to(FOREX).to_f
   end
 
   def formatted_original_price
-    (original_price * FOREX).round(2)
+    original_price.exchange_to(FOREX).to_f
   end
 
   def sales_number

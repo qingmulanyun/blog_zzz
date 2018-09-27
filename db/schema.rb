@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_05_065028) do
+ActiveRecord::Schema.define(version: 2018_09_27_032350) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -155,22 +155,30 @@ ActiveRecord::Schema.define(version: 2018_09_05_065028) do
   create_table "items", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.string "name"
     t.string "image"
-    t.float "price"
+    t.float "price_legacy"
     t.text "description"
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.uuid "shop_id"
-    t.float "original_price", default: 0.0
-    t.float "transport_cost", default: 0.0
+    t.float "original_price_legacy", default: 0.0
+    t.float "transport_cost_legacy", default: 0.0
     t.uuid "item_type_id"
     t.uuid "item_brand_id"
-    t.float "sale_price", default: 0.0
+    t.float "sale_price_legacy", default: 0.0
     t.float "commission"
     t.integer "weight"
     t.boolean "starred", default: false
     t.uuid "wish_product_id"
     t.integer "membership", default: 0
+    t.integer "price_cents", default: 0, null: false
+    t.string "price_currency", default: "AUD", null: false
+    t.integer "original_price_cents", default: 0, null: false
+    t.string "original_price_currency", default: "AUD", null: false
+    t.integer "transport_cost_cents", default: 0, null: false
+    t.string "transport_cost_currency", default: "AUD", null: false
+    t.integer "sale_price_cents", default: 0, null: false
+    t.string "sale_price_currency", default: "AUD", null: false
     t.index ["item_brand_id"], name: "index_items_on_item_brand_id"
     t.index ["item_type_id"], name: "index_items_on_item_type_id"
     t.index ["starred"], name: "index_items_on_starred"
@@ -183,8 +191,12 @@ ActiveRecord::Schema.define(version: 2018_09_05_065028) do
     t.integer "quantity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.float "price"
-    t.float "transport_cost"
+    t.float "price_legacy"
+    t.float "transport_cost_legacy"
+    t.integer "price_cents", default: 0, null: false
+    t.string "price_currency", default: "AUD", null: false
+    t.integer "transport_cost_cents", default: 0, null: false
+    t.string "transport_cost_currency", default: "AUD", null: false
     t.index ["item_id"], name: "index_order_items_on_item_id"
     t.index ["order_id"], name: "index_order_items_on_order_id"
   end
@@ -197,9 +209,11 @@ ActiveRecord::Schema.define(version: 2018_09_05_065028) do
     t.uuid "shop_id"
     t.string "delivery_track_number"
     t.uuid "address_id"
-    t.float "sold_price"
+    t.float "sold_price_legacy"
     t.datetime "sent_at"
     t.uuid "carrier_id"
+    t.integer "sold_price_cents", default: 0, null: false
+    t.string "sold_price_currency", default: "AUD", null: false
     t.index ["address_id"], name: "index_orders_on_address_id"
     t.index ["buyer_id"], name: "index_orders_on_buyer_id"
     t.index ["carrier_id"], name: "index_orders_on_carrier_id"
