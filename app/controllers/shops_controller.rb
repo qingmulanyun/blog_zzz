@@ -32,7 +32,7 @@ class ShopsController < ApplicationController
 
   def sale_report
     authorize Shop
-    orders = current_user.shop.admin_orders.delivered_orders.group_by_month(:created_at).sum(:sold_price)
+    orders = current_user.shop.admin_orders.delivered_orders.group_by_month(:created_at).sum('CAST(sold_price_cents AS FLOAT)/100')
     base_hash = base_month_hash(orders.keys[0], Date.current)
     @result = base_hash.merge!(orders)
     render 'sale_report.json'

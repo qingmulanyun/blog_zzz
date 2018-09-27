@@ -9,7 +9,7 @@ namespace :data_fix do
 	  end
 	  
 	  Order.all.find_each do |order|
-      order.update_columns(sold_price_cents: order.sold_price_legacy||0 * 100)
+      order.update_columns(sold_price_cents: (order.sold_price_legacy||0) * 100)
 	  end
 	  
 	  OrderItem.find_each do |order_item|
