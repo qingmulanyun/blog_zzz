@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import  ItemsListBoard  from './itemsListBoard'
 import StarItemsListBoard from './starItemsListBoard'
 import AdsListBoard from './adsListBoard'
+import SearchBar from './searchBar'
 
 const styles = theme => ({ });
 
@@ -25,6 +26,7 @@ class homePageBoard extends React.Component{
                 {ads.length > 0 &&  <div className="divider"></div>}
                 {starredItems.length > 0 && <StarItemsListBoard starredItems={starredItems}/>}
                 {starredItems.length > 0 && <div className="divider"></div>}
+                <SearchBar />
                 <ItemsListBoard allItems={allItems}/>
             </div>
         );

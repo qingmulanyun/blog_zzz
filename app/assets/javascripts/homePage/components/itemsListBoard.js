@@ -40,31 +40,62 @@ const styles = theme => ({
 
 class ItemsListBoard extends React.Component{
 
-    handleSearchItems = keyWords => {
-        this.props.searchKeywordsChange(keyWords);
+    // handleSearchItems = keyWords => {
+    //     this.props.searchKeywordsChange(keyWords);
+    // };
+    componentDidMount(prevProps, prevState){
+        window.addEventListener('scroll', this.handleOnScroll);
     }
+
+    componentWillUnmount(prevProps, prevState){
+        window.removeEventListener('scroll', this.handleOnScroll);
+    }
+
+    handleOnScroll = () => {
+        var scrollTop = (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop;
+        var scrollHeight = (document.documentElement && document.documentElement.scrollHeight) || document.body.scrollHeight;
+        var clientHeight = document.documentElement.clientHeight || window.innerHeight;
+        var scrolledToBottom = Math.ceil(scrollTop + clientHeight) >= scrollHeight;
+        if (scrolledToBottom) {
+            // this.querySearchResult();
+            console.log('reached bottom')
+        }
+    };
+
+    querySearchResult = () => {
+        if (this.state.requestSent) {
+            return;
+        }
+
+        // enumerate a slow query
+        setTimeout(this.doQuery, 2000);
+
+        this.setState({requestSent: true});
+    };
+
+
+    doQuery = () => {
+        $.ajax({
+            url: "#",
+            data: null,
+            method: "GET",
+            success: function(data) {
+                var fakeData = this.createFakeData(this.state.data.length, 20);
+                var newData = this.state.data.concat(fakeData);
+                this.setState({data: newData, requestSent: false});
+            }.bind(this),
+            error: function(jqXHR, textStatus, errorThrown) {
+                this.setState({requestSent: false});
+            }.bind(this)
+        });
+    };
 
     render(){
         const {classes, allItems, loading} = this.props;
 
         return(
-            <div className={classes.root}>
-                <Grid container>
-                    <Grid item xs={12} sm={6} md={6} lg={3} xl={3} className={classes.titleBar}>
-                        <Typography variant="headline">
-                            商品列表
-                        </Typography>
-                    </Grid>
-                    <Grid item xs={10} sm={6} md={6} lg={9} xl={9} >
-                        <div className="input-field">
-                            <input type="text" id="autocomplete-input" className="autocomplete" onChange={(e)=>this.handleSearchItems(e.target.value)}/>
-                            <i className="material-icons prefix">search</i>
-                            <label className={classes.searchLable}>搜索商品</label>
-                        </div>
-                    </Grid>
-                </Grid>
+            <div className={classes.root} id="items-list-container">
                 {loading && <Loading />}
-
                 <Grid container spacing={24} className={classes.container}>
                     {allItems.length ==0 && !loading && <Typography  variant="caption" gutterBottom align="center" className={classes.errorTips}>
                         抱歉，没有您要搜索的商品
