@@ -46,7 +46,7 @@
     "lodash": "^4.17.5",
     "sshpk": "^1.13.2",
     "moment": "^2.20.1",
-    "node-sass": "^4.7.2",
+    "node-sass": "^4.13.1",
     "react": "^16.4.1",
     "react-chartjs": "^1.2.0",
     "react-dom": "^16.4.1",
